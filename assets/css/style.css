@@ -1,0 +1,84 @@
+body{
+    margin: 0;    
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    background-color:lightgray;
+}
+.header{
+    text-align: center;
+    background-color: navy;
+    color: white;
+    border: 3px solid transparent;
+}
+h2{ color: black; }
+h3{ color: darkblue }
+h4{ color: brown; }
+h5{ color: darkgreen; }
+h6{ color: brown; }
+.content{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.posts_title{
+    font-size: 20px;
+	text-align: center;
+}
+.post{ 
+    background-color: #FFF;
+    border-radius: 3%;
+    border-style: solid;
+    border-color: silver; 
+    padding: 2% 10% 2% 10%;
+    text-align: left;        
+}
+.post_title{
+    color: darkblue;
+    font-style: italic;
+    margin: 0;
+    margin-bottom: 2%;
+}
+.post_content{
+    margin: 0;
+    margin-bottom: 2%;  
+}
+/* Tag code */
+pre{
+    background-color: #f4f4f4;
+    border-left: 6px solid #005282;
+    line-height: 1;
+    max-width: 100%;
+    width: 100%; 
+}
+pre code {
+    white-space: pre;
+}
+code {
+    background-color: #f4f4f4;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+.important{
+    font-weight: bold;
+    color: red;
+}
+.footer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: navy;
+}
+.footer_list {
+    width: 100%; /*Largura desejada*/
+    text-align: center;
+}
+/* Somente tag a filhas de footer_list */
+.footer_list > a {
+    color: #61dafb;
+};
+.footer_list > a:hover {
+    color: white;
+}
