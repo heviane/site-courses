@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arquitetura de Sistemas</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Arquitetura de Sistemas</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Web Services</h3></header>
+				<p class="post_content">
+                    São APIs que se comunicam por meio de redes através do protocolo HTTP, independente de linguagens, softwares e hardwares.<br><br>
+                    Inicialmente foram criados para troca de mensagens usando a linguagem <b>XML</b> (Extensible Markup Language) sobre o protocolo HTTP sendo identificado por <b>URI</b> (Uniform Resource Identifier).<br><br>                    
+                    Todo <b>web service</b> (usa protocolo HTTP) é uma API, mas nem toda <b>API</b> (pode usar outros protocolos) é um web service.
+                    <h4>Vantagens</h4>
+                        <ul>
+                            <li>Integração Universal</li>
+                            <li>Reutilização de Implementação</li>
+                            <li>Linguagem Comum (XML, JSON, etc)</li>
+                            <li>Segurança</li>
+                            <li>Custos</li>
+                        </ul>
+                    <h4>Tecnologias</h4>
+                        <h5>Arquiteturas</h5>
+                        <ul>
+                            <li>REST</li>
+                            <li>SOAP</li>
+                        </ul>
+                        <h5>Linguagens de Marcação</h5>
+                        <ul>
+                            <li>JSON</li>
+                            <li>XML</li>
+                        </ul>
+				</p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">API - Application Programming Interface</h3></header>
+				<p class="post_content">
+                    É um conjunto de rotinas documentadas e disponibilizadas por uma app para que outras apps possam consumir as funcionalidades.<br>
+                    Uma API pode ser REST, SOAP, etc.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">SOAP - Simple Object Access Protocol</h3></header>
+				<p class="post_content">
+                    É um <b>protocolo</b> baseado em XML para acessar serviços web, principalmente por HTTP, define como os serviços web se comunicam.
+                    <h4>Vantagens</h4>
+                        <ul>
+                            <li>Possui as mesmas vantagens dos web services</li>
+                            <li>Meio de transporte genérico (Pode ser usado por outros protocolos além do HTTP)</li>
+                        </ul>
+                    <h4>XML - Extensible Markup Language</h4>
+                        Criada na década de 90 pela W3C.<br>
+                        Facilita a separação de conteúdo de dados.<br>
+                        Não tem limitação de criação de tags.<br>
+                        Linguagem comum para integrações entre apps.
+                    <h4>Estrutura SOAP</h4>
+                        O "SOAP Message" possui uma estrutura única e fixa.<br>
+                        <img src="./images/Message-SOAP-formato.png" alt="Imagem da Estrutura de uma Mensagem SOAP" width="" height="150px" /><br>
+                        <ul>
+                            <li><b>SOAP Envelope</b> é o elemento usado para encapsular toda a mensagem</li>
+                            <li><b>SOAP Header</b> é o elemento com informações de atributos e metadados da requisição</li>
+                            <li><b>SOAP Envelope</b> é o elemento com a mensagem em si</li>
+                        </ul>
+                        <img src="./images/Message-SOAP.png" alt="Imagem de um exemplo de Mensagem SOAP" width="450px" height="200px"/><br>
+                    <h4>WSDL - Web Service Description Language</h4>
+                        Usado para descrever os serviços web, funciona como um contrato do serviço.<br>
+                        A descrição é feito em um documento XML, onde é descrito o serviço, especificações de acesso, operações e métodos.
+                    <h4>XSD - XML Schema Definition</h4>
+                        É um <b>schema</b> no formato XML usado para definir a estrutura de dados que será validada no XML.<br>
+                        O XSD funciona como uma documentação de como deve ser montado o SOAP Message (XML) que será enviado para o serviço.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">REST - Representational State Transfer</h3></header>
+				<p class="post_content">
+                    A <b>transferência de estado representacional</b> é um <b>estilo de arquitetura de software</b> que foi criado para orientar o projeto e o desenvolvimento da arquitetura para a World Wide Web. <b>REST</b> define um conjunto de restrições de como a arquitetura de um sistema de hipermídia distribuído em escala da Internet, como a Web, deve se comportar.<br><br>
+                    Não é um protocolo como o SOAP e sempre vai rodar sobre o protocolo HTTP.<br>
+                    Transferência de Estado Representacional de um objeto, como ele está no momento da requisição e não como ele é.<br>
+                    Formatos: JSON, XML, etc.
+                    <h4>Vantagens</h4>
+                        <ul>
+                            <li>Possui as mesmas vantagens dos web services</li>
+                            <li>Usa métodos do HTTP para definir a operação à ser realizada</li>
+                            <li>Arquitetura de fácil compreensão</li>
+                        </ul>
+                    <h4>Estrutura REST</h4>
+                        Para que um serviço web, API seja considerada REST ela deve seguir o estilo, a arquitetura, os padrões definidos.<br>
+                        Na arquitetura REST usamos os verbos do HTTP como representação do que deve ser feito, métodos. 
+                        <h5>HTTP Métodos</h5>
+                            <ul>
+                                <li><b>GET</b>: Solicita a representação de um recurso</li>
+                                <li><b>POST</b>: Solicita a criação de um recurso</li>
+                                <li><b>DELETE</b>: Solicita a exclusão de um recurso</li>
+                                <li><b>PUT</b>: Solicita a atualização de um recurso</li>
+                            </ul>
+                    <h4>JSON - JavaScript Object Notation</h4>
+                        Formatação leve usada para troca de mensagens entre sistemas.<br>
+                        Estrutura de chave e valor, e também de listas ordenadas.<br>
+                        Um dos formatos mais usados.<br>
+                        <img src="./images/Message-JSON.png" alt="Imagem de um exemplo de Mensagem JSON" width="350px" height="200px"/><br>
+
+                    <h4>HTTP Status Code</h4>
+                        Usado pelo servidor para avisar o cliente sobre o estado da operação solicitada.
+                        <ul>
+                            <li><b>1XX</b> - Informativo</li>
+                            <li><b>2XX</b> - Sucesso</li>
+                            <li><b>3XX</b> - Redirecionamento</li>
+                            <li><b>4XX</b> - Erro do Cliente</li>
+                            <li><b>5XX</b> - Erro do Servidor</li>
+                        </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arquitetura de Sistemas</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Arquitetura de Sistemas</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Arquitetura de Sistemas para Internet</h3></header>
+				<p class="post_content">
+                    <h4>Requisitos Básicos</h4>
+                        <ul>
+                            <li><b>Protocolo HTTP (HyperText Transfer Protocol)</b></li>
+                            É um protocolo de camada de aplicação no modelo de conjunto de protocolos da Internet para sistemas de informação hipermídia distribuídos e colaborativos.
+                            <li><b>Proxy</b></li>
+                            Em redes de computadores, um servidor proxy é um aplicativo de servidor que atua como intermediário entre um cliente que solicita um recurso e o servidor que fornece esse recurso.
+                            <li><b>Rest (Representational state transfer)</b></li>
+                            A transferência de estado representacional é um estilo de arquitetura de software que foi criado para orientar o projeto e o desenvolvimento da arquitetura para a World Wide Web. REST define um conjunto de restrições de como a arquitetura de um sistema de hipermídia distribuído em escala da Internet, como a Web, deve se comportar.
+                            <li><b>Docker</b></li>
+                            É um conjunto de produtos de plataforma como serviço que usam virtualização no nível do sistema operacional para entregar software em pacotes chamados contêineres. Os <b>contêineres</b> são isolados uns dos outros e agrupam seus próprios softwares, bibliotecas e arquivos de configuração; eles podem se comunicar uns com os outros por meio de canais bem definidos
+                            <li><b>Computer programming</b></li>
+                            A programação de computadores é o processo de realizar uma computação específica, geralmente projetando/construindo um programa de computador executável. A programação envolve tarefas como análise, geração de algoritmos, precisão de algoritmos de perfil e consumo de recursos, e a implementação de algoritmos.
+                        </ul>
+
+                    <h4>Tipo de Arquitetura: Monolito</h4>
+                        É uma aplicação única, geralmente começa com um único serviço e vai ganhando funcionalidades ao longo do tempo. São várias instânicas da mesma app executadando no servidor, consumindo um ou mais banco de dados locais, e seus clientes (web, mobile) acessando-a através de um Proxy HTTP.<br>
+                        <img src="./images/Arquitetura-Monolito.png" alt="Imagem da arquitetura de monolito" height="200px" /><br>
+                        <h5>Vantagens</h5>
+                            <ul>
+                                <li>Complexidade Baixa</li>
+                                <li>Monitoramento Simplificado</li>
+                            </ul>
+                        <h5>Desvantagens</h5>
+                            <ul>
+                                <li>Stack única (tecnologia)</li>
+                                <li>Recursos Compartilhados</li>
+                                <li>Acoplamento</li>
+                                <li>Escalabilidade mais complexa</li>
+                            </ul>
+
+                    <h4>Tipo de Arquitetura: Microservices</h4>
+                        Existem diversas maneiras, meios e estratégias para implementar uma arquitetura com microservices.<br>
+                        Cada microserviço tem uma única responsabilidade, representa uma única operação e podem conversar entre si ou com apps externas.<br>
+                        O Proxy HTTP é o responsável por encaminhar as solicitações que chegam para os microservices corretos.<br>
+                        Conforme o aumento de microservices ocorre dentro de um cluster, a complexidade aumenta e podemos ter uma arquitetura caótica.
+
+                        <h5>Exemplo com chamada direta entre os microservices.</h5>
+                            <img src="./images/Arquitetura-Microservice-1.png" alt="Imagem da arquitetura de microservice" height="200px" /><br>
+                            <ul><b>Vantagens</b>
+                                <li>Stack dinâmica</li>
+                                <li>Escalabilidade simples</li>
+                            </ul>
+                            <ul><b>Desvantagens</b>
+                                <li>Acoplamento</li>
+                                <li>Monitoramento mais complexo</li>
+                                <li>Provisionamento mais complexo</li>
+                            </ul>
+
+                        <h5>Exemplo sem chamada direta entre os microservices</h5>
+                            A comunicação é totalmente assíncrona, via mensagens pelo <b>MessageBroker</b>, sendo este o único ponto de comunicação.<br>
+                            Importante ressaltar aqui as operações ficam refém do MessageBroker<br>
+                            <img src="./images/Arquitetura-Microservice-2.png" alt="Imagem da arquitetura de microservice" height="200px" /><br>
+                            <ul><b>Vantagens</b>
+                                <li>Stack dinâmica</li>
+                                <li>Escalabilidade simples</li>
+                                <li>Desacoplamento</li>
+                            </ul>
+                            <ul><b>Desvantagens</b>
+                                <li>Monitoramento mais complexo</li>
+                                <li>Provisionamento mais complexo</li>
+                            </ul>
+                            
+                        <h5>Exemplo sem chamada direta entre os microservices</h5>
+                            Toda a comunicação é realizada através de um <b>gerenciador de pipeline</b>, onde o Proxy HTTP vai passar a requisição para o gerenciador de pipeline, ao invés de passar diretamente para o microservice, isto é útil para operações que precisam seguir determinados passos.<br>
+                            O gerenciador de pipeline precisar estar apto a tratar as requisições caso algum microservice quebre, realizar tentativas ou trabalhar com rollback para que não haja inconsistências nas operações.<br>
+                            <img src="./images/Arquitetura-Microservice-3.png" alt="Imagem da arquitetura de microservice" height="200px" /><br>
+                            <ul><b>Vantagens</b>
+                                <li>Stack dinâmica</li>
+                                <li>Escalabilidade simples</li>
+                                <li>Desacoplamento</li>
+                                <li>Complexidade Menor</li>
+                                Como não temos mais a comunicação assíncrona entre os serviços (ex. 2), fica muito mais fácil saber qual é o fluxo completo de determinadas operações, facilita identificar as falhas.<br>
+                            </ul>
+                            <ul><b>Desvantagens</b>
+                                <li>Provisionamento mais complexo</li>
+                                <li>Plataforma inteira depende do gerenciador de pipeline</li>
+                                O gerenciador de pipeline pode vir a se tornar um gargalo na app.
+                            </ul>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Gerenciamento de Erros e de Volume de Acesso</h3></header>
+				<p class="post_content">
+                    São questões que todas as arquiteturas tem em comum.
+                    <h5>Onde é mais complexo</h5>
+                        <ul>
+                            <li><b>Processos Assíncronos (ex. 2)</b></li>
+                            Não tem como fazer rollback, o erro aconntece e fica isolado no microservice.
+                            <li><b>Processos Gerenciados por Pipeline (ex. 3)</b></li>
+                            Mais complexo que o anterior (ex. 2), porque no passo onde ocorre o erro, o passo precisa saber fazer rollback dele mesmo até o ponto em ele executou, como também tem que fazer rollback dos passos anteriores. Fazer rollback pode ser algo complexo. Nem sempre vamos ter passos que vão querer fazer rollback.
+                            <b>Sistema de rollback</b>: É uma solução para pipelines que sejam síncronos.<br>
+                        </ul>
+                    <h5>Soluções</h5>
+                        <ul>
+                            <li><b>Dead letter queue</b></li>
+                            É uma solução para processos sejam assíncronos, cria uma fila separada do MessageBroker para conter as mensagens de erro, para posterior tratamento, como re-tentativa de processamento. Facilita a visualização de erros. É uma maneira simples de lidar com erros.
+                            <li><b>Filas de re-tentativas</b></li>
+                        </ul>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

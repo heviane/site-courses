@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3>Imutabilidade</h3></header>
+                <p class="post_content">   
+                    Conceito de linguagem funcional.<br>
+                    Em linguagens funcionais, os dados são imutáveis.<br>
+                    Objetos e Arrays são sempre passados por referência (apontamento de memória) para uma função.<br>
+                    Por isso, nunca alterar direto a referência dele, mas sim criar um novo.
+                </p>
+			</article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script>
+            // Criação do objeto
+            const user = {
+                name: 'Heviane',
+                lastName: 'Bastos'
+            }
+            // Função que precisa receber um usuário e adicionar um novo atributo
+            function getUserWithFullName(user) {
+                return {
+                    ...user, //Conceito: Spread operator (ES6)
+                    // Para cada propriedade que receber do user, copia para o novo objeto
+                    // Propriedades copiadas: name, lastName
+                    fullName: `${user.name} ${user.lastName}`//Conceito: String Literal (Template string (ES6))...Só sintaxe mais simples
+                }
+            }
+            const userWithFullName = getUserWithFullName(user);
+            console.log(userWithFullName, user); 
+            // NOVO objeto: {name: 'Heviane', lastName: 'Bastos', fullName: 'Heviane Bastos'}
+            // Objeto user: {name: 'Heviane', lastName: 'Bastos'}
+
+            //...Outro exemplo...
+            const students = [
+                {name:'Ana',grade:7},
+                {name:'Joao',grade:4},
+                {name:'Maria',grade:9},
+            ];
+            function getApprovedStudents(studentsList) {
+                return studentsList.filter(student => student.grade >= 7);
+            }
+            console.log('Alunos Aprovados:');
+            console.log(getApprovedStudents(students)); // Novo objeto: [{name: 'Ana', grade: 7}, {name: 'Maria', grade: 9}]
+            console.log('Lista de alunos');
+            console.log(students);// Objeto declarado inicialmente 
+
+            /* CONCEITO muito utilizado no dia a dia, bem útil para evitar alterações indesejadas nos atts */
+        </script>
+    </body>
+</html>

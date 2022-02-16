@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Mock</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Mock</h3></header>
+				<p class="post_content">
+					Simulação para testar app.<br>
+					Ideal para agilizar testes unitários.<br>
+                    
+				</p>
+                <header><h3 class="post_title">MSW - Biblioteca para mockar requisições</h3></header>
+				<p class="post_content">
+					O objetivo é mockar o retorno do servidor, para ser sempre o mesmo, 
+					assim podemos testar o código e este sempre passará nos testes, sem a necessidade de 
+					precisar levantar um servidor real.<br><br>
+					
+					<b>SW (Service Worker)</b>: É uma tecnologia usada pelos browsers que serve para, 
+					se cair na camada de rede, pode-se fazer cache (files, requisitions, etc).<br>
+					Neste caso, está sendo usada para mockar requisições.
+					
+					<pre><code>
+						import { rest } from 'msw';    // Biblioteca          
+						import { setupServer } from 'msw/node';  // Ambiente é node
+					</code></pre>
+                    
+				</p>
+
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+					<li><a href="https://mswjs.io" 
+						target="_blank">mswjs.io</a></li>
+					<li><a href="https://github.com/mswjs/msw" 
+						target="_blank">github.com/mswjs/msw</a></li>
+					
+
+
+					<li><a href="https://github.com/celso-henrique/naruto-quotes-client" 
+						target="_blank">naruto-quotes-client</a></li>
+					<li><a href="https://github.com/celso-henrique/naruto-quotes-server" 
+						target="_blank">naruto-quotes-server</a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

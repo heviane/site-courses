@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">CRUD de Usuários com Promises</h3></header>
+                <p class="post_content">
+                    O acesso e consultas ao banco de dados serão realizadas via <a href="file:///D:/Github/dio-desafio-github/Course-JavaScript/lessons/lesson16.html" target="_blank">Promises (Objeto que representa uma tarefa assíncrona)</a>.<br>
+                    Arquivo <b>src/repositories/user.repository.ts</b>
+                </p>
+            </article>
+
+             <article class="post">
+                <header><h3 class="post_title">Promise do endpoint GET /users</h3></header>
+                <p class="post_content">
+                    Listar todos os usuários.
+                    <pre><code>
+                        import db from "../db";
+                        import User from "../models/user.model";
+
+                        class userRepository {
+
+                            async allUsers(): Promise&lt;User[]&gt; {
+                                const query = `SELECT uuid, userName FROM users`; 
+                                const { rows } = await db.query&lt;User&gt;(query); 
+                                return rows || [];
+                            }
+                        }
+
+                        export default new userRepository();
+                    </code></pre>  
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Promise do endpoint GET /users/:uuid</h3></header>
+                <p class="post_content">
+                    Listar um usuário especifico filtrando pelo UUID.
+                    <pre><code>
+                        import db from "../db";
+                        import User from "../models/user.model";
+
+                        class userRepository {
+
+                            async byIdUser(uuid: string): Promise&lt;User&gt; {
+                                const query = `SELECT uuid, userName FROM users WHERE uuid = $1`; 
+
+                                const values = [uuid]; 
+                                const { rows } = await db.query&lt;User&gt;(query, values); 
+                                const [user] = rows;  
+                        
+                                return user; 
+                            }
+                        }
+                        export default new userRepository();
+                    </code></pre>                                 
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Promise do endpoint POST /users</h3></header>
+                <p class="post_content">
+                    Criar um usuário e retorna o ID.
+                    <pre><code>
+                        import db from "../db";
+                        import User from "../models/user.model";
+
+                        class userRepository {
+                            async createUser(user: User): Promise&lt;string&gt; {
+                                //  (Boa Prática)
+                                const script = `INSERT INTO users (userName, userPassword) VALUES ($1, crypt($2, 'my_salt')) RETURNING uuid`;
+                                const values = [user.userName, user.userPassword]; 
+                                const { rows } = await db.query&lt;{ uuid: string }&gt;(script, values); 
+                                const [newUser] = rows; 
+                                return newUser.uuid;
+                            }
+                        }
+                        export default new userRepository();
+                    </code></pre>
+                    <b>Boa Prática:</b> Transformar 'my_salt' que é uma chave privada em uma variável de ambiente.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Promise do endpoint PUT /users/:uuid</h3></header>
+                <p class="post_content">
+                    Atualizar um usuário especifico filtrando pelo UUID. Void, sem retorno.
+                    <pre><code>
+                        import db from "../db";
+                        import User from "../models/user.model";
+
+                        class userRepository {
+                            async updateUser(user: User): Promise<void> {
+                                const script = `UPDATE users SET userName = $1, userPassword = crypt($2, 'my_salt') WHERE uuid = $3`;
+                                const values = [user.userName, user.userPassword, user.uuid]; 
+                                await db.query(script, values);
+                            }
+                        }
+                        export default new userRepository();
+                    </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Promise do endpoint DELETE /users/:uuid</h3></header>
+                <p class="post_content">
+                    Excluir um usuário especifico filtrando pelo UUID. Void, sem retorno.
+                    <pre><code>
+                        import db from "../db";
+                        import User from "../models/user.model";
+
+                        class userRepository {
+                            async deleteUser(uuid: string): Promise<void> {
+                                const script = `DELETE FROM users WHERE uuid = $1`;
+                                const values = [uuid];
+                                await db.query(script, values);
+                            }
+                        }
+                        export default new userRepository();
+                    </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Refatoração do CRUD de usuários para chamar as Promises</h3></header>
+                <p class="post_content">
+                    Arquivo <b>src/routes/users.route.ts</b>
+                    <pre><code>
+                        import { Router, Request, Response, NextFunction } from 'express';
+                        import { StatusCodes } from 'http-status-codes';
+                        import userRepository from '../repositories/user.repository';
+                        
+                        const usersRoute = Router();
+
+                        // Listar todos os usuários
+                        usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction) => {
+                            const users = await userRepository.allUsers();
+                            res.status(StatusCodes.OK).json(users); 
+                        });
+                        
+                        // Listar um usuário especifico
+                        usersRoute.get('/users/:uuid', async (req: Request&lt;{uuid: string}&gt;, res: Response, next: NextFunction) => {
+                            const user = await userRepository.byIdUser(req.params.uuid);
+                            res.status(StatusCodes.OK).json(user); 
+                        });
+
+                        // Criar um usuário, retorna o ID
+                        usersRoute.post('/users', async (req: Request, res: Response, next: NextFunction) => {
+                            const newUser = req.body;
+                            const uuid = await userRepository.createUser(newUser);
+                            res.status(StatusCodes.CREATED).send(uuid);
+                        });
+
+                        // Atualizar um usuário
+                        usersRoute.put('/users/:uuid', async (req: Request&lt;{ uuid: string }&gt;, res: Response, next: NextFunction) => {
+                            const uuid = req.params.uuid;
+                            const modifiedUser = req.body;
+                            modifiedUser.uuid = uuid;
+                            await userRepository.updateUser(modifiedUser);
+                            res.status(StatusCodes.OK).send(); 
+                        });
+
+                        // Excluir um usuário
+                        usersRoute.delete('/users/:uuid', async (req: Request&lt;{ uuid: string }&gt;, res: Response, next: NextFunction) => {
+                            const uuid = req.params.uuid;
+                            await userRepository.deleteUser(uuid);
+                            res.status(StatusCodes.OK).send(); 
+                        });
+
+                        export default usersRoute;
+                    </code></pre>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

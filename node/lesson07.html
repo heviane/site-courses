@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Configuração do ambiente de desenvolvimento com TypeScript e Node.js</h3></header>
+                <p class="post_content">
+                    <h4>Node.js</h4>
+                        Comando para inicializar app com Node.js, cria o arquivo <b>package.json</b>
+                            <pre><code>
+                                npm init
+                            </code></pre>
+
+                        Alterar o arquivo <b>package.json</b>
+                            <pre><code>
+                                "main": "./dist/index.js",
+                                "scripts": {
+                                    "start": "node ./"
+                                },
+                            </code></pre>
+                            Ao configurar apenas com <b>./</b> ele olha para o <b>main</b>. 
+
+                        Criar o diretório root <b>src</b> na raiz do projeto.
+                            <pre><code>
+                                mkdir src
+                            </code></pre>
+                        
+                    <h4>TypeScript</h4>
+                        Instalar o typeScript globalmente.
+                            <pre><code>
+                                npm install -g typescript
+                            </code></pre>
+
+                        Configurar o typeScript, cria o arquivo <b>tsconfig.json</b>
+                            <pre><code>
+                                tsc --init
+                            </code></pre>
+
+                        Alterar o arquivo de configuração <b>tsconfig.json</b>
+                            <pre><code>
+                                {
+                                    "compilerOptions": {
+                                        "target": "es2019", 
+                                        "module": "commonjs", 
+                                        "moduleResolution": "node",
+                                        "rootDir": "src",  /* Diretório principal = Conjunto de scripts/files */
+                                        "typeRoots": [     
+                                            "./src/@types",
+                                            "./node_modules/@types"
+                                        ],
+                                        "outDir": "./dist",  /* Diretório de saída = build, production */
+                                        "removeComments": true, /* Remover comentários durante a build */
+                                        "esModuleInterop": true, 
+                                        "forceConsistentCasingInFileNames": true,
+                                        "strict": true, /* Sempre realizar as validações */
+                                        "skipLibCheck": true 
+                                    }
+                                }  
+                            </code></pre>
+
+                        Criar o arquivo principal <b>index.ts</b> dentro do diretório principal <b>./src</b>, este será o servidor da app.
+                            <pre><code>
+                                touch.exe src/index.ts
+                            </code></pre>                            
+
+                        Criar o diretório <b>./src/@types</b>
+                            <pre><code>
+                                mkdir src/@types
+                            </code></pre>
+
+                        Criar o diretório <b>dist</b> na raiz do projeto.<br>
+                        TypeScript irá gerar os arquivos de build, os arquivos <b>.js</b> resultantes da transpilação dos arquivos <b>.ts</b>
+                            <pre><code>
+                                mkdir dist
+                            </code></pre>
+
+                        Instalar os <b>@types</b> do <b>Node.js</b>, biblioteca responsável pela transpilação do TypeScript para JavaScript. 
+                            <pre><code>
+                                npm install --save-dev typescript
+                                npm install --save-dev @types/node
+                            </code></pre>
+                            Created directory <b>node_modules</b> in project root.<br>
+                            
+                        Adicionar script de <b>build</b> no <b>package.json</b>, aponta para o arquivo de configuração <b>tsconfig.json</b>
+                            <pre><code>
+                                "scripts": {
+                                    "build": "tsc -p .",
+                                }
+                            </code></pre>
+
+                    <h4>Git</h4>
+                        Criar arquivo <b>.gitignore</b> na raiz do projeto e configurar os diretórios <b>dist</b> e <b>node_modules</b>.
+                            <pre><code>
+                                touch.exe .gitignore
+                            </code></pre>
+                            <b>OBS:</b> Os diretórios ignorados ficarão com a cor cinza.
+
+                    <h4>Execução em Tempo de Desenvolvimento</h4>
+                        Comando para executar <b>build</b>, converter TypeScript para JavaScript e gerar os arquivos de produção.
+                            <pre><code>
+                                npm run build
+                            </code></pre>
+
+                        Comandos para executar a app.
+                            <pre><code>
+                                npm start
+                                npm run start
+                            </code></pre>
+
+                    <h4><a href="lesson20.html">Ferramentas Úteis - Automatizar a Execução em Tempo de Desenvolvimento</a></h4>
+                        
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

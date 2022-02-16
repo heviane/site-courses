@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Práticas avançadas</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Context API</h3></header>
+                <p class="post_content">
+                    Hook <b>useContext</b>.<br>
+                    Se fosse classe, seria <b>consumer</b>.<br>
+
+                    Forma de passar e controlar valores em um contexto global sem a utilização de componentes intermediários.<br>
+                    Context API tem um <b>consumer</b> e <b>provider</b>.<br>
+                    Pode-se ter vários <b>providers</b> no mesmo componente.<br>
+                    React não vai renderizar tudo, somente o que estiver consumindo o provider em questão.<br>
+
+                    Deve ser usado com cautela: Pode sobrecarregar com re-renderizações.<br>
+                    Existem outras ferratmentas controladoras de estado.<br>
+                    Nem sempre vai ser necessário usar um contexto global.<br>
+
+                    <h4>Exemplo prático:</h4>
+                    AppContextApi.js está passando os valores para o provider.<br>
+                    O provider vai providenciar os valores para os componentes filhos.<br>
+                    Theme.js é a criação do contexto inicial.<br>
+                    Card2.js e Form2.js são os componentes que estão consumindo o contexto.<br>
+                        Card2.js está estilizando o button com os valores iniciais criados em theme.<br>
+                        Form2.js está validando o token, que foi criado depois no contexto na AppContextApi.js</p>
+                </p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                   
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

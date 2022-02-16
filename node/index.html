@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="lessons/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <article class="post">   
+                <!--============================ Introdução -->                 
+                <h3><a href="lessons/lesson01.html">Introdução</a></h3>
+                <h3><a href="lessons/lesson02.html">Ambiente: Instalação e Configuração</a></h3>
+                <h3><a href="lessons/lesson03.html">Criar um Servidor</a></h3>
+                <!-- Project: App for managing the use of RAM memory --> 
+                <h3><a href="lessons/lesson05.html">Projeto 01 - App Local para gerenciamento do uso da memória RAM</a></h3>
+            
+                <!--============================ Projeto Mockado (sem database) --> 
+                <h3><a href="lessons/lesson06.html">Projeto 02 - Microserviço para Autenticação e Gerenciamento de Usuários - REST API</a></h3>
+                <!-- Apresentação e Estruturação (End-Points) do Projeto: User Authentication Microservice - REST API 
+                    - REST API: Estilo Arquitetural.
+                    - Microservice: App executada em uma única máquina (server + database).
+                    - Library Express: Biblioteca para criação de rotas (Router) e middlewares. Gerenciamento de rotas HTTP.
+                    - TypeScript: Superset do JS. Especifica como as coisas devem interagir entre si. O que pode ou não ser feito.-->
+                <h3><a href="lessons/lesson07.html">Projeto 02 - Configuração do ambiente de desenvolvimento com TypeScript e Node</a></h3>
+                <!-- Criação do projeto, diretórios, instalações e configurações -->
+                <h3><a href="lessons/lesson08.html">Projeto 02 - Library Express - Instalação, Configuração, Criação do Servidor e Rota de Status</a></h3>
+                <!--- Instalação e configuração do Express
+                    - Instalação dos @types do TypeScript para o Express 
+                    - Criação de servidor sem e com Router 
+                    - Criação da Rota Status -->
+                <h3><a href="lessons/lesson09.html">Projeto 02 - Criação do CRUD de usuários e Rota (mockado)</a></h3>
+                <!-- Criação das Rotas -->
+
+                <!--============================ Projeto refatorado com a inclusão da database --> 
+                <h3><a href="lessons/lesson10.html">Projeto 02 - Database - Introdução, Instalações e Configurações</a></h3>
+                <!--- Banco de dados (PostgreSql Cloud ): elephantsql.com
+                    - Formas conectar Node c database = ORM (Object-Relational Mapping)**Frameworks** ou Drivers Nativos**+Simples**
+                    - Formas abrir conexão = Direta **toda vez q usa** ou Pool de Conexões **Recomendado**  
+                    - Instalações:  
+                        - Biblioteca node-postgres.com (Driver Nativo)
+                        - @types do TypeScript para a biblioteca node-postgres.com
+                    - Scripts Iniciais: 
+                        - Criação da tabela de usuário e inserção dos primeiros usuários
+                        - Criação dos campos de Usuário (Model) = src/models/user.model.ts -->
+                <h3><a href="lessons/lesson11.html">Projeto 02 - Database - CRUD de Usuários com Promises</a></h3>
+                <!--- Promises para acesso e consulta ao Banco de Dados (src/repositories/user.repository.ts)
+                    - Refatoração do CRUD de usuários (Rotas) para chamar as Promises (src/routes/users.route.ts) -->
+                <h3><a href="lessons/lesson12.html">Projeto 02 - Database - Tratamento de Erros</a></h3>
+                <!--- try/catch = throw Error e throw DatabaseError (Classe que extende a classe Error)
+                    - Middleware Error Handler Genérico (Centralização de erros para evitar complexidade e repetição de código) -->
+
+                <!--============================ Projeto refatorado com a criação da Autenticação -->
+                <!-- AUTENTICAÇÃO:
+                    - Formas de autenticação
+                        - Basic Auth é uma forma de autenticação baseada no Protocolo HTTP. **é a forma mais simples**
+                            - Middleware src/middlewares/basic-authentication.ts
+                            - Método HTTP POST para autenticação
+                        - Bearer Token é uma forma de autenticação baseada em um Token.
+                            - Middleware src/middlewares/bearer-authentication.ts
+                            - Método HTTP GET para autenticação
+                -->
+                <!-- MIDDLEWARE: 
+                    É todo tipo de função que está entre uma requisição HTTP e sua respectiva resposta.
+                    São funções que fazem um meio de campo (Interceptam, fazem algo e executam próxima função) 
+                    O método next() é o responsável por chamar o próximo middleware.
+                    Há 2 tipos de middlewares:
+                        - Sem parametros: next()       *** Genérico ***
+                        - com parametros: next(error)  *** Error Handler ***
+                    Há 2 formas de registrar:
+                        - Global, no server (src/index.ts)
+                        - Local, no arquivo de rota, por exemplo na rota de autorização (src/routes/authorization.route.ts)
+                    Vantagens:
+                        - Reutilização de código, ecapsulamento de funcionalidades genéricas.
+                -->
+
+                <h3><a href="lessons/lesson13.html">Projeto 02 - Endpoint de Autorização</a></h3>
+                <!--- 
+                    - Criação do endpoint (rota) de autorização   (src/routes/authorization.route.ts)
+                    - Criação do tipo de erro para autenticação   (src/models/errors/forbidden.error.model.ts)
+                    - Criação de um middleware para tratar o erro (src/middlewares/error-handler.ts)
+                    - Configuração das rotas no server            (src/index.ts)
+                    - Inclusão de validações e tratamentos
+                    - Criação do método byUserNameAndPassword(), para consulta database (src/repositories/users.repository.ts) -->
+                <h3><a href="lessons/lesson14.html">Projeto 02 - Gerar e Retornar Token JWT (JSON Web Token)</a></h3>
+                <!--- JWT (JSON Web Token) é um token.
+                    - jsonwebtoken é uma biblioteca para geração de token JWT.
+                    - Refatorar endpoint de autenticação para: GERAR Token JWT e RETORNAR(response) o token JWT -->
+                <h3><a href="lessons/lesson15.html">Projeto 02 - Middleware para Método de Autenticação Basic Auth</a></h3>
+                <!-- 
+                    - Extender o @types/express em src/@types/express.d.ts
+                        - Incluir o type User no Request para poder propagar o usuário para o próximo middleware.
+                        - Criar um arquivo de definição para o express src/@types/express.d.ts, é uma espécie de "interface".
+                        *** Isso pode ser feito para incluir qualquer tipo de atributo customizado. ***
+                    - Criar o Middleware em src/middlewares/basic-authentication.ts
+                        - Colocar o user dentro da requisição para ficar acessível em todas as rotas.
+                    - Configurar o Middleware basicAuthentication() na rota de autorização (src/routes/authorization.route.ts) 
+                        - Recuperar o user da request -->
+                <h3><a href="lessons/lesson16.html">Projeto 02 - Middleware para Método de Autenticação Bearer Token</a></h3>
+                <!--- Criar o middleware               (src/middlewares/bearer-authentication.ts)
+                    - Registrar o middleware no server (src/index.ts) -->
+                <h3><a href="lessons/lesson17.html">Projeto 02 - Testar o Microserviço</a></h3>
+                <!--
+                    1º Step: Obter um token de autorização no endpoint http://localhost:3000/token 
+                        - Forma de autenticação Basic Auth
+                        - Informar as credenciais do usuário (username e password)
+                    2º Step: Executar um dos endpoints do CRUD de usuários para testar, ex: http://localhost:3000/users 
+                        - Forma de autenticação Bearer Auth
+                        - Informar o token gerado no passo 1 -->
+                <h3><a href="lessons/lesson18.html">Projeto 02 - Endpoint para Validar o Token</a></h3>
+
+
+                <!--============================ PENDENCIES -->
+                <!-- Refresh Token 
+                    - Incluir configuração para expirar Token
+                        - Na rota de autorização (src/routes/authorization.route.ts) 
+                        BOA PRÁTICA, pois se acontecer vazamento, token tem vida curta para minimizar estragos.
+                    - Quando o token expirar, o middleware bearerAuthentication() vai lançar uma exceção de Token expirado.
+                        - O que fazer? 
+                            - Chamar um Refresh Token: Fornece um novo Token a partir do Token anterior
+                    - Challenge:
+                        - Lançar uma exceção diferente quando for 'Token inválido'
+                            - Lançar 401 ao invés de 403
+                            - Para que app client consiga identificar que está expirado e solicitar um refresh token
+                        - Criar um endpoint de refresh token (/token/refresh)
+                            - Receber o Token expirado (antigo)
+                            - Pegar o usuário do Token
+                            - Autenticar novamente o usuário
+                            - Gerar um novo Token
+                -->
+
+
+                <!-- Useful Tools -->
+                <h3><a href="lessons/lesson20.html">Ferramentas Úteis</a></h3>
+                <!-- 
+                    - API Client para testar requisições HTTP (Postman, Insomnia)
+                    - Library config para criar variáveis de ambiente em Node 
+                -->
+
+
+
+                <!--------------------- Injeção de Dependência  *** NÃO utilizada neste projeto ***
+                    db é uma injeção de dependência estática, porque é uma instância (user.repository.ts)
+                    O que se cria nos frameworks é uma abstração disso, é uma forma de se organizar essa passagem de parametros, e aí se cria os conceitos de injeção de dependência e inversão de controle.
+                    Aonde um terceiro vai gerenciar qual valor vai para os parametros exigidos para certas funções.              
+                -->
+            </article>
+
+            <article class="post">  
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                <ul>
+                    <li><a href="https://nodejs.org" target="_blank">nodejs.org</a></li>
+                    <li><a href="https://github.com/nodejs" target="_blank">github.com/nodejs</a></li>
+                    <!--================= Ferramentas Úteis =================-->
+                    <!-- Utilitário para automatizar a execução em tempo de desenvolvimento para ambiente Node -->
+                    <li><a href="https://nodemon.io" target="_blank">nodemon.io</a></li>
+                    <li><a href="https://github.com/remy/nodemon" target="_blank">github.com/remy/nodemon</a></li>
+                    <!-- Utilitário para automatizar a execução em tempo de desenvolvimento para ambiente TypeScript dentro do Node -->
+                    <li><a href="https://www.npmjs.com/package/ts-node-dev" target="_blank">npmjs.com/package/ts-node-dev</a></li>
+                    <li><a href="https://github.com/wclr/ts-node-dev" target="_blank">github.com/wclr/ts-node-dev</a></li>
+                    <!-- Utilitário para facilitar o retorno do HTTP status code -->
+                    <li><a href="https://www.npmjs.com/package/http-status-codes" target="_blank">http-status-codes</a></li>
+                    <li><a href="https://github.com/prettymuchbryce/http-status-codes" target="_blank">github.com/prettymuchbryce/http-status-codes</a></li>
+                    <!-- Express é uma biblioteca pequena e simples para gerenciar rotas HTTP -->
+                    <li><a href="https://expressjs.com" target="_blank">expressjs.com</a></li>
+                    <li><a href="https://github.com/expressjs/expressjs.com" target="_blank">github.com/expressjs/expressjs.com</a></li>
+                    <!-- Nest é uma biblioteca para contruções no lado servidor com base em TypeScript e JavaScript -->
+                    <li><a href="https://nestjs.com" target="_blank">nestjs.com</a></li>
+                    <li><a href="https://github.com/nestjs/nest" target="_blank">github.com/nestjs/nest</a></li>
+                    <!-- Next é uma biblioteca para apps baseada em React (renderização do lado do servidor e geração de sites estáticos) -->
+                    <li><a href="https://nextjs.org" target="_blank">nextjs.org</a></li>
+                    <li><a href="https://github.com/vercel/next.js" target="_blank">github.com/vercel/next.js</a></li>
+                    <!-- Open Source API Client para testar requisições HTTP -->
+                    <li><a href="https://www.postman.com" target="_blank">postman.com</a></li>
+                    <li><a href="https://github.com/postmanlabs/postman-app-support" target="_blank">github.com/postmanlabs/postman-app-support</a></li>
+                    <li><a href="https://insomnia.rest" target="_blank">insomnia.rest</a></li>
+                    <li><a href="https://github.com/Kong/insomnia" target="_blank">github.com/Kong/insomnia</a></li>
+                    <!-- Connection Database -->
+                    <li><a href="https://node-postgres.com" target="_blank">node-postgres.com</a></li>
+                    <li><a href="https://github.com/brianc/node-postgres" target="_blank">github.com/brianc/node-postgres</a></li>
+                    <!-- Database -->
+                    <li><a href="https://www.elephantsql.com" target="_blank">elephantsql.com</a></li>
+                    <!-- Decodificar token base64 -->
+                    <li><a href="https://www.base64decode.org/" target="_blank">Base64 Decode</a></li>
+                    <!-- Site sobre o padrão JWT, permite decodificar, verificar e gerar JWT. -->
+                    <li><a href="https://jwt.io" target="_blank">jwt.io</a></li>
+                    <!-- Bicliotecas JWT para Node -->
+                    <li><a href="https://github.com/auth0/node-jsonwebtoken" target="_blank">Library node-jsonwebtoken</a></li>
+                    <li><a href="https://github.com/panva/jose" target="_blank">Library jose</a></li>
+                    <li><a href="https://github.com/awslabs/aws-jwt-verify" target="_blank">Library aws-jwt-verify</a></li>
+                    <!-- Biblioteca Config -->
+                    <li><a href="https://www.npmjs.com/package/config" target="_blank">Library config</a></li>
+                    <li><a href="https://github.com/lorenwest/node-config" target="_blank">github.com/lorenwest/node-config</a></li>
+                </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

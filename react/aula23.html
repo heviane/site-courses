@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Técnicas com componentes e DOM</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Fragment</h3></header>
+				<p class="post_content">
+                    <p>Um componente pode retornar múltiplos elementos, porém no <b>return</b> o JSX retorna somente um <b>elemento root</b>, sendo assim, todos devem estar encapsulados dentro de um único elemento nó Raiz (Pai).</p>
+                    <p>Dependendo da quantidade de elementos aninhados dentro do elemento root, a arvore pode ficar muito grande, pois <u>o React vai gerar um nó para cada elemento no DOM</u>, e muitas vezes não há necessidade disso. Por isso, surgiu a implementação do <b>Fragment</b> para agrupar elementos e gerar somente um nó por grupo.</p>
+				</p>
+                <header><h3 class="post_title">Error Boundary</h3></header>
+				<p class="post_content">
+                    <p>Um erro de JavaScript em uma parte da UI não deve quebrar toda a app. <br>
+                    Para resolver este problema, o React 16 introduziu o conceito de <b>Error Boundaries</b>.</p>
+                    <p><b>Error Boundary</b> é um componente que vai envelopar, criar um wrapper de toda a app.<br> 
+                        Objetivo é capturar erros, tratá-los e codificar mensagens mais amigáveis para os usuários.<br>
+                        É mais uma etapa no <b>Ciclo de vida</b>. </p>
+                    <p>Toda a árvore abaixo do erro é destruída, por questões de segurança, pois uma app quebrada poderia expor dados sensíveis e permitir manipulação.</p>
+                    <p>
+                        <ul><h4>Error Boundaries não capturam erros em:</h4>
+                            <li>Manipuladores de evento</li>
+                            <li>Código assíncrono (ex: callbacks de setTimeout ou requestAnimationFrame)</li>
+                            <li>Renderização no servidor</li>
+                            <li>Erros lançados na própria error boundary (ao invés de em seus filhos)</li>
+                        </ul>
+                        Por que não usar um <b>try/catch</b> na app interira? Porque React funciona de forma <b>declarativa</b> e não imperativa, e o try/catch é uma forma imperativa de tratar erros.
+                    </p>
+                    <b>Prática:</b> Criar Error Boundary que ao capturar algum erro simule o envio de dados para um serviço.
+                </p>
+                <header><h3 class="post_title">Render Props</h3></header>
+				<p class="post_content">
+                    <p>Técnica de compartilhar código entre componentes passando uma prop cujo valor é uma função. 
+                        O componente recebe uma função que retorna um elemento React e a invoca no momento de renderização, não sendo necessário para o componente implementar uma lógica própria.</p>
+                    <b>Resumo:</b> Reaproveitamento de lógica passando funções de um componente para outro.
+                    <p><b>Exemplo:</b><br>
+                        <b>Counter.js</b> é um componente wrapper que recebe a propriedade <u>count</u> via state e implementa dois métodos <u>increment()</u> e <u>decrement</u> <b>AppRenderProps.js</b> executa o "Buttons" e este por sua vez executa o "Counter" passando as propriedades e métodos. <b>Counter.js</b> retorna um render com a propriedade e os métodos.
+                    </p>
+                    <b>Concluindo: </b>Fizemos o render props reaproveitando métodos de outro componente.
+                </p>
+
+                <header><h3 class="post_title">Typechecking com PropTypes</h3></header>
+				<p class="post_content">
+                    <p><b>PropTypes</b> é uma biblioteca nativa do React para realização de checagem de tipos.<br>
+                        É uma checagem mais fraca, porque não é em tempo de desenvolvimento como o <b>TypeScript</b>, mas sim em tempo de execução.</p>
+                    <b style="color:red">OBS:</b> Antes a bilbioteca <b>proptypes</b> ficava junto com a biblioteca do React, mas foi splitada e agora é necessário instalar separadamente.<br>
+                    <b style="color:red">RECOMENDAÇÃO:</b> É uma boa prática fazer checagem de tipos.<br>
+                    Na medida em que a App cresce, pode-se capturar muitos bugs com checagem de tipos.<br>
+                    <p><b>Exercício final:</b> Criar um componente que receba propriedades do tipo "array", "boolean", "func", "number", "object", "string" e "symbol" e realizar a validação utilizando Prop-Types. Colocar como <b>defaultProps</b> os valores string e number.</p>
+                </p>
+
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://pt-br.reactjs.org/docs/fragments.html" 
+                        target="_blank">reactjs.org/docs/fragments</a></li>
+                    <li><a href="https://pt-br.reactjs.org/docs/error-boundaries.html" 
+                        target="_blank">reactjs.org/docs/error-boundaries</a></li>
+                    <li><a href="https://pt-br.reactjs.org/docs/render-props.html" 
+                        target="_blank">reactjs.org/docs/render-props</a></li>
+                    <li><a href="https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html" 
+                        target="_blank">reactjs.org/docs/typechecking-with-proptypes</a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

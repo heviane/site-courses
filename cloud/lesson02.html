@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cloud</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Cloud</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">AWS - Amazon Web Services - Projeto</h3></header>
+				<p class="post_content">
+                    <h4>Arquitetura</h4>
+                        <img src="images/AWS-Arquitetura-Projeto.png" alt="Arquitetura AWS" height="300px">
+                        <ul>
+                            <li>Criar um pool de usuários com Amazon Cognito</li>
+                            <li>Criar uma tabela com DynamoDB e criar funções Lambda</li>
+                            Sempre que trabalhar com Lambda precisa configurar permissões no IAM.
+                            <li>Criar uma API Gateway e rotas</li>
+                            <li>Desenvolver as integrações</li>
+                            <li>Configurar permissões em IAM (Identify and Access Management)</li>
+                            Configurar polices e roles.
+                        </ul>
+
+                    <h4>Serviços Usados para Realizar Deploy da App na AWS</h4>
+                        <ul>
+                            <Li>AWS RDS - Serviço de Gerenciamento de Banco de Dados</Li>
+                            Suporta uma gama de BD Relacionais, é nele que cria-se as instâncias.
+                            <li>AWS ECR - Repositório das imagens dos containeres</li>
+                            Outra solução seria o Docker Hub.
+                            <li>AWS ECS - Orquestrador de containeres</li>
+                            Outra solução seria o Kubernetes (Open Source).
+                            <li>Github Actions - Fazer integração do GitHub com a AWS</li>
+                        </ul>
+
+				</p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

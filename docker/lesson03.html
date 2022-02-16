@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orquestração de Contêineres</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Orquestração de Contêineres</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Docker - Comandos</h3></header>
+				<p class="post_content">
+                    Todos os comandos devem ser digitados após a palavra <b>docker</b>
+                    <ul>
+                        <li><b>run</b>: Cria um container baseado em uma imagem</li>
+                        <Li><b>ps</b>: Lista os containers</Li>
+                        <li><b>info</b>: Lista as informações do Docker</li>
+                        <li><b>images</b>: Lista as imagens do locais</li>
+                        <li><b>exec</b>: Executa outro binário dentro do container, ex: sh</li>
+                        <li><b>stop, start</b></li>
+                        <li><b>logs</b></li>
+                        <li><b>inspect</b>: Lista as configurações usadas no container</li>
+                        <li><b>pull</b>: Baixar uma imagem do repositório remoto publico/privado (DockerHub) para o local</li>
+                        <li><b>commit</b>: Commitar modificação nos containeres</li>
+                        <li><b>tag</b>: Para melhorar o versionamento. Cria um atalho para a imagem original.</li>
+                        <li><b>login, logout</b>: No repositório publico/privado</li>
+                        <li><b>push</b>: Para armazenar uma imagem no repositório após o build</li>
+                        <li><b>search</b>: Para procurar uma imagem</li>
+                        <li><b>rm</b>: Remover uma container</li>
+                        <li><b>rmi</b>: Remover uma imagem</li>
+                        <li><b>export, import</b>: Para containeres</li>
+                        Exportar um container gerando uma imagem, pega as camadas e realiza um merge gerando uma única camada com todas as configurações. Cada configuração no dockerfile é uma camada no container.
+                        <li><b>save, load</b>: Salvar uma imagem em um arquivo texto</li>
+                    </ul>
+
+                    <h5>Imagens e Containers</h5>
+                    Imagem: nginx, busybox. Containeres: site, hello
+                    <pre><code>
+                        // Baixar a imagem e criar um container
+                        $ docker run --name newcontainer hello-world
+
+                        // busybox vai ficar executando durante uma hora
+                        $ docker run --name hello -d busybox sleep 3600
+
+                        // nginx é a imagem, site é o container
+                        // -d significa modo daemon (executa sem colocar output na tela)
+                        // expondo a porta 80 do servidor
+                        $ docker run --name site -d -p 80:80 nginx
+
+                        // Testar o site e verificar as portas
+                        curl localhost
+                        netstat -nltp
+
+                        // Criar a pasta teste dentro do container
+                        $ docker exec hello mkdir teste
+                        $ docker exec --help
+
+                        // Para conseguir acessar o container em si 
+                        $ docker exec -it hello sh  // -it significa acessar em modo interativo
+                        # ls         // Listar as pastas do container
+                        # exit       // Sair do container, apenas fecha a conexão 
+                        $ docker ps  // Container continua rodando
+
+                        // Para parar o container
+                        $ docker stop site
+                        $ docker ps -a      // -a de all para pegar tudo
+
+                        // Para iniciar o container
+                        $ docker start site 
+                        $ docker ps -a 
+
+                        // Listar os logs do container
+                        $ docker logs site
+
+                        // Baixar imagem do repositório
+                        $ docker images               // Listar as imagens locais
+                        $ docker rmi -f hello-world   // Forçar (-f) a remoção da imagem
+                        $ docker pull hello-world     // Baixar a imagem do repositório
+
+                        // Listar as pastas do container
+                        $ docker exec hello ls 
+
+                        // Remover container
+                        $ docker rm -f hello
+
+                        // Criar novamente o container
+                        $ docker run --name hello -d busybox sleep 3600
+                        
+                        // *** A pasta teste não existe mais porque container foi removido ***
+                        // *** Próximas aulas, ver como persistir ***
+
+                        // Remover o container
+                        $ docker rm -f hello
+
+                        // Criar novamente o container e a pasta teste dentro dele
+                        $ docker run --name hello -d busybox mkdir teste
+                        $ docker ps // Não aparece container, foi derrubado na criação da pasta
+                        $ docker ps -a 
+
+                        // *** Usar isso para criar uma nova imagem ***
+
+                        // 1º Hello é o container, 2º Hello é a imagem
+                        $ docker commit --author="Heviane" --message="Criando imagem" hello hello
+
+                        $ dive hello  // 1º camada é a imagem, 2º camada é a criação da pasta "teste"
+
+                        // *** hello é um container criado a partir da imagem busybox ***
+                        // *** A partir deste container hello criamos uma nova imagem chamado hello ***
+                    </code></pre>
+
+                    <h5>Versionamento</h5>
+                    <code><pre>
+                        $ docker tag hello heviane/hello:1.0  // Prepara versionamento
+                        $ docker login                        // Salva no config.json
+                        $ cat /.docker/config.json            // Visualizar o arquivo
+                        $ docker push heviane/hello:1.0       // Envia imagem local para remoto
+                        $ docker search hello
+                    </pre></code>
+
+                    <h5>Importação e Exportação</h5>
+                    <pre><code>
+                        $ docker rmi -f nginx  // Remove a imagem
+                        $ docker rm -f site    // Remove o container
+
+                        // Cria o container hello-2
+                        $ docker run -d --name hello-2 heviane/hello:1.0 sleep 3600
+                        $ docker exec hello-2 ls  // Agora container já é criado com a pasta "teste"
+
+                        // *** A pasta está sendo persistida em disco, mas não o seu conteúdo ***
+
+                        // Cria o container hello-3 com a pasta export
+                        $ docker run -d --name hello-3 heviane/hello:1.0 mkdir export
+
+                        // Exporta o container para o arquivo tar
+                        $ docker export hello-3 > export.tar  
+                        $ docker exec hello-3 ls
+
+                        // Importar o container
+                        $ cat export.tar | docker import - hello-export
+                        $ docker images   // Criado a imagem hello-export
+
+
+                        
+                    </code></pre>
+                   
+				</p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

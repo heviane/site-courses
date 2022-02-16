@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SQL</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Banco de Dados Relacional - SQL</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">DQL - Data Query Language</h3></header>
+				<p class="post_content">
+                    Linguagem para consulta de dados.<br>
+                    <b>Obs:</b> Vale destacar que algumas literaturas colocam o SELECT como integrante do grupo DML, já que a sua função nesse grupo seria de recuperação de dados.
+
+                    <h4>SELECT</h4>
+                        <pre><code>
+                            SELECT * FROM table_name;
+                            SELECT id, name, email FROM user;
+                        </code></pre>
+
+                    <h4>WHERE</h4>
+                        <pre><code>
+                            SELECT * FROM user WHERE id = 1;
+                            SELECT * FROM user WHERE name = 'Heviane';
+
+                            SELECT * FROM user WHERE name LIKE '%Hevi%';
+                            SELECT * FROM user WHERE name LIKE '%Hevi';
+                            SELECT * FROM user WHERE name LIKE 'Hevi%';
+                        </code></pre>
+
+                    <h4>JOIN</h4>
+                        Recuperar dados de duas ou mais tabelas.
+
+                        <h5>INNER JOIN</h5>
+
+                        <h5>LEFT JOIN</h5>
+
+                        <h5>RIGHT JOIN</h5>
+
+                    <h4>GROUP BY</h4>
+                    <h4>ORDER BY</h4>
+                    <h4>HAVING</h4>
+
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+				<p class="post_content">
+                    <ul>
+
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

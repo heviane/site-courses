@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TypeScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso TypeScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Generics</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Generic</h3></header>
+				<p class="post_content">
+                    Capacidade de criar um componente que pode funcionar em uma variedade de tipos ao invés de um único.<br>
+                    Isso permite que os usuários consumam esses componentes e usem seus próprios tipos.<br>
+                </p>
+                <header><h3 class="post_title">Generic Type</h3></header>
+				<p class="post_content">
+					Define um <b>tipo genérico</b>, que pode receber qualquer tipo de dado.<br>
+                    Os tipos são inferidos de acordo com os valores recebidos.<br>
+                    É padrão usar a letra <b>" T "</b> para representar o tipo genérico.<br>
+                    Exemplo:<br>
+                    <pre><code>
+                        function fn <T>(arg: T): T { return arg; }
+                        const arg: string  = fn('testando Generic Type'); 
+                        const arg2: number = fn(999);
+                    </code></pre>
+				</p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

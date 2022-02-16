@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SQL</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Banco de Dados Relacional - SQL</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">DML - Data Manipulation Language</h3></header>
+				<p class="post_content">
+					Linguagem para manipulação de dados.<br>
+
+                    <h4>INSERT</h4>
+                        <pre><code>
+                            // SEM especificação das colunas (tem que seguir a ordem)
+                                INSERT INTO user
+                                VALUES (null, 'Heviane Bastos da Costa', 'heviane@gmail.com', '123456', NOW(), NOW());
+
+                            // COM especificação das colunas
+                                INSERT INTO user (name, email, password, created_date, updated_date)
+                                VALUES ('Heviane Bastos da Costa', 'heviane@gmail.com', '123456', NOW(), NOW());
+                        </code></pre>
+
+                    <h4>UPDATE</h4>
+                        <pre><code>
+                            // ATUALIZA todos os registros
+                                UPDATE user
+                                    SET password = '999999'
+    
+                            // ATUALIZA apenas um registro
+                                UPDATE user
+                                    SET email= 'maria@teste.com'
+                                    WHERE id = 2;
+                        </code></pre>
+
+                    <h4>DELETE</h4>
+                        <pre><code>
+                            DELETE FROM table_name
+                            WHERE some_column = some_value;
+                        </code></pre>
+
+				</p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+				<p class="post_content">
+                    <ul>
+
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

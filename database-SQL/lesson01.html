@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SQL</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Banco de Dados Relacional - SQL</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Introdução</h3></header>
+				<p class="post_content">
+                    <h4><a href="../Course-DataBase/lesson01.html">Link para Introdução a Banco de Dados</a></h4>
+                    <ul>
+                        <li><b>Tabelas</b>: entidades compostas por linhas (registros), colunas (atributos) e chaves.</li>
+                        <li><b>Linhas</b>: Cada linha é um conjunto de dados separados em colunas, representando um objeto.</li>
+                        <li><b>Colunas</b>: São os atributos do registro (linha, objeto).</li>
+                        <li><b>Chaves</b>: Identificação e relacionamento entre as entidades.</li>
+                        <li><b>Primary Key</b>: Indentificador único de um registro na tabela, pode ser simples ou composto.</li>
+                        Não pode ser <b>NULL</b>
+                        <li><b>Foreign Key</b>: Chave primária de outra tabela.</li>
+                        pode ser <b>NULL</b>
+                        <li><a href="lesson02.html">SQL</a> (Structured Query Language)</li>
+                        <li>Schema rigido e bem definido</li>
+                    </ul>
+
+                    <h4>Conceito <b>ACID</b></h4>
+                        <ul>
+                            <li><b style="color: red">A</b><b>tomicidade</b></li>
+                            Consistência dos dados. Parte do principio que determinado dado é único e não pode estar em duplicidade em nenhum outro lugar. Menor tabela possível.
+                            <li><b style="color: red">C</b><b>onsistência</b></li>
+                            Sem dados perdidos, sem dados duplicados ou alterados não permitidas.
+                            <li><b style="color: red">I</b><b>solamento</b></li>
+                            Separação de conceitos.
+                            <li><b style="color: red">D</b><b>urabilidade</b></li>
+                            Dados não usados depois de um certo tempo param de ser indexados e vão para uma espécie de <b>Arquivo Morto</b>.<br>
+                            Mas ao acessarmos novamente é como se voltassem a vida.
+                        </ul>
+
+                    <h4>Integridade</h4>
+                    
+                    <h4>Normalização</h4>
+                        Para evitar redundâncias.
+
+                    <h4>Relacionamentos</h4>
+
+                    <h4>Migration</h4>
+                        Criar as estruturas via código na app.
+                        <ul>
+                            <li>Versionamento de schema</li>
+                            <li>Controle de alterações</li>
+                            <li>Deploy automático</li>
+                        </ul>
+
+                    <h4>Seeds</h4>
+                        Para popular database.
+                        <ul>
+                            <li>Pode ser usada para dados de teste ou valores pré-definidos</li>
+                            <li>Pode ser adicionada ao deploy automático</li>
+                        </ul>
+
+                    <h4>Ferramentas</h4>
+                        <ul>
+                            <li><b>MySQL</b>: Banco de dados relacional gratuíto</li>
+                            <li><b>MariaDB</b>: É irmão (fork) do MySQL. A diferença entre eles é minima</li>
+                            <li><b>phpMyAdmin</b>: Sistema gerenciador de banco de dados. Acesso: <a href="http://localhost/phpmyadmin" target="_blank">http://localhost/phpmyadmin</a></li>
+                            <li><b>MySQL Workbench</b>: Sistema gerenciador de banco de dados</li>
+                            <li><b>XAMPP</b>: É uma pilha de aplicações que envolve: Apache, MySQL, phpMyAdmin e servidor FTP</li>
+                            <li><b>HeidiSQL</b>: Sistema gerenciador de banco de dados.</li>
+                        </ul>
+
+                    <h4>Exemplificações serão realizadas com MySQL</h4>
+                        <h5>Connection</h5>
+                            <pre><code>
+                                mysql -h HOST -P 3306 -u user_name -p
+                            </code></pre>
+                            <ul>
+                                <li><b>-h</b> é o host, por exemplo, localhost ou 127.0.0.1</li> 
+                                <li><b>-P</b> (maiusculo) é a porta do banco no servidor, por padrão, 3306</li> 
+                                <li><b>-u</b> nome do usuárop do banco de dados</li> 
+                                <li><b>-p</b> (minusculo) senha do usuário</li> 
+                            </ul>
+
+				</p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+				<p class="post_content">
+                    <ul>
+                        <li><a href="https://dev.mysql.com/downloads/mysql" target="_blank">Banco de Dados: MySQL Community Server</a></li>
+                        <li><a href="https://dev.mysql.com/downloads/shell" target="_blank">MySQL Shell</a></li>
+                        <li><a href="https://dev.mysql.com/downloads/workbench" target="_blank">Gerenciador: MySQL Workbench</a></li>
+                        <li><a href="https://www.apachefriends.org/index.html" target="_blank">Suíte: XAMPP</a></li>
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

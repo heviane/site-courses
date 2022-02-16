@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+             <article class="post">
+                <header><h3 class="post_title">Testar o Microserviço</h3></header>
+                <p class="post_content">
+                    <h4>Obter um token de autorização</h4>
+                        É como o login da app.
+                        <ul>
+                            <li>Executar endpoint <b>http://localhost:3000/token</b></li>
+                            <li>Método HTTP <b>POST</b></li>
+                            <li>Forma de autenticação <b>Basic Auth</b></li>
+                            <li>Informar as credenciais do usuário (userName e password)</li>
+                        </ul>
+                        O <b>Token</b> retornado aqui será obrigatório para todos os endpoints do <b>CRUD de usuários</b>.
+
+                    <h4>Validar um Token</h4>
+                        <ul>
+                            <li>Executar o endpoint <b>http://localhost:3000/token/validate</b></li>
+                            <li>Método HTTP <b>POST</b></li>
+                            <li>Forma de autenticação <b>Bearer Auth</b></li>
+                            <li>Informar o token</li>
+                        </ul>
+
+                    <h4>Testar o CRUD de usuários</h4>
+                        <ul>
+                            <li>Executar os endpoints, por exemplo: <b>http://localhost:3000/users</b></li>
+                            <li>Forma de autenticação Bearer Auth</li>
+                            <li>Informar o token</li>
+                        </ul>
+                        Todos os endpoints do CRUD de usuários estão protegidos por um <b>token de autorização</b>.<br>
+                        Isso porque a rota de usuários <b>usersRoute</b> está condigurado no server em <b>src/index.ts</b><br>
+                        O middleware é o responsável por validar o token de autorização.
+                        <pre><code>
+                            // ANTES sem token
+                            app.use(usersRoute);
+
+                            // DEPOIS com token
+                            app.use(bearerAuthentication, usersRoute);
+                        </code></pre>
+
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+             <article class="post">
+                <header><h3 class="post_title">Endpoint para Validar o Token</h3></header>
+                <p class="post_content">
+                    Criar a rota <b>'/token/validate'</b> para validação de Token em <b>src/routes/authorization.route.ts</b>
+                    <pre><code>
+                        authorizationRouter.post(, bearerAuthentication, async (req: Request, res: Response, next: NextFunction) => {
+                            try{
+                                // Se chegar até aqui, então o Token é valido
+                                // Porque já foi autenticado pelo middleware bearerAuthentication
+                                res.sendStatus(StatusCodes.OK);
+                            }catch(error){
+                                next(error);
+                            }
+                        });
+                    </code></pre>
+
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

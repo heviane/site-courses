@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+
+            <article class="post">
+                <header><h3 class="post_title">Endpoint de Autorização</h3></header>
+                <p class="post_content">
+                    <b>Basic Auth</b> é uma forma de autenticação baseada no Protocolo HTTP ( é a forma mais simples).<br>
+                    O padrão do HTTP é a palavra "Basic", um espaço e um token base64.
+
+                    <h4>Token base64</h4>
+                        Log adicionado em <b>src/routes/users.route.ts</b> 
+                        <pre><code>
+                            console.log(req.headers['authorization']);  
+
+                            // Return: Basic YWRtaW46cGFzc3dvcmQ=
+
+                            // Base64 Decode: admin:password
+                        </code></pre>
+                        Com a ferramenta <a href="https://www.base64decode.org/" target="_blank">Base64 Decode</a> decodificamos o token base64.<br>
+                        O padrão do <b>token base64</b> é "usuário" + ":" + "senha".<br>
+                        Essa é a autenticação mais simples dentro do protocolo HTTP.
+
+                    <h4>Autenticação</h4>
+                        Na primeira conexão deve ser enviado "usuário" e "senha" para autenticação e o retorno será um token base64.<br>
+                        Todas as outras requisições serão validadas/autenticadas com base nesse token base64.<br>
+
+                    <h4>Criar a Rota de Autenticação</h4>
+                        Criar a rota de autenticação em <b>src/routes/authorization.route.ts</b>
+                            <pre><code>
+                                import { Router, Request, Response, NextFunction } from 'express';
+                                import ForbiddenError from '../models/errors/forbidden.error.model';
+                                
+                                const authorizationRouter = Router();
+                                
+                                authorizationRouter.post('/token', (req: Request, res: Response, next: NextFunction) => {
+                                    try{
+                                        const authorizationHeader = req.headers['authorization'];
+                                        if (!authorizationHeader) {
+                                            throw new ForbiddenError('Credenciais não informadas');
+                                        } else{
+                                            console.log(authorizationHeader);
+                                        }
+                                    }catch(error){
+                                        next(error);
+                                    }
+                                });
+                                
+                                export default authorizationRouter;
+                            </code></pre>
+
+                        Criar um tipo de erro especifico para autenticação em <b>src/models/errors/forbidden.error.model.ts</b>
+                            <pre><code>
+                                export default class ForbiddenError extends Error {
+                                    constructor(
+                                        public message: string,
+                                        public error?: any,
+                                    ) {
+                                        super(message);
+                                    }
+                                }
+                            </code></pre>
+
+                        Adicionar o novo tipo de erro <b>forbidden.error.model.ts</b> no Handler Error em <b>src/middlewares/error-handler.ts</b>
+                            <pre><code>
+                                import { Request, Response, NextFunction } from 'express';
+                                import { StatusCodes } from 'http-status-codes';
+                                import DatabaseError from "../models/errors/database.error.model";
+                                import ForbiddenError from '../models/errors/forbidden.error.model';
+
+                                function errorHandler(error: any, req: Request, res: Response, next: NextFunction){
+                                    if(error instanceof DatabaseError){
+                                        res.send(StatusCodes.BAD_REQUEST); 
+                                    }else if(error instanceof ForbiddenError){
+                                        res.send(StatusCodes.FORBIDDEN);
+                                    }else{
+                                        res.send(StatusCodes.INTERNAL_SERVER_ERROR); 
+                                    } 
+                                }
+                                export default errorHandler;
+                            </code></pre>
+
+                        Configurar o server <b>src/index.ts</b> para adicionar a nova rota criada em <b>src/routes/authorization.route.ts</b>
+                            <pre><code>
+                                import express from 'express';
+                                import usersRoute from './routes/users.route';
+                                import statusRoute from './routes/status.route';
+                                import errorHandler from './middlewares/error-handler';
+                                import authorizationRouter from './routes/authorization.route';
+
+                                // Instanciando o express
+                                const app = express();
+
+                                // ======================== Configurações
+                                app.use(express.json());
+                                app.use(express.urlencoded({ extended: true }));
+                                app.use(authorizationRouter);
+
+                                // ======================== Configuração das Rotas
+                                app.use(statusRoute);
+                                app.use(usersRoute);
+
+                                // ======================== Configurações dos Handlers
+                                app.use(errorHandler); 
+
+                                // ======================== Inicialização do servidor (porta 3000)
+                                app.listen(3000, () => {
+                                    console.log('Server running on port 3000');
+                                });
+                            </code></pre>
+
+                    <h4>Enviar os dados de usuário e senha para autenticação</h4>
+                        Refatorar a rota em <b>src/routes/authorization.route.ts</b> para incluir as validações e tratamentos dos dados do usuário.
+                        <pre><code>
+                            import { Router, Request, Response, NextFunction } from 'express';
+                            import ForbiddenError from '../models/errors/forbidden.error.model';
+                            
+                            const authorizationRouter = Router();
+                            
+                            authorizationRouter.post('/token', (req: Request, res: Response, next: NextFunction) => {
+                                try{
+                                    const authorizationHeader = req.headers['authorization'];
+                            
+                                    if (!authorizationHeader) {
+                                        throw new ForbiddenError('Credenciais não informadas');
+                                    } 
+                                    const [authorizationType, token] = authorizationHeader?.split(" "); // Basic YWRtaW46cGFzc3dvcmQ=
+                            
+                                    if(authorizationType !== 'Basic' || !token){
+                                        throw new ForbiddenError('Tipo de autenticação inválida');
+                                    }    
+                                    const tokenContent = Buffer.from(token, 'base64').toString('utf-8');  
+                                    
+                                    const [userName, userPassword] = tokenContent.split(":");
+
+                                    if(!userName || !userPassword){
+                                        throw new ForbiddenError('Credenciais não preenchidas');
+                                    }
+                                    const user = await userRepository.byUserNameAndPassword(userName, userPassword);
+                            
+                                }catch(error){
+                                    next(error);
+                                }
+                            });
+                            export default authorizationRouter;
+                        </code></pre>
+                        Coloque <b>breakpoint</b> na linha: <b>const tokenContent = Buffer.from(token, 'base64').toString('utf-8'); </b><br>
+                        Configure no Insomnia os dados para autenticação, Aba "Auth", opção "Basic Auth" e informe <b>userName</b> e <b>password</b>.<br>
+                        <u>Teste</u> executando o endpoint <b>http://localhost:3000/token</b> com o método <b>POST</b>.
+                        
+                    <h4>Método para Buscar na Base de Dados</h4>
+                        Criar o método <b>byUserNameAndPassword()</b> no <b>src/repositories/users.repository.ts</b>
+                        <pre><code>
+                            async byUserNameAndPassword(userName: string, userPassword: string): Promise<User | null> {
+                                try{
+                                    const query = `
+                                        SELECT uuid, userName 
+                                        FROM users 
+                                        WHERE userName = $1 and userPassword = crypt($2, 'my_salt')`;
+                                    const values = [userName, userPassword];
+                                    const { rows } = await db.query&lt;User&gt;(query, values);
+                                    const [user] = rows;
+                                    return user || null;
+                                }catch (error) {
+                                    console.log('ERRO: ', error);
+                                    throw new DatabaseError('Erro na consulta por userName e userPassword', error);
+                                }  
+                            }
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Debug no Visual Studio Code</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li>Ir no arquivo <b>package.json</b> clicar na opção <b>Debug</b> e selecionar o script que deseja debugar.</li>
+                        Neste caso, selecionamos o script <b>dev</b>.<br>
+                        O modo debug será ativado e será aberto o <b>JavaScript Debug Terminal</b>
+                        <li>Adicionar <b>breakpoints</b></li>
+                        Basta clicar ao lado da numeração da linha desejada e clicar na bolinha vermelha.
+                        <li>Executar a requisição sem informar os dados de autenticação (userName e password) para gerar erro.</li>
+                        A cada breakpoint será realizado uma parada e a execução ficará suspensa até receber comando de play para continuar.<br>
+                        (A linha referente a parada fica amarelada para dermarcar).<br>
+                        Ao passar o mouse na linha demarcada, vai aparecer uma série de informações relacionadas.<br>
+                    </ul>
+                    Ao passar o mouse por cima das variáveis irá aparecer o valor correspondente.<br>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

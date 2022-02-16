@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React Native</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso React Native</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Ambiente de Desenvolvimento</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Windows</h3></header>
+                <p class="post_content">
+                    <ul><h5>Instalações</h5>
+                        <li>Chocolatey</li> 
+                            The Package Manager for Windows.<br>
+                            Recomendado usar Power Shell.<br>
+                        <li>Android Studio</li>
+                            Plataforma de desenvolvimento do Android.<br>
+                            <b>AVD Manager</b>: Aplicativo para gerenciar os dispositivos virtuais.<br>
+                            <b>Create Virtual Device</b>: Cria um dispositivo virtual. 
+                        <li>Java 8</li>
+                        <li>Python 2</li>
+                        <li>Yarn 1</li>
+                        <li>Node.js</li>           
+                    </ul>
+                        <pre><code>
+                            // Instalação via Choco
+                            choco install -y nodejs-lts python2 jdk8
+
+                            // Configurações das variáveis de ambiente
+                            Computador -> Propriedades -> Config Avançadas Sistema -> Variáveis de ambiente
+
+                                // Criar as variáveis
+                                Name: JAVA_HOME
+                                Value: C:\Program Files\Java\jdk-16.0.2
+
+                                Name: ANDROID_HOME
+                                Value: C:\Android-SDK
+
+                                // Adicionar ao Path
+                                %ANDROID_HOME%\emulator
+                                %ANDROID_HOME%\tools
+                                %ANDROID_HOME%\tools\bin
+                                %ANDROID_HOME%\platform-tools
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">  
+                <header><h3 class="post_title">Linux</h3></header>
+                <p class="post_content">
+                    <ul><h5>Instalações</h5>
+                        <li>apt-get</li> The Package Manager for MacOS.
+                        <li>Android Studio</li> Plataforma de desenvolvimento do Android.
+                        <li>Libs Gráficas 32 bits</li>
+                        <li>Java 8</li>
+                        <li>Yarn 1</li>
+                        <li>Node.js</li> 
+                    </ul>
+                </p>
+            </article>
+
+            <article class="post">  
+                <header><h3 class="post_title">MacOS</h3></header>
+                <p class="post_content">
+                    <ul><h5>Instalações</h5>
+                        <li>Brew</li> The Package Manager for MacOS.
+                        <li>Xcode</li> Plataforma de desenvolvimento da Apple.
+                        <li>Java 8</li>
+                        <li>Python 2</li>
+                        <li>Yarn 1</li>
+                        <li>Node.js</li> 
+                    </ul>
+                </p>
+            </article>
+
+            <article class="post">  
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <!-- Windows -->
+                    <li><a href="https://chocolatey.org" target="_blank">chocolatey.org</a></li>
+                    <li><a href="https://developer.android.com/?hl=pt-br" target="_blank">developer.android.com</a></li>
+                    <!-- MacOS -->
+                    <li><a href="https://brew.sh" target="_blank">brew.sh</a></li>
+                    <li><a href="https://developer.apple.com/xcode" target="_blank">developer.apple.com/xcode</a></li>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

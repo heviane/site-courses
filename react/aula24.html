@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Organização de Projeto</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Dumb Components</h3></header>
+				<p class="post_content">
+                    <ul><h4>Regras que caracterizam</h4>
+                        <li>Preocupa-se com a apresentação, a renderização</li>
+                        <li>Recebem valores via props</li>
+                        <li>Não possuem dependências com o restante da app</li>
+                        Ou seja, são totalmente desacoplados do restante da aplicação.
+                        <li>Não especificam como os dados são carregados ou sofrem mutações</li>
+                        <li>Recebem valores e callbacks exclusivamente via props</li>
+                        <li>Raramente possuem estado, quando precisam de estado é para controlar a interface e não dados do usuário</li>Não vai tratar dados, fazer mutação (alterações)
+                        <li>São escritos na maioria das vezes como componentes funcionais</li>
+                        Na maioria dos casos, são funções puras.
+                        <li>Desacoplados</li>
+                    </ul>
+                    <ul><h4>Exemplos</h4>
+                        <li>Button</li>
+                        Se tem um click, é para executar uma função externa.
+                        <li>Card</li>
+                        <li>Sidebar</li>
+                        <li>Footer</li>
+                        <li>List</li>
+                        <li>Menu</li>
+                    </ul>
+				</p>
+                <header><h3 class="post_title">Smart Components</h3></header>
+				<p class="post_content">
+                    <ul><h4>Regras que caracterizam</h4>
+                        <li>Preocupam-se em como as coisas vão funcionar, comportamento</li>
+                        <li>Podem conter Smart e Dumb Components</li>
+                        <li>Providenciam dados e padrões de apresentação ou outros containers</li>
+                        <li>Na maioria dos casos possuem estado e podem chamar outros fluxos do sistema</li>
+                        <li>Possuem regras especificas, não servem para colocar em qualquer lugar</li>
+                        <li>Acoplados</li>
+                    </ul>
+                    <ul><h4>Exemplos</h4>
+                        <li>UserGalerry</li>
+                        <li>UserPage</li>
+                        <li>FilterBook</li>
+                        <li>FollowersSidebar</li>
+                        <li>ListCards</li>
+                    </ul>
+
+                    <b>DICA:</b> Usar memo na exportação do componente para evitar re-render desnecessária.<br>
+                    Só vai renderizar novamente se houver alterações na árvore.
+				</p>
+
+                <header><h3 class="post_title" style="color: red">RESUMO</h3></header>
+				<p class="post_content">
+                    <b>Dumb Compoenents:</b> Desacoplados, sem comportamento (Apresentação).<br>
+                    <b>Smart Components:</b> Acoplados, com comportamento (Lógica).<br><br>
+                    É uma boa prática separar os componentes em Dumb e Smart, definir um padrão.<br>
+                    Melhora a manutenção, deixa código mais limpo e organizado.
+                </p>
+                <header><h3 class="post_title">Organização de Projeto</h3></header>
+				<p class="post_content">
+                    <p>Boas práticas e recomendações para organização de um projeto em React</p>
+
+                    <b>App.js</b> é o main da aplicação (Rotas, providers, fluxo de autenticação, validações, tudo que for global).<br>Não se coloca componentes diretamente, somente rotas.<br>
+
+                    <b>index.js</b> é o <u>Root Component</u> que executa a <b>App.js</b>
+
+                    <ul><h4>Estrutura de diretórios public</h4>
+                        <li>public/index.html</li>
+                        Está será a página inicial e a única página html da aplicação, é onde será realizada toda a renderização do React.<br>
+                        Conceito de SPA (Single Page Application).<br>
+                        Toda a navegação será feita entre componentes.<br>
+                    </ul>
+                    
+                    <ul><h4>Estrutura de diretórios src</h4>
+                        <li style="color: blue">src/containers</li>
+                        <ul>
+                            <li>Todas as páginas web (UI) principais.</li>
+                            <li style="color: blue">src/containers/components</li>
+                            Smart components que não são reutilizáveis.
+                            <li style="color: blue">src/containers/reducers</li>
+                            Se estiver usando Redux.
+                            <li style="color: blue">src/containers/actions</li>
+                            Se estiver usando Redux.
+                        </ul>
+                        <li style="color: blue">src/components</li>
+                        <ul>
+                            <li>Todos os componentes que são reutilizáveis (Dumb e Smart Components)</li>
+                            <li>Criar um diretório para cada componente, contendo um <b>index.js</b></li>
+                            <li>Criar um <b>index.js</b> para importar e exportar todos os componentes.<br>
+                                Facilita para importar, basta setar o diretório principal e selecionar componentes.<br>
+                                <b>Ex: </b><i style="color: red">import { Button, Card, Sidebar, Footer, List, Menu } from './components';</i><br>
+                                Simplifica a código evitando que fique muito poluído.
+                            </li>
+                            <li>Dependendo do caso, poderia separar em <b>Dumbs</b> e <b>Smarts</b></li>
+                        </ul>
+                        <li style="color: blue">src/assets</li>
+                        <ul>
+                            <li>Tudo que for global</li>
+                            <li style="color: blue">src/assets/images</li>
+                            <li style="color: blue">src/assets/style</li>
+                        </ul>
+                        <li style="color: blue">src/commons</li>
+                            <li>Tudo que for comum</li>
+                        <ul>
+                            <li style="color: blue">src/commons/utils</li>
+                            <ul>
+                                <li>Somente funções puras utilitárias e reaproveitáveis</li>
+                                Estas funções devem ter responsabilidade única.
+                            </ul>
+                            <li style="color: blue">src/commons/constants</li>
+                        </ul>
+                        <li style="color: blue">src/routers</li>
+                        <ul>
+                            <li>Rotas</li>
+                            Criar um arquivo <b>index.js</b> para importar e exportar todas as rotas.<br>
+                            <pre><code>
+                                import { react-router } from 'react-router';
+                                import { BrowserRouter, Route, Switch } from 'react-router-dom';
+                                import { Home, Login, Register, Profile, NotFound } from './containers';
+
+                                export const Routes = () => (
+                                    &lt;BrowserRouter&gt;
+                                        &lt;Switch&gt;
+                                            &lt;Route exact path="/" component={Home} /&gt;
+                                            &lt;Route exact path="/login" component={Login} /&gt;
+                                            &lt;Route exact path="/register" component={Register} /&gt;
+                                            &lt;Route exact path="/profile" component={Profile} /&gt;
+                                            &lt;Route component={NotFound} /&gt;      
+                                        &lt;/Switch&gt;
+                                    &lt;/BrowserRouter&gt;
+                                );
+                            </code></pre>
+                            Depois basta importá-las onde for usar.<br>
+                            <b>Ex: </b><i style="color: red">import { Routes } from './routers';</i>
+                            <br><br>
+                            <b>Outro exemplo:</b> Seria criar e exportar um objeto contendo todas as rotas, depois importar e realizar uma iteração na hora de renderizar.<br>
+                        </ul>
+                        <li style="color: blue">src/resources</li>
+                        <ul>
+                            <li>Chamadas de serviços (recursos)</li>
+                            Geralmente se separa, arquivos de APIs e arquivos de serviços.
+                        </ul>
+                        <li style="color: blue">Testes</li>
+                        Criar um diretório chamado <b>_tests_</b> e dentro deste criar os arquivos de testes.<br> Nomenclatura padrão: <b>nameFile.test.js</b><br>
+                        <i style="color: red">Isso vale para todos os diretórios listados acima</i>
+                    </ul>
+
+                    <br>
+                    <b style="color: red">DICA:</b> Agrupar nos diretórios arquivos que fazem sentido ficarem juntos, que tenham dependência entre si.<br>
+                    
+                </p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="#" target="_blank"></a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

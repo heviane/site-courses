@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	
+        <link rel="stylesheet" href="../style.css">	
+        <style>
+            .texto{
+                width: 200px;
+                height: 900px;
+                overflow: auto;
+                background-color: #CCC;
+                padding: 20px; 
+                /* ----------------- inclui largura do padding
+                    Agora é 240 no width (20 na direita e 20 na esquerda) 
+                    Agora e 240 no height (20 em cima e 20 em baixo)   
+                */
+                border: 2px solid black;
+                /* ----------------- Inclui largura da borda 
+                    Agora é 244 no width (2 na direita e 2 na esquerda) 
+                    Agora e 244 no height (2 em cima e 2 em baixo)      
+                */
+                /* Alguns navegadores contam a largura da barra de scroll */
+            }
+            .scrollbutton{
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+                background-color: red;
+                position: fixed;
+                right: 20px;
+                bottom: 10px;
+                z-index: 999; /* ficar acima de todo o conteúdo */
+                cursor: pointer; /* ficar com a mãozinha qdo passar o mouse */
+            }
+        </style>
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header">
+            <h1>Curso Básico de JavaScript</h1>
+        </header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header>
+                <h2 class="content_title">...</h2>
+            </header>
+            <article class="content_item">
+                <div class="texto">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.            
+                </div>
+                <div class="scrollbutton" onclick="subirTela()">
+                </div>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script>
+            //=========================== Dimensões
+            // + padding + border 
+            document.write('<br/>Largura: '+document.querySelector('.texto').offsetWidth+'px');  // 244
+            // + padding + border 
+            document.write('<br/>Altura: ' +document.querySelector('.texto').offsetHeight+'px'); // 244
+            // + padding - scroll (17px)
+            document.write('<br/>Largura: '+document.querySelector('.texto').clientWidth+'px');  // 223=240 - scroll
+            // + padding
+            document.write('<br/>Altura: ' +document.querySelector('.texto').clientHeight+'px'); // 240
+            document.write('<br/>Scroll');
+            // + padding - scroll (17px)
+            document.write('<br/>Largura: '+document.querySelector('.texto').scrollWidth+'px');  // 223=240 - scroll
+            // tamanho real do conteúdo
+            document.write('<br/>Altura: ' +document.querySelector('.texto').scrollHeight+'px'); // 868
+
+            //=========================== Scroll - Consultar e alterar as dimensões
+            // Consultar
+                // Tela inteira = window
+                window.scrollY // Scroll Vertical
+                window.scrollX // Scroll Horizontal
+                // Elemento especifico = selecionar o elemento
+                document.querySelector('.texto').scrollTop  // Scroll Vertical
+                document.querySelector('.texto').scrollLeft // Scroll Horizontal
+            // Alterar
+                window.scrollTo(0, 0); // posição X e Y na tela inteira
+                document.querySelector('.texto').scrollTo(0, 0);  // posição X e Y no elemento especificado
+                // Configurar botão para subir tela quando o scroll NÃO estiver no topo
+                function subirTela(){     
+                    // ------ Scroll NORMAL 
+                        //window.scrollTo(0, 0);
+                    // ------ Scroll SUAVE (lento, gradativo)
+                        window.scrollTo({
+                            top: 0, // scroll vertical
+                            behavior: 'smooth'  
+                        });
+                }
+
+                // setInterval(decidirBotaoScroll, 1000);//Executar  TIMER 1000 milisegundos = 1 segundo
+                window.addEventListener('scroll', decidirBotaoScroll);//Evento que vai monitorar o scroll da tela
+
+                // Ocultar botão "subirTela" quando o scroll estiver no topo
+                function decidirBotaoScroll(){	
+                    if(window.scrollY == 0){// verificar em que posição da tela o scroll se encontra
+                        document.querySelector('.scrollbutton').style.display = 'none'; // ocultar o botão
+                    } else {
+                        document.querySelector('.scrollbutton').style.display = 'block'; // mostrar botão
+                    }
+                } 
+        </script>
+    </body>
+</html>

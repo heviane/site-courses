@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../style.css">		
+        <style>
+            .image{
+                width: 300px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+		<header class="header">
+			<h1>Curso Básico de JavaScript</h1>
+		</header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header>
+				<h2 class="content_title">Manipular Atributos via DOM</h2>
+			</header>
+			<article class="content_item">
+                <img src="img/dog.jpg" data-animal="cachorro" class="image" /><br/>
+                <button onclick="trocarImage('dog.jpg','Cachorro')">Cachorro</button>
+                <button onclick="trocarImage('cat.jpg','Gato')">Gato</button>
+                <hr>
+                <button onclick="pegarAnimal()">Qual é o animal?</button><br/>
+                <p>...</p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script>
+            function trocarImage(filename, animalname){
+                document.querySelector('.image').setAttribute('src','img/' + filename);
+                document.querySelector('.image').setAttribute('data-animal', animalname);
+            }
+            function pegarAnimal(){
+                let animal = document.querySelector('.image').getAttribute('data-animal');
+                document.querySelector('p').innerHTML = animal;
+            }
+        </script>
+    </body>
+</html>

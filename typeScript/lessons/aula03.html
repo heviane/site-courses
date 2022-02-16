@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TypeScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso TypeScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Interface</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">O que é uma Interface?</h3></header>
+                <p class="post_content">
+                    São contratos para implementação de classes, estrutura de dados.<br>
+                    O padrão é que todas as propriedades da interface sejam obrigatórias na implementação da interface.<br>
+                    <pre><code>
+                        interface IAnimal { 
+                            name: string; 
+                            type: 'terrestre' | 'aquático'; 
+                            executarRugido(alturaEmDecibeis: number): void;
+                        }    
+                        interface ICanino extends IAnimal {
+                            porte: 'pequeno' | 'medio' | 'grande';
+                        }
+                        interface IFelino extends IAnimal {
+                            visaoNoturna: boolean;
+                        };
+                        const canino: ICanino = {
+                            name: 'Dog',
+                            type: 'terrestre',
+                            porte: 'medio', 
+                            executarRugido: (alturaEmDecibeis) => (`${alturaEmDecibeis}dB`)
+                        };
+                        const felino: IFelino = {
+                            name: 'Gato',
+                            type: 'terrestre',
+                            visaoNoturna: true,
+                            executarRugido: (alturaEmDecibeis) => (`${alturaEmDecibeis}dB`)
+                        };
+                        console.log(canino);
+                        console.log(felino);
+                    </code></pre>
+                </p>
+
+                <header><h3 class="post_title">Propriedade opcional</h3></header>
+                <p class="post_content">
+                    O caractere <b>"?"</b> indica que a propriedade é opcional.<br>
+                    Deve ser colocado após o nome da propriedade e antes dos dois pontos ":".<br>
+                    Assim, é possível implementar a interface (criar um objeto) sem determinadas propriedades.<br>
+                    Exemplo:<br>
+                    <pre><code>
+                        interface IUsuario {
+                            name: string;
+                            email: string;
+                            role?: 'gerente' | 'supervisor' | 'coordenador' | 'funcionario'; 
+                        }
+                        const usuario: IUsuario = {
+                            name: 'Heviane',
+                            email: 'heviane@gmail.com',
+                        }
+                        console.log(usuario);
+                    </code></pre>
+                </p>
+
+                <header><h3 class="post_title">Interface = Utility Types</h3></header>
+                <p class="post_content">
+                    TypeScript fornece <b>tipos de utilitário</b> para facilitar as transformações de tipo comum.<br> 
+                    Esses utilitários estão disponíveis globalmente.<br>
+                    Exemplo: <b>Required<Type></b><br>
+                    Transforma em um tipo que todas as propriedades são obrigatórias. 
+                    Oposto de Parcial<Type>.
+                    <pre><code>
+                        interface Props {
+                            a?: number;  // "?" torna a propriedade opcional
+                            b?: string;  // "?" torna a propriedade opcional
+                        }
+                        const obj: Props = { a: 5 };
+                        const obj2: Required<Props> = { a: 5, b: 'teste' };
+                    </code></pre>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

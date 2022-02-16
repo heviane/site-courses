@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React Native</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso React Native</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+              
+                <header><h3 class="post_title">Criar e configurar App</h3></header>
+                <p class="post_content">
+                    <pre><code>
+                        // Criar projeto - Nas últ. versões NPM pode-se usar NPX do Node
+                        npx react-native init app01
+
+                        // Lista os emuladores
+                        adb devices
+
+                        // Executar App
+                        cd app01
+                        npm run android
+                        npm run start
+                    </code></pre>
+
+                    <ul><h4>Arquivos Gerados</h4>
+                        <li>__tests__</li> Diretório para os testes automatizados.
+                        <li>android e ios</li> Diretório para as compilações para o código nativo.<br>
+                        O conteúdo (Código Nativo) pode ser aberto no Android Studio e XCode, respectivamente.
+                        <li>.buckconfig</li>
+                        <li>.editorconfig</li>
+                        <li>.eslintrc.js</li>
+                        <li>.flowconfig</li>
+                        <li>.gitattributes</li>
+                        <li>.gitignore</li> Diretórios e arquivos a serem ignorados pelo git.
+                        <li>.prettierrc.js<li> Formatador de código.
+                        <li>.watchmanconfig</li> Fica olhando as alterações e reflete no emulador.
+                        <li>babel.config.js</li> Faz a transpilação para as versões mais antigas do JavaScript.
+                        <li>metro.config.js</li> Configurações de compilação.
+                        <li>package.json</li> Dependências, Dev Dependências, scripts, etc.
+                        <li>package-lock.json ou yarn.lock</li>
+                        <li>index.js</li> Ponto de entrada.
+                        <li>App.js</li> SPA (Single Page Application) - Componente Root.
+                        <li>app.json</li> Configurações do app.                        
+                    </ul>
+                </p>
+            </article>
+
+            <article class="post">  
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

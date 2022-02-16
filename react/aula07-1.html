@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Componentes</h3></header>
+                <p class="post_content">
+                    <h4>O que são componentes?</h4>
+                        Componentização é o ponto forte do React, é o que o torna modular. É uma forma de organizar o código.<br>
+                        React não separa as tecnologias colocando marcação em arquivos separados, mas sim separa conceitos e mantém o código pouco acoplado chamando-os de <b>componentes</b>, que são pequenas peças que vão sendo acopladas ao longo do projeto para a montando de uma app, como se fosse um <b>LEGO</b>.<br>
+                        Componentes são como funções em JavaScript, aceitam entradas arbitrárias (chamadas "props") e retornam elementos que descrevem o que deve ser exibido na tela.<br>
+                        Permitem dividir a UI em partes independentes, reutilizáveis, encapsulando funcionalidades.<br>
+                        Trata cada parte como um bloco isolado, livre de dependências externas.<br>
+                    
+                    <h4>Por que componentizar?</h4>
+                        <ul>
+                            <li>Responsabilidade</li>
+                            Desacoplar. Cada componente deve ter uma responsabilidade única. Quanto menor a responsabilidade, melhor é.<br>
+                            Preocupar-se mais com a lógica do que com conflitos de responsabilidade.
+                            <li>Facilitar a manutenção</li>
+                            Tornar a leitura, entendimento do código fonte mais clara.
+                            <li>Reutilização</li>
+                            Componente pode ser importado e reutilizado de quaiquer outros lugares.
+                            <li>Extensibilidade</li>
+                            Componente pode extender outro(s) componente(s), herdando funcionalidades.
+                        </ul>
+
+                    <h4>Codificação de um componente</h4>
+                        Um Componente também pode ser visto como um conjunto de elementos.<br>
+                        <ul><b>Um componente pode trabalhar de duas formas</b>
+                            <li>Classe</li> 
+                            <li>Função</li> Com a inclusão dos Hooks.
+                        </ul>
+
+                        <h5>Return</h5>
+                            O return é realizado com código JSX.<br>
+                            Permiti escrever código JavaScript, porém este deve ser colocado entre um par de chaves {}.<br>
+                            Retorna um único elemento, ou seja, um único Nó Raiz.<br>
+                            Para retornar um conjunto de elementos irmãos, estes devem estar devidamente encapsulados em um único elemento.<br>
+                            <ul><b>Opções de encapsulamento:</b>
+                                <li>Div: &lt;div&gt; &lt;/div&gt;  </li>
+                                <li>Fragment: &lt;Fragment&gt; &lt;/Fragment&gt;</li>
+                                O fragment tem a função de agrupar vários elementos em um único elemento a ser renderizado para o DOM/HTML.<br>
+                                A vantagem disso é tornar o código final a ser enviado para o browser mais otimizado.
+                            </ul>
+
+                    <h4>Boas Práticas</h4>
+                        <ul>
+                            <li><b>Nomeação:</b> Usar o padrão <b>CamelCase</b> na criação de nomes relacionados a componentes ou páginas.</li>
+                            <li><b>Significado:</b> Usar nomes com significado, coerentes, que remetem a funcionalidade.</li>
+                        </ul>
+
+                </p>
+                
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html5>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulário HTML</title>
+    </head>
+    <body>
+        <h1>Formulário HTML</h1>
+        <form method="GET" action="">
+            <fieldset>
+                <legend>Dados de acesso</legend>
+                <div>           
+                    <label>E-mail:</label>
+                    <input type="email" name="email" placeholder="example@mail.com" required /><br/>
+                    <label>Senha:</label>
+                    <input type="password" name="senha" minlength="6" maxlength="16" pattern="[a-zA-Z0-9]+" title="campo com caracteres alfanuméricos"/>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Dados de Cadastro</legend>            
+                <div> 
+                    <label>Nome:</label>
+                    <input type="text" name="nome"/><br/>
+                    <label>Data de Nascimento:</label>
+                    <input type="date" name="DataNasc"/><br/>
+                    <label>Telefone:</label>
+                    <input type="text" placeholder="Ex: (99) 9999-9999" pattern="\([0-9]\)[\s][0-9]-[0-9]" maxlength="15" title="Telefone no formato brasileiro" /><br/>
+                    <label>Gênero:</label>
+                    <input type="radio" value="Feminino" name="sexo" checked/>Feminino
+                    <input type="radio" value="Masculino" name="sexo"/>Masculino <br/>
+                    <label>Foto de Perfil</label>
+                    <input type="file" name="foto" accept="image/*"></input><br/>
+                    <!--att accept em campos do tipo file p/ limitar o tipo MIME dos arquivos enviados no form-->
+                    <label>Usuário do Twiter:</label>
+                    <input pattern="^@[A-Za-z0-9_]{1,15}$" type="text" title="Usuário do Twiter @">                    
+                </div>                 
+            </fieldset>
+            <fieldset>
+                <legend>Endereço</legend>              
+                <div> 
+                    <label>Estado:</label>
+                    <select name="estado">
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RJ">Rio de janeiro</option>
+                        <option value="SP">São Paulo</option>
+                    </select><br/>
+                    <label>Observações:</label>
+                    <textarea name="obs" maxlength="250" placeholder="Escreva aqui..."></textarea>
+                </div>                  
+            </fieldset>      
+            <div> 
+                <input name="Receber_novidades" type="checkbox" checked />Quer receber novidades</input><br/>
+                <label>Qualquer arquivo</label>
+                <input name="arquivo_qualquer" type="file"></input>
+            </div>
+            <input type="submit" value="Enviar" /> <!--<button type="submit">Enviar</button>-->
+        </form>
+    </body>
+</html>
+<!--Validações direto no form com base nos atributos da tag input:
+	- type     = definição do tipo de dado, alguns já vem com validação, Ex: email, number, url, tel.
+                OBS: tel não é totalmente suportado p navegadores devido à inconsistência no formato dos números de telefone em diferentes países.
+	- pattern  = especifica um formato (na forma de expressão regular do JavaScript) em que o valor do campo é testado.
+                title = fornece uma descrição da pattern, ou um erro reportando q o valor inserido está inválido.
+	- required = booleano p indicar obrigatoriedade.
+                Exemplo: 
+                    <input name="my_name" required="" type="text"> 
+                    ou 
+                    <input name="my_name" required="required" type="text"> 
+                    para compatibilidade XHTML.
+	- checked  = sugestão
+
+    Vale a pena lembrar q confiar apenas no navegador (client-side) p validação pode ser perigoso, pois isso pode ser contornado por um usuário mal-intencionado ou por bots.
+    Nem todos os navegadores suportam HTML5 e nem toda entrada de texto enviada para seu script virá do formulário. Validação do lado servidor também deve ser realizada antes do envio dos dados para o processamento.
+-->

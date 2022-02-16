@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+             <article class="post">
+                <header><h3 class="post_title">Gerar e Retornar Token JWT (JSON Web Token)</h3></header>
+                <p class="post_content">
+                    <b>JSON Web Token</b> é um padrão da Internet proposto para criação de dados com assinatura e/ou criptografia opcionais.<br>
+                    É um método RFC 7519 padrão do setor aberto para representar declarações de forma segura entre duas partes.<br>
+                    Os tokens são assinados usando um segredo privado ou uma chave pública/privada.<br>                    
+                    O objetivo é transmitir ou armazenar de forma compacta e segura objetos JSON entre diferentes aplicações.
+
+                    <h4>O que é JWT</h4>
+                        <b>JWT</b> é um <b>Token</b> composto de três partes.
+                            <h5>ENCODED</h5>
+                                header, payload e signature, respectivamente.
+                                <pre><code>
+                                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+                                    eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+                                    SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+                                </code></pre>
+                            <h5>DECODED</h5>
+                                <b>Header</b>: ALGORITHM & TOKEN TYPE<br>
+                                    Existem vários tipos de algoritmos que podem ser usados para criar o token.<br>
+                                    A chave pública/privada pode inclusive ser um certificado digital.
+                                    <pre><code>
+                                        {
+                                            "alg": "HS256",
+                                            "typ": "JWT"
+                                        }
+                                    </code></pre>
+                                <b>Payload</b>: DATA (objeto, conteúdo).
+                                    <pre><code>
+                                        {
+                                            "sub": "1234567890",
+                                            "name": "John Doe",
+                                            "iat": 1516239022
+                                        }
+                                    </code></pre>
+                                <b>Verify Signature</b>: Hash gerado a partir de private key.
+                                    <pre><code>
+                                        HMACSHA256(
+                                            base64UrlEncode(header) + "." +
+                                            base64UrlEncode(payload),
+                                            your-256-bit-secret
+                                        )
+                                    </code></pre>
+
+                        A utilização de tokens permite:
+                        <ul>
+                            <li>Garantir a integridade, validade, segurança da informação.</li>
+                            <li>Configurar uma expiração.</li>
+                        </ul>
+                        Backend não precisa armazenar o token, pois ele será de responsabilidade do frontend.<br>
+                        Toda vez que chegar uma requisição na API o token será verificado no header.<br>
+
+                    <h4>Informações Úteis do Token</h4>
+                        São alguns padrões de informações úteis dentro do JWT.<br> 
+                        <ul>
+                            <li><b>iss - Issuer</b>: Emissor do token, domínio da app geradora</li>
+                            <li><b>sub - Subject</b>: Assunto do token, muito usado para guardar o ID do usuário</li>
+                            <li><b>aud - Audience</b>: Público do token, quem pode usar</li>
+                            <li><b>exp - Expiration</b>: Expiração do token, quando expira</li>
+                            <li><b>nbf - Not Before</b>: Não antes, quando o token começa a ser válido (não pode ser aceito antes)</li>
+                            <li><b>iat - Issued At</b>: Emissão do token, quando foi gerado</li>
+                            <li><b>jti - JWT ID</b>: Identificador do token, usado para garantir que é único</li>
+                        </ul>
+                        Fora isso, podemos adicionar qualquer informação dentro do payload.<br>
+                        Existem ferramentas para gerenciamento de token, mas na aula vamos fazer manualmente.<br>
+
+                    <h4><a href="https://jwt.io" target="_blank">jwt.io</a></h4>
+                        É um site que traz informações sobre o JWT, como: Quais bilbiotecas estão disponíveis para gerar o token em determinada linguagem. <b>JWT.IO</b> permite decodificar, verificar e gerar JWT.<br>
+
+                    <h4>Library jsonwebtoken</h4>
+                        É uma biblioteca para criar, descriptografar Token. 
+                        <pre><code>
+                            npm install --save jsonwebtoken
+                        </code></pre>
+                        Instalar os <b>@types</b> do <b>TypeScript</b> para a biblioteca <b>jsonwebtoken</b>
+                        <pre><code>
+                            npm install --save-dev @types/jsonwebtoken
+                        </code></pre>
+                        Importar a biblioteca na rota criada para autorização em <b>src/routes/authorization.route.ts</b><br>
+                        Pode ser qualquer nome, vamos usar <b>JWT</b>
+                        <pre><code>
+                            import JWT from 'jsonwebtoken';
+                        </code></pre>
+
+                    <h4>Criar e Retornar um Token JWT</h4>
+                        Refatorar a rota de autorização em <b>src/routes/authorization.route.ts</b> para gerar e retornar um token JWT na requisição.<br>
+                        Após a chamado do método <b>userRepository.byUserNameAndPassword()</b>, adicionar o trecho de código abaixo:
+                            <pre><code>
+                                // Gerar um token JWT 
+                                const jwtPayLoad   = {userName: user.userName};
+                                const jwtSecretKey = process.env.JWT_SECRET_KEY;
+                                const jwtOptions   = {subject: user?.uuid};
+                                const jwtToken = JWT.sign(jwtPayLoad, jwtSecretKey, jwtOptions);
+                        
+                                // Response Token
+                                res.status(StatusCodes.OK).json({ token: jwtToken });
+                            </code></pre>
+                        <h5>RETORNO</h5>
+                            endpoint: http://localhost:3000/token<br>
+                            userName: admin<br>
+                            userPassword: admin
+                            <pre><code>
+                                {
+                                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+                                    eyJpYXQiOjE2NDE5MjUwNjMsInN1YiI6IjE1ZDA1ZDg0LTZhMGEtNDljZS05ZjBkLWY3YTI0ZDE0NDE3ZCJ9.
+                                    4hXzjwiPfg83QNof0FTeuOuYT78cfny-PARH94uQt8E"
+                                }
+                            </code></pre>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

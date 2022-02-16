@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Projeto 02 - Criação do CRUD de usuários e Rota (mockado)</h3></header>
+                <p class="post_content">
+                    Criar a rota <b>users</b> (src/routes/users.route.ts) e dentro dela criar o CRUD de usuários (endpoints).
+                    <pre><code>
+                        import { Router, Request, Response, NextFunction } from 'express';
+                        import { StatusCodes } from 'http-status-codes';
+                        
+                        const usersRoute = Router();
+                        
+                        // Listar todos os usuários
+                        usersRoute.get('/users', (req: Request, res: Response, next: NextFunction) => {
+                            const users = [{ userName: 'Heviane'}, { userName: 'Maria'}];
+                            res.status(StatusCodes.OK).json(users); 
+                        });
+                        
+                        // Listar um usuário especifico
+                        usersRoute.get('/users/:uuid', (req: Request&lt;{ uuid: string }&gt;, res: Response, next: NextFunction) => {
+                            const uuid = req.params.uuid;
+                            res.status(StatusCodes.OK).json({ uuid }); 
+                        });
+                        
+                        // Cadastrar um usuário
+                        usersRoute.post('/users', (req: Request, res: Response, next: NextFunction) => {
+                            const newUser = req.body;
+                            console.log(req.body);
+                            res.status(StatusCodes.CREATED).send(newUser);
+                        });
+                        
+                        // Atualizar um usuário
+                        usersRoute.put('/users/:uuid', (req: Request&lt;{ uuid: string }&gt;, res: Response, next: NextFunction) => {
+                            const uuid = req.params.uuid;
+                            const modifiedUser = req.body;
+                            modifiedUser.uuid = uuid;
+                            res.status(StatusCodes.OK).json( modifiedUser ); 
+                        });
+                        
+                        // Excluir um usuário
+                        usersRoute.delete('/users/:uuid', (req: Request&lt;{ uuid: string }&gt;, res: Response, next: NextFunction) => {
+                            const uuid = req.params.uuid;
+                            res.status(StatusCodes.OK); 
+                        });
+                        
+                        export default usersRoute;
+                    </code></pre>
+                </p>
+            </article>            
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

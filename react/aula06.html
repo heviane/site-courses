@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Renderização</h3></header>
+                <p class="post_content">
+                    A <b>renderização</b> é o processo de transformar um componente em HTML, e é realizada através do método <b>render()</b> do objeto <b>ReactDOM</b>.<br>
+
+                    O <b>elemento</b> é a menor unidade de renderização, e toda a renderização é feita em um nó raíz (Não é possível retornar nós irmãos).<br>
+                    Um elemento NÃO é um componente.
+
+                    Podemos dizer que um <b>componente</b> é um <b>conjunto de elementos</b>.<br>
+                    Um elemento pode ser uma string, um html, ...<br>
+
+                    <b>OBS:</b> Toda renderização será realizada em <b>public/index.html</b>, está será a única página da app. Conceito de SPA - Single Page Application.
+
+                    <b>React "pensa"</b> em como a interface deve estar a cada momento ao invés de alterá-la com o tempo, o que faz ter ganho de performance e evita uma séria de erros.<br>
+
+                    <h4>Virtual DOM</h4> 
+                        É uma cópia do <b>DOM (Document Object Model)</b>.<br>
+                        O browser tem o DOM que é uma representação de um documento.<br>
+                        O React não trabalha diretamento com o DOM do browser, mas sim com o Virtual DOM.<br>
+                        <b>Por exemplo</b>, quando temos uma alteração em algum elemento, o ReactDOM não vai renderizar todo o objeto (toda a estrutura) novamente.<br>
+                        O que ele vai fazer é realizar uma diferença, uma comparação entre o Virtual DOM e o DOM do browser, e assim ele renderiza novamente somente aquele pedaço que foi modificado.<br> 
+                </p>
+
+                <header><h3 class="post_title">Renderização Condicional</h3></header>
+                <p class="post_content">
+                    Em React é possível criar componentes distintos que encapsulam o comportamento desejado.<br>
+                    Sendo assim, pode-se renderizar apenas alguns dos elementos dependendo do estado da app.<br>
+                    <li>Variáveis de elementos</li>
+                    <li>If inline com operador lógico &&</li>
+                    <li>If-Else inline com operador condicional</li>
+                    <li>Evitando que um componente seja renderizado</li>
+                </p>
+
+                <header><h3 class="post_title">Listas e Chaves</h3></header>
+                <p class="post_content">
+                    <li>Renderizando multiplos componentes</li>
+                    <li>Componente de lista básico</li>
+                    <li>Chaves</li>
+                    <li>Extraindo componentes com chaves</li>
+                    <li>Chaves devem ser únicas apenas entre elementos irmãos</li>
+                </p>
+
+                <header><h3 class="post_title">Manipulação de Eventos</h3></header>
+                <p class="post_content">
+                    Manipular eventos em elementos em ReactJS é muito semelhante a manipulação de eventos com JavaScript via DOM.<br>
+                    Existem algumas diferenças sintáticas:<br>
+                    <li>Eventos em React são nomeados usando <b>camelCase</b> ao invés de letras minusculas</li>
+                    <li>Com o JSX passa uma função como manipulador de eventos ao invés de um texto</li>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><a href="https://reactjs.org/docs/conditional-rendering.html" 
+                            target="_blank">Conditional Rendering</a></li>
+                        <li><a href="https://reactjs.org/docs/lists-and-keys.html" 
+                            target="_blank">Lists and Keys</a></li>
+                        <li><a href="https://reactjs.org/docs/handling-events.html" 
+                            target="_blank">Handling Events</a></li>
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

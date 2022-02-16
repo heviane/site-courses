@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="style.css"> 			
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Curso JavaScript</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title">Array</h2></header>
+            <article class="post">
+                <p class="post_content">
+                    Array é uma lista numerada (indexada)<br>
+                    Array também é um <b>objeto</b><br>
+                    Declaração entre [] ou (), itens separador virgula<br>
+                </p>
+            </article>
+
+            <header><h2 class="posts_title">References</h2></header>
+            <article class="post">
+                <p class="post_content">
+
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script>
+            // ------------------------ Declaração (criação) e definição (atribuição) de array
+            const fruits = new Array('Banana','Laranja','Uva'); // Criar Array de strings
+            const users = ['Ana','Maria','Joao'];               // Criar Array de strings **Mais usual**
+            const list1 = Array.of(1, 2, 3);                    // Criar instãncias de Array de acordo com parametros
+            const list2 = Array(1, 2, 3);                       // Criar Array de números
+            const divs = document.querySelectorAll('div');// Criar Array de NodeList (iterable object) elementos DOM
+                                                                // document.querySelectorAll() retorna um NodeList
+            const list3 = Array.from(divs); // Criar instância Array a partir parametro array-like ou iterable object
+                                            // Converte NodeList em array = IMPRIMI o elemento div
+            const list4 = Array.from(divs, (div) => div);// Criar instância Array a partir parametro array-like ou iterable object // Converte NodeList em array = IMPRIMI o elemento div
+            const list4 = Array.from(divs, (div) => div.textContent);// Converte NodeList em array = IMPRIMI o conteúdo do elemento div
+            /*   ------------------------ RESUME
+                Array.of()   - Cria instâncias de Array para cada parametro - Cada parametro vai virar um array
+                Array()      - Se passar 1 parametro numero inteiro (1) será criado um array [empty]     = Array 1 posição vazio (lenfth=1)
+                Array()      - Se passar 1 parametro numero inteiro (3) será criado um array [empty × 3] = Array 3 posições vazias (length=3)
+                Array()      - Se passar 2 parametros, números inteiros (2,3) será criado um array semelhante ao Array.of(2,3)
+                Array.from() - Cria instância de Array a partir de um parametro array-like ou iterable object
+                ------------------------ DIFERENÇAS 
+                Array.of() e Array() = Cria instâncias de Array com QUALQUER parâmetro passado
+                Array.from()         = Cria instâncias de Array SOMENTE com os parâmetros array-like ou iterable object
+                                        array-like      = Ex.: NodeList   *** Converte em Array ***
+                                        iterable object = Ex.: Map        *** Converte em Array ***
+            */
+            const test1 = new Array (1, 2, 3, 'a', 'b', true);  // Criar array com diferentes tipos de dados
+            const test2 = [1, 2, 3, 'a', 'b', true];            // Criar array com diferentes tipos de dados
+            const test3 = Array.of(1, 2, 3, 'a', 'b', true);    // Criar array com diferentes tipos de dados
+            const test4 = Array(1, 2, 3, 'a', 'b', true);       // Criar array com diferentes tipos de dados
+
+            const gender = {MAN: Symbol('M'), WOMAN: Symbol('W')}; // Objeto de symbol, simulando um enum
+            const persons = [                                      // Array de objects
+                { name:'Ana', age: 26, gender: gender.WOMAN},
+                { name:'Maria', age: 43, gender: gender.WOMAN},
+                { name:'Joao', age: 18, gender: gender.MAN}
+            ];
+            const ingredients = [                                    // Array de arrays
+                ['uva','banana','cereja'],
+                ['farinha arroz', 'farinha amendoas']
+            ];
+            const cars = [ // Array que contém função como item
+                'palio',
+                'gol',
+                'uno', 
+                function() {console.log('testando...');} 
+            ];
+
+            // ------------------------ array, itens e propriedades
+            console.log(users);                // Retorna array
+            console.log(fruits);               // Retorna array
+            console.log(users[0]);             // Retorna item do array
+            console.log(gender);               // Retorna objeto
+            console.log(gender.MAN);           // Retorna value da propriedade do objeto
+            console.log(persons);              // Retorna array de objeto = Cada item é um objeto
+            console.log(persons[2]);           // Retorna item do array
+            console.log(persons[2].name);      // Retorna propriedade do item (objeto) do array
+            console.log(ingredients);          // Retorna array de arrays
+            console.log(ingredients[0]);       // Retorna item do array de arrays
+            console.log(ingredients[0][0]);    // Retorna item do array item do array de arrays
+            console.log(cars);                 // Retorna array que contém função como item
+            console.log(cars[3]());            // Retorna item do array que é uma função
+            console.log(cars[2]());            //...ERRO...O item (value) da posição (index) 2 não é uma função... 
+
+            //------- Propriedades nativas de Array
+            users.length; // tamanho do array
+            //------- Funções nativas de Array
+            Array.isArray(users);         // Verifica se é um Array, RETORNA true or false
+            users.toString();             // Retorna array como string - Output: 'Ana,Maria,Joao'
+            users.toString()[0];          // Retorna 1º posição da string gerada - Output: 'A'
+            'String: ' + users;           // Retorna array como string concatenando - Output: 'String: Ana,Maria,Joao'
+            users.join(' | ');            // Retorna array como string COM separador especificado (pipeline)
+            users.join();                 // Retorna array como string SEM separador especificado (separador padrão = VIRGULA)
+            users.reverse();              // Retorna array na ordem reversa
+            users.sort();                 // Retorna array ordenado            
+            users.push('Pedro','Ana');    // ADICIONA um ou mais elementos ao FINAL do array, RETORNA = tamanho novo array
+            users.unshift('Joao','Nina'); // ADICIONA um ou mais elementos ao INICIO do array, RETORNA = tamanho novo array
+            users.shift();                // REMOVE o PRIMEIRO elemento do array e retorna o elemento removido
+            users.pop();                  // REMOVE o ÚLTIMO elemento do array e retorna o elemento removido
+            //------- splice = REMOVER e/ou ADICIONAR um ou mais elementos a partir de uma determinada posição (index)
+            /*  -- NÃO cria um novo array, mas sim altera o array original (referência)
+                parm1 = A partir de qual posição do array será adicionado ou removido os itens
+                parm2 = Quantidade de itens (length) = Se 0, não remove nenhum item
+                parm3,parm4,parm5,... = A partir do 3º parm são os itens a adicionar ou remover
+                RETORNO, se houver REMOÇÃO, retorna um array contendo os itens removidos
+                RETORNO, se houver ADIÇÃO, retorna um array vazio            
+            */
+                // Array inicial = ['Ana','Maria','Joao'];
+                users.splice(0,1); // A partir da posição 0 (index) REMOVE 1 elemento (value)
+                // output: ['Ana'] = Array alterado = ['Maria','Joao']
+                users.splice(2,0,'Pedro','Ana'); // A partir da posição 2 adiciona 2 elementos (value)
+                // output: [] = Array alterado = ['Maria','Joao','Pedro','Ana']
+                users.splice(2,2); // A partir da posição 2 REMOVE 2 elementos (value)
+                // output: ['Pedro','Ana'] = Array alterado = ['Maria','Joao']
+                users.splice(0,1,'Pedro','Ana','Nina','Marcos','Luzia');
+                // A partir da posição 0 REMOVE 1 elemento (value) e ADICIONA 5 elementos (value) 
+                // output: ['Maria'] = Array alterado = ['Pedro','Ana','Nina','Marcos','Luzia','Joao']
+                        
+            //...splice...Examples...
+            const arr1 = [1,2,3,4,5];
+            arr1.splice(0,0,0);  // ADICIONA  0 no index 0 = output: []  arr1: [0,1,2,3,4,5]
+            arr1.splice(0,0,-1); // ADICIONA -1 no index 0 = output: []  arr1: [-1,0,1,2,3,4,5]
+            arr1.splice(7,0,6);  // ADICIONA  6 no index 7 = output: []  arr1: [-1,0,1,2,3,4,5,6]
+            arr1.splice(8,0,7);  // ADICIONA  7 no index 8 = output: []  arr1: [-1,0,1,2,3,4,5,6,7]
+            arr1.splice(4,1);    // REMOVE    3 no index 4 = output: [3] arr1: [-1,0,1,2,5,6,7]
+            arr1.splice(4,0,3);  // ADICIONA  3 no index 4 = output: []  arr1: [-1,0,1,2,3,5,6,7]
+            arr1.splice(0,2,9,8); // REMOVE e ADICIONA
+                // A partir da posição 0, remove 2 itens e adiciona 2 novos itens = output: (2)[-1,0] arr1: [9,8,1,2,3,5,6,7]
+            arr1.splice(0,2,9,8,7); // output: (2)[9,8] arr1: [9,8,7,1,2,3,5,6,7]
+                // A partir da posição 0, remove 2 itens.
+                // A partir da posição 0, adiciona 3 itens.
+            arr1.splice(3,2,6,5,4,3,2,1); // output: (2)[1,2] arr1: [9,8,7,6,5,4,3,2,1,3,4,5,6,7]
+                // A partir da posição 3, remove 2 itens.
+                // A partir da posição 3, adiciona 6 itens.
+            arr1.splice(9,5); // Remove 5 itens a partir da posição 9 = output: (5)[3,4,5,6,7] arr1: [9,8,7,6,5,4,3,2,1]
+
+            //------- slice = Criar um novo array a partir de um array existente
+            users.slice(2,2);   // FATIAR = COPIA um ou mais itens 
+                                    // parm1 = START index inicial
+                                    // parm2 = END index final = SE não informado, copia até o final do array
+                                    // RETORNA novo array contendo os itens COPIADOS = Array original **NÃO é ALTERADO**
+            //...splice...Examples...
+            const arr2 = [1,2,3];
+            //...enviando todos os parametros...
+            arr2.slice(0,1); // Copia = Output: [1]     ** START index = 0, END index < 1 (ATÉ o 1, não inclui o 1) **
+            arr2.slice(0,2); // Copia = Output: [1,2]   ** START index = 0, END index < 2 (ATÉ o 2, não inclui o 2) **
+            arr2.slice(0,3); // Copia = Output: [1,2,3] ** START index = 0, END index < 3 (ATÉ o 3, não inclui o 3) **
+            arr2.slice(0,4); //...Não dá erro, apenas retorna todos os itens do array
+            arr2.slice(0,5); //...Não dá erro, apenas retorna todos os itens do array
+            //...enviando apenas o primeiro parametro...Nesta caso, o default para o segundo parametro é o final do array
+            arr2.slice(0); // Copia = Output: [1,2,3] ** START index = 0, END index = tamanho do array **
+            arr2.slice(1); // Copia = Output: [2,3]   ** START index = 1, END index = tamanho do array **
+            arr2.slice(2); // Copia = Output: [3]     ** START index = 2, END index = tamanho do array **
+            arr2.slice(3); //...Não dá erro, apenas retorna um array vazio
+            arr2.slice(4); //...Não dá erro, apenas retorna um array vazio
+            //...index negativo...faz leitura reversa (de trás para frente) 
+            arr2.slice(-1); // Output: [3]
+            arr2.slice(-2); // Output: [2,3]
+            arr2.slice(-3); // Output: [1,2,3]
+            arr2.slice(-4); // Output: [1,2,3]
+            arr2.slice(-5); // Output: [1,2,3]
+            //------- Concatenar (Juntar arrays) = COPIA um ou mais arrays e RETORNA um novo array = Array original **NÃO é ALTERADO**
+            users.concat(list1, list2); 
+            const newList = users.concat(list1, list2); // Novo Array = newList, Arrays concatenados (users + list1 + list2) 
+            
+            // ------------------------ Iterações ------------------------
+            const arr = [1,2,3,4];
+            //------- forEach = percorre o array e executa uma função para cada item = IMUTÁVEL (Não altera o array original)
+            arr.forEach( (value, index, arr) => { console.log(`${index}: ${value}`, arr); }); // Imprimir tudo
+            arr.forEach( (value, index, arr) => { console.log(arr); });                       // Imprimir array
+            arr.forEach( (value, index) => { console.log(`${index}: ${value}`); });           // Imprimir value, index
+            arr.forEach( (value, index) => { console.log('Index: '+index); });                // Imprimir index
+            arr.forEach( (value) => { console.log('Value: '+value); });                       // Imprimir value 
+                // parm1 = value = Valor do item
+                // parm2 = index = Index do item
+                // parm3 = arr   = Array original
+                // **** CUIDADO ao omitir parametros ****
+                //...outro exemplo...
+                arr.forEach(item => console.log(item)); 
+                arr.forEach((item, index) => console.log(item, index)); 
+                arr.forEach((item, index, arr) => console.log(item, index, arr));   
+                arr.forEach((item, index, arr) => console.log(arr)); 
+            //------- for...in = Permite percorrer todos os itens do array
+            for(let item in arr){
+                console.log(item); //...Retorna o index do array
+            }
+            //------- for...of = Permite percorrer todos os itens do array
+            for(let item of arr){
+                console.log(item); //...Retorna o value do array...Não retorna as propriedades do array
+            }                
+            //------- map = RETORNA novo array com os resultados da função = IMUTÁVEL
+            arr.map(value => value * 2); 
+            fruits.map((fruit, index) => console.log(`${index} - ${fruit}`)); 
+            fruits.map((fruit, index, arr) => console.log(`${index} - ${fruit}`, arr)); 
+            //------- flat = RETORNA novo array com todos os elementos de um sub-array concatendos de forma recursiva de acordo com a profundidade especificada (depth) = IMUTÁVEL 
+            //...Array de arrays (array como item de outro array)
+            const arrFlat1 = [1,2,[3,4]];
+            const arrFlat2 = [1,2,[3,4,[5,6]]];
+            const arrFlat3 = [1,2,[3,4,[5,6,[7,8]]]];
+            arrFlat1.flat(); // Output: [1,2,3,4]          = depth default = 1 (desce 1 nível de profundidade)
+            arrFlat2.flat(); // Output: [1,2,3,4,Array(2)] = depth default = 1 (desce 1 nível de profundidade)
+            arrFlat3.flat(); // Output: [1,2,3,4,Array(3)] = depth default = 1 (desce 1 nível de profundidade)
+
+            arrFlat3.flat(-1); // Output: [1,2, Array(3)] ...Números negativos = Idem ao flat(0)...e assim por diante
+            arrFlat3.flat(-2); // Output: [1,2, Array(3)] ...Números negativos = Idem ao flat(0)...e assim por diante
+            arrFlat3.flat(-3); // Output: [1,2, Array(3)] ...Números negativos = Idem ao flat(0)...e assim por diante            
+            arrFlat3.flat(0);  // Output: [1,2, Array(3)]
+            arrFlat3.flat();   // Output: [1,2,3,4, Array(3)] ...idem ao flat(1)
+            arrFlat3.flat(1);  // Output: [1,2,3,4, Array(3)]
+            arrFlat3.flat(2);  // Output: [1,2,3,4,5,6, Array(2)]
+            arrFlat3.flat(3);  // Output: [1,2,3,4,5,6,7,8) 
+            arrFlat3.flat(4);  // Output: [1,2,3,4,5,6,7,8)...Além qtde existente, não existe mais níveis p serem expandidos...TUDO é expandido
+            arrFlat3.flat(5);  // Output: [1,2,3,4,5,6,7,8)...Além qtde existente, não existe mais níveis p serem expandidos...TUDO é expandido
+            // parm = depth = Profundidade de expansão, Nível de profundidade.
+
+            //------- flatMap = É uma junção da função map e flat = RETORNA novo array = IMUTÁVEL 
+            // Para cada item iterado executa a função map e depois executa a função flat
+            arr.flatMap(value => [value * 2]);  // 1 colchete  = depth = 0 = Output: [2,4,6,8]
+            arr.flatMap(value => [[value * 2]]);// 2 colchetes = depth = 1 = Output: [Array(1),Array(1),Array(1),Array(1)]
+                                                // Array dentro de Array   = Output: [[2],[4],[6],[8]]
+                
+            //------- Keys = Retorna Array Iterator q contém as chaves (index) p cada item = IMUTÁVEL 
+            const arrIterator = arr.keys();
+            arrIterator.next(); // Output: {value: 0, done: false} ...value: 0 = chave (index)
+            arrIterator.next(); // Output: {value: 1, done: false}
+            arrIterator.next(); // Output: {value: 2, done: false}
+            arrIterator.next(); // Output: {value: 3, done: false}        ...done: false = array não acabou
+            arrIterator.next(); // Output: {value: undefined, done: true} ...done: true  = array sim acabou
+            
+            //------- Values = Retorna Array Iterator q contém as chaves (value) p cada item = IMUTÁVEL 
+            const arrIterator = arr.values();
+            arrIterator.next(); // Output: {value: 1, done: false} ...value: 1 = chave (value)
+
+            //------- entries = Retorna Array Iterator q contém os pares index/valor p cada item = IMUTÁVEL 
+            const arrIterator = arr.entries();
+            arrIterator.next(); // Output: {value: [0,1], done: false} ...value: [0,1] = chave (index) e valor (value)
+            arrIterator.next(); // Output: {value: [1,2], done: false}
+
+            // ------- find = Retorna 1º value q satisfaz a condição = IMUTÁVEL
+            const arrFind = arr.find(value => value % 2 === 0); // Output: 2
+            const arrFind = arr.find((value, index, arr) => value % 2 === 0);//...faz a mesma coisa que o de cima...so incuído todos os parms
+
+            //------- findIndex = Retorna index do 1º value q satisfaz condição = IMUTÁVEL
+            const arrFindIndex = arr.findIndex(value => value > 1); // Output: 1
+
+            //------- filter = Retorna novo array c itens q satisfazem condição = IMUTÁVEL
+            const arrFilter = arr.filter(value => value % 2 === 0); // Output: [2,4]
+            const mens = persons.filter(person => person.gender === gender.MAN); // Retorna os homens
+
+            //------- indexOf = Retorna 1º index em q um item pode ser encontrado = IMUTÁVEL
+            const arr = [1,2,3,3,4,5,3,4,5];
+            const arrIndexOf = arr.indexOf(3);   // In: 3 (value), Output: 2 (index) 
+            // *** Primeira ocorrência de 3 ***
+            const arrIndexOf = arr.indexOf(3,2);// In: 3 (value), In: 2 (startIndex), Output: 2 (index)
+            // *** Primeira ocorrência de 3 a partir do index 2 ***
+            const arrIndexOf = arr.indexOf(3,3);// In: 3 (value), In: 3 (startIndex), Output: 3 (index)
+            // *** Primeira ocorrência de 3 a partir do index 3 ***
+            const arrIndexOf = arr.indexOf(3,4);// In: 3 (value), In: 4 (startIndex), Output: 6 (index)
+            // *** Primeira ocorrência de 3 a partir do index 4 ***
+            const arrIndexOf = arr.indexOf(3,6);// In: 3 (value), In: 6 (startIndex), Output: 6 (index)
+            // *** Primeira ocorrência de 3 a partir do index 6 (incluindo o index 6) ***
+
+            //------- lastIndexOf = Retorna último index em q um item pode ser encontrado = IMUTÁVEL
+            //...idem ao anterior...só que inverso
+            const arrIndexOf = arr.lastIndexOf(3);  // In: 3 (value), Output: 6 (index)
+            const arrIndexOf = arr.lastIndexOf(3,2);// In: 3 (value), In: 2 (startIndex), Output: 2 (index)); 
+
+            //------- includes = Retorna booleano verificando se determinado elemento existe = IMUTÁVEL
+            const arrIncludes = arr.includes(3); // In: 3 (value), Output: true   ( Numero 3 existe? )
+            const arrIncludes = arr.includes(7); // In: 7 (value), Output: false  ( Numero 7 existe? )
+
+            //------- some = Retorna booleano verificando se algun elemento satisfaz a condição = IMUTÁVEL
+            const arrSome = arr.some(value => value === 5); // Output: true  ( Tem algum numero 5? )
+            const arrSome = arr.some(value => value === 7); // Output: false ( Tem algum numero 7? )
+            const students = [
+                {name: 'Rafael', grade: 5},
+                {name: 'Maria', grade: 7},
+                {name: 'Pedro', grade: 6.5},
+                {name: 'Ana', grade: 8},
+            ];
+            const arrSome = students.some(value => value.grade >= 7);// Output: true (Tem algum aluno c nota >= 7? )
+            const arrSome = students.some(value => value.grade >= 9);// Output: false (Tem algum aluno c nota >= 9? )
+
+            //------- every = Retorna booleano verificando se todos os elementos satisfazem condição = IMUTÁVEL 
+            const arrEvery = arr.every(value => value > 0); // Output: true  ( Todos os numeros são maiores que 0? )
+            const arrEvery = arr.every(value => value < 0); // Output: false ( Todos os numeros são menores que 0? )
+
+            //------- sort = Ordena o array de acordo com a condição = MUTÁVEL
+            students.sort((current, next) => current.grade - next.grade); //...menor para maior...
+            students.sort((current, next) => next.grade - current.grade); //...maior para menor...
+            arr.sort(); //...If omited = ordenação default = ordenação ascendente
+
+            //------- reverse = Inverte a ordem dos itens do array = MUTÁVEL
+            arr.reverse();      //...inverte a ordem dos itens
+            students.reverse(); //...inverte a ordem dos itens
+
+            //------- join = Transformar em outro tipo de dados (string) - IMUTÁVEL
+            // Retorna uma string com todos os itens do array separados por um delimitador 
+            // Junta todos os itens do array, separados por um delimitador e retorna uma string
+            const arrJoin = arr.join('-'); // Output: 1-2-3-4-5
+
+            //------- reduce - Transformar um array em outro tipo (...de acordo com o return...) = IMUTÁVEL 
+            const number  = arr.reduce((number, value)  => number + value, 0);// Retorna Number (soma dos itens) 
+            const string  = arr.reduce((string, value)  => string += ', ' + value);// Retorna string (concatenação dos itens)
+            const boleano = arr.reduce((boleano, value, index, arr) => boleano = value, 0);// Retorna boolean do último item lido
+            //...Parametros da função reduce:
+                // parm1 = Handler function (Função de manipulação) = (retorno, value, index, array)
+                // Atribuição + condição = O retorno será dado para o parm1 (Handler function)
+                // Valor inicial do retorno antes da iteração *** É tipo que será retornado ***
+            const total = students.reduce((total, value) => total + value.grade, 0); // Retorna Number (soma das notas)
+            const names = students.reduce((names, value) => names + (value.name+' '),''); // Retorna String (concatenação dos nomes)
+
+            //------- map - Permiti adiciona N propriedades no array 
+            // Retorna novo array composto pelo que for retornado (return) da função = MUTÁVEL
+            const arrMap = arr.map(value => {
+                arr.prop1 = 'teste 1';  // SE existe = sobrescreve, SENÃO = cria
+                arr.prop2 = 'teste 2';
+                // return arr;    // = Cada item do novo array vai conter o array original
+                // return value;  // = Cada item do novo array vai conter o value de cada item iterado...exceto as novas propriedades
+                //...arrMap...vai conter o que for retornado aqui...
+            }); 
+            const studentsWithCourse = students.map(student => {
+                students.course = 'Introdução ao JavaScript'; 
+                return student;
+            });
+                 
+            //------- Encadeamento de funções - Juntando operações
+            const totalEvenAges = persons
+                    .filter(person => person.age % 2 === 0)
+                    .reduce((age, person) => age + person.age, 0);
+            console.log('\nSoma das idades pares: ', totalEvenAges);            
+        </script>
+    </body>
+</html>

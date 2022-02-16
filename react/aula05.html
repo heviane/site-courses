@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">O que é JSX?</h3></header>
+                <p class="post_content">
+                    <b>JSX</b> apenas fornece <b>syntactic sugar</b> para a função <b>React.createElement</b> do React. <br>
+                    É uma linguagem de marcação que permite misturar html e javascript.<br>
+                    Não é HTML, Não é JavaScript. É uma mistura dos dois.<br>
+                    O código JavaScript deve ser colocado dentro de um par de chaves {}.<br>
+                    O <b>browser não interpreta JSX</b>, para isso é necessário um <b>transpilador</b> de código. O transpilador mais utilizado é o <b>Babel</b>.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Por que usar JSX?</h3></header>
+                <p class="post_content">
+                    A utilização do JSX não é obrigatória. Mas, se não usado, será necessário chamar a função <b>React.createElement</b> para criar um elemento, e passar todos parâmetros necessários. Sendo assim, JSX torna muito mais simples a renderização do código. O <a href="https://babeljs.io" target="_blank"><b>compilador Babel online</b></a> pode ser usado para transpilar (converter) o código JSX para o código JavaScript.
+                    <h5>The JSX code:</h5>
+                        <pre><code>
+                            const element = <b>Hello World!</b>
+                        </code></pre> 
+
+                    <h5>Compiles into:</h5>
+                        <pre><code>
+                            const element = React.createElement(
+                                'h1',
+                                {className: 'title'},
+                                'Hello World!'
+                            );
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">React Component</h3></header>
+                <p class="post_content">
+                    A primeira parte da tag JSX é o nome do elemento React <b>CustomButton</b>.<br>
+                    Este deve iniciar com letra maiuscula e deve ser importado, pois essas tags são compiladas em uma referência direta a variável noemada, portanto deve estar no escopo através da importação.<br>
+                    Como o JSX compila em chamadas para React.createElement, a biblioteca React também deve estar sempre no escopo do seu código JSX.<br><br>
+
+                    Portanto, ambas as importações são necessárias neste código, mesmo que React e CustomButton não sejam referenciados diretamente do JavaScript.
+                    <pre><code>
+                        import React from 'react';
+                        import CustomButton from './CustomButton';
+
+                        function WarningButton() {
+                            // return React.createElement(CustomButton, {color: 'red'}, null);
+                            return &lt;CustomButton color="red" /&gt;;
+                        }
+                    </code></pre>
+                    Se não usar um bundler JavaScript e carregou o React de uma tag &lt;script&gt;, ele já está no escopo como o React global.
+
+                    <h4>Notação de ponto para o tipo JSX</h4>
+                        Outra forma de fazer referência a um componente React é usando notação de ponto de dentro do JSX. Isso é conveniente se você tiver um único módulo que exporte muitos componentes React.<br><br>
+                        
+                        <b>Exemplo:</b> Se MyComponents.DatePicker for um componente, você poderá usá-lo diretamente do JSX com:
+                        <pre><code>
+                            import React from 'react';
+
+                            const MyComponents = {
+                                DatePicker: function DatePicker(props) {
+                                    return &lt;div&gt;Imagine a {props.color} datepicker here.&lt;/div&gt;;
+                                }
+                            };
+
+                            function BlueDatePicker() {
+                                return &lt;MyComponents.DatePicker color="blue" /&gt;;
+                            };
+                        </code></pre>
+
+                    <h4>Componentes definidos pelo usuário devem ser capitalizados</h4>
+                        Quando um elemento começa com <b>letra minúscula</b>, refere-se a um componente interno como &lt;div&gt; ou &lt;span&gt; e resulta em uma string 'div' ou 'span' passada para React.createElement.<br><br>
+                        Quando um elemento começa com <b>letra maiúscula</b> compila para React.createElement() e corresponde a um componente definido ou importado em seu arquivo JavaScript.<br><br>
+                        <b style="color: red">Recomendação:</b> Nomear os componentes com uma letra maiúscula. 
+                        Se tiver um componente que comece com uma letra minúscula, atribua-o a uma variável em maiúscula antes de usá-lo no JSX.
+                                                        
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://babeljs.io" target="_blank">babeljs.io</a></li>
+                    <li><a href="https://reactjs.org/docs/jsx-in-depth.html" 
+                        target="_blank">reactjs.org/docs/jsx-in-depth.html</a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

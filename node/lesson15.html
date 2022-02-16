@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+             <article class="post">
+                <header><h3 class="post_title">Middleware para Método de Autenticação Basic Auth do HTTP</h3></header>
+                <p class="post_content">
+                    É uma forma de autenticação baseada no protocolo HTTP.<br>
+                    O objetivo é reaproveitar o método, ao criar um Middleware podemos invocar ele em vários outros endpoints.
+
+                    <h4>Extender o @types/express</h4>
+                        Extender o <b>@types/express</b> incluindo o type User no Request para poder propagar o usuário para o próximo middleware.<br>
+                        Criar um arquivo de definição para o express <b>src/@types/express.d.ts</b>, é uma espécie de "interface".<br>
+                        <pre><code>
+                            import { User } from '../models/user.model';
+
+                            declare module 'express-serve-static-core' {
+                                interface Request {
+                                    user?: User | null;
+                                }
+                            }
+                        </code></pre>
+                        Isso pode ser feito para incluir qualquer tipo de atributo customizado.
+
+                    <h4>Criar o Middleware</h4>
+                        Criar o Middleware em <b>src/middlewares/basic-authentication.ts</b><br>
+                        Colocar o <b>user</b> dentro da requisição para ficar acessível em todas as rotas.<br>
+                        Chamar o <b>next()</b> sem passar erro para que ele continue propagando entre os middlewares e as rotas.<br>
+                        Se passar algum erro ele irá para o middleware de Error Handler em <b>src/middlewares/error-handler.ts</b>
+
+                        <pre><code>
+                            import { Request, Response, NextFunction } from 'express';
+                            import ForbiddenError from '../models/errors/forbidden.error.model';
+                            import userRepository from '../repositories/user.repository';
+                            
+                            async function basicAuthentication(req: Request, res: Response, next: NextFunction){
+                                try{
+                                    // Recuperar usuário e senha do header da requisição
+                                    const authorizationHeader = req.headers['authorization'];
+                                    if (!authorizationHeader) {
+                                        throw new ForbiddenError('Credenciais não informadas');
+                                    } 
+                                    const [authorizationType, token] = authorizationHeader?.split(" "); 
+                                    if(authorizationType !== 'Basic' || !token){
+                                        throw new ForbiddenError('Tipo de autenticação inválida');
+                                    }
+                            
+                                    // Criar buffer a partir do Token que está em Base64 e converter para string codificação UTF-8
+                                    const tokenContent = Buffer.from(token, 'base64').toString('utf-8');
+                                    const [userName, userPassword] = tokenContent.split(":"); 
+                                    if(!userName || !userPassword){
+                                        throw new ForbiddenError('Credenciais não preenchidas');
+                                    }
+                            
+                                    // Obter usuário e senha da Database
+                                    const user = await userRepository.byUserNameAndPassword(userName, userPassword);
+                                    if(!user){
+                                        throw new ForbiddenError('Usuário e/ou senha inválidos');
+                                    }
+
+                                    // Colocar o user dentro da requisição
+                                    req.user = user;
+                                    next();
+
+                                }catch(error){
+                                    next(error);
+                                }
+                            };
+                            
+                            export default basicAuthentication;
+                        </code></pre>
+
+                    <h4>Configurar o Middleware no Server</h4>
+                        Neste caso, NÃO vamos configurar o middleware no server <b>src/server.ts</b> pois não queremos que ele seja global, mas que seja usado somente na rota de autenticação, portanto local.
+
+                    <h4>Configurar o Middleware na rota de autenticação</h4>
+                        Configurar o Middleware <b>basicAuthentication</b> na rota de autorização em <b>src/routes/authorization.route.ts</b><br>
+                        Recuperar o user do request.
+                        <pre><code>
+                            import { Router, Request, Response, NextFunction } from 'express';
+                            import basicAuthentication from '../middlewares/basic-authentication';
+                            import JWT from 'jsonwebtoken';
+                            import { StatusCodes } from 'http-status-codes';
+                            import ForbiddenError from '../models/errors/forbidden.error.model';
+                                                        
+                            const authorizationRouter = Router();
+                            
+                            authorizationRouter.post('/token', basicAuthentication, async (req: Request, res: Response, next: NextFunction) => {
+                                try{
+                                    // Recuperar o user da request
+                                    const user = req.user;
+                                    if(!user){
+                                        throw new ForbiddenError('Usuário não informado!');
+                                    }
+                            
+                                    // Gerar token JWT 
+                                    const jwtPayLoad   = {userName: user.userName};
+                                    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+                                    const jwtOptions   = {subject: user?.uuid};
+                                    const jwtToken = JWT.sign(jwtPayLoad, jwtSecretKey, jwtOptions);
+                            
+                                    // Response Token
+                                    res.status(StatusCodes.OK).json({ token: jwtToken });
+                                }catch(error){
+                                    next(error);
+                                }
+                            });
+                            
+                            export default authorizationRouter;
+                        </code></pre>
+                    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orquestração de Contêineres</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Orquestração de Contêineres</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <article class="post">  
+                <h3><a href="lesson01.html">Introdução</a></h3>
+                <h3><a href="lesson02.html">Docker</a></h3>
+                <h3><a href="lesson03.html">Docker - Comandos</a></h3>
+                <h3><a href="lesson04.html">Docker - Rede</a></h3>
+                <h3><a href="lesson05.html">Docker - Armazenamento</a></h3>
+                <h3><a href="lesson06.html">Docker - Deploy de Apps</a></h3>
+
+                <!--
+                    - Quiz
+                        - Sobre camadas, arquivos q serão constantemente modificados ao criar uma imagem, em qual posição do nosso dockerfile o acionamos?
+                            R: Na última linha possível.
+                        - Para add novas camadas a imagem, o que é necessário modificar?
+                            R: O arquivo Dockerfile.
+					- Docker Composer 
+                        Serve para subir um serviço localmente sem precisar instalar de fato.
+                    - Docker Swarm
+                        Serve para criar uma rede do tipo Overlay. Um Cluster.
+                        O modo Swarm é um recurso do Docker que fornece funcionalidades de orquestração de contêiner, incluindo clustering nativo de hosts do Docker e agendamento de cargas de trabalho de contêineres.
+
+					Docker Images: https://docs.redis.com/latest/rs/getting-started/getting-started-docker/
+					Docker Desktop para windows: https://docs.docker.com/desktop/windows/
+				-->
+            </article>
+
+            <article class="post"> 
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <!-- Repositório do curso -->
+                        <li><a href="https://github.com/luistkd4/docker101" target="_blank">github.com/luistkd4/docker101</a></li>
+                        <li><a href="https://www.docker.com" target="_blank">docker.com</a></li>
+                        <!-- Docker Hub = Repositório de imagens públicas e privadas *** Share images, automate workflows, etc *** -->
+                        <li><a href="https://hub.docker.com" target="_blank">hub.docker.com</a></li>
+                        <!-- For more examples and ideas, visit -->
+                        <li><a href="https://docs.docker.com/get-started" target="_blank">docs.docker.com/get-started</a></li>
+                        <!-- Compose = Ferramenta que usa metadados para criar múltiplos containeres com um simples comando -->
+                        <li><a href="https://docs.docker.com/compose" target="_blank">docs.docker.com/compose</a></li>
+                        <!-- Docker compose não é um comando nativo -->
+                        <li><a href="https://docs.docker.com/compose/install" target="_blank">docs.docker.com/compose/install</a></li>
+
+                        <!-- Play With Docker = Playground e Training -->
+                        <li><a href="https://labs.play-with-docker.com" target="_blank">labs.play-with-docker.com</a></li>
+                        <li><a href="https://training.play-with-docker.com" target="_blank">training.play-with-docker.com</a></li>
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

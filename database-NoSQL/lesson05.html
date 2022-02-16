@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NoSQL</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+            crossorigin="anonymous">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso NoSQL: Bancos de dados orientados à colunas</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Model: Wide Column Store (Cassandra)</h3></header>
+				<p class="post_content">
+                    <h4>História</h4>
+                    Open Source, criado pelo facebook, <b>Cassandra</b> foi o primeiro banco de dados não relacional orientado à colunas.<br>
+                    Seu modelo é baseado no <b>big table</b> da Google.<br><br>
+
+                    <h4>Introdução</h4>
+                        Armazena dados em <b>“column Families”</b>, linhas que possuem muitas colunas associadas a uma chave desta linha.<br>
+                        <b>CQL</b> (Cassandra Query Language) é a linguagem oficial de consultas, baseada em SQL.<br><br>
+                        <ul><h5>Terminologias</h5>
+                            <li><b>Keyspace:</b> Agrupamento de famílias de colunas = <b>Database</b></li>
+                            <li><b>column Family:</b> Agrupamento de colunas = <b>Table</b></li>
+                            <li><b>Row Key:</b> chave que representa uma linha de coluna = <b>Primary Key</b></li>
+                            <li><b>column:</b> Representa um valor contendo: Name, Value e Timestamp</li>
+                        </ul>
+                        <img src="./img/NoSQL_Columns_Example_01.png" alt="NoSQL Column Image" />
+                        
+                    <h4>Diferenças SQL x NoSQL</h4>
+                        São muito semelhantes na foma que se cria a estrutura, mas por baixo são muito diferentes.<br>
+                        <table class="table table-striped">
+                            <caption></caption>
+                            <thead>
+                                <tr class="tr_title">
+                                    <th scope="col"></th>
+                                    <th scope="col"><b>SQL</b></th>
+                                    <th scope="col"><b>NoSQL</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Hierárquia -->
+                                <tr class="tr_title">
+                                    <th scope="col"></th>
+                                    <td>Hierárquia Table</td>
+                                    <td>Hierárquia Column Family</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>
+                                        <li>Database instance</li>
+                                        <li>Schema Fixo (crescimento exponencial)</li>
+                                        <li>Existem colunas vazias</li>
+                                    </td>
+                                    <td>
+                                        <li>Cluster</li>
+                                        <li>Schema variável (cresimento conforme a demanda)</li>
+                                        <li>Não existem colunas vazias<br>São independentes umas das outras</li>
+                                    </td>
+                                </tr>
+                                <!-- Column -->
+                                <tr class="tr_title">
+                                    <th scope="col"></th>
+                                    <td>Column</td>
+                                    <td>Column</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>
+                                        <li>Column (same for all rows)
+                                            <br>Cada coluna armazena value
+                                            <br>Cada linha tem o mesmo conjunto de colunas (fixo)</li>
+                                    </td>
+                                    <td>
+                                        <li>Column (can be different per row)
+                                            <br>Cada coluna armazena key, value e Timestamp
+                                            <br>Cada linha pode ter um conjunto de colunas diferentes (variável)</li>
+                                    </td>
+                                </tr>
+                                <!-- Update -->
+                                <tr class="tr_title">
+                                    <th scope="col"></th>
+                                    <td>Update</td>
+                                    <td>Update</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>
+                                        <li>Atualiza o registro (row) como um todo</li>
+                                    </td>
+                                    <td>
+                                        <li>Atualiza somente a coluna especificada</li>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    <h4>Usabilidade</h4>
+                        Ausência total de transações.<br>
+                        Indicado quando se tem um volume muito maior de leitura do que de escrita.<br>
+                        Uso adequado é quando se tem a necessidae de fazer as consultas pela chave primária.<br>
+                        Caso seja necessário usar outras colunas, deve-se usar indices, mas haverá uma perda de performance.<br>
+
+                        <ul><h5>exemplos</h5>
+                            <li><b>Registro de Transações</b></li>
+                            compras, resultados de testes, filmes assistidos, localização mais recente do filme, etc.
+                            <li><b>Rastreamento</b></li>
+                            Praticamente de qualquer coisa, incluindo status do pedido, pacotes, etc.
+                        </ul>
+
+                        <ul><h5>Vantagens</h5>
+ 
+                        </ul>
+                        <ul><h5>Desvantagens</h5>
+
+                        </ul>
+                        
+                        <ul><h5>Cases</h5>
+                            <li>Facebook</li>
+                            <li>Twitte</li>
+                            <li>NetFlix</li>
+                        </ul>
+                        
+                    <h4>Exemplos de CQL (Cassandra Query Language)</h4>
+                        <b>Manipulação de estruturas</b>
+                            <pre><code>
+                                // criação do keyspace (database)
+                                CREATE KEYSPACE test WITH REPLICATION = { 
+                                    'class' : 'SimpleStrategy', 'replication_factor' : 1 
+                                };
+
+                                // seleção do keyspace
+                                USE test;
+
+                                // criação da column family (table)
+                                CREATE COLUMNFAMILY users (
+                                    name text PRIMARY KEY,
+                                    age int,
+                                    email text
+                                );
+
+                                // Alteração de column family para inclusão de coluna 
+                                ALTER COLUMNFAMILY users ADD hobby text;
+
+                            </code></pre>
+                            Colunas que aparecem com "NULL" nas consultas, não existem, aparecem desta forma apenas para apresentação.<br>
+
+                        <b>Manipulação de dados</b>
+                            <pre><code>
+                                // Inserção 
+                                INSERT INTO users (name, age, email) VALUES ('John', 25, 'john@mail.com');
+                                INSERT INTO users (name, age, email) VALUES ('Mary', 28, 'mary@mail.com');
+                                INSERT INTO users (name, age, email) VALUES ('Mike', 31, 'mike@mail.com');
+
+                                // Inserção via JSON
+                                INSERT INTO users JSON '{ "name": "Heviane" }';
+                                // A coluna "age" e "email" não serão criadas
+                                // Na consulta, vai aparecer NULL
+
+                                // Atualização
+                                UPDATE users SET age = 35 WHERE name = 'Heviane';
+                                UPDATE users SET hobby = 'programming' WHERE name = 'Heviane';
+
+                                // Exclução
+                                DELETE FROM users WHERE name = 'Heviane';
+                            </code></pre>
+                            No "update" não é atualizado a linha inteira (o registro por completo), é atualizado especificamente a coluna em questão.<br>
+                            
+                        <b>consulta de dados</b>
+                            <pre><code>
+                                // consulta de todos os registros (linhas e colunas)
+                                SELECT * FROM users;
+
+                                // consulta da coluna "age" e seu "timestamp"
+                                SELECT age, WRITETIME(age) FROM users;
+
+                                // consulta com condição (filtro)
+                                SELECT * FROM users WHERE name = 'John';
+
+                                // consulta que retorna JSON
+                                SELECT JSON * FROM users;
+
+                            </code></pre>
+                            Não é possível realizar uma consulta via JSON, mas pode-se retornar os dados via JSON.<br>
+                            A função do WRITETIME (Que retorna o timestamp da coluna) não se aplica a coleções.<br>
+                        <br>
+                        <b>Outros Exemplos</b>
+                            <pre><code>
+                                CREATE KEYSPACE IF NOT EXISTS test WITH REPLICATION = { 
+                                    'class' : 'SimpleStrategy', 'replication_factor' : 1 
+                                };
+                                CREATE TABLE IF NOT EXISTS test.users (
+                                    id int PRIMARY KEY, 
+                                    name text, 
+                                    age int
+                                );
+                                INSERT INTO test.users (id, name, age) VALUES (1, 'John', 25);
+                                INSERT INTO test.users (id, name, age) VALUES (2, 'Mary', 28);
+                                INSERT INTO test.users (id, name, age) VALUES (3, 'Mike', 31);
+                                SELECT * FROM test.users;
+                            </code></pre>
+
+                    <h4>Exemplos de Estruturas</h4>
+                        <pre><code>
+                            // Column
+                            {
+                                name: "fullName",
+                                value: "Heviane Bastos",
+                                timestamp: 12875789434734
+                            }
+
+                            // Column Family
+                            {
+                                // row
+                                "pramod-sadalage": {
+                                    firstName: "Pramod",
+                                    lastName: "Sadalage",
+                                    lastVisit: "2012/12/12"
+                                }
+                                // row
+                                "martin-fowler": {
+                                    firstName: "Martin",
+                                    lastName: "Fowler",
+                                    location: "Boston"
+                                }
+                            }
+                        </code></pre>
+                        <b>Column</b> tem a <b>chave</b> de “fullName”, o <b>valor</b> de “Martin Fowler” e o <b>timestamp</b> associado a esta coluna.<br>
+                        <b>Column Family</b> é considerada como uma coleção de colunas que possuem relações entre si.<br>
+                        Quando as colunas em uma “column family” são colunas simples denominamos de família de colunas padrão <b>(standard column family)</b>.<br>
+                        
+                        A diferença em bancos orientados a colunas é que nem todas as linhas possuem o mesmo número de colunas e podemos adicionar ou remover colunas destas linhas sem ter que alterar a estrutura das linhas anteriores, no código acima temos um exemplo desta situação onde ambas as linhas possuem colunas diferentes entre sim, porem mesmo assim pertencem a mesma família de colunas.<br><br>
+
+                        <pre><code>
+                            // Super Column
+                            {
+                                name: "book:978-1-56619-909-4",
+                                value: {
+                                    author: "Martin Fowler",
+                                    title: "Refactoring: Improving the Design of Existing Code",
+                                    isbn: "978-1-56619-909-4",
+                                }
+                            }
+
+                            // Super Column Family
+                            {
+                                // row
+                                name: "billing:martin-fowler",
+                                value: {
+                                    address: {
+                                        name: "address:default",
+                                        value: {
+                                            fullName: "Martin Fowler",
+                                            street: "1 Main St",
+                                            zip: "12345"
+                                        }
+                                    },
+                                    billing:{
+                                        name: "billing:default",
+                                        value: {
+                                            creditCard: "1234-5678-9012-3456",
+                                            expiration: "12/12"
+                                        }
+                                    }
+                                }
+                            }
+                        </code></pre>
+                        <b>Super Column</b> é uma coluna que possui um mapa de colunas, que deve conter um nome e um valor, porem este valor contém diversas colunas como um agregado de colunas do mesmo assunto.<br>
+                        <b>Super Column Family</b> são indicadas para manter dados relacionados juntos.
+                        
+				</p>
+            </article>
+
+            <article class="post"> 
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><a href="https://cassandra.apache.org/_/index.html" 
+                            target="_blank">cassandra.apache.org/_/index.html</a></li>
+                        <li><a href="https://codesandbox.io/examples/package/cassandra-driver" 
+                            target="_blank">codesandbox.io/examples/package/cassandra-driver</a></li>
+                        <li><a href="https://katacoda.com/datastax/courses/cassandra-try-it-out/try-cql" 
+                            target="_blank">katacoda.com/datastax/courses/cassandra-try-it-out/try-cql</a></li>
+                        <li><a href="https://www.npmjs.com/package/katacoda-cli" 
+                            target="_blank">npmjs.com/package/katacoda-cli</a></li>
+                        <li><a href="https://github.com/katacoda/scenario-examples.git" 
+                            target="_blank">github.com/katacoda/scenario-examples.git</a></li>
+
+                    </ul>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <!-- Bootstrap Bundle em CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"   
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+            crossorigin="anonymous"></script>
+    </body>
+</html>

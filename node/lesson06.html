@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Apresentação e Estruturação</h3></header>
+                <p class="post_content">                    
+                    <h4>Tecnologias e Conceitos Aplicados</h4>
+                        <ul>
+                            <li><b>Node.js</b>: Ambiente de execução server-side JS.</li>
+                            <li><b>Library Express</b>: Gerenciamento rotas HTTP (Abstração).</li>
+                            <li><b>REST API</b>: Representational State Transfer é um estilo Arquitetural REST.</li>
+                            <b>REST</b> é um padrão de arquitetura de software que define uma interface de aplicação para a comunicação entre clientes e servidores. Conjunto de padrões, referências arquiteturais juntados e incorporados ao protocolo HTTP.
+                            <li><b>RestFull</b>: Termo para designar uma API que segue todos os padrões REST.</li>
+                            <li><b>Microservice</b>: Uma abordagem para desenvolver uma solução como um conjunto de pequenos serviços, cada um executando em seu próprio processo.</li> Cada microserviço é uma app stand-alone, reutilizável, executada em uma única máquina (server + database).<br>
+                            Neste projeto, será responsável pelo gerenciamento de todo o cadastro do usuário, autenticação e validação.<br>
+                            Abstração das funcionalidades de login do usuário.<br>
+                            Recebe as requisições das apps clientes, valida e retorna o resultado.
+                            <li><b>Apps clientes</b>: Browser, Mobile, Outros sistemas via integração.</li>
+                            Clientes que vão consumir o microservice.
+                            <li><b>Protocol HTTP</b>: Potencial semântico.</li>
+                            Basic Authentication: Especificação do protocolo HTTP para autenticação de usuário.
+                            <li><b>JWT</b>: JSON Web Token, autenticação de usuário via token.</li>
+                            <li><b>TypeScript</b>: Ajuda a manter os padrões de codificação e legibilidade no JavaScript.</li>
+                            TypeScript cria interfaces (contratos) de comunicação.<br>
+                            Especifica como as coisas devem interagir entre si. O que pode ou não ser feito.<br>
+                            Fundamental para desenvolvimento em equipe, evitar bugs e ter limites bem definidos.
+                        </ul>
+
+                    <h4>Fluxo da Comunicação</h4>
+                        Cliente faz requisição para MS solicitando autenticação (login) no sistema.<br>
+                        MS valida e autentica usuário, retornando token JWT, se sucesso.<br>
+                        Cliente deverá enviar esse token para todas as outras requisições.<br>
+                        <b>RESUMINDO:</b> O Microserviço de autenticação é uma peça chave de todo o sistema, pois todas as requisições deverão passar por ele para realizarem a validação e permissão.
+
+                    <h4>Métodos e Endpoints da API</h4>
+                        <h5>Principais: CRUD (Create, Read, Update and Delete) de Usuários</h5>
+                            <ul>
+                                <li><b>GET /users</b></li>
+                                Listagem de todos os usuários.
+                                <li><b>GET /users/:uuid</b></li>
+                                Listagem de um usuário especifico.
+                                <li><b>POST /users</b></li>
+                                Criação de um usuário.
+                                <li><b>PUT /users/:uuid</b></li>
+                                Atualização de um usuário especifico.
+                                <li><b>DELETE /users/:uuid</b></li>
+                                Exclusão de um usuário especifico.
+                            </ul>
+                        <h5>Auxiliares</h5>
+                            <ul>
+                                <li><b>POST /token</b></li>
+                                Gera o Token.
+                                <li><b>POST /token/validate</b></li>
+                                Valida um Token.
+                            </ul>                 
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

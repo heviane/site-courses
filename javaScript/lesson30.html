@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>Código JavaScript no HTML</h3></header>
+                <p class="post_content">
+                    É possível incluir código JavaScript no documento HTML através do elemento &lt;script&gt;, ele permite incluir ou referenciar um script executável, e pode ser incluído no &lt;head&gt; ou no &lt;body&gt; do documento HTML.
+                    <ul>
+                        <li><b>Conteúdo Permitido:</b> Script dinâmico, como "text/javascript".</li>
+                        <li><b>Omissão de tag:</b> None, both the starting and ending tag are mandatory.</li>
+                        <li><b>Pais permitidos:</b> Qualquer elemento que aceite <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#metadata_content">conteúdo de metadados</a> ou <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content">conteúdo fraseado</a>.</li>
+                        <li><b>Regras ARIA permitidas:</b> None.</li>
+                        <li><b>Interface DOM:</b> <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement">HTMLScriptElement (en-US)</a></li>
+                    </ul>
+
+                    <h4>Render blocking (Bloqueio de renderização)</h4>
+                        O browser lê o documento HTML linha por linha, de cima para baixo. Quando a leitura do código chega numa tag <b>script</b>, o broswer fica "travado" na linha até que o arquivo seja BAIXADO e EXECUTADO.<br>
+                        Os elementos HTML somente são inseridos no DOM após serem lidos. Isso significa que para acessarmos eles via JavaScript, eles precisam ser carregados antes dos scrips.
+                        <pre><code>
+                            &lt;div id="acessivel"&gt;&lt;/div&gt;
+                            &lt;script src="script.js"&gt;&lt;/script&gt;
+                            &lt;div id="inacessivel"&gt;&lt;/div&gt;
+                        </code></pre>
+
+                    <h4>Formas de incluir um script JS</h4>
+                        <ul>
+                            <li>Script Inline</li>
+                                O código JS é escrito no próprio arquivo html através do elemento <b>&lt;script&gt;</b>.
+                                <pre><code>
+                                    &lt;script&gt; 
+                                        console.log('Hello World!'); 
+                                    &lt;/script&gt;
+                                </code></pre>
+
+                            <li>Script Externo (Arquivos .js)</li>
+                                O código JS é escrito em um arquivo JS com a extensão <b>.js</b> e importado no arquivo html através do elemento <b>&lt;script&gt;</b> e o atributo <b>src</b>.
+                                <pre><code>
+                                    &lt;script src="./assets/js/script.js"&gt;&lt;/script&gt;
+                                </code></pre>
+                        </ul>     
+                </p> 
+            </article>
+
+            <article class="post">
+                <header><h3>Diferença entre o &lt;head&gt; e o &lt;body&gt; para a inclusão de scripts</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li>&lt;head&gt;</li>
+                            É carregado <b>ANTES</b> dos elementos HTML serem inseridos no DOM.<br>
+                            Quanto mais código for colocado no head, mais lento fica o carregamento da página.
+                        <li>&lt;body&gt;</li>
+                            É carregado <b>DEPOIS</b> dos elementos HTML serem inseridos no DOM.<br>, desde que seja incluído no final do elemento body, como é recomendado. 
+                    </ul>           
+                    <b>IMPORTANTE</b>: Avaliar a iteração do script com os elementos HTML, pois o JS acessa os elementos html via DOM, e isso pode causar bugs.        
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>Atributos do elemento &lt;script&gt;</h3></header>
+                <p class="post_content">
+                    <h4>Atributo <span class="text-red">src</span></h4>
+                    <h4>Atributo <span class="text-red">text</span></h4>
+                    <h4>Atributo <span class="text-red">type</span></h4>
+                    <h4>Atributo <span class="text-red">integrity</span></h4>
+                    <h4>Atributo <span class="text-red">nomodule</span></h4>
+                    <h4>Atributo <span class="text-red">crossorigin</span></h4>
+                    <h4>Atributo <span class="text-red">defer</span></h4>
+                        Esse atributo Boolean é usado para indicar ao navegador que o script deve ser executado depois que o documento tenha sido parseado, mas antes de disparar o evento <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event">DOMContentLoaded (en-US)</a>.<br>
+                        Scripts com o atributo defer vão impedir que o evento DOMContentLoaded seja disparado até que o script seja carregado e tenha terminado de ser avaliado. Neste caso, o browser começa a baixar o arquivo <b>sem gerar render blocking</b>, ou seja, ele continua lendo o html, e o script é executado somente depois que todos os elementos html já estão no DOM.
+                        <pre><code>
+                            &lt;script src="script.js" defer&gt;&lt;/script&gt;
+                        </code></pre>   
+                        <ul><b class="text-red">IMPORTANTE:</b>
+                            <li>Esse atributo não deve ser usado se o atibuto <b>src</b> estiver ausente (ex. scripts inline), nesse caso ele não vai ter efeito.</li>
+                            <li>Scripts com o atributo defer vão ser executados na ordem em que aparecem no document.</li>
+                            <li>Para conseguir um efeito similar para scripts inseridos dinamicamente use <b>async=false</b>.</li>
+                        </ul>
+                    <h4>Atributo <span class="text-red">async</span></h4>
+                        <ul><b class="text-red">NOTAS:</b>
+                            <li>Scripts sem atributos <b>async</b> ou <b>def</b>, bem como scripts embutidos, são buscados e executados imediatamente, antes que o navegador continue a analisar a página</li>
+                            <li>The script should be served with the <b>text/javascript</b> MIME type, but browsers are lenient and only block them if the script is served with an image type (image/*), a video type (video/*), an audio (audio/*) type, or text/csv.<br>
+                                If the script is blocked, an error (en-US) is sent to the element, if not a success (en-US) event is sent.</li>
+                        </ul>
+                </p>
+			</article>
+
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/script" target="_blank">developer.mozilla.org/pt-BR/docs/Web/HTML/Element/script</a></li>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+            </div>
+        </footer>
+    </body>
+</html>

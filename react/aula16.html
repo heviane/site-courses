@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Intercomunicação entre componentes</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Imutabilidade e React</h3></header>
+                <p class="post_content">
+                    Para ter performance em React, é necessário usar estruturas imutáveis através da utilização de <b>shouldComponentUpdate</b> ou <b>React.PureComponent</b>.<br><br>
+
+                    O React monta um Grafo ou árvore com todos os componentes da App.<br>
+                    Para saber se houve mudança, verifica props ou state e faz shallow comparison com o virtual DOM.<br>
+                    Ele vai re-renderizar somente se houver modificações.<br><br>
+
+                    <li><b>shouldComponentUpdate</b></li> 
+                    É uma forma manual de fazer a renderização de um componente (só vai renderizar <u>quando necessário</u>).<br>
+                    Invocamos o método shouldComponentUpdate() e retornamos true (renderizar) ou false (não renderizar).<br><br>
+                        <b style="color: red">DÚVIDA:</b> Se setarmos TRUE sem fazer modificação, o componente será re-renderizado?
+                        <pre><code>
+                            import React from "react";
+                            class CounterButton extends React.Component {
+                                constructor(props) {
+                                    super(props);
+                                    this.state = {counter: 0};
+                                }
+                                shouldComponentUpdate(nextProps, nextState) {
+                                    if(this.props.color !== nextProps.color){  
+                                        return true; 
+                                    }
+                                    if(this.state.counter !== nextState.counter){
+                                        return true; 
+                                    }
+                                    return false;
+                                }
+                                render() {
+                                    return (
+                                        &lt;button
+                                            color={this.props.color}
+                                            onClick={ () => this.setState( 
+                                                    state => ( {counter: this.state.counter + 1} )) 
+                                                }&gt;
+                                            Counter: {this.state.counter}
+                                        &lt;/button&gt;
+                                    )
+                                }
+                            }
+                            export default CounterButton;
+                        </code></pre>
+
+                    <li><b>React.PureComponent</b></li> 
+                    Realiza update somente se houver <u>mudança real</u> dentro do componente.
+                        <pre><code>
+                            import React  from "react";
+                            class CounterButtonPure extends React.PureComponent {
+                                constructor(props) {
+                                    super(props);
+                                    this.state = {counter: 0};
+                                }
+                                render() {
+                                    return (
+                                        &lt;button
+                                            color={this.props.color}
+                                            onClick={ () => this.setState( 
+                                                    state => ( {counter: state.counter + 1} )) }&gt;
+                                            Counter: {this.state.counter}
+                                        &lt;/button&gt;
+                                    )
+                                }
+                            }
+                            export default CounterButtonPure;
+                        </code></pre>
+
+                    <b style="color: red">IMPORTANTE!</b> React.PureComponente é mais enxuto que o shouldComponentUpdate, mas não é todos os casos que se consegue controlar corretamente.<br>
+                    <li><a href="./react-app-02/public/Immutability-React_ExampleBugWithPureComponent.png" target="_blank">Exemplo de Bug com React.PureComponente</a></li><br>
+                    Uma App onde se tem um React.PureComponent que é uma lista de palavras "ListOfWords" e um React.Component com um button para adicionar palavras na lista "WordAdder".<br>
+                    Toda vez que uma nova palavra é adicionada a lista precisa ser atualizada.<br>
+                    O código tem um bug na função handleClick(): <br>
+                    <ol>1. React.PureComponent faz uma shallow comparison entre os valores antigos e novos de "this.props.words".</ol>
+                    <ol>2. React.Component muda words no handleClick() do WordAdder, mas mesmo mudando as palavras elas serão consideradas iguais. Aqui o valor foi modificado localmente (alteração bruta), ou seja, é uma estrutura mutável. </ol>
+                        <pre><code>
+                            handleClick() {
+                                const words = this.state.words;
+                                words.push('marklar');
+                                this.setState({words: words});
+                            }
+                        </code></pre>
+                    <b>Resumindo:</b><span style="color: red"> É necessário ter <b>estrutura imutável</b> para trabalhar com <b>React.PureComponent</b></span>.<br><br>
+
+                    <b style="color: green">SOLUÇÃO 1:</b> Evitar mudar valores ou estados. Tornar a estrutura imutável criando uma cópia.
+                        <pre><code>
+                            handleClick() {
+                                this.setState(state => ({
+                                    words: [...state.words, 'marklar']
+                                }));
+                            }
+                        </code></pre>
+                        Criar uma cópia nova a partir da existente usando um spread operator e vai adicionar o valor novo. Ou seja, é uma nova estrutura.<br><br>
+
+                    <b style="color: green">SOLUÇÃO 2:</b> Usar uma biblioteca de imutabilidade.<br><br>
+                        <b>Immutable.js</b> é a lib mais famosa para trabalhar com estruturas imutáveis.<br>
+                        Fornece coleções persistentes e imutáveis.<br>
+                        Permite detecção barata de alterações nos objetos.<br><br>
+                        <b>Exemplo de estrutura mutável:</b>
+                            <pre><code>
+                                const x = { foo: 'bar' };  
+                                const y = x;
+                                y.foo = 'baz';
+                                x === y; // true
+                            </code></pre>
+                            Atribuição é uma estrutura mutável e neste caso atribui também a referência, uma vez que objetos são tipos de dados que trabalham por referência.<br>
+                            A intenção deste código é realizar uma cópia do objeto <b>x</b> e alterar a propriedade do novo objeto criado <b>y</b>.<br>
+                            Mas o que ocorreu de fato, foi que os dois objetos foram modificados, por possuírem a mesma referência.<br>
+                            O resultado é que os dois objetos são iguais, o que é um bug.<br><br>
+                            
+                        <b>Exemplo de estrutura imutável com a lib Immutable.js:</b>
+                            <pre><code>
+                                const SomeRecord = Immutable.Record({ foo: null });
+                                const x = new SomeRecord({ foo: 'bar' });
+                                const y = x.set('foo', 'baz');
+                                const z = x.set('foo', 'bar');
+                                x === y; // false
+                                x === z; // true
+                            </code></pre>
+                            Immutable.js possui uma estrutura chamada <b>Record</b>.<br>
+                            Record é uma função que recebe um objeto como parâmetro e retorna um objeto imutável.<br>
+                            O método <b>set()</b> é usado para criar uma cópia mesmo, uma nova instância do objeto imutável.<br>
+                            <u>O set() é equivalente ao setState() do React.</u><br><br>    
+                        <b>Outras bilbiotecas de imutabilidade (Indicações do React):</b><br>
+                            <li>Immer</li>
+                            <li>Immutability-helper</li>
+                            <li>Seamless-immutable</li>
+                </p>        
+                <header><h3 class="post_title">Imutabilidade e Redux</h3></header>
+                <p class="post_content">
+                    <span style="color: red">Imutabilidade é pré-requisito para trabalhar com Redux!</span>
+                    <br><br>
+                    <li>Redux e React-Redux usam shallow comparison.</li>
+                    O Redux usa uma única store e as modificações são realizadas com shallow comparison.
+                    <li>Manipulação de dados mais segura.</li>
+                    <li>Time-travel debugging.</li>
+                    As modificações ficam todas em linhas, então é mais fácil voltar para trás, analisar o que aconteceu.<br><br>
+
+                    <b>Como é feito?</b><br><br>
+                        <li><b>reducers</b> dividem a store (objeto de estados) em domínios por uma chave.<br>
+                            Ou seja, cada reducer é uma fatia da store.</li>
+                        <br>
+                        <li><b>combineReducers</b> checa mudanças usando shallow comparison.</li>
+                            <ol>1. Fazem a iteração nos reducers, verificam todos e se houve modificações.</ol>
+                            <ol>2. Criam uma nova store (objeto de estados) a partir dos estados retornados por cada reducer.</ol>
+                            <b>Obs:</b> O objeto de estado representa a store, por isso, é chamado de store.<br><br>    
+
+                        <li><b>connect</b> gera componentes que fazem shallow comparison com o estado root.</li>
+                            Cada componente vai retornar o valor para a função <b>mapStateToProps</b>, verificando aqueles que precisam de uma operação de re-render.
+                            O connect faz a relação, pega a alteração da store e dispara a necessidade de re-render para os componentes.<br>
+                            <b>Ou seja, </b>a comparação é feita no estado do componente também, e não somente na store.
+                            <br><br>
+
+                        <li><b>Por que não funciona com objetos mutáveis?</b></li>
+                            A estrutura por si só é imutável, então modificar diretamente o state, não muda a estrutura.<br><br>
+                            <b style="color: red">LEMBRE-SE!</b>
+                            Os <b>estados são imutáveis</b>, então toda vez que é realizado um update, o estado atual é destruído e um novo estado é criado. Para conseguir isso, é necessário usar o <b>setState</b>.<br>
+                            Somente assim, a comparação vai detectar a mudança, e renderizar novamente.<br>
+                </p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">      
+                    
+                </p>                                              
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <ol><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></ol>
+                <ol><a href="https://github.com/heviane" target="_blank">github</a></ol>				
+            </div>
+        </footer>
+    </body>
+</html>

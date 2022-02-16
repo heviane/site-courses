@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="./lessons/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <article class="post">          
+                <h3><a href="./lessons/aula01.html">Introdução</a></h3>
+                <!-- React is a JavaScript library for building user interfaces -->
+                <h3><a href="./lessons/aula02-1.html">Criação de App com create-react-app</a></h3>
+                <!-- Create React App não lida com lógica de back-end ou bancos de dados; 
+                    Apenas cria um pipeline de construção de front-end, p usá-lo c qualquer back-end que desejar. Por baixo dos panos, usa Babel e webpack. -->
+				<h3><a href="./lessons/aula02-2.html">Criação de App com Webpack</a></h3>
+
+                <!-- Uma cadeia de ferramentas de construção JavaScript normalmente consiste em:
+                    ----- Gerenciador de pacotes.
+                    Permite aproveitar vasto ecossistema de pacotes de terceiros e os instale ou atualize facilmente.
+                        - Yarn 
+                        - npm. 
+                    ----- Empacotador.
+                    Permite escrever código modular e agrupá-lo em pequenos pacotes p otimizar o tempo de carregamento.
+                        - Webpack
+                        - Parcel
+                    ----- Compilador.
+                    Permite escrever código JavaScript moderno que ainda funcione em navegadores mais antigos.
+                        - Babel. 
+                -->
+
+                <!-- 
+                    $ npm run build 
+                    Cria uma compilação otimizada da app na pasta de compilação para implantar em produção.
+                -->
+                <h3><a href="./lessons/aula05.html">Sintaxe JSX</a></h3>
+                <h3><a href="./lessons/aula06.html">Renderização</a></h3>
+                <!-- Renderização, Condicionais, Listas e Chaves, Eventos -->
+                <h3><a href="./lessons/aula07-1.html">Componentes</a></h3>
+                <!-- Componentes são peças reutilizáveis de baixo acoplamento -->
+                <h3><a href="./lessons/aula07-2.html">Props</a></h3>
+                <!-- Props é um objeto que contém as propriedades (variáveis e funções) de um componente
+                     Pode ser passada como parametro de um componente para outro -->
+                <h3><a href="./lessons/aula08.html">Ciclo de Vida e Estados</a></h3>
+                <!--
+                    State: Memória temporária, local e imutável do componente.
+                    Statefull vs Stateless: Componentes com e sem estado.
+                    Hook useState: Função para criar e inicializar um state.
+                    Ciclo de Vida e suas fases -->
+                <h3><a href="./lessons/aula09.html">Ecossistema do React</a></h3>
+
+
+                <!--
+                    API de nível superior do React
+                    React é o ponto de entrada para a biblioteca React. 
+                    - Se carregar o React de uma tag <script>, essas APIs de nível superior estarão disponíveis no React global.
+                    - Se você usa ES6 com npm, você pode escrever import React de 'react'.
+                    - Se você usa ES5 com npm, você pode escrever var React = require('react').
+
+                    COMO REGRA GERAL:
+                    - Use props para configurar um componente quando ele for renderizado. 
+                    - Use state para acompanhar quaisquer dados de componentes q espera alterar ao longo do tempo.
+                -->
+
+                <!-- ========================== Intermediário ========================== -->
+                <h3><a href="./lessons/aula10.html">Estilização</a></h3>
+                <!-- Estlização inline, classes, CSS in JS (styled-styled-components) -->
+                <h3><a href="./lessons/aula11.html">Form - Componentes Controlados e não controlados</a></h3>
+                <h3><a href="./lessons/aula12.html">Flux - Arquitetura e Padrão de Projeto</a></h3>
+                <h3><a href="./lessons/aula13.html">Redux - Implementação Flux para React</a></h3>
+                <h3><a href="./lessons/aula14.html">Rest HTTP - Comunicação entre Apps</a></h3>
+                <!-- Fetch_API, Axios, Hook useEffect() -->
+                <h3><a href="./lessons/aula15.html">Imutabilidade</a></h3>
+                <h3><a href="./lessons/aula16.html">Imutabilidade - React e Redux</a></h3>
+                <!-- Library Immutable.js -->
+                <h3><a href="./lessons/aula17.html">Rest + Redux</a></h3>
+                <!-- Redux Middleware, Redux Thunk Library -->
+                <h3><a href="./lessons/aula18.html">Qualidade - TDD e BDD</a></h3>
+                <!-- Course-Javascript - lesson20.html
+                        TDD - Test-Driven Development
+                        BDD - Behavior-Driven Development (Sintaxe Gherkin)
+                        Jest - Framework de testes para JavaScript (Linguagem jasmine)
+                    React-testing-Library - Biblioteca para testar componentes em React. -->
+                <h3><a href="./lessons/aula19.html">Qualidade - Debugging</a></h3>
+                <!-- Chrome ou Mozila DevTools, React DevTools, Redux DevTools -->
+                <h3><a href="./lessons/aula20.html">Qualidade - Tratamento de Erros</a></h3>
+                <!-- ProTypes -->
+
+                <!-- ========================== Avançado ========================== -->
+                <h3><a href="./lessons/aula21.html">Hooks</a></h3>
+                <!-- 
+                    - useState: Criação, inicialização e atualização de state.
+                    state é imutável, sempre que houver atualização é destruído e criado um novo state.
+                    - useEffect: Permite executar efeitos colaterais em componentes funcionais.
+                    Permite interagir com o ciclo de vida.
+                    - useContext: Permite passar e controlar valores em um contexto global sem a utilização de componentes intermediários. Context API tem um consumer e provider.
+                    - useRef: 
+                        - Manter estados mesmo depois das renderizações. Permite atualizado mesmo com o componente desmontado.
+                        - DOM: Acessar a árvore do DOM e/ou elementos React. Ao criar referência para elemento, é possível acessar propriedades e métodos daquela referência. -->
+                <h3><a href="./lessons/aula22.html">Context API</a></h3>
+                <!--- Ciclo de vida usando classe e usando Hooks com Arrow Functions
+                    - Hooks, Substituir ciclo de vida DE classe PARA Hooks (Funções)
+                    - Context API, como passar valores de forma global sem uso de componentes intermediários.  -->
+                <h3><a href="./lessons/aula23.html">Técnicas com componentes e DOM</a></h3>
+                <!-- 
+                    - Fragment: Agrupar elementos
+                    - Error Boundary: é um componente que vai envelopar, criar um wrapper de toda a app.
+                    Objetivo é capturar erros, tratá-los e codificar mensagens mais amigáveis para os usuários.
+                    Toda a árvore abaixo do erro é destruída, por questões de segurança.
+                    - Render Props: Técnica de compartilhar código entre componentes passando uma prop cujo valor é uma  função. Reaproveitamento de lógica passando funções de um componente para outro.
+                    - Typechecking com PropTypes: biblioteca nativa do React para realização de checagem de tipos.
+                    Tipagem fraca, em tempo de execução. -->
+                <h3><a href="./lessons/aula24.html">Organização de Projeto</a></h3>
+                <!--
+                    Dumb Components: Desacoplados, sem comportamento (Apresentação).
+                    Smart Components: Acoplados, com comportamento (Lógica). -->
+				<h3><a href="./lessons/aula25.html">Mock</a></h3>
+                <!-- MSW - Biblioteca para mockar requisições -->
+
+                <h3><a href="./lessons/aula26.html">Gatsby</a></h3>
+                <!-- Gatsby é a melhor maneira de criar sites estáticos com React. 
+                    Permite que você use componentes React, mas produz HTML e CSS pré-renderizados para garantir o tempo de carregamento mais rápido.
+                -->
+
+
+                <!-- Próximos estudos:
+                    - Gatsby
+                    - CDN Links
+                -->
+
+            </article>
+
+            <article class="post">       
+                <header><h3 class="post_title">References - React Course</h3>
+                    <p class="post_content">
+                        <li><a href="https://tautorn.com.br" 
+                            target="_blank">tautorn.com.br</a></li>
+                        <li><a href="https://github.com/Tautorn/Introduction-reactjs" 
+                            target="_blank">React introduction - tautorn</a></li>
+                        <li><a href="https://github.com/eduardogc/digital-one-react-intermediario" target="_blank">React intermediary - tautorn</a></li>
+                        <li><a href="https://github.com/Tautorn/advanced-reactjs-dio" 
+                            target="_blank">React advanced - tautorn</a></li>
+                    </p>
+
+                    <header><h3 class="post_title">References - React Docs</h3>
+                    <p class="post_content">			
+                        <li><a href="https://reactjs.org/" 
+                            target="_blank">reactjs.org</a></li>
+                        <li><a href="https://github.com/facebook/react" 
+                            target="_blank">github.com/facebook/react</a></li>
+                        <li><a href="https://create-react-app.dev/docs/measuring-performance/"
+                            target="_blank">Measuring Performance</a></li>
+                    </p>
+                    
+                <header><h3 class="post_title">References - Tools</h3>
+                <p class="post_content">
+                    <!-- Extensions -->
+                    <li><a href="https://github.com/facebook/react-devtools" 
+                        target="_blank">Extensão react-devtools</a></li>
+                    <li><a href="https://github.com/reduxjs/redux-devtools" 
+                        target="_blank">Extensão redux-devtools</a></li>
+                    <!-- Análise de código estático para encontrar padrões problemáticos -->
+					<li><a href="https://https://eslint.org" 
+                        target="_blank">eslint.org</a></li> 
+                    <!-- Extensions -->
+
+                    <!-- Online Playgrounds -->
+                    <li><a href="https://codepen.io" 
+                        target="_blank">codepen.io</a></li>
+                    <li><a href="https://codesandbox.io" 
+                        target="_blank">codesandbox.io</a></li>
+                    <li><a href="https://stackblitz.com" 
+                        target="_blank">stackblitz.com</a></li>
+                    <!-- Online Playgrounds -->
+
+
+                    <!-- Libraries -->
+                    <li><a href="https://v5.reactrouter.com/web/guides/quick-start" 
+                        target="_blank">React Router DOM</a></li>
+                    <li><a href="https://redux-toolkit.js.org" 
+                        target="_blank">Redux Toolkit - State management</a></li>                    
+					<!-- MUI Library -->
+                    <li><a href="https://mui.com" 
+                        target="_blank">MUI - UI Components</a></li>
+					<!-- React Tabs
+						npm install --save react-tabs
+					-->	
+                    <li><a href="https://formik.org" 
+                        target="_blank">Formik - Form validation</a></li>
+                    <li><a href="https://stackworx.github.io/formik-mui" 
+                        target="_blank">Formik MUI</a></li>
+                    <li><a href="https://styled-components.com" 
+                        target="_blank">Styled Component - Stylization</a></li>
+					<li><a href="https://styled-components.com/docs/api#createglobalstyle" 
+                        target="_blank">Styled Component - createglobalstyle</a></li>
+                    <li><a href="https://emotion.sh/docs/introduction" 
+                        target="_blank">Emotion - Stylization</a></li>
+                    
+                    
+                    <li><a href="https://rxjs.dev" target="_blank">RxJS</a></li>
+					<!-- Chakra UI Library, componentes simples, modular e acessível q fornece os blocos de construção para construir app React. -->
+					<li><a href="https://chakra-ui.com" target="_blank">chakra-ui.com</a></li>
+                    
+                    
+                    <!-- Neutrino combina o poder do webpack com a simplicidade dos presets.
+                        Crie e construa apps JavaScript modernos com configuração inicial zero.-->
+                    <li><a href="https://neutrinojs.org" target="_blank">neutrinojs.org</a></li>
+                    <!-- Nx é um kit de ferramentas para desenvolvimento monorepo full-stack, 
+                        com suporte integrado para React, Next.js, Express e muito mais.-->
+                    <li><a href="https://nx.dev" target="_blank">nx.dev</a></li>
+
+
+                    <!-- Parcel, empacotador de apps web rápido e de configuração zero.
+                        Combina uma excelente experiência de desenvolvimento pronta para uso com uma arquitetura escalável q pode levar seu projeto desde o início até o app de produção em massa-->
+                    <li><a href="https://parceljs.org" target="_blank">parceljs.org</a></li>
+                    <!-- A bundler for javascript and friends. 
+                        Packs many modules into a few bundled assets. 
+                        Code Splitting allows for loading parts of the application on demand. 
+                        Through "loaders", modules can be CommonJs, AMD, ES6 modules, CSS, Images, JSON, Coffeescript, LESS, ... and your custom stuff. -->
+                    <li><a href="https://webpack.js.org" target="_blank">webpack.js.org</a></li>
+
+
+                    <!-- Next.js
+                        Estrutura popular e leve p apps estáticos e renderizados pelo servidor criados com React. 
+                        Inclui soluções de estilo e roteamento prontas para uso e pressupõe que esteja usando o Node.js como ambiente de servidor.-->
+                    <li><a href="https://nextjs.org" target="_blank">nextjs.org</a></li>
+                    <!-- Razzle
+                        Estrutura de renderização de servidor que não requer nenhuma configuração, mas oferece mais flexibilidade do que o Next.js. -->
+                    <li><a href="https://razzlejs.org" target="_blank">razzlejs.org</a></li>
+
+
+
+                    
+                    
+														
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <ul>Contato
+                    <li><a class="footer_link" href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a class="footer_link" href="https://github.com/heviane" target="_blank">github</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

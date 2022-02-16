@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Biblioteca Express - Introdução</h3></header>
+                <p class="post_content">
+                    <b>Express</b> é uma biblioteca pequena e simples para gerenciamento de rotas HTTP.<br>
+                    O objetivo é criar um servidor HTTP Express que responda as requisições em uma determinada porta e fique ativo durante a execução.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Biblioteca Express - Instalação e Configuração</h3></header>
+                <p class="post_content">
+                    <h4>Instalação da Biblioteca Express</h4>
+                        <pre><code>
+                            npm install --save express
+                        </code></pre>
+                        O arquivo <b>package.json</b> será alterado para incluir o Express como dependência.
+                        <pre><code>
+                            "dependencies": {
+                                "express": "^4.17.1"
+                            }
+                        </code></pre>
+                        Importação da biblioteca Express no projeto para utilização.
+                        <pre><code>
+                            import express from 'express';
+                        </code></pre>
+
+                    <h4>Instalação dos @types do TypeScript para o Express</h4>
+                        <b>@types</b> são instalados somente em ambiente de desenvolvimento.
+                        <pre><code>
+                            npm install --save-dev @types/express
+                        </code></pre>
+                        O arquivo <b>package.json</b> será alterado para incluir como dependência de desenvolvimento.
+                        <pre><code>
+                            "devDependencies": {
+                                "@types/express": "^4.17.13",
+                                "@types/node": "^17.0.7",
+                                "typescript": "^4.5.4"
+                              },
+                        </code></pre>
+
+                </p>
+
+                <header><h3 class="post_title">Biblioteca Express - Criação do Servidor</h3></header>
+                <p class="post_content">
+
+                    <h4>Criação do server sem Router (index.ts)</h4>
+                        <pre><code>
+                            // Importações
+                            import express, { Request, Response, NextFunction} from 'express';
+
+                            // Instanciando o express
+                            const app = express();
+
+                            // Endpoint para consultar o status do servidor
+                            app.get('/status', (req: Request, res: Response, next: NextFunction) => {
+                                res.status(200).send({ message: 'Hello World!' });
+                            });
+
+                            // Inicialização do servidor (Subir e ficar escutando na porta 3000)
+                            app.listen(3000, () => {
+                                console.log('Server running on port 3000');
+                            });
+                        </code></pre>
+
+                    <h4>Criação do server com Router (index.ts)</h4>
+                        <b>Router</b> permite criar configurações de rotas.<br>
+                        É uma forma de configurar as coisas separadamente.<br>
+                        Sem precisar ficar amarrado a instância do express.
+                        <pre><code>
+                            import express from 'express';
+                            import usersRoute from './routes/users.route';
+                            import statusRoute from './routes/status.route';
+
+                            // Instanciando o express
+                            const app = express();
+
+                            // Configurações Globais
+                            // Add middleware para lidar com o Content-Type: application/json
+                            app.use(express.json());
+                            app.use(express.urlencoded({ extended: true }));
+
+                            // Configurações de Rotas (Criadas separadamente, normalmente por domínio)
+                            app.use(statusRoute);
+                            app.use(usersRoute);
+
+                            // Inicialização do servidor (Subir e ficar escutando na porta 3000)
+                            app.listen(3000, () => {
+                                console.log('Server running on port 3000');
+                            });
+                        </code></pre>
+                        Node não trabalha com JSON (que é string, texto), mas sim com objetos, então é necessário converter o JSON em um objeto.
+
+                        <ul><b>Recomendações:</b>
+                            <ol>1. Criar um diretório especifico para armazenar as configurações de rotas</ol>
+                            Por exemplo: <b>./src/routes</b>
+                            <ol>2. Criar uma instância de Router para cada domínio.</ol>
+                            Por exemplo: <b>./src/routes/users.route.ts</b>, <b>./src/routes/posts.route.ts</b>, <b>./src/routes/comments.route.ts</b>, etc.
+                        </ul>
+
+                    <h4>Criação da rota status (src/routes/status.route.ts)</h4>
+                        <pre><code>
+                            import { Router, Request, Response, NextFunction } from 'express';
+                            import { StatusCodes } from 'http-status-codes';
+                            
+                            const statusRoute = Router();
+                            
+                            statusRoute.get('/status', (req: Request, res: Response, next: NextFunction) => {
+                                res.status(StatusCodes.OK).send({ result: 'testing...OK' });
+                            });
+                            
+                            export default statusRoute;
+                        </code></pre>
+                        Tipagem de parâmetros (req, res, next) com TypeScript para poder validar em tempo de desenvolvimento.
+                            <pre><code>
+                                // Import sem validação de tipos
+                                    import express from 'express';
+                               
+                                // Import com validação de tipos
+                                    import express, { Request, Response, NextFunction} from 'express';
+                            </code></pre>
+                            
+                    <h4>Middlewares</h4>
+                        É todo tipo de função que está entre uma requisição HTTP e sua respectiva resposta.<br>
+                        É um meio de campo, que recebem os parâmetros requisição (req), resposta (res) e próximo (next), executam alguma lógica e chamam o próximo middleware através do método next() do express.<br>
+                        Um aplicativo do Express é essencialmente uma série de chamadas de funções de middleware.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://expressjs.com/pt-br/guide/using-middleware.html" 
+                        target="_blank">expressjs.com/pt-br/guide/using-middleware.html</a></li>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

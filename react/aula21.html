@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Hooks</h3></header>
+				<p class="post_content">
+					Hooks são uma nova adição no React 16.8.<br>
+					É um tipo de função que permite que você “se conecte” aos recursos do React.<br><br>
+
+					São uma nova forma de escrever todo o ciclo de vida do React.<br>
+                    Permitem a utilização de recursos sem precisar escrever uma classe.<br>
+                    Adotam as closures do JavaScript e evitam APIs especificas do React onde o JavaScript já provê uma solução.<br>
+					Deixam o código mais legível.<br>
+                    São opcionais, não possuem nenhuma quebra de compatibilidade e otimizam a codificação.<br>
+
+                    <ul><h4>Hooks mais usados</h4>
+                        <li><b style="color: red">useState</b></li>
+                            Serve para criar e atualizar state.<br>
+							Toda vez que o estado é modificado o componente é renderizado novamente.<br>
+							É possível setar um valor inicial para o estado.
+                            <ul><b>Parâmetros:</b>
+                                <li>1º arg: valor</li>
+                                <li>2º arg: função para atualizar o valor</li>
+                            </ul>
+						<pre><code>
+							const [valor, setValor] = useState(valorInicial);
+						</code></pre>
+
+                        <li><b style="color: red">useEffect</b></li> 
+							<p><b>Hook de efeito. Serve para reagir a propriedades.</b><br>
+								É um Hook para ficar ouvindo as alterações que são realizadas no componente. 
+								Com ele podemos interagir com algumas funções do ciclo de vida do React, 
+								bem como era feito utilizando classes (Métodos utilizados em classes para controlar o componente: componentDidMount, componentDidUpdate. Também podem ser usados com o useEffect).<br>
+								Permite executar efeitos colaterais em <b>componentes funcionais</b>.<br>
+								<ul><b>Parâmetros:</b>
+									<li>1º arg: função</li>
+									<li>2º arg: array de dependências, propriedades (SE não informado executa apenas uma vez, na criação do componente, SE informado executa toda vez que propriedades forem modificadas)</li>
+								</ul>
+								Por que useEffect é chamado dentro de um componente? Permite acessar o state ou prop diretamente, não precisa de uma API especial para lê-los — já estão no escopo da função. 
+							</p>
+							<p><b>Efeito Construtor</b><br>
+								Desta maneira podemos simular o <b>componentDidMount</b> e o <b>componentDidUpdate</b>.<br>
+								É sempre executado a cada renderização do componente (montagem) e atualização.<br>
+								<pre><code>
+									useEffect(() => {
+										document.title = `Tautorn Tech`;
+									})
+								</code></pre>
+							</p>
+							<p><b>Efeito sem limpeza</b><br>
+								Desta maneira podemos simular o <b>componentDidUpdate</b>.<br>
+								O Hook vai ficar escutando as alterações do state e executar a função apenas quando o state for alterado. É possível passar argumentos para determinar quais variáveis do state serão escutadas.
+								<pre><code>
+									// Sempre que siteName (uma variável qualquer) for alterada então execute este hook novamente e mude o título da página.
+									useEffect(() => {
+										document.title = siteName;
+									}, [siteName])
+								</code></pre>
+							</p>
+							<p><b>Efeito Loop <i class="importante">*Indesejado</i></b><br>
+								Desta maneira podemos simular o <b>componentDidMount</b> e o <b>componentDidUpdate</b>.<br>
+								No exemplo abaixo toda vez que a variável "name" for alterada, um efeito será aplicado onde o mesmo vai chamar o método "setState" para atualizar novamente o valor de "name", com isso o componente irá entrar em loop até ocorrer um estouro de memória da aplicação.
+								<pre><code>
+									const [name, setName] = useState('tautorn')
+									useEffect(() => {
+										setName('bruno')
+									}, [name])
+								</code></pre>
+							</p>
+							<p><b>Efeito com limpeza</b><br>
+								O exemplo mais básico é o de realizar a limpeza de uma função utilizando o setInterval.
+								No exemplo abaixo o componente Hello realizou a montagem e o useEffect foi executado 
+								(não passei argumentos para o useEffect, então ele vai ser executado somente uma vez) 
+								disparando o setInterval para que a cada 1 segundo ele dispare uma mensagem no console do browser. 
+								Mas repare que na linha 10 adicionei um return com um clearInterval 
+								(método utilizado para que o setIternval pare de executar), com isso assim que o componente for desmontado o return vai ser executado disparando o clearInterval. 
+								Do contrário o setInterval poderia ficar executando infinitvamente até ocorrer um estouro de memória, ou somente executando de forma desnecessária e mesmo assim consumindo memória sem a necessidade.
+
+								RETURN => Executado quando o componente for desmontado.
+
+								<pre><code>
+									export default function Hello() {
+										useEffect(() => {
+										  let interval = null;
+									  
+										  interval = setInterval(() => {
+											console.log("Yupiiii")
+										  }, 1000);
+
+										  // Aqui estou executando o componentWillUnmount
+										  return () => clearInterval(interval);
+										}, []);
+									  }       
+								</code></pre>
+								<b>RETURN</b>. Ao retornar uma função, ela sempre será executada na desmontagem do componente.
+								<pre><code>
+									useEffect(() => {
+										//...AQUI...Executa sempre que propriedades mudarem...Ou somente na inicialização quando não houver propriedades
+										return () => {
+											//...AQUI...Executa quando o componente for desmontado.
+										} 
+									},[]);
+								</code></pre>
+								<a href="https://codesandbox.io/s/hooks-useeffect-h62v3?file=/src/App.js"
+									target="_blank">Outro exemplo "SolarSystem" em "codesandbox.io"</a>
+							</p>
+						<li><b style="color: red">UseRef</b></li>
+							Manter estados mesmo depois das renderizações.<br>
+							Permite atualização mesmo com o componente desmontado.<br>
+								<pre><code>
+									const ref = useRef(valorInicial);
+								</code></pre>
+
+							<b>Ref e o DOM</b><br>
+							Usado para fazer referências no DOM, acessando a árvore do DOM e/ou elementos React.<br>
+							Ao criar uma referência para um elemento, é possível acessar todos as propriedades e métodos daquela referência.
+							<ul><h4>Usabilidade:</h4>
+								<li>Manipulação de bibliotecas de terceiros</li>
+								<li>Gerenciamento de inputs (foco), seleção de textos ou reprodução de mídias</li>
+								<li>Animações imperativas</li>
+							</ul>
+							<b>Exercício final:</b> Criar um input e comparar valor atual com valor anterior.
+								
+                        <li><b style="color: red">UseContext</b></li>
+							Permite passar e controlar valores em um contexto global sem a utilização de componentes intermediários.<br>
+							Context API tem um <b>consumer</b> e <b>provider</b>.<br>
+
+                        <li>UseReducer</li>
+                        <li>UseCallback</li>
+                        <li>UseMemo</li>
+                        <li>UseImperativeHandle</li>
+                        <li>UseLayoutEffect</li>
+                        <li>UseDebugValue</li>
+                    </ul>
+
+                    <h4>Exemplo de importação:</h4>
+						<pre><code>
+							import React, { useState, useEffect, useContext } from 'react'; 
+						</code></pre>
+
+                    <ul><h4>O que muda na codificação para substituir classes por Hooks (funções)?</h4>
+						<li>Não é necessário usar classe, mas sim Arrow Function OU Regular Function</li>
+                        <li>Não é necessário importar "Component" do React, não vamos mais extender uma classe</li>
+						<li>Não é necessário usar o "this", pois não estamos mais usando classe</li>
+						<li>Não é necessário render(), que é do "Component" do React, somente o return</li>
+						<li>Refatorar os métodos (da classe) para Arrow Function</li>
+                        <li>useEffect() passa por todos as fases do ciclo de vida</li>
+                    </ul>
+
+                    <h4>Regras dos Hooks</h4>
+                        <ul><h4>Não use Hooks dentro de Regular Functions. Em vez disso, pode-se:</h4>
+                            <li>Chamar Hooks em componentes React</li>
+                            <li>Chamar Hooks dentro de Hooks Customizados</li>
+                        </ul>
+                        Seguindo essas regras, garante-se que toda lógica de estado (state) no componente seja claramente visivel no código fonte.<br>
+                        Seguindo essas regras, evita-se re-render, loop infinito, efeitos colaterais (side effects).
+				</p>
+				
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://reactjs.org/docs/hooks-intro.html" 
+                        target="_blank">Introducing Hooks</a></li>
+                    <li><a href="https://blog.tautorn.com.br/reactjs-hooks-use-effect" 
+                        target="_blank">hooks-use-effect</a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

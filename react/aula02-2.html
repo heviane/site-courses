@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Configurações do Ambiente de Desenvolvimento</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Criar uma app React</h3></header>
+                <p class="post_content">
+                    <h4>React Create App</h4>
+                        É uma biblioteca para criar um prjeto ReactJS.<br>
+                        A lib vai criar toda a configuração básica para uma app frontend.<br>
+                        Montar 
+                   
+                    <h4>React Scripts</h4>
+                        This package includes scripts and configuration used by Create React App.<br>
+                        Comando para instalar React Scripts:<br>
+                        <pre><code>
+                            $ npm i react-scripts
+                        </code></pre>
+                        Ou podemos configurar com Task Runners e Bundler Sizers (Parcel, Webpack, etc).<br>
+
+                        O react scripts já instala tudo que precisa e já monta e configura todo o ambiente, como: servidor, webpacks (transpilador Babel), JEST para testes.<br> 
+
+                    <b>Task Runners</b> são executores de tarefas.<br>
+                    <b>Bundle Size</b> An app's bundle size is the amount of JavaScript a user will have to download to load your app.<br>
+                    
+                    <h4><u><b>Prática:</b></u> Criar uma app usando <b>React Scripts</b></h4>
+                    Create a new React-based project using create-react-app:<br>
+                    <pre><code>
+                        $ npm init react-app ./my-react-app
+                        $ cd my-react-app
+                        $ npm install --save react@16.8.6 react-dom@16.8.6 react-scripts@3.0.1
+                        $ npm start
+                    </code></pre>
+                    <b>package.json</b> é o arquivo de configuração do projeto (contém todas as dependências).<br>
+                    <b>manifest.json</b> provides metadata used when your web app is installed on a user's mobile device or desktop.
+
+                    <h4>Outros comandos úteis</h4>
+                        <b>npm start</b> Para começar o desenvolvimento.<br>
+                        <b>npm run build</b> Para criar um pacote de produção.<br>
+                        Aprenda como configurar uma URL pública não root executando `npm run build`.<br>
+                        <b>npm test </b> Iniciar o executor de teste.<br>
+                        <b>npm run eject</b> Remove esta ferramenta e copia dependências de construção, arquivos de configuração e scripts para o diretório do aplicativo. Se você fizer isso, você não pode voltar!
+
+                    
+
+                </p>       
+
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                <li><a href="https://create-react-app.dev" target="_blank">React Create App</a></li>
+                <li><a href="https://create-react-app.dev" target="_blank">github.com/facebook/create-react-app</a></li>
+                <li><a href="https://developers.google.com/web/fundamentals/web-app-manifest/" target="_blank">Sobre o arquivo manifest.json</a></li>
+
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Redux - Implementação Flux para React</h3></header>
+				<p class="post_content">
+                    É uma implementação de Flux para React, com algumas modificações.<br>
+                    <a href="./Redux-Arquitetura.png">Fluxo da Arquitetura Redux</a><br>
+                    <br>
+                    <b>Modificações:</b>
+                        <li>Não existe Dispatcher</li>
+                        <li>A camada de view é chamada de React</li>
+                        <li>Nova camada chamada <b>Reducer</b></li>
+                    <br>
+                    <b>Princípios básicos:</b>
+                        <li>Single source of truth: Uma única store</li>
+                        Diferente de Flux que contém várias stores e o Dispatcher conecta as stores.<br>
+                        <li>State is read-only: O estado é somente leitura</li>
+                        Modificações de estados geram novos estados e a destruição dos estados anteriores.<br>	
+                        <li>Mudanças são feitas com pure functions</li>
+                    <br>
+                    <b>Fluxo do Redux</b>
+                        <h4>Action</h4>
+                        São como no Flux, mas não enviam a action em si para o Dispatcher (Que não existe no Redux).<br>
+                        Ao invés disso, retornam um objeto de action formatado.<br>
+                        <h4>Store</h4>
+                        Em Flux são diversas stores, em Redux é uma única store.<br>
+                        A store cuida de toda a árvore de estados.<br>
+                        Os reducers que cuidam de descobrir quais estados mudam.<br>
+                        <h4>Reducer</h4>
+                        Em Redux não há dispatcher (Simplifica e divide o trabalho da Store).<br>
+                        A store se conecta ao root reducer, que divide os estados em pequenos reducers para descobrir como lidar com esse estado.<br>
+                        Os estados aqui são imutáveis, ou seja, não podem ser alterados diretamente.<br>
+                        <h4>View (Chamada de React)</h4>
+                        Em React, foi adicionado nesta camada três novos conceitos para conectar a View à Store.<br>
+                        <ol>1. Provider</ol>
+                        É um wraper da árvore de componentes. A responsabilidade dele é facilitar aos componentes filhos se conectarem a store usando connect().
+                        <ol>2. connect()</ol>
+                        É uma função que faz a conexão entre a store e a View usando selector.<br>
+                        Por exemplo, se o componente deseja pegar uns updates do estado ele se envolve na função connect().<br>
+                        ??? Ele é um Rock, um Hard Component. ???
+                        <ol>3. selector</ol>
+                        É uma função que o próprio dev escreve que define quais os estados do Redux que quer passar como props.<br>
+                        Por exemplo, um componente de lista de mercado, no Redux há vários estados que não competem a lista, mas o selector vai levar em consideração somente os estados da lista de compras.<br>
+                </p>    
+                <header><h3 class="post_title">Exemplo prático Redux + React</h3></header>
+				<p class="post_content"> 
+                    <h4>Instalação</h4>
+                        <b>Redux</b>
+                            <pre><code>
+                                npm install react-redux
+                            </code></pre>
+                        <b>Redux Dev Tools</b><br>
+                            É uma extensão do Chrome que conecta a App para monitorar as alterações de estados da store.<br>
+                            Além de instalar na App com o comando abaixo, devemos ir no chrome e instalar a extensão.<br>
+                            <pre><code>
+                                npm install --save-dev redux-devtools
+                                npm install --save-dev redux-devtools-extension
+                            </code></pre>
+                        <!-- App Counter Simples -->
+                    <h4>conteiners/AppCounter (App Counter Simples).</h4>
+                        Dois botões, para incremento e decremento e um número inteiro na tela.<br>
+                        Cada evento (incrementar e decrementar) vai disparar um evento na STORE.<br>
+                        Após executar a App, no browser abrir "Inspect", aba "Redux".<br>
+                        É necessário ativar o botão "Play" para a monitoração da App.<br>
+                        <!-- App Counter da aula com Redux -->
+                    <h4>src/class-Redux (App Counter da aula com Redux).</h4>
+                        <a href="https://github.com/eduardogc/digital-one-react-intermediario" 
+                        target="_blank">github digital-one-react-intermediario</a>
+                        <li>actions.js</li>
+                        <li>reducers.js</li>
+                        <li>Counter.jsx</li> (App Component)
+                        <li>index.js</li> (Root Component)
+                        <pre><code>
+                            import * as serviceWorker from './serviceWorker';
+                            import { Provider } from 'react-redux';
+                            import { createStore } from 'redux';
+                            import { reducer } from './reducers'; // ./redux/reducers
+                            import App from './containers/AppCounter';
+
+                            const store = createStore(
+                            reducer,  
+                            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+
+                            ReactDOM.render(
+                            <Provider store={store}>
+                                <App />
+                            </Provider>,
+                            document.getElementById('root'));
+                            serviceWorker.unregister();
+                        </code></pre>
+				</p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://redux.js.org/" 
+                        target="_blank">https://redux.js.org/</a>
+                    </li>
+                    <li><a href="https://github.com/reduxjs" 
+                        target="_blank">github.com/reduxjs</a>
+                    </li>
+                    <li><a href="https://github.com/reduxjs/redux-devtools" 
+                        target="_blank">github.com/reduxjs/redux-devtools</a>
+                    </li>
+                    <li><a href="https://www.npmjs.com/package/redux-devtools-extension"
+                        target="_blank">redux-devtools-extension</a>
+                    </li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a>
+                <a href="https://github.com/heviane" target="_blank">github</a>				
+            </div>
+        </footer>
+    </body>
+</html>

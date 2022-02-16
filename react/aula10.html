@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Estilização</h3></header>
+                <p class="post_content">
+                    <b>Formas de estilização</b><br>
+                    Cada propriedade é declarada no formato <b>camelCase</b>.<br>
+
+                    <h4>Inline</h4>
+                    Estilização inline através do atributo <b>style</b> que é um objeto que gera um json.<br>
+                    <b>Opção 1:</b> Podemos declarar um elemento em uma variável contendo todo o bloco de estilos e então passá-lo entre chaves {} para o atributo style.<br>
+                        <pre><code>
+                            // Declaração do elemento
+                            const H1Style = {
+                                color: 'blue',
+                                textalign: 'center'
+                            };
+                            // Implementação do estilo
+                            &lt;h2&gt; style={H1Style}> { props.children } &lt;/h2&gt;
+                        </code></pre>
+
+                    <b>Opção 2:</b> Podemos declarar a propriedade css entre chaves duplas {{}} diretamente no atributo style.<br>
+                        <pre><code>
+                            &lt;h2&gt; style={ {color: 'brown'} }> { props.children } &lt;/h2&gt;
+                        </code></pre>
+
+                    <b>Vantagens:</b><br>
+                        <li>Podemos implementar <b>urls</b> dinâmicas.</li>
+                    <b>Desvantagens:</b><br>
+                        <li>...</li>
+                    
+                    <h4>Classes</h4>
+                    Estilização com classe é uma forma mais modularizada.<br>
+                    
+                    Deve ser criado um arquivo <b>.css</b> para realizar a declaração de todas as classes.<br>
+                    Assim, basta importá-lo no componente e declarar as classes no atributo <b>className</b> do elemento.<br>
+                    O atributo className que é um array de strings.<br>
+                    <b>OBS:</b> Usa-se a palavra <b>className</b> porque a palavra "class" é reservada no React.<br>
+                    Para manter a compatibilidade com <b>element.className</b> no jsx, e não ao "class" do DOM.<br>
+                        <pre><code>
+                            // Implementação do estilo
+                            import './containers/App.css';
+                        </code></pre>
+
+                    <b>Vantagens:</b><br>
+                        <li>Maneira mais prática e direta</li>
+                    <b>Desvantagens:</b><br>
+                        <li>Difícil manutenção</li>
+                        <li>Pouca flexibilidade</li>
+                        Não é possível usar uma <b>url</b> dinâmica.<br>
+                        Na forma inline poderíamos fazer isso.<br>
+                        <li>Conflito com nomes (mais comum)</li>
+
+                    <h4>CSS in JS (forma mais recente)</h4>
+                    O css é criado dentro do JavaScript e este gera css para a App.<br>
+                    Existem diversas abordagens.<br>
+                    Abordagem <b>styled-components</b> é a mais usada em React.<br>
+                    Nesta abordagem, usa-se css puro.<br>
+                        <pre><code>
+                            npm install --save styled-components
+                        </code></pre>
+
+                    <b>Vantagens:</b><br>
+                        <li>Manutenção</li>
+                        Facilidade para remover css, não precisa refatorar a App inteira.<br>
+                        Estilos dinâmicos usando props<br>
+                        <li>Performance</li>
+                        Elimina necessidade de usar pré-processador de css<br>
+                        <li>Injeção automática de prefixos vendor</li>
+                        Não precisa mais se preocupar com webkit, moz, etc.<br>
+                        Ele já gera o prefixo correto e de acordo com o browser.<br>
+                    <b>Desvantagens:</b><br>
+                        <li>...</li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

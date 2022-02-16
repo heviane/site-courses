@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+             <article class="post">
+                <header><h3 class="post_title">Middleware para Método de Autenticação Bearer Token</h3></header>
+                <p class="post_content">
+                    <b>Bearer Token</b> é uma forma de autenticação baseada em um Token.<br>
+                    Campos obrigatórios no header do HTTP: <b>Token</b> e o <b>Prefixo</b> cujo valor default é "Bearer".<br><br>
+
+                    A ideia é que todos os endpoints do CRUD de usuários sejam autenticados com o Token.<br>
+
+                    <h4>Criar um Middleware para validar o Token</h4>
+                        Criar o arquivo <b>src/middlewares/bearer-authentication.ts</b>
+                        <pre><code> 
+                            import { Request, Response, NextFunction } from 'express';
+                            import ForbiddenError from '../models/errors/forbidden.error.model';
+                            import userRepository from '../repositories/user.repository';
+                            import JWT from 'jsonwebtoken';
+
+                            async function bearerAuthentication(req: Request, res: Response, next: NextFunction){
+                                try{
+                                    // Recuperar credenciais do header da requisição
+                                    const authorizationHeader = req.headers['authorization'];
+                                    if (!authorizationHeader) {
+                                        throw new ForbiddenError('Credenciais não informadas');
+                                    } 
+
+                                    // Tratar as credenciais (separando os valores)
+                                    const [authorizationType, token] = authorizationHeader?.split(" "); 
+                                    if(authorizationType !== 'Bearer' || !token){
+                                        throw new ForbiddenError('Tipo de autenticação inválida');
+                                    }
+
+                                    // Validar token (verificar se é válido)
+                                    const tokenPayload = JWT.verify(token, 'my_secret_key'); 
+                                    if(typeof tokenPayload !== 'object' || !tokenPayload.sub){
+                                        throw new ForbiddenError('Token inválido');
+                                    }
+
+                                    // Token já tem os dados do usuário, e é CONFIÁVEL
+                                    const user = { uuid: tokenPayload.sub, userName: tokenPayload.userName };
+
+                                    // colocar user na request para ficar acessível para os demais middlewares
+                                    req.user = user;
+
+                                    // Chamar o próximo middleware
+                                    next();
+
+                                }catch(error){
+                                    next(error);
+                                }
+                            };
+                            export default bearerAuthentication;
+                        </code></pre>
+                        
+                    <h4>Registrar o Middleware no server</h4>
+                        Editar a configuração da rota <b>usersRoute</b> no server em <b>src/index.ts</b>
+                        <pre><code>
+                            // ANTES
+                            // app.use(usersRoute);
+                            
+                            // DEPOIS
+                            app.use(bearerAuthentication, usersRoute);
+                        </code></pre>
+                        
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

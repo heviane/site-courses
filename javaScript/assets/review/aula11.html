@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header">
+            <h1>Curso Básico de JavaScript</h1>
+        </header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header>
+                <h2 class="content_title">Manipular Eventos via DOM</h2>
+            </header>
+            <article class="content_item">   
+                <header><h3>Eventos de clique e de mouse</h3></header>
+                <h4 onclick="alert('clicou no titulo')">Clique aqui</h4>
+                <h4 onmouseover="this.innerHTML='Passou o mouse'" 
+                    onmouseout="this.innerHTML='Tirou o mouse'">Evento clique e de teclado</h4>
+                <button onclick="clicou()">Clique aqui</button>
+                <button onclick="document.getElementsByTagName('h3')[0].innerHTML = 'button 2'">Clique aqui</button>
+                <button onclick="this.innerHTML = 'button 3'">Clique aqui</button>             
+            </article>
+            <article class="content_item">   
+                <header><h3>Eventos de teclado</h3></header>
+                <labeL>result no console.log</labeL>
+                <input onkeyup="digitou(event)" type="text"><br/>
+                <input onkeydown="digitou(event)" type="text">
+                <!-- Onkey
+                    - Down   (Aperta a tecla ** Se tecla ficar pressionada, fica executando...)
+                    - Press  ()
+                    - Up     (Solta a tecla)
+                -->   
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>                
+        <script>
+            function clicou(){
+                if(document.getElementsByTagName('h3')[0].textContent == 'Evento clique e de teclado'){
+                    document.getElementsByTagName('h3')[0].innerHTML = 'Clicou botão 1'
+                }else{
+                    document.getElementsByTagName('h3')[0].innerHTML = 'Evento clique e de teclado'
+                }
+            }
+            function digitou(e){ 
+                console.log(e);
+                console.log(e.keyCode + ' = ' + e.key);
+                if (e.keyCode == 13){
+                    console.log('ENTER: ' + document.getElementsByTagName('input')[0].value );
+                    console.log('ENTER: ' + document.getElementsByTagName('input')[1].value );
+                }
+            }
+        </script>
+    </body>
+</html>

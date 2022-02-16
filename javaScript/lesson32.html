@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <script>
+            // run this function when the document is loaded
+            window.onload = function() {
+                // create a couple of elements in an otherwise empty HTML page
+                var heading = document.createElement("h4");
+                var heading_text = document.createTextNode("elemento e conteúdo incluído no body");
+                heading.appendChild(heading_text);
+                document.body.appendChild(heading);
+            }
+       </script>		
+    </head>
+    <body>
+        <!--Página: Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página: Conteúdo-->
+		<section class="content">
+			<header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>DOM - Selecionar Elementos</h3></header>
+				<p class="post_content">
+                    Podemos acessar os elementos html através do objeto document e seus métodos.<br><br>
+
+                    Há quatro formas (parametros) para selecionar os elementos:
+                    <ul>
+                        <li><b>id</b>: É único, só podemos ter um</li>
+                        <li><b>classe</b>: Array HTMLCollection</li>
+                        <li><b>tag</b>: Array HTMLCollection</li>
+                        <li><b>name</b>: Array HTMLCollection</li>
+                    </ul> 
+
+                    <h4>Método document.getElement...</h4>
+                        <pre><code>
+                            // pelo atributo id (único)
+                                document.getElementById('name');
+
+                            // pelo atributo class
+                                document.getElementsByClassName('name');
+                                document.getElementsByClassName('name')[0];
+
+                            // pelo nome da tag
+                                document.getElementsByTagName('p');
+                                document.getElementsByTagName('p')[0];
+
+                            // pelo atributo name
+                                document.getElementsByName('phone');
+                        </code></pre>
+
+
+                    <h4>Método document.querySelector</h4>
+                        <pre><code>
+                            // pelo atributo id (único)
+                                document.querySelector('#name');
+
+                            // pelo atributo class
+                                document.querySelector('.name');       // retorna o primeiro
+                                document.querySelectorAll('.name');    // retorna um array
+                                document.querySelectorAll('.name')[0]; // retorna um de acordo com o index
+
+                            // pelo nome da tag
+                                document.querySelectorAll('li')[0];
+                                document.querySelectorAll('li')[1];
+
+                            // pelo atributo name
+                                document.querySelector('age');
+                        </code></pre>
+
+                </p>
+            </article>
+        </section>
+        <!--Página: Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

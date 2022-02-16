@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Imutabilidade</h3></header>
+                <p class="post_content">
+                    <ul><h4>Pilares</h4>
+                        <li>Coleção imutável (Uma vez criada não pode ser alterada)</li>
+                        Coleção seria uma tupla, array, lista, etc.
+                        <li>Persistência. Novas coleções podem ser criadas a partir de uma coleção anterior e uma mutação (setter) como um conjunto</li>
+                        <li>Novas coleções são criadas usando o máximo possível da estrutura original, reduzindo a cópia e aumentando a performance</li>
+                    </ul>
+
+                    <ul><h4>Benefícios</h4>
+                        <li>Performance</li>
+                        Não estamos trabalhando com atribuiçoes, mutações, mas sim criando cópias otimizadas.
+                        <li>Programação mais simples</li>
+                        Porque estamos sempre trabalhando com estruturas fixas.
+                        <li>Debugging mais simples (detecção de mudanças)</li>
+                        Pode-se realizar shallow comparison (comparações de igualdade simples comparando valor com valor).
+                    </ul>
+
+                </p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">    
+                    <ul>   
+                        <li><a href="https://immutable-js.com" 
+                            target="_blank">immutable-js.com</a></li>
+                        <li><a href="https://github.com/immutable-js/immutable-js" 
+                            target="_blank">github.com/immutable-js/immutable-js</a></li>
+                    </ul>
+                </p>                                              
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <ol><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></ol>
+                <ol><a href="https://github.com/heviane" target="_blank">github</a></ol>				
+            </div>
+        </footer>
+    </body>
+</html>

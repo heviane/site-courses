@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arquitetura de Sistemas</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Arquitetura de Sistemas</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">IoT - Internet of Things</h3></header>
+				<p class="post_content">
+                    <h4>Requisitos Básicos</h4>
+                        <ul>
+                            <li>Cloud Computing</li>
+                            <li>Protocolo de Comunicação de Rede</li>
+                            <li>Processamento e armazenamento de dados</li>
+                        </ul>
+                    <h4>Introdução</h4>
+                        <ul><b>Por que conectar as coisas?</b>
+                            <li>Embutir sensores em objetos do dia-a-dia</li>
+                            <li>Coletar dados dos sensores</li>
+                            <li>Usar os dados para tomar decisão</li>
+                        </ul>
+                        <ul><b>Três fases:</b>
+                            <li><b>Things:</b> Embutir sensores nas coisas para obter dados.</li>
+                            <li><b>Cloud:</b> Armazenar e processar os dados coletados.</li>
+                            <li><b>Intelligence:</b> Usar os dados para tomar decisões, resolver problemas, facilitar ações.</li>
+                        </ul>
+                        <ul><b>Onde implementar?</b>
+                            <li>Smart Building</li>
+                            <li>Smart Home</li>
+                            <li>Wearables (Vestiveis)</li>
+                            <li>Agriculture</li>
+                            <li>Smart Transportation</li>
+                            <li>RFID Supply Chain (Cadeia de Suprimento)</li>
+                            <li>Energy Efficiency</li>
+                        </ul>
+                        <ul><b>Desáfios</b>
+                            <li>Privacidade</li>
+                            <li>Segurança</li>
+                            <li>Quantidade exponencial de dispositivos conectadas na rede</li>
+                            <li>Capacidade de processamento e armazenamento de dados</li>
+                            <li>Gerar valor a partir dos dados coletados</li>
+                        </ul>
+                    <h4>Computação Ubíqua (A terceira onda da tecnologia)</h4>
+                        A <b>primeira onda</b> foram os Mainframes compartilhado por várias pessoas.<br>
+                        A <b>segunda onda</b> é a que estamos agora, a era da computação pessoal com pessoas e máquinas estranhando umas às outras.<br>
+                        A <b>terceira onda</b> está apenas começando, a <b>Computação Ubíqua</b>, é a era da tecnologia "calma", quando a tecnologia recua para o pano de fundo de nossas vidas. As tecnologias mais importantes são aquelas que desaparecem, elas se integram a vida do dia a dia, ao nosso cotidiano até serem indistinguíveis dele.
+                    <h4>Arquitetura</h4>
+                        <h5>Atributos a considerar na escolha da arquitetura</h5>
+                            <ul>
+                                <li>Baixo consumo de energia</li>
+                                <li>Rede de dados limitado</li>
+                                <li>Resiliência</li>
+                                <li>Segurança</li>
+                                <li>Customização</li>
+                                <li>Baixo Custo</li>
+                            </ul>
+                        <h5>Arduíno</h5>
+                            É uma plataforma de Prototipagem, um microcontrolador com entradas e saídas digitais, geralmente programável em C/C++, com conexões de interface serial ou USB. Não tem uma conexão com a internet, mas tem os Shields, que são componentes que podem ser agregados para dar conectividade, como blooth, wirelles, etc.
+                        <h5>MCUs</h5>
+                            É um sistema embarcado, um microcontrolador de chip único contendo um sistema operacional real time (sistema que fala diretamente com o hardware e com tempo de resposta mais rápido). Uma das grandes vantagens é a segurança, porque se tem mais controle.<br>
+                            Uso industrial, médico, militar, transporte, etc.
+                        <h5>Raspberry PI</h5>
+                            É um minicomputador completo, com hardware integrado em uma única placa, roda SO Linux ou Windows.<br>
+                            Uso doméstico e comercial.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Protocolos de Comunicação</h3></header>
+                <p class="post_content">
+                    <h4>MQTT - Message Queue Telemetry Transport</h4>
+                        É o protocolo mais conhecido e mais usado em IoT. Também denominado de <b>M2M (Machine-To-Machine)</b>.<br>
+                        O MQTT é um protocolo de rede leve de publicação-assinatura que transporta mensagens entre dispositivos. 
+                        O protocolo geralmente é executado em TCP/IP, no entanto, qualquer protocolo de rede que forneça conexões bidirecionais ordenadas, sem perdas, pode suportar MQTT. Usa mensagem assíncrona, envia e não fica aguardando resposta.<br>
+                        Criado pela <b>IBM</b> para conectar sensores de pipelines da industria de petróleo e transmitir os dados via satélites, ou seja, criado para ambientes hostis, para ser confiável, para trabalhar com grande quantidades de dados. Depois foi padronizado pela <b>OASIS</b> e suportado pelas linguagens de programação mais populares.<br>
+                        <b>OBS:</b> Um sistema embarcado com SO Real time pode usar o protocolo HTTP para se comunicar com a nuvem.
+                        <h5>Relembrando o Modelo Cliente/Servidor</h5>
+                            <b>Stateless Server:</b> Não tem estado (Não conhece cliente, mas pode armazenar algumas informações).<br>
+                            <b>Síncrono:</b> Porque o cliente sempre aguarda a resposta do servidor.
+                        <h5>Modelo de Comunicação do MQTT - Modelo de Publish/Subscribe</h5>
+                            Há uma separação (desacoplamento) do cliente em fornecedor (<b>Publish</b>) e consumidor (<b>Subscribe</b>).<br>
+                            <b>MQTT Broker</b> é um <b>Middleware</b> cuja função é ser um distribuídor/roteador, receber e entregar as mensagens.<br>
+                            Esse modelo tem um poder de escabilidade em lidar com dados muito maior que o modelo cliente/servidor.<br>
+                            O Broker nada mais é que um software, então ele possui um endereço público.
+                            <pre><code>
+                                // Broker
+                                mqtt://my-tracker.com
+    
+                                // Publish
+                                pub mqtt://broker/user/gps/position {'lat:-23.64644, lon:-46.6544'}
+                                pub mqtt://my-tracker.com/d7k901/gps/position {'lat:-23.64644, lon:-46.6544'}
+    
+                                // Subscribe
+                                sub mqtt://broker/user/gps/position
+                                sub mqtt://my-tracker.com/d7k901/gps/position
+                            </code></pre>
+                    <h4>Flexibilidade dos Tópicos</h4>
+                        Os tópicos são definidos pelo usuário, é a parte que vem depois do endereço do Broker <b>mqtt://my-tracker.com</b><br>
+                        A flexibilidade do MQTT para compor os tópicos, permite modelar o sistema conforme a necessidade de produzir e receber os dados.<br>
+                        <img src="./images/IoT-MQTT-Topics.png" alt="Exemplo de Topicos" height="180px">
+                    <h4>QoS - Quality of service</h4>
+                        O protocolo MQTT fornece o QoS com três níveis diferentes de qualidade de serviço.<br>
+                        Qualidade de serviço é a descrição ou medição do desempenho geral de um serviço, como uma rede telefônica ou de computadores ou um serviço de computação em nuvem, particularmente o desempenho visto pelos usuários da rede.
+                        <ul>
+                            <li><b>Nível 0:</b> Nível minimo de menor esforço</li>
+                                Sem garantia de entrega, mensagem não é armazenada para ser retransmitida.<br>
+                                Consequentemente é o nível mais barato em recursos computacionais.<br>
+                                <img src="./images/IoT-MQTT-QoS-0.png" alt="QoS Nível 0" height="200px" width="250px">
+                            <li><b>Nível 1:</b> Garante que a mensagem foi entregue no minimo uma vez ao recebedor</li>
+                                Mensagem pode ser retransmitida se não houver confirmação de entrega.<br>
+                                A mensagem é armazenada no Cloud e depois publicada no Broker que precisa responder com uma confirmação de que ele recebeu e armazenou a mensagem. Se o client não receber a confirmação de entrega ele pode retransmitir a mensagem para o Broker com uma flag de mensagem duplicada, para dizer que está entregando novamente a mensagem.<br>
+                                <img src="./images/IoT-MQTT-QoS-1.png" alt="QoS Nível 0" height="200px" width="250px">
+                            <li><b>Nível 2:</b> Garante que a mensagem foi entregue no minimo uma vez ao recebedor</li>
+                                Mensagem pode ser retransmitida se não houver confirmação de entrega.<br>
+                                Idem ao nível 1, porém aqui o client pode retransmitir a mensagem insistentemente até receber a confirmação de entrega. Neste nível, o cliente tem que confirmar para o Broker que agora ele sabe que a mensagem foi entregue e que agora o Broker pode processar ou remover a mensagem. O broker por sua vez irá enviar uma mensagem ao cliente informando que a comunicação agora está completa.<br>
+                                Consequentemente é o nível mais caro, porque se tem pelo menos dois pares de comunicação com o servidor.<br>
+                                <img src="./images/IoT-MQTT-QoS-2.png" alt="QoS Nível 0" height="200px" width="250px">
+                        </ul>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Cloud</h3></header>
+                <p class="post_content">
+                    Grande e cada vez maior a quantidade de devices conectados, tem potencial de escala global.<br>                    
+                    Há dois tipos de soluções em Cloud:
+                    <ul>
+                        <li><b>Data Store</b></li>
+                        Armazenar os dados de forma persistente, para conultá-lo posteriormente, realizar análises.<br>
+                        Cuidado com banco <b>Relacional</b> porque não escala horizontalmente (não é possível criar réplicas, ir aumentando a quantidade de instâncias), ele escala apenas verticalmente (Aumento de capacidade de máquina).
+                        <li><b>Cache</b></li>
+                        Aramzenar os dados em cache, em memória, para fornecer uma grande quantidade de dados para o cliente em tempo real.
+                    </ul>
+                    <img src="./images/Cloud-1.png" alt="Tipos de Soluções em Cloud" width="450px" >
+                    
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Estudo de Caso com Data Store</h3></header>
+				<p class="post_content">
+                    <h4>Arquitetura é escolha!</h4>
+                    <img src="./images/EstudoDeCaso-01.png" alt="Arquitetura" height="90px" >
+
+                    <h4>Prova de Conceito!</h4>
+                    <img src="./images/EstudoDeCaso-02.png" alt="Arquitetura" height="90px" >
+
+                    <h4>Mínimo Produto Viável</h4>
+                    <img src="./images/EstudoDeCaso-03.png" alt="Arquitetura" height="100px" >
+
+                    <h4>Solução que a própria nuvem oferece</h4>
+                    <img src="./images/EstudoDeCaso-04.png" alt="Arquitetura" height="100px" >
+                    
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Estudo de Caso com Cache (Real Time)</h3></header>
+				<p class="post_content">
+                    <h4>IoT na prática</h4>
+                    <img src="./images/EstudoDeCaso-05.png" alt="Arquitetura" height="90px" ><br>
+
+                    <img src="./images/EstudoDeCaso-06.png" alt="Arquitetura" height="90px" ><br>
+
+                    <img src="./images/EstudoDeCaso-07.png" alt="Arquitetura" height="90px" >
+                    
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

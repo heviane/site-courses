@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Ferramentas Úteis</h3></header>
+                <p class="post_content">
+                    <h4><a href="https://nodemon.io" target="_blank">nodemon.io</a></h4>
+                        <b>Nodemon</b> é um utilitário, para automatizar a execução em tempo de desenvolvimento.<br>
+                        Monitora quaisquer mudanças no código fonte e reinicia automaticamente o servidor.
+                        <pre><code>
+                            npm install -g nodemon
+                        </code></pre>
+
+                    <h4><a href="https://www.npmjs.com/package/ts-node-dev" target="_blank">ts-node-dev</a></h4>
+                        <b>ts-node-dev</b> é um utilitário para automatizar a execução em tempo de desenvolvimento com <b>typescript</b> dentro do Node.<br>Monitora quaisquer mudanças no código fonte e reinicia automaticamente o servidor.
+                            <pre><code>
+                                npm install --save-dev ts-node-dev
+                            </code></pre>
+                        Alterar o arquivo <b>package.json</b> e incluir o script <b>dev</b>.
+                            <pre><code>
+                                "scripts": {
+                                    "start": "node ./",
+                                    "build": "tsc -p .",
+                                    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/index.ts"
+                                },
+                            </code></pre>
+                        Comando para subir o servidor.
+                            <pre><code>
+                                npm run dev
+                            </code></pre>
+                            
+                    <h4><a href="https://expressjs.com" target="_blank">expressjs.com</a></h4>
+                        <b>Express</b> é uma biblioteca pequena e simples para gerenciamento de rotas HTTP.<br>
+                        É uma estrutura Node mínima e flexível que fornece um conjunto robusto de recursos para apps <b>web</b> e <b>mobile</b>.
+                            <pre><code>
+                                npm install express --save
+                            </code></pre>
+                        <b>API</b>: Infinidade de métodos de utilitário HTTP e middleware para a criação de APIs.<br>
+                        <b>Performance</b>: Fornece uma camada fina de recursos fundamentais da web, sem obscurecer os recursos do Node.<br>
+                        <a href="https://expressjs.com/en/resources/frameworks.html" target="_blank">Frameworks built on Express</a>
+                        
+                    <h4><a href="https://nestjs.com" target="_blank">nestjs.com</a></h4>
+                        <b>Nest</b> é uma biblioteca para contruções no lado servidor com base em TypeScript e JavaScript (ES6, ES7, ES8).<br>
+                        É uma estrutura Node.js progressiva para a construção de servers eficientes, escalonáveis e de nível empresarial.
+                        <pre><code>
+                            ...verificar
+                        </code></pre>
+
+                    <h4><a href="https://nextjs.org" target="_blank">nextjs.org</a></h4>
+                        <b>Next</b> é uma biblioteca construída sobre o Node que fornece algumas funcionalidades como renderização do lado do servidor e geração de sites estáticos para apps web baseadas em <b>React</b>.<br>
+                        O objetivo é fazer <b>server side render</b>, muito usado para fazer indexação.
+                        <pre><code>
+                            ...verificar
+                        </code></pre>
+                    
+                    <h4><a href="https://www.npmjs.com/package/http-status-codes" target="_blank">http-status-codes</a></h4>
+                        É uma biblioteca para ambiente de desenvolvimento, que permite acessar os códigos de status do HTTP de forma mais simples e legível, utilizando nomes ao invés de códigos.
+                            <pre><code>
+                                npm install --save http-status-codes
+                            </code></pre>
+                        Utilização:
+                            <pre><code>
+                                import { StatusCodes } from 'http-status-codes';
+
+                                console.log(StatusCodes.OK); // 200
+                                console.log(StatusCodes.INTERNAL_SERVER_ERROR); // 500
+                                console.log(StatusCodes.BAD_REQUEST); // 400
+                            </code></pre>
+
+                    <h4><a href="lesson21.html">API Client para testar requisições HTTP</a></h4>
+                    <h4><a href="lesson22.html">Biblioteca para criar configurações de ambiente</a></h4>
+                    
+                </p>
+            </article>            
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

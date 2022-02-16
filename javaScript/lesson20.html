@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2>Qualidade e Automação de Testes</h2></header>
+			<article class="post">
+                <header><h3>Testes</h3></header>
+                <p class="post_content">
+                    Enxergar os testes como uma piramide de testes.<br>
+                    Os níveis seguem a ordem listada abaixo, buscando 100% de cobertura de testes.<br>
+                    Os testes iniciais (unitário e integração) são menos custosos, o restante são mais custosos.
+                    
+                    <ul><h4>Teste Automatizado</h4>
+                        <li>Teste unitário</li> 
+                        É a menor unidade possível de código funcional (Componentes, classes, métodos, funções, etc).
+                        <li>Teste integrado</li>
+                        Integração entre pequenas partes (testes unitários) do seu código.<br>
+                        NÃO é integrar com outros sistemas, mas sim com outras partes do seu código.
+                        <li>Teste funcional</li>
+                        Integração do seu sistema com outros sistemas.<br>
+                        Testar uma funcionalidade de negócio de ponta-a-ponta (end-to-end), ou seja, do começo ao fim.<br>
+                        Conhecido como teste black-box (Caixa preta), porque testa-se como consumidor, sem se importar em como está sendo executado por baixo, como foi feito, quais tecnologias.<br>
+                        Deste ponto de vista, não se faz mock, o importante é validar se o contrato foi cumprido, se a funcionalidade está ok.
+                    </ul>
+
+                    <ul><h4>Testes Manuais e Automatizados</h4>
+                        <li>Teste de Usabilidade</li>
+                        <li>Teste de Aceitação do usuário</li>
+                        <li>Protótipos</li>
+                        Muito comuns na parte de design para validar o produto.<br>
+                        <li>Teste Funcional</li>
+                        <li>Exemplos</li>
+                        <li>Publicações de Alpha e beta</li>
+                    </ul>
+
+                    <ul><h4>Ferramenta de Teste</h4>
+                        <li>Teste de carga e performance</li>
+                        <li>Teste de segurança</li>
+                    </ul>
+                </p>
+
+                <header><h3>TDD - Test Driven Devlopment</h3></header>
+                <p class="post_content">
+                    <b>Desenvolvimento Orientado a Teste</b>.<br>
+                    É um dos pilares do <b>Extreme Programing</b>.<br>
+                    Geralmente o <u>teste é escrito antes da funcionalidade</u>.<br>
+                    O objetivo é antecipar erros a nível de desenvolvimento.<br>
+                    Consiste em testar e refatorar em pequenos ciclos, onde se escreve o teste antes do código, faz o mesmo passar e refatora o código.<br>
+
+                    <p>É importante escrever o teste primeiro, porque a função tem que ser exportada, e para conseguir testar um código, ele precisa ser testável. Nem todo código é testável, e para que seja testável, é necessário fazer coisas dentro do código para que possibilite os testes.</p>
+                    <p>O teste automatizado é uma garantia a nivel de deploy, e evita passar erros para o QA. Não descarta a presença de um tester (QA). O próprio QA de automatização pode auxiliar o desenv. escrevendo esses testes.</p>
+
+                    <ul><h4>Ciclo de Vida</h4>
+                        <ol>1. Write a test that fails (Red)</ol>
+                        Escreva um teste que falhe. Escreva o teste antes de escrever a lógica.<br>
+						Pensar em como deve ser o comportamento, regras.
+                        <ol>2. Make the code work (Green)</ol>
+						Escreva o código que funcione, que passe no teste.
+                        <ol>3. Eliminate redundancy (Refactor)</ol>
+                        Refatore o código para que o teste seja mais eficiente.
+                    </ul>
+                    <ul><h4>Foco</h4>
+                        <li>Testes Unitários</li>
+                        <li>Testes de Integração</li>
+                   </ul>
+                    <ul><h4>Vantagens</h4>
+                        <li>Feedback rápido</li>
+                        <li>Maior segurança em alterações e novas funcionalidades</li>
+                        <li>Código mais limpo (Entrega com mais qualidade)</li>
+                        <li>Produtividade (Menos tempo corrigindo bug)</li>
+                    </ul>
+                    <ul><h4>Bibliotecas</h4>
+                        <li>Jest</li>
+                        <li>React-testing-Library</li>
+                        <li>Shallow</li>
+                        <li>Enzyne</li>
+                        <li>Chai</li>
+                        <li>Mocha</li>
+                        <li>Selenium</li>
+                        <li>Puppeteer</li>
+                    </ul>
+
+                    <b class="text-red">DICA:</b> Sempre faça testes o mais simples possível, e a medida que consiga passar esses testes, faça testes mais complexos.
+
+                    <pre><code>
+                        // Código fonte à ser testado
+                            src/math.js
+
+                        // Padrão TDD 
+                            // Diretório chamado "test"
+                            // Arquivo chamado "math.test.js" 
+                                // Nome do arquivo a ser testado + ".test.js"
+
+                            test/math.spec.js
+                    </code></pre>
+                </p>
+
+                <header><h3>BDD - Behavior Driven Development</h3></header>
+                <p class="post_content">
+                    <b>Desenvolvimento Orientado a Comportamento</b>.<br>
+                    Técnica de <b>desenvolvimento ágil</b> que visa integrar <u>regras de negócio</u> com <u>linguagem de programação</u>.<br>
+                    Escrever o teste e descrever o que aquele teste é, descrever a funcionalidade de negócio que está sendo testada.<br>
+                    Assim, o código fica documentado e explicado, sabe-se que comportamento é esperado de determinado componente, classe, etc.<br>
+                    Documentar as regras de negócio, descrever os comportamentos dos seus componentes refletindo o negócio em si.<br>
+                    Software que esteja se descrevendo, descrevendo seu próprio comportamento, seu impacto e que parte ele faz do negócio em si.<br>
+                    Visa pensar no comportamento antes de sair escrevendo código, e o TDD auxilia nisso, porque escrevemos o teste antes do código, e o teste nada mais é do que uma descrição do comportamento esperado.<br>
+
+                    BDD prevê a união da especificação com o teste, <b>Teste de especificação</b>.<br>
+                    Une especificação, teste automatizdo e premissa de teste (documento de teste) para que consiga satisfazer todas as pontas do desenvolvimento.
+
+                    <h4>Sintaxe Gherkin</h4>
+                        Sintaxe de steps para definir cenários.<br>
+                        Descreve cada funcionalidade por feature (caso de uso).<br>
+                        O objetivo é criar uma representação da especificação em uma linguagem que a máquina entenda.<br>
+                        <a href="./images/Tests-SintaxeGherkin-UseCase-Login.png"
+                            target="_blank">Exemplo de um caso de uso de Login</a>
+                    
+                    <ul><h4>Pilares</h4>
+                        <li>Testes</li>
+                        <li>Documentação</li> 
+                        Documentação, readme, documentação complementar principalmente de processos ou como utilizar as ferramentas.<br>
+                        Tem testes que geram documentação dinâmica.
+                        <li>Exemplos</li>
+                        O teste por si só já é um exemplo, mas pode ser colocado na documentação.
+                    </ul>
+
+                    <ul><h4>Vantagens</h4>
+                        <li>Compartilhamento de conhecimento.</li>
+                        <li>Documentação dinâmica.</li>
+                        <li>Visão do todo (Uma vez que desenvolvedor e negócio falam o mesmo idioma).</li>
+                    </ul>
+
+                    <ul><h4>Bibliotecas</h4>
+                        <li><b>Jest-cucumber</b></li> 
+                            É uma extensão para o Jest e para o VSCode.
+                            <pre><code>
+                                npm install --save-dev jest-cucumber
+                            </code></pre>
+                        <li><b>Chai</b></li>
+                    </ul>
+                </p>
+
+                <header><h3>Jest - framework de testes para JavaScript</h3></header>
+                <p class="post_content">
+                    Usa uma linguagem JavaScript chamada <b>jasmine</b>.<br>
+                    O jest fornece code coverage que permiti puxar um relatório dentro do coverage e verificar a cobertura de testes da App.
+                    <pre><code>
+                        npm install --save-dev jest
+                    </code></pre>
+                    <ul><h4>Sintaxe</h4>
+                        <li><b>describe</b>: descreve o que a bateria de teste faz.</li>
+                        <li><b>it</b>: Cada describe tem um teste unitário chamado de <b>it</b>, que também tem uma descrição.</li>
+                        <li><b>expect().toBe()</b>: determina o que é esperado do teste.</li>
+                    </ul>
+                    <h4>Exemplo:</h4>
+                        <pre><code>
+                            // função a ser testada (teste unitário)
+                            function soma(a, b) {
+                                return a + b;
+                            }
+                            // teste unitário
+                            import { soma } from './soma';
+
+                            describe('testando a função soma', () => {
+                                it('A soma deve dar 3', () => {
+                                    const res = soma(1, 2);
+                                    expect(res).toBe(3);
+                                });
+                            });
+                        </code></pre>
+                </p>
+
+                <header><h3 class="post_title">Execução</h3></header>
+				<p class="post_content">
+					<pre><code>
+						npm run test
+						npm run test App.test.js
+					</code></pre>
+				</p>
+				<header><h3 class="post_title">Coverage</h3></header>
+				<p class="post_content">
+					Coverage mostra o percentual de cobertura de testes.
+					<pre><code>
+						npm test -- --coverage --watchAll=false
+					</code></pre>
+					<b>--coverage</b><br>
+						Mostra a cobertura de testes. Usado como um indicador de qualidade de código.<br>
+						É possível configurar um mínimo de nível de cobertura (70%, 80%).<br>
+						É possível criar uma validação para que devs só possam realizar commit se a cobertura for maior que 70%.
+					<b>--watchAll=false</b><br>
+						Não executa todos os testes, apenas os que estão no arquivo de teste.
+				</p>
+
+                <header><h3>Ferramentas: Mocha, Chai, Sinon</h3></header>
+                <p class="post_content">
+                    Essas três ferramentas em conjunto auxiliam a fazer TDD e BDD.<br>
+                    Permite fazer um código mais legível, testes que sirvam como documentação, garantido maior qualidade de testes e de código.
+
+                    <ul><h4>FOCO dessas ferramentas</h4> 
+                        <li>Testes unitários</li>
+                        <li>Testes integrados</li>
+                    </ul>
+
+                    <h4>Framework Mocha</h4>
+                        Framework para execução de <b>testes unitários</b>.<br>
+                        Estrutura de teste JavaScript rica em recursos em execução no Node.js (servidor) e no navegador (cliente), tornando o teste assíncrono simples.<br> 
+                        Os testes Mocha são executados em série, permitindo relatórios flexíveis e precisos, enquanto mapeia exceções não detectadas para os casos de teste corretos.<br>
+                        Segue padrões e princípios do BDD de ser descritivo, escrever testes de modo expressivo, qual funcionalidade de negócio está representando. Qual comportamento é esperado.<br>
+                        Por padrão, o Mocha procura na raiz do projeto pelo diretório chamado <a>"test"</a>.<br>
+                        Exemplo de arquivo de teste, seguindo o <u>padrão BDD</u>: <b>test/math.spec.js</b>
+                        <pre><code>
+                            npm i --save-dev mocha
+
+                            // Incluir no package.json
+                            "scripts": {
+                                "test": "mocha"
+                            },
+                        </code></pre>
+                        O Mocha não provê uma ferramenta de assert. Então, importamos do Node.js
+                        <pre><code>
+                            const assert = require('assert');
+                        </code></pre>
+                        Porém, o assert por si só é limitado, porque não é tão descritivo quanto poderia ser, há uma perda de legibilidade.<br>
+                        Para resolver isso usamos a <b>Library Chai</b>.
+                    
+                    <h4>Library Chai</h4>
+                        <b>Biblioteca de asserção</b> BDD/TDD para Node.js e browser que pode ser perfeitamente emparelhada com qualquer estrutura de teste de javascript.<br>
+                        Permite escrever testes de forma mais descritiva, mais precisa e mais legível que os Asserts nativos do Node.js.<br>
+                        Reforça os principios do BDD de documentar melhor as funcionalidades, descrever os comportamentos.<br>
+                        Permite também executar um série de validações.
+                        <pre><code>
+                            npm i --save-dev chai
+                        </code></pre>
+                                            
+                    <h4>Library Sinon</h4>
+                        Biblioteca de teste JavaScript que permite simular o comportamento de objetos e funções.<br>
+                        Mochar funções, APIs, substituir métodos, etc.<br>
+                        Funciona com qualquer estrutura de teste de unidade.<br>  
+
+                        Standalone test spies (espião), stubs (esboço) and mocks (simulação) for JavaScript.<br>
+                        Works with any unit testing framework.<br>
+
+                        <pre><code>
+                            npm i --save-dev sinon
+                        </code></pre>
+
+                    <h4 class="text-red">Usar essas três ferramentas em conjunto!</h4>
+                </p>
+			</article>
+
+            <article class="post">
+                <header><h3>Testes</h3></header>
+                <p class="post_content">
+                    <li><a href="https://jestjs.io" target="_blank">jestjs.io</a></li>
+                    <li><a href="https://github.com/facebook/jest" target="_blank">github.com/facebook/jest</a></li>
+                    <li><a href="https://jasmine.github.io"  target="_blank">jasmine.github.io</a></li>
+
+                    <li><a href="https://docbehat.readthedocs.io/pt/v3.1/guides/1.gherkin.html#sintaxe-gherkin" 
+                        target="_blank">gherkin</a></li>
+                        
+                    <li><a href="https://cucumber.io" target="_blank">cucumber.io</a></li>
+
+                    <li><a href="https://mochajs.org" target="_blank">mochajs.org</a></li>
+                    <li><a href="https://github.com/mochajs/mocha" target="_blank">github.com/mochajs/mocha</a></li>
+
+                    <li><a href="https://www.chaijs.com" target="_blank">chaijs.com</a></li>   
+
+                    <li><a href="https://sinonjs.org" target="_blank">sinonjs.org</a></li>
+                    <li><a href="https://github.com/sinonjs" target="_blank">github.com/sinonjs</a></li>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

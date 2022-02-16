@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Flux - Arquitetura e Padrão de Projeto</h3></header>
+				<p class="post_content">
+                    <b>História:</b> O facebook tinha problemas com a falta de sincronismo no sininho das notificações, o que gerava uma série de inconsistências. Até então havia alguns patterns e modelos (MVC) para trafegar dados em comunicações web de <b>maneira multidirecional</b>.<br>
+                    <b style="color: red">MODEL &lt;&lt;==&gt;&gt; VIEW</b><br>
+                    <br>
+                    <b>Flux</b> é uma arquitetura criada pelo facebook para a comunicação entre componentes.<br>
+                    É um <u>padrão de projeto</u> para tráfego de dados de <b>maneira unidirecional</b>.<br>
+                    <b style="color: red">
+                    1.ACTION &lt;&lt;==&gt;&gt; 2.DISPATCHER &lt;&lt;==&gt;&gt; 3.STORE &lt;&lt;==&gt;&gt; 4.VIEW
+                    </b><br>Segue o fluxo 1,2,3,4...volta para 1 (da view volta para action).<br>
+
+                    <h4>Action</h4>
+                        É como um telegráfo, ele formata a mensagem a ser enviada.<br>
+                        Por exemplo, quando é necessário alterar o estado de algo, é ela que formata a mensagem.<br>
+                        Ele também envia a mensagem para o dispatcher.<br>
+                    <h4>Dispatcher</h4>
+                        É como um telefonista, ele sabe todos os callbacks para diferentes stores.<br>
+                    <h4>Store</h4>
+                        É como um gerente super controlador. Ele guarda a informação (Estados) e todas as alterações têm que ser feitas por ele, mais ninguém.<br>
+                    <h4>View</h4> 
+                        É como um gerente intermediário (middleware) que recebe as notificações da store e passa os dados para as visões abaixo dela.<br>
+                        Não confundir a view com a tela em si.<br>
+                        A view é como se fosse um middleware entre o store e a tela.<br> 
+                        É ele que vê as alterações de estado e pede ao React para fazer a alteração no virtual DOM. É ele que faz essas notificações.<br>
+                    <br>
+                    <b>Resumindo: </b>Não é possível alterar diretamente o estado, é necessário passar uma mensagem pedindo alteração. Essa é a diferença do fluxo unidirecional.<br>
+
+                    <br>
+                    <b>Bibliotecas baseadas em Flux</b><br>
+                        Facebook disponibiliza bibliotecas no NPM para construção de implementações de Flux.<br>
+                        Servem para comunicações entre componentes e centralização da informação.<br>
+                        <i style="color: red">"Flux libraries are like glasses: you'll know when you need them." - Dan Abramov</i><br>
+                        <li>Redux (Mais popular)</li>
+                        <li>Reflux (Mais simples que o Redux)</li>
+                        <li>Mobx</li>
+                        <li>Vuex (Usado no Vue, Baseada em Redux e Elm)</li>
+                        <li>NgRx/Store (Mais usada no Angular, Baseada em Redux e RxJS)</li>
+                </p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://github.com/eduardogc/digital-one-react-intermediario" 
+                        target="_blank">github digital-one-react-intermediario</a>
+                    </li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a>
+                <a href="https://github.com/heviane" target="_blank">github</a>				
+            </div>
+        </footer>
+    </body>
+</html>

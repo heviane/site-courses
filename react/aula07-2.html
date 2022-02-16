@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Props</h3></header>
+                <p class="post_content">
+                    <!-- O que é -->
+                    <b>Props</b> é um objeto que contém as propriedades (variáveis e funções) de um componente.<br>
+
+                    <!-- Como funciona -->
+                    Podemos usar as props das seguintes maneiras:<br>
+                        <li>Acessando diretamente determinada propriedade</li>
+                            <pre><code>
+                                props.name;
+                                props.value;
+                                props.onClick();
+                            </code></pre>
+                        <li>Desestruturação da props</li>
+                            No corpo da função, antes do return:<br>
+                                <pre><code>
+                                    const { name, value, onClick } = props; 
+                                </code></pre>
+                            Na lista de argumentos da função.<br>
+                                <pre><code>
+                                    const componentA = ( { name, value, onClick } ) => {...}
+                                </code></pre>                                                
+
+                    <b>Prop drilling</b> é um estágio do desenvolvimento que acontece quando precisamos obter dados que estão em várias camadas na árvore de componente react. <br>
+                    Podemos passar props de um componente para outro, acessar as props de um componente filho através de um componente pai.<br>
+                    
+                    https://www.alura.com.br/artigos/prop-drilling-no-react-js
+
+                    <!-- Componentes aninhados: children -->
+                    <b>props.children</b> é uma propriedade de props para trabalhar com componentes aninhados.<br>
+                        <pre><code>
+                            import React from 'react'; 
+                            function ComponentA(props){
+                                return(
+                                    &lt;div&gt;Component A
+                                        &lt;div> { props.children } &lt;/div&gt;
+                                    &lt;/div&gt;
+                                );
+                            }
+                            export default ComponentA; 
+                        </code></pre>                    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

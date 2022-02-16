@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Ciclo de Vida e Estados</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">state</h3></header>
+                <p class="post_content">
+                    É uma memória temporária que existe enquanto a app estiver sendo executada.<br>
+                    Quando a app é inicializada, tudo é armazenado nessa memória (Que é a memória da app no browser).<br>
+                    Serve para criar dinâmismo, efeitos, animações, etc.<br>
+                    <b>Local ao componente</b>, se necessário enviar dados para outros componentes, deve ser feito via objeto <b>props</b>.<br>                 
+                    <b>Imutável</b>, sempre que houver atualização o state atual é destruído e um novo state é criado, por isso sempre deve ser atualizado através da função <b>useState()</b><br>
+                    <span class="importante">IMPORTANTE:</span> Nenhum componente pai ou filho deve saber se outro componente possui estado ou não. Cada componente trabalha de forma isolada, podem passar propriedades de um para outro, mas nenhum deve saber o que o outro está fazendo.
+                </p>
+
+                <header><h3 class="post_title">Statefull vs Stateless</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><b>Statefull</b></li> Componente usa estados. Renderização dinâmica.<br>
+                        Possui gerenciamento de estados (uso de state) no componente.<br>
+                        Geralmente é construído com <b>classes</b> em JS.<br>
+                        <li><b>Stateless</b></li> Componente não usa estados. Renderização estática.<br>
+                        Não possui gerenciamento de estados (uso de state) no componente.<br>
+                        Geralmente é contruído com <b>funções</b> em JS.<br><br>
+                    </ul>
+                    <span class="importante">OBS:</span> A partir da liberação dos <b>Hooks</b>, é possível criar <b>componentes funcionais com statefull</b> através do Hook <b>useState</b>.
+                    <br><br>
+                    <ul><span class="importante">IMPORTANTE:</span> A nomenclatura foi atualizada
+                        <li><b>Class</b> Components</li>
+                        <li><b>Function</b> Components</li>
+                    </ul>
+                </p>
+
+                <header><h3 class="post_title">useState</h3></header>
+                <p class="post_content">
+                    <b>useState</b> é um Hook, uma função para criar e inicializar um <b>state</b>.<br>
+                        <pre><code>
+                            import { useState } from 'react'; 
+                        </code></pre>
+                    <ul><b>Retorna um array contendo duas posições:</b><br>
+                        <li><b>1º Posição:</b> Uma variável para armazenar o state</li>
+                        <li><b>2º Posição:</b> Uma função para setar o state</li>
+                        <li><b>Exemplo:</b>
+                            <pre><code>
+                                const [valor, setValor] = useState(0);
+                            </code></pre>
+                        </li>   
+                    </ul>
+                    <span class="importante">Recomendação:</span> Deve ser usado com ES6 function (e não ES5) por questões de performance.<br><br>
+                </p>
+
+                <header><h3 class="post_title">Ciclo de Vida da Statefull</h3></header>
+                <p class="post_content">
+                    O <b>Ciclo de vida</b> de um componente React possui <b>4 fases</b>.<br>
+                    <ul><h4>1. Initialization</h4>
+                        <li>Recebe <b>props</b> e seta o <b>state</b> do componente.</li>
+                    </ul>
+                    <ul><h4>2. Mouting</h4>
+                        <li><b>ComponentWillMount</b> (Componente será montado) <b style="color: red">*Depreciated 17.0</b></li>
+                            É a fase antes da renderização e montagem.
+                        <li><b>Render</b></li>
+                            É a fase de rendereização e montagem do componente.
+                        <li><b>ComponentDidMount</b> (Componente foi montado)</li>
+                            É a fase após a renderização e montagem.
+                    </ul>
+                    <ul><h4>3. Updation</h4>
+                        <ul><h5>Atualização da props</h5>
+                            <li><b>ComponentWillReceiveProps</b> (Componente recebe-rá propriedades)<b style="color: red">*Depreciated 17.0</b></li>
+                            <li><b>shouldComponentUpdate</b> (Componente deve atualizar? true or false)</li>
+                            <li><b>ComponentWillUpdate</b> (Componente será atualizado. Esta etapa funciona em loop) <b style="color: red">*Depreciated 17.0</b> </li>
+                            <li><b>render</b></li>
+                            <li><b>ComponentDidUpdate</b> (Componente foi atualizado)</li>
+                        </ul>
+                        <ul><h5>Atualização do state</h5>
+                            <li><b>shouldComponentUpdate</b> (Componente deve atualizar? true or false)</li>
+                            <li><b>ComponentWillUpdate</b> (Componente será atualizado) <b style="color: red">*Depreciated 17.0</b></li>
+                            <li><b>render</b></li>
+                            <li><b>ComponentDidUpdate</b> (Componente foi atualizado)</li>
+                        </ul>
+                    </ul>
+                    <ul><h4>4. Unmounting</h4>
+                        <li><b>ComponentWillunMount</b> (Componente será desmontado)</li>
+                            Um componente é desmontado quando realizamos uma troca de página, por exemplo, onde algo que existia não vai estar mais presente.<br>
+                            Lembrando que o React trabalha de forma declarativa (existe, não existe).<br>
+                            <b>Exemplo</b> de coisas que se pode programar aqui: Remover algum cookie, algo persisitido, etc...<br>
+                    </ul>
+                    <h4>Ciclos de vida mais usados!</h4>
+                    <ul>
+                        <li><b>ComponenteDidMount</b> é chamado após o componente ser montado.</li>
+                        <li><b>ComponenteDidUpdate</b> é chamado após o componente ser atualizado.</li>
+                        <li><b>ComponenteDidCatch</b> é chamado quando ocorre um erro no componente.</li>
+                        <li><b>ComponenteWillUnmount</b> é chamado antes do componente ser desmontado.</li>
+                        <li><b>shouldComponentUpdate</b> é chamado antes de atualizar o componente.</li>
+                    </ul>
+                    <h4>Ciclos de vida pouco usados!</h4>
+                    <ul>
+                        <li><b>getDerrivedStateFromProps</b> é chamado quando o componente é atualizado</li>
+                        <li><b>getSnapshotBeforeUpdate</b> é chamado antes da atualização do componente</li>
+                    </ul>
+
+                    <p>O componente sempre será atualizado via <b>prop</b> ou <b>state</b>.
+                    Tudo que precisa ser renderizado deve estar dentro do componente.<br>   
+                    Em cada fase é exposto uma forma de controle podendo ser utilizado seus métodos ou não.<br>
+                    Na criação e atualização de um componente o React vai passar por cada etapa do seu ciclo de vida e dessa maneira pode-se usar seus métodos para ter um controle melhor do que vai ser feito no componente.
+                    </p>
+
+                    <h4>Exemplo prático com classes (react-app-02)</h4>
+                    <ul>
+                        <li><b>src/componentes/Posts/index.js</b></li>
+                        <li><b>src/containers/AppTwitter.js</b></li>
+                        <li><b>src/mocks/mockTwitterData.js</b></li>
+                    </ul>    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

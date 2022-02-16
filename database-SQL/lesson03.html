@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SQL</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Banco de Dados Relacional - SQL</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">DDL - Data Definition Language</h3></header>
+				<p class="post_content">
+                    Linguagem para definição de dados.<br>
+                    Conjunto de comandos que lidam com os objetos, criação de bancos de dados, esquemas, tabelas, campos, etc. <br>
+
+                    <h4>Data Types</h4>
+                        <ul>
+                            <li><b>VARCHAR</b>: Aloca somente o espaço necessário para os valores recebidos.</li>
+                            <li><b>CHAR</b>: Aloca todo o espaço, independente do valor recebido de fato.</li>
+                            <li><b>TIMESTAMP</b>: </li>
+                        </ul>
+
+                    <h4>CREATE</h4>
+                        <h5>Database</h5>
+                            <pre><code>
+                                SHOW DATABASES;
+
+                                CREATE DATABASE mydb;
+                                USE mydb;
+
+                                CREATE SCHEMA `schema_name` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+                            </code></pre>
+
+                            charset/collation
+
+                        <h5>Table</h5>
+                            <pre><code>
+                                CREATE TABLE user (
+                                    id INT(11) NOT NULL AUTO_INCREMENT,
+                                    name VARCHAR(150) NOT NULL,
+                                    email VARCHAR(150) NOT NULL,
+                                    password VARCHAR(150) NOT NULL,
+                                    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                    updated_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                                    PRIMARY KEY (id) USING BTREE
+                                );
+                            </code></pre>
+                            <ul>
+                                <li><b>AUTO_INCREMENT</b>: A coluna deve ser auto-incrementada.</li>
+                                <li><b>DEFAULT</b>: Define o valor padrão para o campo.</li>
+                                <li><b>ON UPDATE</b>: Atualiza a data de modificação da tabela.</li>
+                                <li><b>USING</b>: Define o tipo de índice a ser utilizado.</li>
+                                <li><b>BTREE</b>: Índice B-Tree.</li>
+                            </ul>
+
+                    <h4>ALTER</h4>
+                        <h5>Table</h5>
+                            <pre><code>
+                                // Adicionar uma coluna
+                                    ALTER TABLE user 
+                                        ADD COLUMN phone char(12) NOT NULL 
+                                        AFTER email;
+
+                                // Alterar uma coluna
+                                    ALTER TABLE user 
+                                        CHANGE COLUMN phone phone char(20) NOT NULL;
+
+                                // Adicionar um INICE único
+                                    ALTER TABLE user 
+                                        ADD UNIQUE INDEX (email); 
+                            </code></pre>
+
+                    <h4>DROP</h4>
+                        <h5>Database</h5>
+                            <pre><code>
+                                DROP DATABASE mydb;
+                                DROP DATABASE mydb1, mydb2;
+                            </code></pre>
+
+                        <h5>Table</h5>
+                            <pre><code>
+                                DROP TABLE user;
+                                DROP TABLE user, user1, user2;
+                            </code></pre>
+
+                    
+				</p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+				<p class="post_content">
+                    <ul>
+
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TypeScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso TypeScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Introdução</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">História</h3></header>
+				<p class="post_content">
+                    É um projeto open source criado pela Microsoft.
+                </p>
+
+                <header><h3 class="post_title">O que é TypeScript</h3></header>
+				<p class="post_content">
+                    <b>TypeScript</b> é um superset (superconjunto) do JavaScript.<br>
+                    Objetivo é adicionar funcionalidades que nativamente não estão disponíveis ou requerem grande esforço para utilização.<br>
+                    Adiciona apenas recursos estáticos opcionais de digitação e transpilação ao JavaScript.<br>
+                    Baseado nos padrões ES6 (ECMAScript), que podem ser compilados para JavaScript.<br><br>
+
+                    <b>TypeScript</b> cria interfaces (contratos) de comunicação.<br>
+                    Especifica como as coisas devem interagir entre si. O que pode ou não ser feito.<br>
+                    Fundamental para desenvolvimento em equipe. Ter limites bem definidos.<br>
+                    Ajuda a manter os padrões de codificação e legibilidade no JavaScript.<br><br>
+
+                    <b>Extensão</b> dos arquivos de TypeScript: <b>.ts</b><br>
+                    Artefato puramente em tempo de compilação, em tempo de execução não há TypeScript, só JavaScript.<br>
+                    Portanto, código JS pode ser colocado em um arquivo de TypeScript, porque no final é executado como JS.<br>
+				</p>
+
+                <header><h3 class="post_title">Vantagens</h3></header>
+                <p class="post_content">
+                    <li><b>Basic Types</b>: Tipagem de variáveis e funções.</li>
+                    <li><b>Interface</b>: Definição de contratos para classe, estrutura de dados.</li>
+                    <li><b>Type</b>: Definição de que uma variável pode ser uma interface.</li>
+                        Define um <b>tipo</b> baseado em N interfaces (AND, OR).
+                    <li><b>Generic Type</b>: Definição de um tipo genérico, que pode receber qualquer tipo de dado.</li>
+                        Os tipos são inferidos de acordo com os valores recebidos.
+                    <li><b>Programação Orientada a Objetos</b>: Suporte melhor</li>
+                    <li><b>HTMLElement</b>: Esta interface representa qualquer elemento HTML.</li>
+                    Alguns elementos implementam diretamente essa interface, outros a implementam por meio de uma interface que a herda.   
+                </p>
+
+                <header><h3 class="post_title">Instalação</h3></header>
+                <p class="post_content">
+                    Instalação do TypeScript.
+                    <pre><code>
+                        npm install -g typescript
+                    </code></pre>
+                    Quando o TypeScript está instalado, temos acesso ao TSC (TypeScript Compiler).<br>
+
+                    Para compilar, basta executar o comando<b>tsc</b> e o nome do arquivo com a extensão <b>.ts</b>
+                    <pre><code>
+                        tsc nome_do_arquivo.ts
+                    </code></pre>
+
+                    Mas, não precisamos fazer isso, podemos usar um bundler, como o <b>parcel-bundler</b>, para isso basta executar o comando:<br>
+                    <pre><code>
+                        npm install -g parcel-bundler
+                    </code></pre>
+
+                    O <b>parcel-bundler</b> isntala todas as dependências do node, incluindo o TypeScript.<br>
+                    Após a instalação, basta executar o comando: <br>
+                    <pre><code>
+                        npm run start
+                    </code></pre>
+                    No diretório da app são criados os diretórios <b>.cache</b> e <b>dist</b>.<br>
+                </p>
+
+                <header><h3 class="post_title">Configuração</h3></header>
+                <p class="post_content">
+                    Para configurar o TypeScript, basta executar o comando: <br>
+                    <pre><code>
+                        tsc --init
+                    </code></pre>
+                    O comando <b>--init</b> cria o arquivo <b>tsconfig.json</b> no diretório raiz da app.<br>
+                    You can learn more at <a href="https://aka.ms/tsconfig.json" target="_blank">https://aka.ms/tsconfig.json</a>
+
+                    O arquivo é gerado com algumas configurações padrão:<br>
+                        <u>Configuração Language and Environment:</u><br>
+                        <b>"target": "es2016"</b> - Compila para o ES2016.<br>
+                        Set the JavaScript language version for emitted JavaScript.<br>                        
+
+                        <u>Configuração Modules:</u><br>
+                        <b>"module": "commonjs"</b> - Compila para o CommonJS.<br>
+                        Specify what module code is generated.<br>
+                    Modificar os valores para "ES6", para trabalhar com as versões mais atuais do TypeScript.<br> 
+                    <b>OBS:</b>O TypeScript compila os arquivos ".ts" para o arquivo ".js".<br>
+                    Há diversas outras configurações.<br>
+                </p>
+
+                <header><h3 class="post_title">Flow</h3></header>
+                <p class="post_content">
+                    Semelhante ao TypeScript referente a checagem de tipos.<br>
+                    Mas não é um superset da linguagem JavaScript.<br>
+                    É como uma versão mais simplificada do TypeScript.<br>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

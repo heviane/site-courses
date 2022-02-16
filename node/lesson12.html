@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Microserviço para Autenticação e Gerenciamento de Usuários - REST API</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Tratamento de Erros</h3></header>
+                <p class="post_content">
+                    <h4>Try/Catch - Tratamento de Erro com throw</h4>
+                        <pre><code>
+                            async allUsers(): Promise&lt;User[]&gt; {
+                                try{
+                                    const query = `SELECT uuid, userName FROM users`;
+                                    const { rows } = await db.query&lt;User&gt;(query); 
+                                    return rows || [];
+                                } catch (error) {
+                                    console.log('ERRO: ', error);
+                                    throw error; 
+                                }      
+                            }
+                        </code></pre>
+
+                    <h4>Try/Catch - Tratamento de Erro com a classe DatabaseError</h4>
+                        A classe <b>DatabaseError</b> em <b>src/models/errors/database.error.model.ts</b> irá extender da classe <b>Error</b>
+                        <pre><code>
+                            class DatabaseError extends Error {
+                                constructor(public message: string, public error?: any) {
+                                    super(message);
+                                }
+                            }
+                            export default DatabaseError;
+                        </code></pre>
+                        Utilização: Necessário importar a classe <b>DatabaseError</b> em <b>src/repositories/user.repository.ts</b>
+                        <pre><code>
+                            async allUsers(): Promise&lt;User[]&gt; {
+                                try{
+                                    const query = `SELECT uuid, userName FROM users`;
+                                    const { rows } = await db.query&lt;User&gt;(query); 
+                                    return rows || [];
+                                } catch (error) {
+                                    console.log('ERRO: ', error);
+                                    throw new DatabaseError('Erro na consulta por ID', error);
+                                }      
+                            }
+                        </code></pre>
+                        Utilização: Necessário importar a classe <b>DatabaseError</b> em <b>src/routes/users.route.ts</b>
+                        <pre><code>
+                            usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction) => {
+                                try{
+                                    const users = await userRepository.allUsers();
+                                    res.status(StatusCodes.OK).json(users); 
+                                }catch(error){
+                                    console.log('ERRO: ', error);
+                                    if(error instanceof DatabaseError){
+                                        res.send(StatusCodes.BAD_REQUEST); 
+                                    }else{
+                                        res.send(StatusCodes.INTERNAL_SERVER_ERROR); 
+                                    } 
+                                }
+                            });
+                        </code></pre>
+                </p>
+            </article>
+
+             <article class="post">
+                <header><h3 class="post_title">Error Handling</h3></header>
+                <p class="post_content">
+                    <h4>Middleware</h4>
+                        É todo tipo de função que está entre uma requisição HTTP e sua respectiva resposta.<br>
+                        É basicamente um meio de campo, uma forma de gerenciar as coisas, interceptando-as, tratando-as e passando adiante através do método <b>next()</b>.<br>
+                        <h5>Há dois tipos de middlewares no Express:</h5>
+                            <ul>
+                                <li><b>Tratamento de Erros</b> - Responsável por chamar um Error Handler para tratar os erros.</li>
+                                    next(error);
+                                <li><b>Genérico</b> - Responsável por chamar o próximo middleware.</li>
+                                    next();
+                                
+                            </ul>
+                        Neste caso, de tratamento de erros, é uma forma de centralizar para evitar repetição e complexidade de código.
+
+                    <h4>Criação do Middleware para tratar os erros (Error Handling)</h4>
+                        Criar o arquivo <b>src/middlewares/error-handler.ts</b>
+                        <pre><code>
+                            import { Request, Response, NextFunction } from 'express';
+                            import { StatusCodes } from 'http-status-codes';
+                            import DatabaseError from "../models/errors/database.error.model";
+
+                            function errorHandler(error: any, req: Request, res: Response, next: NextFunction){
+
+                                if(error instanceof DatabaseError){
+                                    res.send(StatusCodes.BAD_REQUEST); 
+                                }else{
+                                    res.send(StatusCodes.INTERNAL_SERVER_ERROR); 
+                                } 
+                            }
+                            export default errorHandler;
+                        </code></pre>
+
+                    <h4>Configurar Error Handling no Server</h4>
+                        É necessário refatorar o servidor <b>src/index.ts</b> para configurar Error Handling.
+                        <pre><code>
+                            import errorHandler from './middlewares/error-handler';
+
+                            app.use(errorHandler);
+                        </code></pre>
+
+                    <h4>Refatoras as Rotas para Ligá-las ao Error Handler</h4>
+                        As rotas em <b>src/routes/users.route.ts</b> serão refatoradas para que elas chamem o <b>Error Handler</b>.<br>
+                        A ligação será feita através do método <b>next()</b> que será o responsável por chamar o Middleware criado em <b>src/middlewares/error-handler.ts</b> que é o <b>Error Handler</b> que irá tratar os erros. 
+                        O método <b>next()</b> vai enviar o erro para o <b>Error Handler</b> que estiver registrado no server em <b>src/index.ts</b>
+                        <pre><code>
+                            usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction) => {
+                                try{
+                                    const users = await userRepository.allUsers();
+                                    res.status(StatusCodes.OK).json(users); 
+                                }catch(error){
+                                    next(error);
+                                }
+                            });
+                        </code></pre>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

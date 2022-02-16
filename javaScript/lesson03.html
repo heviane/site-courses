@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>Estrutura de Projeto</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li>Diretório <b>./assets/</b></li>
+                        Ferramentas utilizadas (tudo que não for html): css, scrits, imagens, fontes, etc. 
+                        <li>File <b>index.html</b></li>
+                        É o arquivo principal, ponto de entrada da aplicação.
+                    </ul>
+                </p> 
+            </article>
+            <article class="post">
+                <header><h3>Console na web e no terminal localmente</h3></header>
+                <p class="post_content">
+                    <h4>Client-side</h4>
+                        Execução no browser via <a href="https://developer.chrome.com" target="_blank">Google Chrome Developer Tools</a>.<br>
+                        Basta digitar o código na aba <b>console</b>.<br><br>
+                        <b>OBS</b>: Cada browser tem a sua versão do <b>Developer Tools</b>.
+                    <h4>Server-side</h4>
+                        Execução no terminal via <a href="https://nodejs.org/en/" target="_blank">Node.js</a>.<br>
+                        O Node deve ser instalaldo nã máquina onde se pretende executar.<br>
+                        No terminal, navegue até o diretório onde encontra-se o arquivo <b>.js</b> contendo código JavaScript<br>
+                        Execute o comando <b>node</b> seguido pelo nome e extensão do arquivo:
+                        <pre><code>
+                            node script.js
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>Módulos (Importação e Exportação)</h3></header>
+                <p class="post_content">
+                    É possível importar e exportar módulos para que possamos utilizar as funções e variáveis de outros arquivos.
+                    <h4>ES5 - Sintaxe CommonJS</h4>
+                        <pre><code>
+                            // Exportação
+                            module.exports = {
+                                foo: function(){ return 'bar' },
+                                baz: 123
+                            }
+
+                            // Importação
+                            const A = require('./A.js')
+                            const foo = A.foo;
+                            const baz = A.baz;
+                        </code></pre>
+
+                    <h4>ES6 - Sintaxe Import</h4>
+                        <pre><code>
+                            // Exportação
+                            export function foo(){ return 'baz' };
+                            export const baz = 123;
+                            
+                            // Importação
+                            import * as A from './A.js';
+                            const foo = A.foo;
+                            const baz = A.baz;
+                        </code></pre>
+
+                    <img src="./img/Modulo_Sintaxe_CommonJS_X_import.png" alt="Módulo em JavaScript - Sinaxe ES5 CommonJS versus Sintaxe ES6 Import" width="100%" height="300">
+                </p>
+            </article>
+
+		</section>
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+            </div>
+        </footer>
+    </body>
+</html>

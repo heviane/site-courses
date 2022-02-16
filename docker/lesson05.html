@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orquestração de Contêineres</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Orquestração de Contêineres</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Docker - Armazenamento</h3></header>
+				<p class="post_content">
+                    <h4>Volume</h4>
+                        É um disco virtual onde a Docker Engine tem total autonomia sobre ele, sendo assim, o Host não precisa ter uma estrutura de arquivos, porém isso torna um pouco mais carregado a leitura do Host Físico, porque há uma verificação de montagens nos containers.<br>
+                        Pode ser criado durante a criação do container.<br>
+                        Cria os arquivos no Host caso não existam, e já existam na imagem.<br>
+                        É o preferencial e aconselhado para ambientes replicados e distribuídos.<br>
+                        As informações são persistidas em disco, mesmo que o container seja removido ou reiniciado.<br>
+                        <img src="./images/TipoDeArmazenamento-Volume.png" alt="Tipo de Armazenamento">
+                        <pre><code>
+                            $ docker volume create myFirstVolume
+                            $ docker volume ls
+                            $ docker volume inspect myFirstVolume
+
+                            $ docker run -d -p 80:80 --name conatiner-volume --mount source=myFirstVolume,target=/usr/share/nginx nginx
+                        </code></pre>
+
+                    <h4>Bind Mounts</h4>
+                        Um pouco mais simples. Mapeamento de arquivo ou pasta do Host para um arquivo ou pasta do Container.<br>
+                        É como uma pasta compartilhada entre o Host e o Container.<br>
+                        A pasta no Host deve existir previamente para então ser mapeada dentro do container, caso contrário, a pasta é criada automaticamente.<br>
+                        As informações são persistidas em disco, mesmo que o container seja removido ou reiniciado.<br> 
+                        <img src="./images/TipoDeArmazenamento-BindMounts.png" alt="Tipo de Armazenamento">
+                        <pre><code>
+                            $ mkdir /
+                            $ echo "Teste" > index.html
+                            $ docker run -d --name container-bind -p 80:80 -v /html:/usr/share/nginx/html nginx
+
+                            $ docker exec -it 43 bash
+                            # cd /usr/share/nginx/html/
+                            # ls
+                            # cat index.html
+                            # echo "Hello World" > teste.html
+                            # exit
+                        </code></pre>
+
+                    <h4>tmpfs Mounts</h4>
+                        É um tipo temporário, gravado na última camada, que é a camada de escrita.<br>
+                        As informações são persistidas somente se o container reiniciado, se for removido são perdidas0.<br>
+                        Dependendo do modo de utilização pode consumir muito recurso físico, portanto, uma opção seria usar cache para otimizar esses recursos físicos, neste caso, as informações são perdidas na reinicialização do container.<br>
+                        <img src="./images/TipoDeArmazenamento-tmpfsMounts.png" alt="Tipo de Armazenamento">
+                        <pre><code>
+                            $ docker run -d --name container-tmpfs --mount type=tmpfs,destination=/cache,tmpfs-size=100000 busybox sleep 3600
+                            $ docker exec -it 43 bash
+                                # ls
+                                # cd cache/
+                                # dd if=/dev/zero of=1mb.file bs=1024 count=1024
+                                # touch a
+                                # echo "teste" > 
+                                # exit
+                            $ docker ps
+                            $ docker restart container-tmpfs
+                        </code></pre>
+                    
+				</p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

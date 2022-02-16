@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orquestração de Contêineres</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Orquestração de Contêineres</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Docker - Rede</h3></header>
+				<p class="post_content">
+                    <h4>Tipos de Rede</h4>
+                        <ul>
+                            <li><b>Bridge</b>: É a rede default do Docker usada para comumicação entre containers e para a internet. Placa de Rede virtual</li>
+                            <li><b>Host</b>: Remove isolamento de rede, container responde diretamente pela placa de rede do host físico, não cria rede virtual</li>
+                            <li><b>Overlay</b>: Permite a comunicação entre containers de hosts diferentes</li>
+                            <li><b>Macvlan</b>: Permiti atribuir um endereço MAC virtual ao container, tornando ele visivel como um dispositivo físico da rede</li>
+                            <li><b>None</b>: Sem rede alguma</li>
+                        </ul>
+
+                    <h4>Como funciona</h4>
+                        <h5>Bridge</h5>
+                            <img src="images/TipoDeRede-Bridge.png" alt="Tipo de Rede - Bridge" width="400px" height="250px"><br>
+                            Cada container tem o seu IP porque usa uma placa de rede virtual simulando uma placa de rede física.
+                        <h5>Host</h5>
+                            <img src="images/TipoDeRede-Host.png" alt="Tipo de Rede - Host" width="400px" height="250px"><br>
+                            Todos os conatiners compartilham o mesmo IP do servidor físico porque usa "Host Network Namespace", consequentemente compartilham as mesmas portas.<br>
+                            <b>OBS:</b> nginx é um servidor web, então por default tem a porta 80 e 443 exposta. Isso significa que o Host não pode usar essas portas porque senão o servidor web não conseguirá subir, por estarem usando o mesmo ambiente de Rede (Mesmo IPs).
+                        <h5>Overlay</h5>
+                            <img src="images/TipoDeRede-Overlay.png" alt="Tipo de Rede - Overlay" width="400px" height="250px"><br>
+                            É um cluster criado com <b>Docker Swarm</b>, onde todos os Hosts/Containers que estiverem dentro do cluster conseguirão comunicar-se. Maior poder de escalabilidade dos Hosts e dos Containers.<br>
+                            <b>OBS:</b> O modo <b>Swarm</b> é um recurso do Docker que fornece funcionalidades de orquestração de contêiner, incluindo clustering nativo de hosts do Docker e agendamento de cargas de trabalho de contêineres.
+
+                    <h4>Prática</h4>
+                        <h5>Exemplo de Rede no modo Bridge</h5>
+                            Todos os containers que estiverem dentro da rede em modo bridge vão conseguir se comunicar usando os seus nomes.
+                            <pre><code>
+                                // Criar uma rede em modo bridge
+                                $ docker network create --driver bridge my-rede
+
+                                // Listar as Redes
+                                $ docker network ls
+
+                                // Criar um container em modo daemon para o banco de dados
+                                    // -d para rodar em modo daemon o container
+                                    // --net my-rede para ligar o container a rede criada
+                                    // --name db consul para criar o container db com imagem consul
+                                $ docker run -d --net my-rede --name db consul
+
+                                // Criar um container em modo daemon para o frontend
+                                    // --env "DB:db" para criar variável de ambiente apontando para container db
+                                    // --name web para nomear o container
+                                    // -p 8000:5000 para expor porta 8000 do servidor pareando com porta 5000 do container
+                                    // chrch/docker-pets:1.0 é a imagem usada para criar ocontainer
+                                $ docker run -d --env "DB:db" --net my-rede --name web -p 8000:5000 chrch/docker-pets:1.0
+
+                                // O Hostname é o ID do container
+                                $ docker exec -it web sh
+                                    # hostname
+                                    # exit
+                            </code></pre>
+
+                        <h5>Exemplo de Rede no modo Host</h5>
+                            Todos os containers estarão dentro do mesmo servidor, sem o isolamento da rede.
+                            <pre><code>
+                                // Criar um container para o banco de dados
+                                $ docker run -d --net host --name db consul
+
+                                // Criar um container para o frontend
+                                    // Como é no mesmo host não precisa expor a porta
+                                $ docker run -d --env "DB=localhost" --net host --name web chrch/docker-pets:1.0
+                            </code></pre>
+
+                        <h5>Exemplo de Rede no modo Overlay</h5>
+                            Criar um segundo servidor VM (add new instance).<br>
+                            Criar uma rede em modo bridge nos dois servidores VM.<br>
+                            Criar o frontend em um servidor e o Banco de dados em outro servidor.<br>
+                            Aqui, deu erro, porque para comunicar entre mais de um servidor é necessário configurar um <b>Cluster com Docker Swarm</b>.<br>
+                            É necessário promover um dos servidores como gerenciador, que será o principal que vai estar controlando os demais nós da rede.
+                            <pre><code>
+                                // Listar as placas de rede da máquina
+                                $ ifconfig
+
+                                // Inicializar Docker Swarm **Gera código para adicionar nós ao cluster**
+                                $ docker swarm init --advertise-addr 192.168.0.18
+
+                                // Listar os nós da rede
+                                $ docker node ls
+
+                                // Criar uma rede em modo overlay
+                                $ docker network create -d overlay my-rede-Overlay
+
+                                // Criar um container para o banco de dados como SERVIÇO no nó 1
+                                $ docker service create --network my-rede-Overlay --name db consul
+
+                                // Criar um container para o frontend como SERVIÇO no nó 2
+                                $ docker service create --network my-rede-Overlay -p 8000:5000 -e "DB=db" --name web chrch/docker-pets:1.
+                                
+                                // Listar os serviços no servidor principal
+                                $ docker service ls
+
+                                // Escalonar o container web, criar três instâncias
+                                $ docker service scale web=3
+                            </code></pre>
+                            Criar containers como serviço facilita a escalabilidade e permiti escalonar de forma horizontal.
+                            Comando para ingressar um node a um cluster Swarm:
+                            <pre><code>
+                                docker swarm join...
+                            </code></pre> 
+
+				</p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

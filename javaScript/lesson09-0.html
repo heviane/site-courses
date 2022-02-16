@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="style.css">
+        <script src="scriptContext.js"></script>		
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Curso JavaScript</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title">Function</h2></header>
+            <article class="post">
+                <header><h3>Definição</h3></header>
+                <p class="post_content">
+                    São blocos de construção de código (conjunto de instruções que executam uma tarefa específica) que podem ser executados de forma repetitiva.<br>
+                    <h4>No JS as funções são de primeira classe e ordem maior</h4>
+                        <ul>
+                            <li>Pode ser atribuída a uma variável ou estrutura de dados (object, array).</li>
+                            A referência é pela variável que aponta para a função.
+                            <li>Pode ser passada como argumento.</li>
+                            <li>Pode retornar outras funções.</li>
+                        </ul>
+                    <h4>Instrução return</h4>
+                        <b>return</b> é uma instrução de saída, termina a execução e retorna algo ao chamador da função.
+                        <ul>
+                            <li><b>Se especificado:</b> Retorna o valor especificado.</li>
+                            <li><b>Se omitido:</b> Retorna undefined.</li>
+                        </ul>
+                </p>
+               
+                <header><h3>Tipos de funções</h3></header>
+                <p class="post_content">
+                    <h4>Regular Functions</h4>
+                        <b>Escopo Global (Contexto de execução/invocação)</b><br>
+                        Possui a palavra reservada <b>this</b>
+                        <pre><code>
+                            function soma(a, b){
+                                return a + b;
+                            }
+                        </code></pre>
+                        <b>return</b> é obrigatório para poder retornar valor. Se omitido, o valor undefined será retornado.<br>
+                        <b>Chaves {}</b> é obrigatório.<br>
+                       
+                    <h4>Funções Anônimas</h4>
+                        São funcões sem nome. Pode ser <b>Regular Function</b> ou <b>Arrow Function</b>.
+                        <ul>Não pode ser invocada, somente:
+                            <li>Atribuída a uma variável</li>
+                            <li>Passada como parâmetro para outra função</li>
+                        </ul>
+                            <pre><code>
+                                let fn = function(a, b){ return a + b }
+                            </code></pre>
+
+                    <h4>Arrow Functions (ES6)</h4>
+                        São funções anônimas em um formato mais enxuto. Arrow significa seta "=>" <br>
+                        <b>Escopo de Função (Contexto de criação)</b><br>
+                        Não possui a palavra reservada <b>this</b>
+                            <pre><code>
+                                // Sintaxe básica
+                                let sum = (a, b) => { return a + b };  
+                        
+                                // Return e Chaves {} podem ser omitidos quando houver apenas uma expressão
+                                let sum = (a, b) => a + b;  
+
+                                // Retorno de objeto literal, deve ser entre parenteses ()
+                                let arrow = () => ( {name:'Heviane', lastName:'Bastos'} );                              
+                            
+                                // Parenteses () podem ser omitidos se houver apenas um argumento
+                                let arrow = a => 'valor recebido ' + a; 
+
+                                // Exceto...
+                                let arrow = ({a}) => a;    // Objeto literal
+                                let arrow = (...a) => a;   // Spread Operator
+                                let arrow = (a = 5) => a;  // Default Arguments
+                            </code></pre>
+                        <b>Lado esquerdo da seta</b> são os argumentos de parâmetro.<br>
+                        <b>Lado direito da seta</b> é o corpo (return) da função. É obrigatório usar parênteses () para retornar objetos literais, pois estes são retornados entre chaves {}<br> 
+                        <b>return</b> é opcional se houver apenas uma expressão.<br>
+                        <b>Chaves {}</b> é opcional, se houver apenas uma expressão.<br>
+                        <b>Parênteses ()</b> é opcional, se houver apenas um argumento. É obrigatório para N argumentos, destructuring, spread operator, default arguments.<br>
+
+                    <h4>Funções Construtoras (Factoring Functions)</h4>
+                        São funções que geram objetos.<br>
+                        Somente <b>Regular Functions não anônimas</b> podem ser construtoras. Tem haver com o <b>this</b>, pois Arrow Functions não possuem this<br>                        
+                        <pre><code>
+                            function Car(){
+                                this.marca = 'Fiat';
+                                this.modelo = 'Uno';
+                            }
+                            console.log(new Car());  // Car {marca: 'Fiat', modelo: 'Uno'}
+                        </code></pre>
+                        <pre><code>
+                            function Dog(name, age){
+                                return {
+                                    name,
+                                    age
+                                }
+                            }
+                            const pintcher = new Dog('Hulk', 4);
+                            console.log(pintcher);  // {name: 'Hulk', age: 4}
+                        </code></pre>
+                        Por convenção, a primeira letra de sua nome deve ser maiúscula.
+                </p>
+
+                <header><h3>Funções IIFE (Immediately Invoked Function Expression)</h3></header>
+                <p class="post_content">
+                    Expressão de função imediatamente invocada.<br>
+                    Executadas imediatamente após a declaração.
+                        <pre><code>
+                            (function helloWorld(){
+                                alert('Hello world!');
+                            }
+                            )(); 
+                        </code></pre>
+                        A declaração da função é envolvida entre parênteses e acrescenta-se mais um par de parênteses no final, invocando assim a função de imediato.
+                        <pre><code>
+                            (function helloWorld(){
+                                alert('Hello world!');
+                            }());
+                        </code></pre>
+                        Pode-se mover o segundo par de parênteses para dentro do primeiro par, envolvendo assim a expressão inteira com o primeiro par de parênteses. O resultado é o mesmo, trata-se apenas de estilo.<br>
+
+                        <b>Função anônima com recebimento de parâmetros</b>
+                        <pre><code>
+                            (function (message){
+                                alert(message);
+                            }
+                            )('Hello world!');
+                        </code></pre>
+                        
+                        <b>Simular método de acesso privado:</b> Usar seu escopo para criar um fechamento (ou closure) e impedir que dados sejam acessados dentro desse escopo fechado.
+                        <pre><code>
+                            const myFunction = (
+                                function () {
+                                    const password = 1337;
+                                    return function () {
+                                        console.log(password);
+                                    }
+                                }
+                            )();
+                        </code></pre>
+                        Mantém a referência para o seu escopo pai, como é o caso de toda função aninhada.<br>
+                        Agora, temos em myFunction um <b>estado mutável privado</b> que não pode ser acessado de fora da função.<br>
+                        No entanto, quando realizamos o console.log por dentro da função retornada, conseguimos acessar o valor de password.<br>
+                        <b class="text-red">OBS:</b> Deixar essas variáveis em escopos fechados não tem vantagens apenas na segurança dos dados.
+                        Se menos variáveis são criadas no escopo global, reduzimos o ruído e a chance de conflito entre seus nomes.                    
+                </p>
+
+                <header><h3>Funções também são Objetos</h3></header>
+                <p class="post_content">
+                    Permitem a criação de propriedades.
+                    <pre><code>
+                        function fn(){ console.log('executando função Regular...') }
+                        fn.prop = 'Posso criar propriedades na função regular'; 
+
+                        console.log(fn());
+                        console.log(fn.prop);
+                    </code></pre>
+                    <pre><code>
+                        var arrow = () => 'executando função Arrow...';
+                        arrow.prop = 'Posso criar propriedades na função arrow'; 
+
+                        console.log(arrow());
+                        console.log(arrow.prop);
+                    </code></pre>
+                </p>
+
+                <header><h3>Contexto</h3></header>
+                <p class="post_content">
+                    <h4>Regular Function - ES5</h4>
+                        <ul>
+                            <li>Hoisting: SIM</li>
+                            <li>Contexto Global, de execução</li>
+                            <li>Palavra reservada "this": SIM</li>
+                            <li>Parâmetros com nome duplicado: SIM</li>
+                            SIM é permitido, mas não no modo ESTRITO.<br>
+                            <pre><code>
+                                // Irá imprimir o último parametro (valor)
+                                function fn(x, x){ console.log(x) } 
+
+                                // Modo estrito
+                                'use strict';
+                                function fn(x, x){ console.log(x) }  
+                                // Duplicate parameter name not allowed in this context
+                            </code></pre>
+                            
+
+                        </ul>
+                        <b>OBS:</b> Método apply() e bind() podem ser usados para fixar o contexto de criação passando o this como parametro, independente da execução.
+
+                    <h4>Arrow Function - ES6</h4>
+                        <ul>
+                            <li>Hoisting: NÃO</li>
+                            <li>Contexto de Bloco (léxico, entre chaves {}), de criação</li>
+                            <li>Palavra reservada "this": NÃO</li>
+                            <li>Parâmetros com nome duplicado: NÃO</li>
+                            <pre><code>
+                                let value = (x, x) => console.log(x + x); 
+                                // Duplicate parameter name not allowed in this context
+                            </code></pre>
+                        </ul>
+
+                    
+                    <b>Exemplo: Palavra reservada "this"</b>
+                        <pre><code>
+                            // O valor do "this" dentro de uma arrow function permanece O MESMO ao longo do ciclo de vida da função.  
+                            let eu = {
+                                nome: "Heviane Bastos",
+                                thisInArrow: () => {
+                                    console.log('Arrow: ' + this.nome);// Arrow = NÃO irá funcionar
+                                },
+                                thisInRegular(){
+                                    console.log('Regular: ' + this.nome);// Regular = SIM Irá funcionar
+                                }
+                            };
+                            eu.thisInArrow();
+                            eu.thisInRegular();
+                        </code></pre>
+                </p>
+
+                <header><h3>Currying</h3></header>
+                <p class="post_content">
+                    <li><a href="aula17.html">Conceito de curryng</a></li>
+                </p>
+
+                <header><h3>Default Function Arguments</h3></header>
+                <p class="post_content">
+                    ...
+                </p>
+                <header><h3>Enhanced object Literals</h3></header>
+                <p class="post_content">
+                    ...  
+                </p>
+            </article>
+
+
+            <header><h2 class="posts_title">Boas Práticas</h2></header>
+            <article class="post">
+                <p class="post_content">
+                    <ul>
+                    <li>Sempre declarar a função antes de usá-la.</li>
+                    <li>Sempre usar funções PURAS (Recebe um parâmetro (sabe-se de onde está vindo) e retorna alguma coisa).</li>
+                    </ul>
+                </p>
+            </article>
+
+            <header><h2 class="posts_title">References</h2></header>
+            <article class="post">
+                <p class="post_content">
+                    <ul>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions" 
+                        target="_blank">developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return"
+                        target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return</a></li>
+                    <li><a href="https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement"
+                        target="_blank">tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement</a></li>    
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script>
+            // ============================== Execução X Implementação
+            function fn(){console.log('executando função...')};
+            fn;   // Implementação da função - Output: f fn(){console.log('executando função...')};
+            fn(); // Execução da função      - Output: executando função...
+
+            // ============================== Regular Function X Arrow Function ==============================
+            // --- Acessos
+            // Arrow = Tem ACESSO ao objeto de argumentos da função pai regular mais próxima.
+            // Parâmetros nomeados e restantes são muito usados p capturar args passados p arrow functions.
+
+            // Ex: Regular function
+            var myFunction = {
+                ShowArgs(){ console.log(args); }
+            };
+            myFunction.ShowArgs(1,2,3,4); // Uncaught ReferenceError: args is not defined
+
+            // Ex: Arrow function
+            var myFunction = {
+                ShowArgs: () => { console.log(...args); }
+            };
+            myFunction.ShowArgs(1,2,3,4); // Uncaught ReferenceError: args is not defined
+
+            // ============================== Função também é objeto ==============================
+            // --- Funções permitem receber parâmetros 
+            // Usabilidade = Libraries, frameworks, etc.
+            // Usabilidade = Renderizar (executar alguma regra), mas antes fazer alguma coisa.
+            var logValue    = value   => console.log(value);
+            var logFnResult = fnParam => console.log(fnParam());
+            logFnResult(fn); // Output: executando função Regular...
+
+            // --- Funções permitem receber e retornar funções
+            // Podia receber 2 parm, mas seguindo a ideia de CURRYING recebe 1, memoriza (fnParam), aí recebe outro na execução (allowed)
+            // Regular = Controlar execução
+            // ControlFnExec recebe uma f q retorna outra f que recebe parm boolean e retorna a f recebida se parm for true
+            function controlFnExec(fnParam){
+                return function(allowed){
+                    if(allowed){
+                        return fnParam();
+                    }
+                }
+            }
+            var handleFnExecution = controlFnExec(fn); // Função Handler (Manipuladora) = Executa a função regular acima
+            handleFnExecution(true);  // executa a função - Output: executando função Regular...
+            handleFnExecution(false); // Não executa a função
+            handleFnExecution();      // Não executa a função...idem...false
+            // Arrow = Controlar execução
+            // ControlFnExec recebe uma f q retorna outra f que recebe parm boolean e retorna a f recebida se parm for true
+            var controlFnExec2 = fnParam => allowed => { 
+                if(allowed){ 
+                    return fnParam(); 
+                } 
+            }
+            var handleFnExecution = controlFnExec2(fn); // Função Handler (Manipuladora) = Executa a função arrow acima
+            handleFnExecution(true);  // executa a função - Output: executando função Regular...
+            handleFnExecution(false); // Não executa a função
+            handleFnExecution();      // Não executa a função...idem...false
+            
+            // ============================== Instrução return ==============================
+            /* ---- Documentação
+                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return
+                    ---- Especificação
+                https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement
+            */
+            // --- Exemplo Return com estrutura de condição
+            function mult(a, b) {
+                if (a > 0 && b > 0) {
+                    return a * b; // Retorna o valor da área e termina a execução da função
+                }
+                return;   // Retorna undefined e termina a execução da função
+                return 0; // Não executa, pois esta foi interrompida na linha anterior
+                /* A instrução de retorno é afetada pela *** automatic semicolon insertion (ASI) ***.
+                    Nenhum terminador de linha é permitido entre a palavra-chave de retorno e a expressão.
+                    CHROME Version 95.0.4638.69 => Não deu erro. */
+                return
+                a + b;
+                /* é transformado pelo ASI em: 
+                    CHROME Version 95.0.4638.69 => Não deu erro. */
+                return;
+                a + b;
+                /* O console avisará "código inacessível após declaração de retorno".
+                    NOTE: A partir Firefox 40, aviso é mostrado no console se um código inacessível for encontrado após uma instrução de retorno.
+                    SOLUÇÃO: Para prevenir ASI, usar parênteses. */ 
+                return (
+                    a + b
+                );
+            }
+            console.log(mult(3, 4));   // expected output: 12
+            console.log(mult(-3, 4));  // expected output: undefinied 
+            // --- Exemplo return com estrutura de repetição
+            function counter() {
+                for (var count = 1; ; count++) {  // infinite loop
+                    console.log(count + 'A'); // until 5
+                    if (count === 5) {
+                        return;
+                    }
+                    console.log(count + 'B');  // until (até) 4
+                }
+                console.log(count + 'C');  // never appears (nunca aparece)
+             }
+            counter();
+            // Output:
+            // 1A
+            // 1B
+            // 2A
+            // 2B
+            // 3A
+            // 3B
+            // 4A
+            // 4B
+            // 5A
+
+            // --- Função que retorna uma função
+            // See also the article about Closures (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+            function magic() {
+                return function calc(x) { return x * 42; };
+            }
+            var answer = magic();      // var recebe uma função
+            console.log(answer(1337)); // var se comporta como função - Output: 56154
+
+        </script>
+    </body>
+</html>

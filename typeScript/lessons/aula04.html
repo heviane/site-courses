@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TypeScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso TypeScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Type</h3></header>
+                <p class="post_content">
+                    Tudo que é feito com interface pode ser feito com type.<br>
+                    Usado para fazer junções, merges de interfaces.<br>
+                    <pre><code>
+                        interface IAnimal2 {
+                            name: string; 
+                            type: 'terrestre' | 'aquático'; 
+                        }
+                        interface ICanino2 extends IAnimal2 {
+                            porte: 'pequeno' | 'medio' | 'grande';
+                        }
+                        interface IFelino2 extends IAnimal2 {
+                            visaoNoturna: boolean;
+                        };
+                        //type animal = ICanino2 & IFelino2;  // Juntar duas interfaces
+                        type domestic = ICanino2 | IFelino2;   // Ou um ou outro
+                        const animal: domestic = {
+                            name: 'Animal é do tipo domestico = Canino ou Felino',
+                            type: 'terrestre',
+                            porte: 'medio'
+                        }
+                        console.log(animal);
+                    </code></pre>
+                </p>
+                
+                <header><h3 class="post_title">Type readonly</h3></header>
+                <p class="post_content">
+                    <pre><code>
+                        interface Dog{
+                            name: string;
+                            age: number;
+                            color?: string; // opcional
+                        }
+                        type readonlyDog = {  
+                            // Iterando as propriedades do objeto Dog
+                            readonly [k in keyof Dog]: Dog[k]; 
+                            // A palavra reservada "readonly" está aplicando a propriedade "somente leitura" aos itens do objeto.
+                        }
+                        const myDog: readonlyDog = {
+                            name: 'Rex',
+                            age: 5,
+                            color: 'Black'
+                        }
+                        console.log(myDog);
+                        // myDog.name = 'Rex 2';  // Erro!
+                    </code></pre>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

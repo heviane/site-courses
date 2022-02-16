@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orquestração de Contêineres</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Orquestração de Contêineres</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Docker - Deploy de Apps</h3></header>
+				<p class="post_content">
+                    <h4>Limites</h4>
+                        Limitar o uso de CPU e memória com comandos do docker. Disco e Rede podem ser limitados, mas de outras formas.<br>
+                        <b>Memória</b> é importante estar limitada, porque um container é criado para ter um ciclo de vida, nascer e morrer, usado para manter informações e estar sempre rodando.
+
+                        <h5>Limitar Memória</h5>
+                            Usar o parametro <b>--memory</b> no comando <b>docker run</b>
+                            <pre><code>
+                                $ docker run -d --memory 10m busybox sleep 3600
+                                $ docker stats
+                            </code></pre>
+
+                        <h5>Limitar CPU</h5>
+                            Usar o parametro <b>--cpus</b> no comando <b>docker run</b>
+                            <pre><code>
+                                $ docker run --cpus=".5" -d -rm progrium/stress -c 0 -t 30s
+                                $ docker stats
+                            </code></pre> 
+
+                    <h4>Projeto</h4>
+                        <img src="./images//Projeto-01.png" alt="Projeto 01" height="300px"><br>
+                        <a href="https://github.com/luistkd4/docker101" target="_blank">github.com/luistkd4/docker101</a>
+                        <pre><code>
+                            $ git clone git@github.com:luistkd4/docker101.git
+
+                            // O comando docker-compose não é nativo
+                            $ docker-compose up -d
+                        </code></pre>
+                        
+
+				</p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

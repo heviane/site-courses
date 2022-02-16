@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Projeto - App Local para gerenciamento do uso da memória RAM</h3></header>
+                <p class="post_content">
+                    <h4>Criação do servidor em Node puro (server.js)</h4>
+                        <pre><code>
+                            // Importações
+                            const http   = require('http');            // Módulo "http" nativo do node 
+                            const status = require('./pcRamUsage.js'); // App criada 
+                            
+                            // Configurações Globais
+                            const host = 'http://localhost';
+                            const port = 3000;
+                            
+                            // Criação do servidor HTTP
+                            http.createServer( (req, res) => {
+                                    let url = req.url;
+                                    if(url === '/') { 
+                                        res.end('&lt;h1&gt;Bem vindo!&lt;/h1&gt;');
+                                    } else if(url === '/status') {
+                                        res.end( JSON.stringify(status, null, 2) ); 
+                                    } else {
+                                        res.end('&lt;h1&gt;Rota: ' + url + ' não permitida!&lt;/h1&gt;');
+                                    }
+                                })
+                                
+                            // Define um escutador de requisições HTTP para o servidor.
+                            .listen(port, () => console.log(`Sever is running in ${host}:${port}`)); 
+                        </code></pre>
+
+                        <b>localhost</b> é o padrão quando o Host não for especificado.<br>
+                        Para subir o servidor basta executar o comando: 
+                        <pre><code>
+                            node server.js
+                        </code></pre>
+                        Para testar a app basta acessar a URL: <b>http://localhost:3000</b>
+
+                    <h4>Criação da App para gerenciamento do uso de memória (pcRamUsage.js)</h4>
+                        <pre><code>
+                            // The os module provides operating system-related utility methods and properties.
+                            const os = require('os');  // ES6 Module: import os from 'os';  
+
+                            // Método nativo, recebe: uma função e um tempo de espera em milisegundos.
+                            setInterval( () => {
+
+                                // Desestruturação do objeto "os", que é o módulo importado
+                                const { arch, platform, totalmem, freemem } = os;
+
+                                // totalmenm: Returns the total amount of system memory in bytes as an integer.
+                                // freemem: Returns the total amount of free system memory in bytes as an integer.
+                                const tRam = totalmem() / 1024 / 1024;   // Transforma bytes em megabytes
+                                const fRam = freemem() / 1024 / 1024;    // Transforma bytes em megabytes
+                                const usage = (fRam / tRam) * 100;       // Calcula o uso da memória em percentual
+
+                                // Cria um objeto com as propriedades do objeto "os"
+                                const status = {
+                                    OS: platform(),
+                                    ARCH: arch(),
+                                    TOTAL_MEMORY: `${parseInt(tRam)}: MB`,  
+                                    FREE_MEMORY: `${parseInt(fRam)}: MB`,
+                                    USAGE: `${ usage.toFixed(2) }: %`   
+                                };
+
+                                // Imprimi no console o objeto "status"
+                                console.clear();
+                                console.table(status); 
+
+                                // Exportando a app
+                                exports.status = status;
+                            }, 1000);
+                        </code></pre>
+                </p>
+            </article>            
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

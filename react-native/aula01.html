@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React Native</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso React Native</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Introdução</h3></header>
+				<p class="post_content">
+                    Desenvolvido e disponibilizado pelo <b>Facebook</b>, lançado em 2015.<br><br>
+
+                    <b>React Native</b> é um framework baseado em <b>React</b> para desenvolvimento multiplataforma para <b>IOS</b> e <b>Android</b> tendo o <b>JavaScript</b> como uma única base de código.<br>
+                    
+                    Durante a compilação é realizada a conversão para código nativo do sistema operacional.<br>
+
+                    O padrão para estilização é <b>Flex Box</b>, portanto não há necessidade de colocar <pre>display: 'flex';</pre> como fazemos na web.<br>
+
+                    Os comandos de estilização são identicos aos do <b>CSS</b>, mas usa-se o padrão <b>camelCase</b>, sem hífen.<br>
+                    
+                    <h4>Vantagens</h4>
+                        <ul>
+                            <li>Base de conhecimento compartilhada entre desenvolvimento mobile e frontend</li>
+                            <li>É uma ferramenta de mercado, possui comunidade gigante</li>
+                            <li>Escalabilidade para o desenvolvimento</li>
+                            <li>Facilidade para manutenção</li>
+                            <li>Permite liberação de funcionalidades ao mesmo tempo para IOS e Android</li> 
+                            <li>Flexibilidade para customização</li>
+                        </ul>
+
+                    <h4>Exemplo básico</h4>
+                        <pre><code>
+                            import React from 'react'
+                            import { View, Text } from 'react-native'
+
+                            const App = () => {
+                                return (
+                                    &lt;View&gt;
+                                        &lt;Text&gt;Hello React Native&lt;/Text&gt;
+                                    &lt;/View&gt;
+                                )
+                            }
+                            export default App;
+                        </code></pre>
+				</p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+            </div>
+        </footer>
+    </body>
+</html>

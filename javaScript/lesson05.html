@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	
+        <link rel="stylesheet" href="style.css">   			
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title">Variáveis, Escopo, Tipos de Dados</h2></header>
+			<article class="post">
+                <header><h3>Tipos de Variáveis e seus escopos</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><b>var</b></li> Escopo global e local (de função). Não entende escopo de bloco.<br>
+                        Valor inicial é opcional, o default é <b>undefined</b>.
+                        Mutável.
+
+                        <li><b>let</b></li> Escopo de bloco (ES6).<br>
+                        Valor inicial é opcional, o default é <b>undefined</b>.
+                        Mutável.
+
+                        <li><b>const</b></li> Escopo de bloco (ES6). <br>
+                            Valor inicial é obrigatório.<br>
+                            Imutável.
+                            <ul>
+                                <li><b>tipo primitivo</b>: É imutável, não permite alterar valor.</li>
+                                <li><b>tipo referência</b>: É imutável, não permite alterar referência.</li>
+                                Porém, permiti alterar propriedades (Objects e Arrays).<br>
+                                Objetos possuem um tipo de configuração que permite bloquear este tipo de permissão.
+                            </ul>
+                            <b>BOA PRÁTICA:</b> Escrever constantes em letras maiúsculas.
+                    </ul>
+                </p>
+
+                <header><h3>Closure - Escopo Léxico</h3></header>
+                <p class="post_content">
+                    Capacidade de uma variável de lembrar do ambiente onde foi criada.
+                    <ul>
+                        <li><b>Escopo global</b></li>
+                            No browser o escopo global é representado por <b>"window"</b>.<br><br>
+
+                        <li><b>Escopo de função</b></li>
+                            <pre><code>
+                                function fn(){
+                                    // Escopo de função
+                                }
+                            </code></pre>
+
+                        <li><b>Escopo de bloco</b></li>
+                            É definido por um par de chaves {}. ES6 com a inclusão <b>let</b> e <b>const</b>
+                            <pre><code>
+                                {
+                                    // Escopo de bloco
+                                }
+                            </code></pre>
+                    </ul>
+                    
+                    <ul><h4>Boas Práticas:</h4>
+                        <li>Não criar variáveis globais.</li>
+                        <li>Sempre trabalhar com funções puras.</li>
+                        <b>Função pura: </b>Recebe um parâmetro (assim, sabemos de onde está vindo) e retorna alguma coisa.
+                    </ul>
+                </p>
+
+                <header><h3>Tipagem Fraca e Dinâmica</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><b>Tipagem fraca</b></li>
+                            Permite realizar operações com tipos diferentes sem dar erro, pois resolve por ele mesmo.
+                        <li><b>Tipagem dinâmica</b></li>
+                            Não há necessidade de explicitar o tipo no momento da declaração.<br>
+                            <b>Inferência de tipo:</b> O compilador, em tempo de execução, atribui automaticamente de acordo com o valor atribuído.
+                    </ul>                    
+                </p>
+
+                <header><h3>Tipos de Dados Primitivos e Referência</h3></header>
+                <p class="post_content">
+                    <h4>Tipo de dado primitivo</h4>
+                        <li><b>string</b>: Representa texto</li>
+                        Não confundir com o tipo <b>String</b> que é um objeto do JavaScript, ou seja, um tipo de dado de referência.
+                        <li><b>number</b>: Representa todos os números (positivos, negativos, com ou sem casas decimais)</li>
+                        <li><b>boolean</b>: Representa true ou false</li>
+                        <li><b>null</b></li>
+                        <li><b>undefinied</b>: Variável declarada, mas não atribuida (sem um valor definido)</li>
+                        <li><a href="lessons/lesson09-3.html"><b>symbol</b></a>: 
+                            As instâncias são únicas e imutáveis (ES6)</li> 
+                    <h4>Tipo de dado referência</h4>
+                        <li><b>Object</b>: Lista nomeada. É um Lietral Object</li> 
+                        <li><b>Array</b>: Lista numerada. É um Iterable Object</li>
+                        <li><b>Function</b>: Permite ser chamada (Called). Também é um objeto</li>
+                </p>
+			</article>
+		</section>
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>               
+        <script>
+            // String e funções nativas
+            let myString = 'Texto';
+            console.log(myString,length); // Tamanho da string = Qtde de caracteres 
+            console.log(myString.replace("Texto","Novo Texto"));
+            console.log(myString.toUpperCase());
+            console.log(myString.toLowerCase());
+            console.log(myString.trim());
+            console.log(myString.split('-')); // ???????
+                // Retorna um pedaço da string 
+                // start...length   (inicia no start, incluindo o start)
+                // Parametro 2 não informado = Tamanho da string
+            console.log(myString.substr(0, 3)); // Tex 
+            console.log(myString.substr(2));    // xto
+                // slice = Retorna uma fatia da string
+                // start...end               = até o end, não inclui o end
+                // Parametros negativos      = Ordem inversa (de tras para frente)
+                // Parametros não informados = 0...tamanho da string
+                // Parametro 2 não informado = Tamanho da string
+            console.log(myString.slice());  // Texto
+            console.log(myString.slice(0)); // Texto
+            console.log(myString.slice(1)); // exto
+            console.log(myString.slice(2)); // xto
+            console.log(myString.slice(0, myString.length)); // Texto   
+            console.log(myString.slice(1, myString.length)); // exto
+            console.log(myString.slice(0, 1)); // T
+            console.log(myString.slice(1, 2)); // e
+            console.log(myString.slice(1, 3)); // ex
+            console.log(myString.slice(1, 4)); // ext
+            console.log(myString.slice(-1)); // 0   // Retorna o último caractere da string  
+            console.log(myString.slice(-2)); // to
+            console.log(myString.slice(-3)); // xto
+            console.log(myString.slice(-4)); // exto   
+            console.log(myString.slice(0,-1)); // Text
+            console.log(myString.slice(0,-2)); // Tex
+            console.log(myString.slice(0,-3)); // Te   
+            console.log(myString.slice(0,-4)); // T 
+            console.log(myString.slice(0,-5)); // Retorna vazio 
+            console.log(typeof myString);      // Retorna o tipo de dado
+            
+            // Number e funções nativas
+            let myNumber = 24.56;
+            let myString = '3.45';
+            console.log(myNumber.toFixed(2));  // Retorna o valor com 2 casas decimais
+            console.log(myNumber.toString());  // Retorna o valor como string
+            console.log(parseInt(myString));   // Converte string para Number sem casas decimais
+            console.log(parseFloat(myString)); // Converte string para Number com casas decimais
+            console.log(typeof myNumber);      // Retorna o tipo de dado
+                // No JS só existe o tipo de dado Number, independente de tem ou não casas decimais
+
+            let myNull = null;
+            console.log(myNull);
+            console.log(typeof myNull); // Return object
+
+            let myBoolean = true;
+            console.log(myBoolean);
+            console.log(typeof myBoolean);
+
+            let myUndefined = undefined;
+            console.log(myUndefined);
+            console.log(typeof myUndefined); 
+            
+            // São ÚNICOS
+            // Em objects e classes, criam propriedades (keys) que não são enumerables
+                // Simulam att privado, pois JS não tem modificador de acesso
+            let mySymbol1 = Symbol('name');
+            let mySymbol2 = Symbol('name');
+            console.log(mySymbol1); //Symbol(name)
+            console.log(mySymbol2); //Symbol(name)
+            // Mesmo tendo o mesmo value, não são iguais, são ÚNICOS
+            console.log('Comparando dois symbols com o mesmo value: ', mySymbol1 === mySymbol2); // false
+
+            // Outra proposta é simular a criação de enums
+            const directions = {
+                UP: Symbol('Cima'),
+                DOWN: Symbol('Baixo'),
+                LEFT: Symbol('Esquerda'),
+                RIGHT: Symbol('Direita')
+            };
+
+            // ================= Date
+            var d = new Date();
+            console.log('Data completa: ' + d);                                                 
+            console.log('Data: '+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getYear()) // Mês - sempre ( +1 )
+            console.log('Time: ' + d.getHours() + ":" + d.getMinutes());            
+        </script>
+    </body>
+</html>

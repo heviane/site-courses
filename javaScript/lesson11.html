@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="style.css"> 			
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Curso JavaScript</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title">Object</h2></header>
+            <article class="post">
+                <header><h3>Introdução</h3></header>
+                <p class="post_content">
+                    De forma simples, são dados que possuem <b>propriedades</b> e <b>valores</b> que definem suas caracteristicas.<br>
+                    É uma lista nomeada, que contém <b>propriedades</b> e <b>métodos</b>.<br>
+                    Podem ser atribuídos à variáveis.<br>
+
+                    <h4>Propriedades</h4>
+                        Uma propriedade é formada por um par de key e value.<br>
+                        A declaração de propriedades de um objeto é realizada entre chaves {}.<br>
+                        As propriedades são separadas por vírgula.<br>
+                        As propriedades podem guardar dados (valores) do tipo primitivo ou do tipo de referência.
+
+                    <h4>Métodos</h4>
+                        Pode conter uma Regular Function ou Arrow Function.
+                        <pre><code>
+                            let obj = {
+                                name: 'Heviane',
+                                lastName: 'Bastos',
+                                age: 39,
+                                sum: function sum(a, b){ return a + b}
+                            }
+                        </code></pre>
+                </p>
+
+                <header><h3>Enhanced object Literals</h3></header>
+                <p class="post_content">
+                    Forma menos verbosa de escrever propriedades e métodos de objetos literais.<br>
+                    <h4>ES5 - Escrever objetos literais</h4>
+                        Declaração de propriedades e métodos.
+                        <pre><code>
+                            // Exemplo com variável
+                            var name = 'Heviane';
+                            var obj = { name: name };   
+                            console.log(obj.name);
+
+                            // Exemplo com função
+                            var obj = { sum: function sum(a, b){ return a + b } }; // Função Regular Nomeada
+                            var obj = { sum: function(a, b){return a + b } };      // Função Regular Anônima
+                            console.log(obj.sum(1, 2));
+                        </code></pre>
+                        Declaração de propriedades de forma dinâmica.
+                        <pre><code>
+                            var obj = { test: 'testing...' };
+
+                            var prop1 = 'Propriedade 1';
+                            obj[prop1] = 'Prop1 Value';
+
+                            var prop2 = 'Propriedade 2'
+                            obj[prop2 + '-concat'] = 'Prop Value';  // Mesclar 
+                        </code></pre>
+                        Necessário primeiro criar o objeto, para depois realizar a atribuição da propriedade usando colchetes [].
+
+                    <h4>ES6 - Escrever objetos literais</h4>
+                        Declaração de propriedades e métodos.<br>
+                        Incluído <b>Short Hand</b>. O lado direito pode ser omitido se usar mesmo nome.
+                        <pre><code>
+                            // Exemplo com variável
+                            var name = 'Heviane';
+                            var obj = { name };
+                            console.log(obj.name);
+
+                            // Exemplo com função
+                            var obj = { sum(a, b){ return a + b } }; // Função Regular Nomeada (Omiti "function")
+                            console.log(obj.sum(1, 2));
+                        </code></pre>
+                        Declaração de propriedades de forma dinâmica.
+                        <pre><code>
+                            var prop1 = 'Propriedade 1';
+                            var obj = { [prop1 + '-concat']: 'Prop Value' };  // Mesclar
+                        </code></pre>
+                        Agora pode-se atribuir a propriedade diretamente na declaração do objeto.
+                </p>
+            </article>
+
+            <header><h2 class="posts_title">References</h2></header>
+            <article class="post">
+                <p class="post_content">
+
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

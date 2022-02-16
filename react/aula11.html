@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Formulários</h2></header>
+            <article class="post">
+                <header>
+                    <h3 class="post_title">Componentes Controlados e Componentes não controlados</h3>
+                </header>
+				<p class="post_content">
+                    DOM no HTML5 já mantém um estado interno para cada elemento do formulário.<br>
+					Em React, podemos controlar o estado com <b>state</b> e <b>setState</b>.<br>
+                    Para fazer o merge dessde dois estados (DOM e React) há duas formas de trabalhar:<br>
+                    <h4>Componente controlado (Por valor)</h4>
+                        Componente controlado é quando o estado, o <b>Single source of truth</b> é React.<br>
+                        <u>select, input, textarea</u> aceitam atributo <b>value</b> que armazena um valor.<br>
+                        Podemos modificar esse value usando o atributo <b>onChange</b>.<br>
+
+                    <h4>Componente não controlado (Por Referência)</h4>
+                        A tag input é read-only.<br>
+                        Componente não controlado é quando o estado, o <b>Single source of truth</b> é <b></b>DOM.<br>
+                        O React vai apenas observar e pegar uma referência do estado do elemento read-only no envio do formulário.<br>
+                        <u>input type="file"</u>, no HTML5 é read-only.<br>
+                        Portanto, no React só podemos usar componente não controlado.<br>
+				</p>
+                <header><h3 class="post_title">Libraries</h3></header>
+                <p class="post_content">
+                    Forms em React tendem a ser muito verbosos, por isso, existem algumas bibliotecas para facilitar o trabalho.<br>
+                    As mais usadas são:<br>
+                    <h4>Formik</h4>
+                    <b>*</b>Recomendado pela documentação do React.<br>
+                    Principalmente para formulários robustos.<br>
+                    <h4>Redux-forms</h4>
+                </p>
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/" target="_blank">controlled vs uncontrolled inputs</a></li>
+                    <li><a href="https://github.com/eduardogc/digital-one-react-intermediario" target="_blank">digital-one-react-intermediario</a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

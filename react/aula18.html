@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Qualidade</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">TDD - Test-Driven Development</h3></header>
+                    <a href="C:\Users\hevia\Documents\GitHub\dio-desafio-github\Course-JavaScript\lessons\lesson20.html"
+                        target="_blank">lesson20.html</a>
+
+                <header><h3 class="post_title">BDD - Behavior-Driven Development</h3></header>
+				<p class="post_content">
+                    <a href="C:\Users\hevia\Documents\GitHub\dio-desafio-github\Course-JavaScript\lessons\lesson20.html"
+                        target="_blank">lesson20.html</a>
+                    <h4>Exemplo:</h4>
+                        <pre><code>
+                            src/aula-BDD/sum.js          // Função que será testada
+                            src/aula-BDD/sum.feature     // Arquivo de definição do cenário com Jest-Cucumber
+                            src/aula-BDD/sum.test.js     // Arquivo de teste
+                        </code></pre>
+                        <a href="./images/Tests-jest-cucumber-sum.test.js.png">sum.test.js</a>
+                        Este arquivo vai ter o teste TDD e o teste BDD.
+                </p>
+
+                <header><h3 class="post_title">Jest - framework de testes para JavaScript</h3></header>
+				<p class="post_content">
+                    <a href="C:\Users\hevia\Documents\GitHub\dio-desafio-github\Course-JavaScript\lessons\lesson20.html"
+                        target="_blank">lesson20.html</a>
+				</p>
+
+				<header><h3 class="post_title">React-testing-Library</h3></header>
+				<p class="post_content">
+					Biblioteca para testar componentes em React.
+					<pre><code>
+						npm install --save @testing-library/react
+
+						// Lib para extensões de comparação com Jest
+						npm install --save @testing-library/jest-dom
+						npm install --save @testing-library/jest-dom/extend-expect
+					</code></pre>
+
+					<h4>Exemplo de componente simples</h4>
+                        <pre><code>
+                            import React from 'react';
+
+                            const Basic = (props) => (
+                                &lt;p&gt;Meu nome é {props.name}&lt;/p&gt;
+                            )
+
+                            export default Basic;
+                        </code></pre>    
+
+					<h4>Exemplo de teste unitário</h4>
+                        <pre><code>
+                            import React from 'react';
+                            import Basic from './Basic';
+                            import { render } from '@testing-library/react';
+                            import '@testing-library/jest-dom/extend-expect';
+                            
+                            describe('Testando o componente Basic', () => {
+                                it('O componente deve renderizar corretamente', () => {
+                                    const { baseElement } = render(<Basic name="João" />);
+                                    expect( baseElement ).toHaveTextContent('Meu nome é João');
+                                });
+                            });
+                        </code></pre>
+
+					<p><b>Exemplo</b> de teste unitário, com o componente "Counter" que usa Redux.<br>
+						Como testar componente que está conectado ao Redux, que depende exclusivamente de dados da store.
+						Não há necessidade de alterar o componente.
+                    </p>
+                    <p><b>Sempre que for com Redux</b>, deve ser criado uma store de teste, um provider de teste e fazer um wraper para conseguir testar. É uma store mínima, somente com o que interessa para testes. É assim que funciona, criar estratégias de mock para criar os testes.
+					</p>
+					<p>Criamos uma função auxiliar
+						<a href="./images/fnAux-paraTestar-CounterComponent.png" taget="_blank">renderWithRedux()</a>, onde apenas uma store com o counterReduce, não é necessário passar os outros reducers.
+						<ul>
+							<li><b>getByText</b> é um seletor para pegar texto de um elemento.</li>
+							<li><b>getByTestId</b> é um seletor para pegar um elemento pelo ID.</li>
+							<li><b>fireEvent</b> é um evento para disparar um evento no DOM.</li>
+						</ul>
+					</p>
+				</p>
+				
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <ul>
+						<li><a href="https://testing-library.com/docs/react-testing-library/intro" 
+                            target="_blank">testing-library.com/docs/react-testing-library/intro</a></li>
+						<li><a href="https://testing-library.com/docs/react-testing-library/api" 
+                            target="_blank">testing-library.com/docs/react-testing-library/api</a></li>
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

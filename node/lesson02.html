@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Ambiente: Instalação e Configuração</h3></header>
+                <p class="post_content">
+                    <h4>Instalação</h4>
+                        <ul>
+                            <li><b><a href="https://nodejs.org" target="_blank">Nodejs.org</a></b>
+                                : Instalar a versão LTS, que é a versão estável</li>
+                            <li><b><a href="https://www.npmjs.com" target="_blank">NPM</a> </b>
+                                : Node Package Manager (Repositório), faz parte do Node.js</li>
+                            <li><b><a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a></b>
+                                : IDE - Ambiente de desenvolvimento integrado</li>         
+                        </ul>
+
+                    <h4>Ambiente</h4>
+                        <h5>Terminal</h5>
+                            <pre><code>
+                                // Verifica se o node está instalado
+                                    node -v
+
+                                // Verifica se o npm está instalado
+                                    npm -v
+
+                                // Entrar no terminal do Node
+                                    node
+
+                                // Digite "http" para buscar informações do módulo http
+                                    http
+
+                                // Digite ".exit" para sair do terminal do Node
+                                    .exit
+                            </code></pre>
+                        
+                        <h5>Criar um pacote NPM</h5>
+                            Cria o pacote, os metadados, que é basicamente as configurações da app.<br>
+                            É uma descrição sobre como funciona a app. 
+                            <pre><code>
+                                npm init
+                            </code></pre>
+                            generated file: <b>package.json</b>
+
+                </p>
+            </article>            
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

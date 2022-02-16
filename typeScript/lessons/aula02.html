@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TypeScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso TypeScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Basic Types (Variables)</h3></header>
+				<p class="post_content">
+                    O TypeScript adiciona type nas variáveis.
+                    <pre><code>
+                        let isDone: boolean = false;
+                        let decimal: number = 6;
+                        let hex: number = 0xf00d;
+                        let binary: number = 0b1010;
+                        let octal: number = 0o744;
+                        let color: string = "blue";
+                        let arr1: number[] = [1, 2, 3];
+                        let arr2: Array<number> = [1, 2, 3];  // Generic array type = Array<elemType>
+                        let x: [string, number];              // Tuple
+                        enum Color { Red = 1, Green, Blue}    // Definição do indice é opcional
+                    </code></pre>
+                </p>
+
+                <header><h3 class="post_title">Basic Types (Functions)</h3></header>
+				<p class="post_content">
+                    O TypeScript adiciona type nas funções (argumentos e retorno).<br>
+                    Exemplo sem TypeScript: Com validação manual de tipos.<br>
+                    <pre><code>
+                        function sum(a, b) {
+                            if (typeof a === "number" && typeof b === "number") {
+                                return a + b;
+                            }
+                            return NaN;
+                        }
+                    </code></pre>
+                    Exemplo com typescript: Com validação automática de tipos.<br>
+                    <pre><code>
+                        function sum(a: number, b: number): number {
+                            return a + b;
+                        }
+                    </code></pre>
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script src="aula-BasicTypes.ts"></script>
+    </body>
+</html>

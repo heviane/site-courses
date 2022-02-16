@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Node</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso Node</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Ferramentas Úteis</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Biblioteca para criar configurações de ambiente</h3></header>
+                <p class="post_content">
+                    <pre><code>
+                        $ npm install config
+                        $ mkdir config
+                        $ vi config/default.json
+                        
+                        $ npm i --save-dev @types/config
+                    </code></pre>
+                    Exemplo de configuração <b>config/default.json</b>, podemos criar um arquivo para cada ambiente: Desenvolvimento, Homologação, Produção.
+                        <pre><code>
+                            {
+                                "database":{
+                                    "uri":"DATABASE_URI"
+                                },
+                                "authentication": {
+                                    "cryptKey": "AUTHENTICATION_CRYPT_KEY"
+                                }
+                            }
+                        </code></pre>
+                    Exemplo de uso sem o <b>TypeScript</b>.
+                        <pre><code>
+                            const config = require('config');
+
+                            const dbConfig = config.get('Customer.dbConfig');
+                            db.connect(dbConfig, ...);
+
+                            if (config.has('optionalFeature.detail')) {
+                                const detail = config.get('optionalFeature.detail');
+                            }
+                        </code></pre>
+                    Exemplo de uso com o <b>TypeScript</b>.
+                        <pre><code>
+                            import config from 'config';
+
+                            const connectionString = config.get&lt;string&gt;('database.uri');
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://www.npmjs.com/package/config" target="_blank">Library config</a></li>
+                    <li><a href="https://github.com/lorenwest/node-config" target="_blank">github.com/lorenwest/node-config</a></li>
+                </p>
+            </article>
+            
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

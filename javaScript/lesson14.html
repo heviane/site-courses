@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post"> 
+                <header><h3>Symbol e Iterators</h3></header>
+                <p class="post_content">
+                    <h4>Função Symbol()</h4> 
+                        Retorna um valor do tipo symbol. Cada valor symbol retornado de Symbol() é único.<br>
+                        symbol pode ser usado como identificador para propriedades de objetos, para criar meta-propriedades.
+
+                    <h4>Tipo de dado symbol</h4>
+                        É um tipo de dado PRIMITIVO. Não pode ser instanciado. Não suporta o operador "new".<br>
+                        Tem propriedades estáticas que expõem vários membros dos objetos nativos, possuem métodos estáticos que expõem o registro de símbolos globais e se parecem com uma classe de objeto nativo, mas estão incompletos como construtor.
+                        <pre><code>
+                            Symbol()
+                            Symbol(string)
+                        </code></pre>
+                        Symbol() aceita um parâmetro OPCIONAL que é um identificador único.<br>
+                        É uma descrição que pode ser usada para debugar, mas não para acessar o próprio symbol.
+                        <pre><code>
+                            // Declaração de symbols
+                                const id  = Symbol();     // Symbol()
+                                const id1 = Symbol('id'); // Symbol('id')
+                                const id2 = Symbol('id'); // Symbol('id')
+
+                            // Comparação de symbols  
+                                id1 === id2;  // FALSE (Symbols são únicos)
+                        </code></pre>
+
+                    <h4>Para encontrar propriedades symbols em Objetos</h4>
+                        <pre><code>
+                            Object.getOwnPropertySymbols()
+                        </code></pre>
+                        Retorna um array contendo todos os symbols do objeto. <br>
+                        <b>*</b>O array não contém os symbols herdados.<br>
+                        Observe que cada objeto é inicializado sem suas próprias propriedades de symbol, de modo que este array estará vazio, a menos que você estabeleça propriedades de symbol no objeto.
+                   
+                    <h4>Symbol possui algumas propriedades chamadas de "well-known"</h4>
+                        
+                        <ul>Para criar symbol disponível em vários arquivos em um escopo como se fosse <b>GLOBAL</b>.
+                            <li>Symbol.for()</li> 
+                            <li>Symbol.keyFor()</li> 
+                        </ul>
+
+                        <ul>Para adicionar propriedades a <b>Objetos</b>.
+                            <li>Symbol.split</li>
+                            <li>Symbol.toStringTag</li>
+                            <li>Symbol.iterator</li>
+                            Especifica um Iterador padrão para um objeto. Used by for...of.<br>
+                            Iterator é uma interface de iteração. <br>
+                            Essa propriedade foi criada usando o Symbol porque evita colisão com outros nomes de propriedades.<br>
+
+                            <b>Iterables Objects</b> já possuem a propriedade Symbol.iterator nativamente.<br>
+                            <b>Literals Objects</b> não possuem a propriedade Symbol.iterator nativamente.<br>
+                            É possível implementar uma interface de iteração adicionando a propriedade Symbol.iterator a um objeto literal.<br>
+                            <b>Interface de iteração</b><br>
+                            A propriedade Symbol.iterator gera o objeto Array Iterator que contém o método next() que retorna um objeto com as propriedades done e value (done = true se o objeto estiver completo, false se houver mais itens) para controlar a iteração.<br>
+                            O iterador construído com o Symbol.iterator tem como objetivo permitir que a iteração possa ocorrer passo a passo, sem precisar de um loop.
+                        </ul>
+    
+                        <b>Exemplo com Array</b>
+                        <pre><code>
+                            // Declaração
+                                const arr = [1, 2, 3, 4];
+                                const it = arr[Symbol.iterator]();  // Cria o iterador
+
+                            // Iteração com um Array Iterator
+                                console.log(it.next()); // { value: 1, done: false }
+                                console.log(it.next()); // { value: 2, done: false }
+                                console.log(it.next()); // { value: 3, done: false }
+                                console.log(it.next()); // { value: 4, done: false }
+                                console.log(it.next()); // { value: undefined, done: true }  // Finaliza a iteração
+                        </code></pre>
+
+                        <b>Exemplo com Literal Object</b>
+                        É necessário criar uma interface de iteração para tornar o objeto iterável.<br>
+                        <pre><code>
+                            // Declaração do Objeto
+                                const obj = {
+                                    values: [1, 2, 3, 4],
+                                    [Symbol.iterator]: function () {  // Cria o iterador
+                                        let i = 0; 
+                                        return {
+                                            next: () => {
+                                                const done = i >= this.values.length;
+                                                const value = !done ? this.values[i++] : undefined;
+                                                return { value, done };
+                                            }
+                                        }
+                                    }
+                                };
+                                const it = obj[Symbol.iterator]();
+                                console.log(it.next());
+                        
+                            // Iteração com for...of porque agora temos um Iterables Objects
+                            for(let value of obj){
+                                console.log(value); // 1, 2, 3, 4
+                            }
+                            // Iteração com Spread Iterator porque agora temos um Iterables Objects
+                            const arr = [...obj];
+                            console.log(arr); // [1, 2, 3, 4]
+                        </code></pre>
+
+                    <ul><h4 class="text-red">RESUMO:</h4> 
+                        <li>Iterables Objects já possuem nativamente interfaces de iteração.</li>
+                        <li>Literals Objects necessitam de implementação de uma interface de iteração.</li>
+                    </ul>
+                </p>
+            </article>
+            <article class="post"> 
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for">Método Symbol.for()</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/keyFor">Método Symbol.keyFor()</a></li>
+                        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Symbol#encontrando_propriedades_de_s%C3%ADmbolos_em_objetos">Encontrar propriedades symbols em Objetos</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator">Propriedade Symbol.Iterator</a></li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

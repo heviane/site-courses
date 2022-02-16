@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>		
+        <link rel="stylesheet" href="../style.css">
+        <style>
+            h1{ font-family: verdana; color: black;}
+            .blue{
+                background-color: blue;
+                color: white;
+            }
+            .red{
+                background-color: red;
+                color: white;
+            }
+            .green{
+                background-color: green;
+                color: white;
+            }
+            .oculto{ display: none;}
+        </style>
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header">
+            <h1>Curso Básico de JavaScript</h1>
+        </header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header>
+                <h2 class="content_title">Manipular Estilos via DOM</h2>
+            </header>
+            <article class="content_item">   
+                <button onclick="blue()">Blue</button>
+                <button onclick="red()">Red</button>
+                <button onclick="green()">Green</button>
+                <hr>
+                <button onclick="ocultar(this)">Ocultar</button>
+                <button onclick="mostrar(this)">Mostrar</button>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>                
+        <script>
+            function blue(){
+                limpar();
+                document.getElementsByTagName('h1')[0].classList.add('blue');
+            }
+            function red(){
+                limpar();
+                document.getElementsByTagName('h1')[0].classList.add('red');               
+            }
+            function green(){
+                limpar();
+                document.getElementsByTagName('h1')[0].classList.add('green');                 
+            }     
+            function limpar(){
+                document.getElementsByTagName('h1')[0].classList.remove('blue');
+                document.getElementsByTagName('h1')[0].classList.remove('red');
+                document.getElementsByTagName('h1')[0].classList.remove('green');
+            }         
+            function ocultar(e){
+                e.style.display = 'none';
+                document.getElementsByTagName('h1')[0].style.display = 'none';
+            }       
+            function mostrar(e){
+                e.style.display = 'none';
+                document.getElementsByTagName('h1')[0].style.display = 'block';
+            }   
+        </script>
+    </body>
+</html>

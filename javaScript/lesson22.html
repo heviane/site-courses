@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2>Otimização de Código</h2></header>
+			<article class="post">
+                <header><h3>Minificação de Código</h3></header>
+                <p class="post_content">
+                    Minificar (otimizar) código é uma boa prática para melhorar a performance a aplicação.<br>
+                    Códigos menores, tudo em uma linha, sem espaços, etc.<br>
+                    Desta forma o browser conseguirá baixá-los mais rapidamente.<br>
+                    Economizar dados móveis em cenários onde o uso é feito através dos mesmos.<br>
+
+                    <b>build-dev</b>: Código fonte para desenvolvimento.<br>
+                    <b>build-prod</b>: Código fonte mimificado (fechar o código).<br>
+                    <b>Source map</b>: Arquivo que vai mostrar as posições do arquivo mimificado em relação ao arquivo original.<br>
+
+                    <ul><h4>Como a minificação pode ocorrer</h4>
+                        <ol>Os arquivos originais estão formatados para a conveniência do desenvolvedor. Isto significa que eles terão comentários, indentações, variáveis com nomes autoexplicativos e outras boas práticas utilizadas para melhorar o entendimento do código.</ol>
+                        <ol>O dev aplicará técnicas de minificação para converter o arquivo em uma versão mais otimizada, mas mais difícil de ser entendida por humanos. Normalmente estás técnicas removerão todas as aplicações de boas práticas em prol da otimização do código.</ol>
+                        <ol>O servidor web utiliza a versão minificada quando responder a requisições, resultando em menos trafego de banda sem sacrificar a funcionalidade do código.</ol>
+                    </ul>
+
+                    <h4>Técnicas de minificação e ferramentas</h4>
+                        <li>Minify</li> é uma das ferramentas mais completas de minificação.
+                        Gerencia a minificação, caching, e comprime os arquivos CSS, HTML e JavaScript. 
+                        Também oferece integração com frameworks e aplicações web populares tais como o WordPress e Magento.
+
+                        <li>Minificação HTML</li>
+                        O google fornece o PageSpeed Insights <a href="https://pagespeed.web.dev" target="_blank">https://pagespeed.web.dev</a> para avaliar o desempenho de um site. 
+                        Um site e extensão do Chrome que recomenda melhoras de performance para qualquer website. 
+                        Ele também fornece uma ferramenta que minifica o HTML do site aberto.
+
+                        <li>Minificação CSS</li>
+                        Como o CSS provavelmente será alterado com frequência, existem diversas ferramentas online que fornecem minificação instantânea. 
+                        O <b>CSS Minifier</b> é um jeito fácil e rápido de minificar, enquanto o <b>Refresh-SF</b> usa diversas ferramentas para minificar o HTML, CSS e JavaScript.
+
+                        <li>Minificação JavaScript</li>
+                        A ferramenta do Google de Otimização de JavaScript chamada de <b>Closure Compiler</b> que cria uma versão mais eficiente de arquivos JavaScript. 
+                        Quando o dev cria ou altera um arquivo JavaScript, pode-se usar o Closure Compiler para minificar o código. 
+                        O novo arquivo é publicado no servidor onde ele pode ser acessado pelo navegador web.
+                </p>
+			</article>
+
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">                        
+                    <li><a href="" target="_blank"></a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

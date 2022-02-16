@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Comunicação entre Apps</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Rest HTTP</h3></header>
+				<p class="post_content">
+                    As APIs HTTP servem para conectar a um ou mais servidores HTTP.
+                    
+                    <ul><h4>Principais Métodos HTTP</h4>
+                        <li><b>GET:</b> Para listagem de dados.</li>
+                        <li><b>POST:</b> Para criação de dados.</li>
+                        <li><b>DELETE:</b> Para remoção de dados.</li>
+                        <li><b>PUT:</b> Para modificações totais de dados.</li>
+                        <li><b>PATCH:</b> Para modificações parciais de dados.</li>
+                    </ul>
+                   
+                    <ul><h4>Abordagens</h4>
+                        <li><b>Fetch API Library</b></li>
+                            API nativa do browser com interface JavaScript.<br>
+                            É recente, alguns browsers ainda não suportam. Opção usar Node Fetch.<br>
+                            Suporte a Service Workers (Foi por isso que surgiu).<br>
+                            Oferece uma alternativa ao XMLHttpRequest() e JQuery.ajax() com algumas diferenças: <br>
+                            - Não envia nem recebe cookies (precisa definir a opção credentials).<br>
+                            - Não rejeita o status do erro HTTP (só rejeita em caso de instabilidade de conexão).<br>
+                        <br>
+                        <li><b>Axios Library</b></li>
+                            Muito usada em React.<br>
+                            Axios é um cliente HTTP baseado em promessa simples para o navegador e node.js.<br>
+                            Simples de usar em um pequeno pacote com uma interface bastante extensível.<br>
+                            Cross-Browser (Baseada no XMLHttpRequest() do JavaScript).<br>
+                            Pode monitorar o progresso de uma requisição HTTP.<br>
+                            Melhor tratamento de erros.<br>
+                            Melhor teste.<br>
+                            Suporte bastante limitado para PWAS (Restrito ao Fetch API) .<br><br>
+                            <b>Como usar?</b> É necessário baixar e instalar, pois é uma lib de terceiros.
+                            <pre><code>
+								npm i axios
+                                npm install axios --save
+                                yarn add axios
+                            </code></pre>
+                    </ul>
+				</p>
+
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods" 
+                        target="_blank">MDN docs/Web/HTTP/Methods</a></li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API" 
+                        target="_blank">MDN docs/Web/API/Fetch_API</a></li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch" 
+                        target="_blank">MDN docs/Web/API/Fetch_API/Using_Fetch</a></li>
+                    <li><a href="https://axios-http.com" 
+                        target="_blank">axios-http.com</a></li>
+                    <li><a href="https://github.com/axios/axios" 
+                        target="_blank">github.com/axios/axios</a></li>
+                    <li><a href="https://pt-br.reactjs.org/docs/hooks-reference.html#useeffect" 
+                        target="_blank">docs/hooks-reference.html#useeffect</a></li>  
+                </p>                                              
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <ol><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></ol>
+                <ol><a href="https://github.com/heviane" target="_blank">github</a></ol>				
+            </div>
+        </footer>
+    </body>
+</html>

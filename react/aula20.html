@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React.js</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso de React.js</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title">Qualidade</h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Tratamento de Erros</h3></header>
+                <p class="post_content">
+                    <ul><h4>Benefícios</h4>
+                        <li><b>Resiliência de software</b> Quando falhar, o que mostrar?</li>
+                        <li><b>Segurança</b></li>
+                    </ul>
+                    <b>Exemplo de tratamento de erro</b>
+                    <pre><code>
+                        // Antes
+                        export const sum = (a, b) => a + b;
+
+                        // Depois
+                        export const sum = (a, b) => {
+                            if (typeof a === number && typeof b === number) {
+                                return a + b;
+                            } else {
+                                // vamos convencionar -1 quando a soma for inválida
+                                return -1;
+                            }
+                        };
+                    </code></pre>
+                    <ul><b>Outros exemplos de tratamento de erros:</b> 
+                        <li>Validação de formulários</li>
+                        <li>Validação de dados (Obrigatoriedade, mascara, tipos de dado, etc)</li>
+                        <li>Seguança (uso de captcher para evitar robots)</li>
+                        <li>Tratamento por sanitização (de dados sensíveis)</li>
+                        <li>Mensagens de alertas e erros (Para orientar)</li>
+                        <li>Tratar erro do servidor para erro mais amigável no frontend</li>
+                        <li>Segurança (Não expôr App)</li>
+                    </ul>
+
+                    <ul><b>Tratamento de erros em componentes React:</b> 
+                        <li>Em JS <b>ProTypes</b></li>
+                        <li>Linguagens tipadas como <b>TypeScript</b>, definindo interfaces</li>
+                    </ul>
+                    <b>Exemplo tratamento de erro em componente</b>
+                    <pre><code>
+                        import React from 'react';
+                        import PropTypes from 'prop-types';
+
+                        export const Basic = ( { name } ) => ( &lt;p&gt;Meu nome é { name }&lt;/p&gt; );
+
+                        Basic.propTypes = {
+                            name: PropTypes.string
+                        };
+                    </code></pre>
+
+                    <b style="color: red">OBS:</b> O que pode ser feito para tornar a App mais resiliente, mais segura?
+                    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

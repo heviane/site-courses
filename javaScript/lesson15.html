@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post"> 
+                <header><h3>Generators</h3></header>
+                <p class="post_content">     
+                    <h4>Pré-Requisitos</h4>
+                        <a href="lessons/lesson09-3.html">Symbol e Iterators</a>
+
+                    <h4>Generator Function</h4>
+                        Função que retorna um Generator Object.
+                        A declaração da função é realizada com a palavra chave "function" seguida de um asterisco (*)
+
+                    <h4>Generator Object</h4>
+                        Pode ser iterado conforme iterable protocol e o iterator protocol.
+                        É Iterable porque possui a propriedade Symbol.iterator 
+                        Método next() para realizar a iteração.
+
+                    <h4>Método next()</h4>
+                        Retorna um objeto com as propriedades done e value (done = true se o objeto estiver completo, false se houver mais itens) para controlar a iteração.
+                        Cada next() é uma iteração até a próxima pausa (yield). 
+                        Se não houver mais pausas, a função é finalizada. 
+                        É possível passar um value como argumento para a próxima pausa (yield). De fora para dentro da função.
+                        
+                    <h4>Usabilidade</h4>
+                        Funções que pausam, despausam e retornam valores através da interface de iteração Symbol.iterator do Generator Object.
+                        A própria Generator Function pode ser usada como um iterator.
+                    
+                    <h4>yield</h4>
+                        Palavra reservada que retorna um valor e pausa a execução do Generator Function.
+                        Definir um VALUE para cada pausa (yield) é opcional. 
+                        Para adicionar um value, basta passar o value como argumento (digitar value no lado direito). Padrão é undefined.
+                        Quando pausada, função fica suspensa até que seja chamada através do next()
+                
+                    <h4>Casos de Uso</h4>
+                        - Libraries, principalmente para lidar com coisas assíncronas (Muito usado em React.js) 
+                        A função envia uma promise para fora.
+                        A library resolve e retorna o valor.
+
+                </p>
+            </article>
+
+            <article class="post"> 
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/function*" target="_blank">Generator Function</a></li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Generator" target="_blank">Generator Object</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterable" target="_blank">Protocol Iterable</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterator" target="_blank">Protocol Iterator</a></li>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NoSQL</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+            crossorigin="anonymous">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso NoSQL: Bancos de dados orientados à Document</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Model: Document Store (MongoDB)</h3></header>
+				<p class="post_content">
+                    <h4>História</h4>
+                        Open Source.<br><br>
+
+                    <h4>Introdução</h4>
+                        O modelo orientado a documentos é o mais usado dentre todos os modelos de bancos NoSQL.<br>
+                        MongoDB é o banco mais usado dentro de todos os modelos, e dentro do modelo orientado a Documentos.<br>
+                        MongoDB aceita comandos em JavaScript.<br><br>
+
+                        <ul><h5>Estruturação de dados: Document => Tupla/Registro.</h5>
+                            <li><b>Database</b> é composta de collections.</li>
+                            <li><b>Collection</b> é composta de documentos. Analoga a <b>Table</b>.</li>
+                            <li><b>Document</b> é a menor unidade dentro do banco. É o que identifica o registro, é a referência de uma tupla.</li>
+                            Dados e documentos devem ser autocontidos e auto descritivos.
+                        </ul>
+                        <b>Scheme-free:</b> Conforme vai criando os documentos, vai aplicando aos documentos a sua auto-descrição.<br>
+                        <b>BSON</b> é a forma de armazenamento dos dados.<br>
+                            Recebe os valores no formato JSON e os armazena em um formato binário chamado BSON.
+                            <ul>
+                                <li>Serialização codificada em binário de documentos semelhantes a JSON</li>
+                                <li>Contém extensões que permitem a representação de tipos de dados que não fazem parte da espeficação JSON</li>
+                                JSON lida apenas com dados primitivos.<br>
+                                BSON lida com dados além dos primitivos, como ObjectID, Date, etc.
+                            </ul>
+
+                    <h4>Usabilidade</h4>
+                        Alta performance.<br>
+                        Permitem redundâncias e incosistências.<br>
+                        Scheme Free, podendo usar JSON, XML, etc.<br>
+                        <ul><h5>MongoDB</h5>
+                            <li>Armazena os dados em BSON (Binary JSON)</li>
+                                Que são pares de chaves e valores.
+                            <li>Permite que dentro de uma collection pode-se ter documentos de estruturas diferentes</li>
+                                Não que isso seja uma boa prática.
+                            <li>Suporte a indices</li>
+                                Consultas mais complexas ou para garantir algumas integridades.
+                            <li>Auto-Sharding</li>
+                                Nativamente feito para escalar horizontalmente. Mas permiti escalar verticalmente com réplica de leitura.
+                            <li>Map-Reduce</li>
+                                Ferramenta poderosa de consulta e agregação para grandes volumes de dados.
+                            <li>GridFS</li>
+                                Armazenamento de arquivos.
+                            <li>Rica linguagem de consulta</li>
+                                Permiti fazer quase tudo dentro do banco de dados.
+                        </ul>
+                        <ul><h5>Quando usar</h5>
+                            <li>Grande volume de dados com alta performance</li>
+                            <li>Dados não necessariamente estruturados</li>
+                        </ul>
+                        <ul><h5>Quando não usar</h5>
+                            <li>Necessidade de relacionamentos/joins</li>
+                            <li>Propriedades ACID e transações são importantes</li>
+                            <li>Curiosidade: Diversas entidades de pagamento não homologam</li> 
+                                Os dados financeiros dos clientes precisam estar em um banco de dados relacional tradicional.
+                        </ul>
+                                        
+                    <h4>Schema Design</h4>
+                        <b>Atomicidade</b> (Transação executada por completo ou não (rollback) ) somente a nível de documento.<br>
+
+                        <ul><h5>Relationships: Como os dados vão se relacionar entre si? Há duas formas de modelar</h5>
+                            <li><b>Embedding</b></li>
+                            Boa prática: <u>SIM</u><br>
+                            Documentos autocontidos, onde todas as informações necessárias vão estar dentro dele, sem a necessidade de fazer referência para outros documents ou collectins.<br>
+                                <ul><h6>Prós</h6>
+                                    <li>Consulta informações em uma única query</li>
+                                    <li>Atualiza o registro em uma única operação</li>
+                                </ul>
+                                <ul><h6>Contras</h6>
+                                    <li>Limite 16MB por documento</li>
+                                </ul>
+
+                            <li><b>Reference</b></li>
+                            Boa prática: <u>NÃO</u><br>
+                            Documents com dependência de outros documentos ou collections.<br>
+                            Não existe o conceito de FK (Forein Key), então não há uma constraint para garantir esses relacionamentos.<br>
+                            As references serão realizadas através de atributos dentro dos documents ou collectins.<br>
+                            *Dados não devem depender de outros dados, pode ocasionar redundâncias.<br>
+                                <ul><h6>Prós</h6>
+                                    <li>Documentos pequenos (Não armazena as references)</li>
+                                    <li>Não duplica informações</li>
+                                    <li>Usado quando os dados não são acessados em todas as consultas</li>
+                                    Para cada subdocumento é realizado uma nova query, a responsabilidade dos joins do banco é transferida para a app, aí entra toda uma questão de rede, de latência, e isso pode comprometer a performance. 
+                                </ul>
+                                <ul><h6>Contras</h6>
+                                    <li>Perde Atomicidade</li>
+                                    <li>Duas ou mais queries ou utilização do $lookup</li>
+                                    <b>$lookup</b> é o comando para executar queries com referências.<br>
+                                </ul>
+                                <b class="important">OBS:</b> Não existem problemas em os dados não estarem normalizados, tudo depende da necessidade de cada projeto.<br>
+                        </ul>
+                        <div class="image">
+                            <div class="image_item">
+                                <img src="./img/NoSQL_MongoDB-SchemaDesign.png" alt="MongoDB schema design image" style="width: 60vw; height: 60vh;" /><br>
+                                <b>Scheme design: Embedding vs Reference</b>
+                            </div>
+                        </div>
+                        
+                    <h4>Boas Práticas</h4>     
+                        <ul>
+                            <li>Evitar documentos muito grandes.</li>
+                            <li>Nomes significativos e curtos</li>
+                            Porque documentos são compostos não somente com valores, mas também com os seus schemes.<br>
+                            Visando a questão de espaço de armazenamento e clareza de significados as informações.
+                            <li>Analise as queries usando <b>explain()</b></li>
+                            MongoDB Compass mostra gráficamente uma análise das queries.<br>
+                            MongoDB tem esse comando <b>explain()</b> para dar no final da querie, que mostra uma análise.
+                            <li>Atualize apenas os campos alterados</li>
+                            Comando <b>update</b> recebe JSON por completo, problema disso é que vai realizar toda a substituição binária da informação.<br>
+                            Recomendado, atualizar somente os campos necessários e não o JSON por completo.
+                            <li>Evite negações em queries</li>
+                            MongoDB não consegue indexar condições e valores negativos, então nestes casos ele faz um escaneamento completo da collection.
+                            <li>Listas/Arrays dentro de documentos não podem crescer sem limite</li>
+                            Porque podem gerar problemas de performance.
+                        </ul>
+
+                        Recomendação de acordo com os relacionamentos<br>
+                        <h5>One-to-one</h5> Prefira atributos key-value no documento. Sem subdocumentos, listas ou referências.
+                            <pre><code>
+                                {
+                                    "_id": ObjectId("5c8f8f8f8f8f8f8f8f8f8f8"),
+                                    "name": "Dio",
+                                    "street": "Rua das Flores",
+                                    "number": "123"
+                                }
+                            </code></pre>
+
+                        <h5>One-to-few</h5> Prefira embedding, visando que o relacionamento do documento não seja tão grande.
+                            <pre><code>
+                                {
+                                    "_id": ObjectId("5c8f8f8f8f8f8f8f8f8f8f8"),
+                                    "name": "Dio",
+                                    "addresses": [
+                                        {"street": "Rua das Flores", "number": "123"}, 
+                                        {"street": "Av das Perolas", "number": "100"}
+                                    ]
+                                }
+                            </code></pre>
+                            Enquanto houver um número limitado de subdocumentos dentro desse array é preferível que utilize subdocumentos.<br>
+                            Agora, supondo que tenhamos muitos relacionamentos, como em uma rede social, muitas informações como subdocumento não seria viável, pelo limite de tamanho do documento e pela dificuldade de recuperação dos dados.<br>
+                            Quanto maior o tamanho do documento, maior será o override da consulta.<br><br>
+
+                        <h5>One-to-many e Many-to-many</h5> Prefira references.
+                            <pre><code>
+                                {
+                                    "_id": ObjectId("5c8f8f8f8f8f8f8f8f8f8f8"),
+                                    "name": "Dio",
+                                    "addresses": [ ObjectId('123'), ObjectId('456') ]
+                                }
+                                // addresses
+                                {
+                                    "_id": ObjectId("123"),
+                                    "street": "Rua das Flores",
+                                    "number": "123"
+                                }
+                                {
+                                    "_id": ObjectId("456"),
+                                    "street": "Av das Perolas",
+                                    "number": "100"
+                                }  
+                            </code></pre>
+
+                        <h5>Patterns de acordo com casos de uso para escolha de Schemes design</h5>
+                            <div class="image">
+                                <div class="image_item">
+                                    <img src="./img/NoSQL_MongoDB-SchemaDesign-UseCase-Patterns.png" 
+                                        alt="MongoDB schema design image (Patterns according to use cases)" style="width: 20vw; height: 40vh;" /><br>
+                                    <b>Scheme design: Patterns according to use cases</b>
+                                </div>
+                            </div>
+
+                    <h4>Conceitos na prática</h4>
+                        <h5>MongoDB - Client</h5>
+                            <a href="https://robomongo.org" target="_blank">Robo 3T</a> 
+                            é um cliente para MongoDB.<br>
+                            <a href="https://www.mongodb.com/products/compass" target="_blank">Compass</a> 
+                            é um cliente para MongoDB. Permite conectar-se ao <b>MongoDB - Cloud</b><br><br>
+                        
+                         <h5>MongoDB - Cloud</h5>
+                            <a href="https://www.mongodb.com/cloud" target="_blank">MongoDB cloud</a> 
+                            é uma ferramenta paga, mas existe opção  gratuíta para teste.<br><br>
+
+                        <h5>Comando nativo para conectar-se ao MongoDB</h5>
+                            Este comando apresenta uma <b>string de conexão</b> (conectar com os clients) e o <b>mongo shell</b> (enviar comandos diretamente).<br>
+                            <b>-p</b> refere-se a password.<br>
+                            <b>-u</b> refere-se a username.
+                            <pre><code>
+                                mongo --host 127.0.0.1:27017 -p dio -u dio
+                            </code></pre>
+
+                            Dentro de uma instância podem existir várias databases 
+                            <pre><code>
+                                // LISTA databases
+                                    show databases
+                                    show db_name
+
+                                // SELECIONA se existir
+                                // CRIA se não existir
+                                    use db_name
+                            </code></pre>
+
+                        <h5>Operações de manipulação de dados</h5>
+
+                            <ul><h6>Criar collections</h6>
+                                <li>Explicitamente</li>
+                                    Comando <b>createCollection()</b>, permite passar alguns validadores, por exemplo, tamanho máximo do documento ou da collection, entre inumeros outros.<br>
+                                    <pre><code>
+                                        db.createCollection("name_collection");
+                                        db.createCollection("name_collection", {capped: true, max: 2, size: 2});
+                                    </code></pre>
+                                <li>Implicitamente</li>
+                                    Menção ao nome da collection, se não existir, mongodb cria automaticamente. Sem validadores.
+                                    <pre><code>
+                                        db.name_collection.insertOne( {'name': 'teste 1'} );
+                                    </code></pre>
+                            </ul>
+
+                            <ul><h6>Consultar collactions</h6>
+                                <li>Todas as collactions</li>
+                                    <pre><code>
+                                        show collections;
+                                    </code></pre>
+                            </ul>
+
+                            <ul><h6>Consultar documentos</h6>
+                                <li>Todos os documentos da collaction especificada</li>
+                                    É necessário passar o parâmetro (1º parametro) de macth (query), que é um objeto contendo pares de key e value usados para realização dos filtros.<br>
+                                    Quando a query for passada vazia, retorna todos os documentos.
+                                    <pre><code>
+                                        db.name_collection.find({});
+                                    </code></pre>
+                                <li>Consultar documentos com condição e limite</li>
+                                    Filtra todos os documentos que tenham a idade igual a 40 anos.<br>
+                                    Limita o número de documentos retornados em 1 (Retorna o primeiro que encontrar).
+                                    <pre><code>
+                                        db.name_collection.find({'age': 40}).limit(1);
+                                    </code></pre>
+                                <li>Consultar documentos com mais de uma condição</li>
+                                    Filtra todos os documentos que tenham a idade igual a 40 anos e que sejam do genero feminino.
+                                    <pre><code>
+                                        db.name_collection.find({'gender': 'woman','age': 40});
+                                    </code></pre>
+                                <li>Consulta documentos com operador <b>in</b></li>
+                                    O operador <b>in</b> recebe uma lista e é usado para filtrar por um range.<br>
+                                    Filtra todos os documentos que tenham a idade igual a 40 ou 41 ou 42 anos.
+                                    <pre><code>
+                                        db.name_collection.find( {'age': {$in: [40, 41, 42]} } );
+                                    </code></pre>
+                                <li>Consulta documentos com operador <b>or</b></li>
+                                    O operador <b>or</b> recebe uma lista.<br>
+                                    Filtra todos os documentos que sejam do sexo feminino OU que tenham a idade de 41 anos.
+                                    <pre><code>
+                                        db.name_collection.find( { $in: [ {'gender': 'woman'}, {'age': 41}] } );
+                                    </code></pre>
+                                <li>Consulta documentos com operador <b>lt</b> e <b>lte</b></li>
+                                    <b>lt</b> - menor que.<br>
+                                    <b>lte</b> - menor ou igual.<br>
+                                    <pre><code>
+                                        db.name_collection.find( {'age': {$lt: 45} } );
+
+                                        db.name_collection.find( {'age': {$lte: 45} } );
+                                    </code></pre>
+                            </ul>
+                            <b class="important">Recomendação:</b> Quando o filtro for aplicado para o mesmo atributo é preferivel usar o operador <b>in</b>.<br>
+
+                            <ul><h6>Inserir documentos em collactions</h6>
+                                MongoDB gera o <b>ID</b> e o <b>indice</b> do ID de forma automática.
+                                <li>Inserir um documento</li>Retorna o ID do objeto criado.
+                                    <pre><code>
+                                        db.name_collection.insertOne( {'name': 'teste 1'} );
+                                    </code></pre>
+                                <li>Inserir lista de documentos</li>Recebe um array de documentos, retorna um objeto result (chamado de BulkWriteResult).
+                                    <pre><code>
+                                        db.name_collection.insert( 
+                                            [
+                                                {'name': 'teste 1'}, 
+                                                {'name': 'teste 2'},
+                                                {'name': 'teste 3'}
+                                            ] 
+                                        );
+                                    </code></pre>
+                            </ul>
+
+                            <ul><h6>Atualização</h6>
+                                <li>Comando <b>save()</b></li>
+                                    Recebe documento ou ID, e realiza a atualização se existir ou a criação se não existir.<br>
+                                    Realiza atualização do documento por completo.
+                                    <pre><code>
+                                        db.name_collection.save( {'name': 'teste 1'} );
+                                    </code></pre>
+
+                                <li>Comando <b>update()</b></li>
+                                    Parametros:
+                                        <ul>
+                                            <li>1º - objeto com os campos para filtrar, condição (query)</li>
+                                            <li>2º - objeto com os campos a serem atualizados</li>
+                                            <li>3º - objeto com as configurações (há inumeras opções)</li>
+                                                <b>multi = true</b> - atualiza todos os documentos que atendem a condição.<br>
+                                                <b class="important">Obs:</b> A partir da versão 3.2, está disponivel o comando <b>updateMany()</b>, no qual não é necessário passar as configurações.
+                                        </ul>
+                                    Atualização somente os atributos especificados (2º parâmetro).<br>
+                                    Se atributo existir, atualiza, caso contrário cria novo atributo.
+                                    <pre><code>
+                                        db.name_collection.update(
+                                            {'name': 'teste 1'},
+                                            {'$set': {'age': 40} }
+                                        );
+
+                                        db.name_collection.update(
+                                            {'age': 40},
+                                            {'$set': {'age': 45} },
+                                            { multi = true }
+                                        );
+                                    </code></pre>
+
+                                <li>Comando <b>updateMany()</b></li>
+                                    Disponível a partir da versão 3.2, no qual não é necessário passar as configurações.<br>
+                                    Parametros:
+                                        <ul>
+                                            <li>1º - objeto com os campos para filtrar, condição (query)</li>
+                                            <li>2º - objeto com os campos a serem atualizados</li>
+                                        </ul>
+                                    <pre><code>
+                                        db.name_collection.updateMany(
+                                            {'age': 45},
+                                            {'$set': {'age': 50} } 
+                                        );
+                                    </code></pre>
+                            </ul>
+
+                            <ul><h6>Excluir documentos em collactions</h6>
+                                <li>deleteOne()</li>
+                                    Exclui somente um documento. Se usado em uma query que retorna mais de um documento, exclui o primeiro.<br>
+                                    <pre><code>
+                                        // Return um count de 1
+                                        db.name_collection.deleteOne( {'age': 50} );  
+                                    </code></pre>
+                                <li>deleteMany()</li>
+                                    Exclui todos os documentos.<br>
+                                    <pre><code>
+                                        // Return um count de N (quantidade de documentos excluidos)
+                                        db.name_collection.deleteMany( {'age': 50} );  
+                                    </code></pre>
+                            </ul>
+
+                        <h5>Performance e indices</h5>
+                            <ul><h6>Fatores Importantes</h6>
+                                <li>Escalonamento</li>
+                                <li>Disco</li>
+                                <li>Rede</li>
+                                <li>Indices</li>
+                                Mesmo conceito dos bancos relacionais. Fornecer uma direção de onde estão os dados para acesso mais rápido.<br>
+                                A única diferença é que nos bancos relacionais o objetivo é prevenir uma table scan, e no MongoDB é prevenir o scan collection.<br>
+                                <ul><b>Exemplo Prático (Robo 3T)</b>
+                                    <ol>1. Criar uma collection</ol>
+                                    <ol>2. Criar um script para inserir dados em massa</ol>
+                                        <pre><code>
+                                            // Script em JavaScript para inserir dez mildocumentos
+                                                for(var i=0, i &lt; 10000; i++){
+                                                    db.name_collection.insert({name: 'teste ' + i, age: i});
+                                                }
+                                            // Consultar a quantidade de documentos inseridos
+                                                db.getCollection('teste').count();
+                                            // Listar todos os documentos 
+                                                db.getCollection('teste').find({});
+                                        </code></pre>
+                                    <ol>3. Realizar query com o comando <b>explain()</b></ol>
+                                        <b>explain()</b> serve para analisar e retornar algumas informações sobre o processamento da query.<br>
+                                        <pre><code>
+                                            // Consulta pelo ID (Não realiza um scan collection)
+                                            // Vai direto no ID através do indice, 1 documento examinado
+                                                db.getCollection('teste').find({_id: ObjectId('5c8f8f8f8f8f8f8f8f8f8f8')}).explain(true);
+
+                                            // Consulta (Realiza um scan collection), 10000 documentos examinados
+                                                db.getCollection('teste').find({name: 'teste0'}).explain(true);
+                                        </code></pre>
+                                    <ol>4. Criar indice (recebe dois parâmetros)</ol>
+                                        4.1. Campo e tipo de indice.<br>
+                                        4.2. Nome do indice.
+                                        <pre><code>
+                                            // Indexar campo "name" de forma ordenada
+                                                db.getCollection('teste').createIndex({name: 1}, {'name':'idx_name'});
+                                        </code></pre>
+                                </ul>
+                            </ul>
+
+                        <h5>Agregações</h5>
+                            <b>Agregação</b> é o procedimento de processar dados em uma ou mais etapas, onde o resultado de cada etapa é usado na etapa seguinte, de modo a retornar um resultado combinado.<br><br>
+                            <b>Exemplo:</b> Importação de um banco de dados de teste no MongoDB Cloud.<br>
+                            Opção "Clusters", clicar nos tres pontinhos (...) e selecionar "Load Sample Dataset".
+
+                            <ul><h6>Agregação de propósito único</h6>
+                                Não permitem customizações.
+                                <li><b>count</b></li>
+                                    Retorna a quantidade de documentos.
+                                    <pre><code>
+                                        db.getCollection('teste').count({});
+                                    </code></pre>
+                                <li><b>distinct</b></li>
+                                    Retorna todos os possíveis valores de forma não duplicada de determinado campo.
+                                    <pre><code>
+                                        db.getCollection('teste').distinct('name');
+                                    </code></pre>
+                            </ul> 
+                            <ul><h6>Agregação de pipeline</h6>
+
+                                <b>Pipeline</b> is a technique for implementing instruction-level parallelism within a single processor. A segmentação de instruções (em inglês, pipeline) é uma técnica de hardware que permite que a CPU realize a busca de uma ou mais instruções além da próxima a ser executada.<br>
+
+                                Permitem customizações. Recebem um array como parâmetro. As pipelines mais básicas fornecem "filtros" e "operadores".<br>
+                                Permite passar um número infinito de processamento.<br>
+                                <b>Filtros</b> são as condições que vão dar match para descobrir quais dados serão processados.<br>
+                                <b>Operadores</b> são as funções que vão manipular os dados e dar input para as próximas etapas.
+                                <li><b>$group</b></li>
+                                    Agrupar dados conforme um campo, e realizar diversas operações matemáticas, por exemplo: count, average, min, max, etc.
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $group: { _id: '$name', count: {$sum: 1} }
+                                            }
+                                        ]);
+                                    </code></pre>
+                                <li><b>$addFields</b></li>
+                                    Permite adicionar um novo campo para o resultado, sem alterar a collection de origem.
+                                    <pre><code>
+                                         db.getCollection('teste').aggregate([
+                                            {
+                                                $addFields: { 'new_field': {$sum: 1} }
+                                            }
+                                    </code></pre>
+                            </ul>
+
+                            <ul><h6>Funções</h6>
+                                <li><b>$sum</b></li>
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $group: { _id: '$name', count: {$sum: 1}, sum: {$sum: '$age'} }
+                                            }
+                                        ]);
+                                    </code></pre>
+                                <li><b>$avg</b></li>
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $group: { _id: '$name', count: {$sum: 1}, average: {$avg: '$age'} }
+                                            }
+                                        ]);
+                                    </code></pre>
+                                <li><b>$max</b></li>
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $group: { _id: '$name', count: {$sum: 1}, max: {$max: '$age'} }
+                                            }
+                                        ]);
+                                    </code></pre>
+                                <li><b>$min</b></li>
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $group: { _id: '$name', count: {$sum: 1}, min: {$min: '$age'} }
+                                            }
+                                        ]);
+                                    </code></pre>
+                            </ul> 
+
+                            <ul><h6>Operadores Lógicos</h6>
+                                Função <b>match</b> responsável por aplicar os filtros. Recebem um array como parametro.
+                                <li><b>$and</b></li>
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $match: { $and: [ {gender: 'woman'}, {age: {$gt: 20}} ] }
+                                            }
+                                        ]);
+                                    </code></pre>
+                                <li><b>$or</b></li>
+                                    <pre><code>
+                                        db.getCollection('teste').aggregate([
+                                            {
+                                                $match: { $or: [ {gender: 'woman'}, {age: {$gt: 20}} ] }
+                                            }
+                                        ]);
+                                    </code></pre>
+                                <li><b>$not</b></li>
+                                <li><b>$nor</b></li>
+                            </ul>
+
+                            <ul><h6>Operadores de Comparação</h6>
+                                <li><b>$gt</b> Maior que</li>
+                                <li><b>$lt</b> Menor que</li>
+                                <li><b>$nte</b> Diferente de</li>
+                                <li><b>$eq</b> Igual</li>
+                                <li><b>$lte</b> Menor ou igual</li>
+                                <li><b>$gte</b> Maior ou igual</li>
+                            </ul>
+	
+				</p>
+            </article>
+
+            <article class="post"> 
+                <header><h3 class="post_title">References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><a href="https://www.mongodb.com" target="_blank">mongodb.com</a></li>
+                        <li><a href="https://www.mongodb.com/cloud" target="_blank">mongodb.com/cloud</a></li>
+                        <li><a href="https://robomongo.org" target="_blank">Cliente Robo 3T</a></li>
+                        <li><a href="https://www.mongodb.com/products/compass" target="_blank">Cliente Compass</a></li>
+                    </ul>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <!-- Bootstrap Bundle em CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"   
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+        crossorigin="anonymous"></script>
+    </body>
+</html>

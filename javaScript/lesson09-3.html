@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Curso JavaScript</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3>Currying</h3></header>
+                <p class="post_content">
+                    Técnica de transformar uma função com N parametros em uma função que recebe apenas um parametro.<br>
+                    Para cada parametro vai retornando uma nova função.<br><br>
+
+                    É um conceito de linguagem funcional.<br>
+                    JavaScript não é uma liguagem funcional por padrão, mas permiti escrever código funcional.
+                </p>
+			</article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+        <script>
+            // function normal
+            function soma(a, b) {
+                return a + b;
+            }
+            soma(2, 3); // 5
+            soma(2, 4); // 6
+            soma(2, 5); // 7
+            // Neste exemplo, estamos sempre repetindo o 1º parametro
+            // Se quisermos memorizar este parametro (2) para reaproveitar    
+
+            // exemplo de currying (Para cada parametro, vamos criar uma nova função)
+            function somaCurried(a) {//...1º parametro
+                return function(b) {//...2º parametro
+                    return a + b;
+                }
+            }
+            const soma2 = somaCurried(2);//Armazenar o 1º parametro (2) na variável soma2 (Memorizado, a sempre será 2)
+            soma2(3); // 5
+            soma2(4); // 6
+            soma2(5); // 7
+        </script>
+    </body>
+</html>
