@@ -2,8 +2,11 @@
 
 Site sobre Desenvolvimento de Software
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=heviane&repo=site-courses)](https://github.com/heviane/site-courses)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=heviane&exclude_repo=
+heviane,dio-desafio-github,clone-instagram,ui-github-api
+)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=heviane&repo=site-courses)](https://github.com/heviane/site-courses)
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=heviane&layout=compact)](https://github.com/heviane/site-courses)
+## References
+
+- [https://github.com/anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
