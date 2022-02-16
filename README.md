@@ -1,17 +1,9 @@
-# Desáfio de projeto com Git e Github
+# site-courses
 
-Repositório criado para o desáfio de projeto!
+Site sobre Desenvolvimento de Software
 
-## Objetivo deste repositório 😉
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=heviane&exclude_repo=heviane,heviane.github.io,dio-desafio-github,dio-desafio-github-BKP,clone-instagram,site-bootstrap,ui-github-api,app-curriculum,katacoda-scenarios,api-monitor-memory,api-url-shortener,api-ms-authentication,game-genius,github-slideshow)](https://github.com/anuraghazra/github-readme-stats)
 
-- Criar conteúdo sobre os cursos realizados
-- Compartilhar e interagir com a comunidade
-- Construir portifólio
+## References
 
-## Lições Aprendidas ✔
-
-- Versionamento de projetos
-- Hospedagem e compartilhamento de projetos
-- **Criar um indice aqui dos cursos realizados.........**
-  
-🚀 **Let's code!** 🚀
+- [https://github.com/anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
