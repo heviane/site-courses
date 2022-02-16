@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Programming Language</title>
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Programming Language</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title">Introdução</h3></header>
+				<p class="post_content">
+                    <h4>Problema Computacional</h4>
+                        Objeto de discussão que possui instruções passo a passo que são mais facilmente resolvíveis em ambiente computacional. <br><br>
+                        Um problema pode ser resolvido a partir de um algoritmo e implementado em um computador através de codificação, e as instruções vão determinar como o problema vai ser resolvido. Um problema é resolvível quando há um algoritmo capaz de resolvê-lo.<br><br>
+                        <b>Alguns tipos de problemas</b> são mais fáceis de resolvidos em ambiente computacional, como:
+                            <ul>
+                                <li><b>Problemas de decisão</b>: De carater lógico.</li>
+                                Determinar alguma decição, ideia de pertencimento.<br><b>Ex:</b> Dado um número (n) inteiro e positivo, determinar se ele é primo ou não. 
+                                <li><b>Problemas de busca</b>: Característica de relacionamento binário.</li>
+                                Recorrente em teoria de grafos.<br><b>Ex:</b> Clique.
+                                <li><b>Problemas de otimização</b>: De carater intuítivo.</li>
+                                O objetivo é maximizar ou minimizar uma função. Este tipo de problema possui N aplicações.<br><b>Ex:</b> Minimizar o custo e maximizar o lucro.
+                            </ul>
+                
+                    <h4>O que é uma linguagem de programação?</h4>
+                        Método padronizado composto por um conjunto de regras <b>sintáticas</b> e <b>semânticas</b> de implementação de um <b>código fonte</b>.<br><br>
+                        Conjunto de palavras que possuem significados que vão executar determinadas ações e que são implementadas em um <b>código fonte</b> e são interpretadas por um computador.<br><br>
+                        O <b>código fonte</b> é exatamente esse conjunto de palavras que são regidos por determinados padrões, as linguagens de programação possuem regras, e cada linguagem possui suas próprias regras, semânticas e formas. 
+                    
+                    <h4>Como o computador entende os programas?</h4>
+                        <b>Programa</b> é somente um amontoado de palavras senão for possível que o computador entenda. Sendo assim, precisa existir um processo de tradução, que transforma o programa em uma linguagem de máquina.<br><br>
+                        O <b>Compilador</b> (é um programa) executa uma série de análises (léxica, sintática, semântica) no código fonte de alto nível, e caso não haja nenhum erro (que seja previsto pelo compilador), o código fonte é traduzido e convertido para uma linguagem de baixo nível, no caso Assembly e então é convertido para a linguagem de máquina a partir de montadores (refere-se a hardware) que é executada pelo computador.<br><br>
+                        <b>Programa Fonte (alto nível) >> Compilador >> Programa Objeto (baixo nível) >> Máquina</b><br><br>
+                        O código fonte tem duas opções:
+                        <ul>
+                            <li><b>Tradução</b>: Consiste em duas etapas.</li>
+                            <ul>
+                                <ol>1. Geração de programa objeto</ol>
+                                <ol>2. Execução de programa objeto</ol>
+                            </ul>
+                            Execução mais rápida.
+                            <li><b>Interpretação</b>: Consiste em uma única etapa.</li>
+                            <ul>
+                                <ol>Programa fonte executado diretamente</ol>
+                            </ul>
+                            Execução mais lenta, programas menores, maior flexibilidade. 
+                        </ul>
+
+                    <h4>Características de um programa</h4>
+                        <h5>O desenvolvimento de programas segue algumas diretrizes:</h5>
+                            <ul>
+                                <li><b>Legilibilidade</b>: Facilidade de leitura; coêrencia nas instruções, compreensão, definição adequada das estruturas (matrizes, filas, pilhas, etc).</li>
+                                <li><b>Redigibilidade</b>: Facilidade de escrita; coêrencia nas instruções, simplicidade, abstração (subrotinas, funções, modularização), reuzabilidade, expressividade. Pode conflitar com a legibilidade.</li>
+                                <li><b>Confiabilidade</b>: Fazer exatamente o que foi programado para fazer; verificação de tipos, tratamento de exceções, compatibilidade entre compiladores, uso de ponteiros (referencia da posição da variável na memória).</li>
+                                <li><b>Custo</b>: Análise de impacto; Programar de maneira eficiente e otimizar recursos para minimzar o custo operacional; treinamento, codificação, compilação, execução, infra-estrutura.</li>
+                            </ul>
+                        <h5>Outras características:</h5>
+                            <ul>
+                                <li>Atualizações</li>
+                                <li>Disponibilidade de ferramentas</li>
+                                <li>Comunidade ativa</li>
+                                <li>Adoção pelo mercado</li>
+                                <li>Uso para IA</li>
+                            </ul>
+
+                    <h4>Análises de Código</h4>
+                        Quando o código é traduzido ele passa por uma série de análises dentro do compilador antes de ser convertido para a linguagem objeto.
+                        <ul>
+                            <li><b>Léxica</b>: Conjunto de palavras existentes dentro de determinado idioma.</li>
+                                <ul>Possui três estapas:
+                                    <ol><b>1. Particionamento</b>: Código fonte é decomposto e particionado em elementos denominados <b>tokens</b></ol>
+                                    <ol><b>2. Classificação</b>: Os elementos tokens são classificados em: identificadores, palavras reservadas, números, strings, etc.</ol>
+                                    <ol><b>3. Eliminação</b>: Consiste na eliminação de tudo aquilo que não interessa na execução de programa, como: caracteres de espaços em brancos, quebra de linha, comentários, etc.</ol>
+                                </ul>
+
+                            <li><b>Sintaxe</b>: Análise da forma.</li>
+                            Sintaxe é um componente (operadores, comandos) do sistema linguístico que interligam os constituintes da sentença (elementos do código), atribuindo-lhe uma estrutura.<br>
+                            O padrão gramatical do código fonte depende da linguagem de programação usada. <b>Ex:</b> A forma de escrita de um comando pode ser diferente dependendo da versão da linguagem.
+
+                            <li><b>Semântica</b>: Análise do significado.</li>
+                            Incide sobre a relação entre significantes, como: palavras, frases, sinais e símbolos.Semântica é o processo de verificar se o código fonte é válido, se as variáveis são declaradas corretamente, se as funções são chamadas corretamente, etc. Ou seja, a lógica do programa.Um erro de semântica é caracterizado quando o programa não faz o que ele deveria fazer. Esses são os erros mais complicados de serem verificados. 
+                            <b>Exemplo:</b>
+                            <pre><code>
+                                // Erro de semântica (A condição nunca vai ser satisfeita)
+                                if(x = 0){ 
+                                    print("O valor é nulo"); 
+                                } 
+
+                                // Correto 
+                                if(x == 0){ 
+                                    print("O valor é nulo"); 
+                                } 
+                            </code></pre>
+                            Neste exemplo, o programa está executando com sucesso, sem erros de compilação, porém não está fazendo o que deveria fazer logicamente.                            
+                        </ul>
+                        É uma <b>BOA PRÁTICA</b> depurar o código fonte.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Paradigmas de Programação</h3></header>
+				<p class="post_content">
+                    <h4>O que é um paradigma de programação?</h4>
+                        É uma maneira bem definida de como resolver um problema usando linguagem de programação.<br>
+                        É uma forma de resolução de problemas com diretrizes e limitações especificas de cada paradigma utilizando linguagem de programação.
+                        <h5>As linguagens de programação são baseadas em um ou mais paradigmas de programação.</h5>
+                
+                    <h4>Classificação - Tipos de paradigmas</h4>
+                        <ul>
+                            <li><b>Estruturado</b>: Estrutura de blocos aninhados.</li>
+                            Ênfase na sequência de instruções, conceitos de sequência, decisão (teste lógico) e iteração (funções, laços, condições). Dominou o mercado até POO.<br>
+                            Amplamente usado em problemas simples e direto, no aprendizado da programação.<br>
+                            <b>Ex:</b> C, C++, JavaScript, Java.
+
+                            <li><b>Procedural</b>: Chamadas sucessivas e procedimentos separados</li>
+                            <b>Ex:</b> Fortran, Lua.
+
+                            <li><b>Orientação à objeto</b>: Abstração baseada em classes e objetos.</li>
+                            É uma tentativa de abstração análoga ao mundo real, de alto nível, que tenta aproximar ao máximo o cenário computacional ao cenário do mundo real. Isso é feito através da definição de objetos e da iteração entre eles.<br>
+                            <b>Objeto</b> é descrito por características especificas, comportamentos e estados.<ul>
+                                <li><b>O que tenho (atributos):</b> Modelo, cor, carga, tampa, ponta.</li>
+                                <li><b>O que é capaz de fazer (métodos):</b> Escrever, desenhar, rabiscar.</li>
+                                <li><b>Como é feito (estados):</b> Tampada, Destampada, Em uso.</li>
+                            </ul>
+                            Isso é o que algo precisa para ser um objeto, é a classificação, o modelo. Então, podemos definir uma classe como uma aglutinação de objetos semelhantes.<br>
+                            Ainda não compreendida por muitos.<br>
+                            <b>Pilares da POO:</b>
+                            <ul>
+                                <li>Abstração</li>
+                                <li>Encapsulamento</li>
+                                <li>Herança</li>
+                                <li>Polimorfismo</li>
+                            </ul>
+                            <b>Ex:</b> JavaScript, Java, Python, C++, Lua.
+
+                            <li><b>Funcional</b>: Instruções baseadas em funções.</li>
+                            É um paradigma novo, algumas linguagens estão caminhando para ele.<br>
+                            <b>Ex:</b> JavaScript, Java, Python, Lua.
+
+                            <li><b>Computação distribuída</b>: Funções executadas de forma independente.</li>
+                            <b>Ex:</b> Ada
+
+                            <li>Lógico</li>
+                        </ul>
+                        É uma <b>BOA PRÁTICA</b> determinar qual tipo de paradigma usar de acordo com o problema à ser resolvido, e não ficar engessado em um somente.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Evolução da Programação - Surgimento das Linguagens</h3></header>
+				<p class="post_content">
+                    <ul>
+                        <li><b>1949 - Assembly</b></li>
+                        Linguagem de baixo nível, muito próxima do hardware, também conhecida como "Linguagem de montagem" ou "Linguagem de máquina".
+                        <li><b>1950 - Fortran, Cobol, Lisp, ...</b></li>
+                        Surgiram durante a operação do ENIAC, usando o paradigma procedural.
+                        <li><b>1960/1970 - C, Prolog, ML, ...</b></li>
+                        Na linguagem C aparece o paradigma estruturado, muito usado atualmente.
+                        <li><b>1990 - Java, Python, Ruby, C#, JavaScript, ...</b></li>
+                        Surgem as linguagens de mais alto nível, 
+                        <li><b>2000 - GO, Rust, Dart, TypeScript, ...</b></li>
+                        Surgem as linguagens mutiparadigmas, que são linguagens especializadas.
+                    </ul>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+				<p class="post_content">
+                    
+                </p>
+            </article>
+
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+                <a href="https://github.com/heviane" target="_blank">github</a>
+            </div>
+        </footer>
+    </body>
+</html>
