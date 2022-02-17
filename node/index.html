@@ -13,31 +13,31 @@
 		<section class="content">
             <article class="post">   
                 <!--============================ Introdução -->                 
-                <h3><a href="lessons/lesson01.html">Introdução</a></h3>
-                <h3><a href="lessons/lesson02.html">Ambiente: Instalação e Configuração</a></h3>
-                <h3><a href="lessons/lesson03.html">Criar um Servidor</a></h3>
+                <h3><a href="lesson01.html">Introdução</a></h3>
+                <h3><a href="lesson02.html">Ambiente: Instalação e Configuração</a></h3>
+                <h3><a href="lesson03.html">Criar um Servidor</a></h3>
                 <!-- Project: App for managing the use of RAM memory --> 
-                <h3><a href="lessons/lesson05.html">Projeto 01 - App Local para gerenciamento do uso da memória RAM</a></h3>
+                <h3><a href="lesson05.html">Projeto 01 - App Local para gerenciamento do uso da memória RAM</a></h3>
             
                 <!--============================ Projeto Mockado (sem database) --> 
-                <h3><a href="lessons/lesson06.html">Projeto 02 - Microserviço para Autenticação e Gerenciamento de Usuários - REST API</a></h3>
+                <h3><a href="lesson06.html">Projeto 02 - Microserviço para Autenticação e Gerenciamento de Usuários - REST API</a></h3>
                 <!-- Apresentação e Estruturação (End-Points) do Projeto: User Authentication Microservice - REST API 
                     - REST API: Estilo Arquitetural.
                     - Microservice: App executada em uma única máquina (server + database).
                     - Library Express: Biblioteca para criação de rotas (Router) e middlewares. Gerenciamento de rotas HTTP.
                     - TypeScript: Superset do JS. Especifica como as coisas devem interagir entre si. O que pode ou não ser feito.-->
-                <h3><a href="lessons/lesson07.html">Projeto 02 - Configuração do ambiente de desenvolvimento com TypeScript e Node</a></h3>
+                <h3><a href="lesson07.html">Projeto 02 - Configuração do ambiente de desenvolvimento com TypeScript e Node</a></h3>
                 <!-- Criação do projeto, diretórios, instalações e configurações -->
-                <h3><a href="lessons/lesson08.html">Projeto 02 - Library Express - Instalação, Configuração, Criação do Servidor e Rota de Status</a></h3>
+                <h3><a href="lesson08.html">Projeto 02 - Library Express - Instalação, Configuração, Criação do Servidor e Rota de Status</a></h3>
                 <!--- Instalação e configuração do Express
                     - Instalação dos @types do TypeScript para o Express 
                     - Criação de servidor sem e com Router 
                     - Criação da Rota Status -->
-                <h3><a href="lessons/lesson09.html">Projeto 02 - Criação do CRUD de usuários e Rota (mockado)</a></h3>
+                <h3><a href="lesson09.html">Projeto 02 - Criação do CRUD de usuários e Rota (mockado)</a></h3>
                 <!-- Criação das Rotas -->
 
                 <!--============================ Projeto refatorado com a inclusão da database --> 
-                <h3><a href="lessons/lesson10.html">Projeto 02 - Database - Introdução, Instalações e Configurações</a></h3>
+                <h3><a href="lesson10.html">Projeto 02 - Database - Introdução, Instalações e Configurações</a></h3>
                 <!--- Banco de dados (PostgreSql Cloud ): elephantsql.com
                     - Formas conectar Node c database = ORM (Object-Relational Mapping)**Frameworks** ou Drivers Nativos**+Simples**
                     - Formas abrir conexão = Direta **toda vez q usa** ou Pool de Conexões **Recomendado**  
@@ -47,10 +47,10 @@
                     - Scripts Iniciais: 
                         - Criação da tabela de usuário e inserção dos primeiros usuários
                         - Criação dos campos de Usuário (Model) = src/models/user.model.ts -->
-                <h3><a href="lessons/lesson11.html">Projeto 02 - Database - CRUD de Usuários com Promises</a></h3>
+                <h3><a href="lesson11.html">Projeto 02 - Database - CRUD de Usuários com Promises</a></h3>
                 <!--- Promises para acesso e consulta ao Banco de Dados (src/repositories/user.repository.ts)
                     - Refatoração do CRUD de usuários (Rotas) para chamar as Promises (src/routes/users.route.ts) -->
-                <h3><a href="lessons/lesson12.html">Projeto 02 - Database - Tratamento de Erros</a></h3>
+                <h3><a href="lesson12.html">Projeto 02 - Database - Tratamento de Erros</a></h3>
                 <!--- try/catch = throw Error e throw DatabaseError (Classe que extende a classe Error)
                     - Middleware Error Handler Genérico (Centralização de erros para evitar complexidade e repetição de código) -->
 
@@ -78,7 +78,7 @@
                         - Reutilização de código, ecapsulamento de funcionalidades genéricas.
                 -->
 
-                <h3><a href="lessons/lesson13.html">Projeto 02 - Endpoint de Autorização</a></h3>
+                <h3><a href="lesson13.html">Projeto 02 - Endpoint de Autorização</a></h3>
                 <!--- 
                     - Criação do endpoint (rota) de autorização   (src/routes/authorization.route.ts)
                     - Criação do tipo de erro para autenticação   (src/models/errors/forbidden.error.model.ts)
@@ -86,11 +86,11 @@
                     - Configuração das rotas no server            (src/index.ts)
                     - Inclusão de validações e tratamentos
                     - Criação do método byUserNameAndPassword(), para consulta database (src/repositories/users.repository.ts) -->
-                <h3><a href="lessons/lesson14.html">Projeto 02 - Gerar e Retornar Token JWT (JSON Web Token)</a></h3>
+                <h3><a href="lesson14.html">Projeto 02 - Gerar e Retornar Token JWT (JSON Web Token)</a></h3>
                 <!--- JWT (JSON Web Token) é um token.
                     - jsonwebtoken é uma biblioteca para geração de token JWT.
                     - Refatorar endpoint de autenticação para: GERAR Token JWT e RETORNAR(response) o token JWT -->
-                <h3><a href="lessons/lesson15.html">Projeto 02 - Middleware para Método de Autenticação Basic Auth</a></h3>
+                <h3><a href="lesson15.html">Projeto 02 - Middleware para Método de Autenticação Basic Auth</a></h3>
                 <!-- 
                     - Extender o @types/express em src/@types/express.d.ts
                         - Incluir o type User no Request para poder propagar o usuário para o próximo middleware.
@@ -100,10 +100,10 @@
                         - Colocar o user dentro da requisição para ficar acessível em todas as rotas.
                     - Configurar o Middleware basicAuthentication() na rota de autorização (src/routes/authorization.route.ts) 
                         - Recuperar o user da request -->
-                <h3><a href="lessons/lesson16.html">Projeto 02 - Middleware para Método de Autenticação Bearer Token</a></h3>
+                <h3><a href="lesson16.html">Projeto 02 - Middleware para Método de Autenticação Bearer Token</a></h3>
                 <!--- Criar o middleware               (src/middlewares/bearer-authentication.ts)
                     - Registrar o middleware no server (src/index.ts) -->
-                <h3><a href="lessons/lesson17.html">Projeto 02 - Testar o Microserviço</a></h3>
+                <h3><a href="lesson17.html">Projeto 02 - Testar o Microserviço</a></h3>
                 <!--
                     1º Step: Obter um token de autorização no endpoint http://localhost:3000/token 
                         - Forma de autenticação Basic Auth
@@ -111,7 +111,7 @@
                     2º Step: Executar um dos endpoints do CRUD de usuários para testar, ex: http://localhost:3000/users 
                         - Forma de autenticação Bearer Auth
                         - Informar o token gerado no passo 1 -->
-                <h3><a href="lessons/lesson18.html">Projeto 02 - Endpoint para Validar o Token</a></h3>
+                <h3><a href="lesson18.html">Projeto 02 - Endpoint para Validar o Token</a></h3>
 
 
                 <!--============================ PENDENCIES -->
@@ -135,7 +135,7 @@
 
 
                 <!-- Useful Tools -->
-                <h3><a href="lessons/lesson20.html">Ferramentas Úteis</a></h3>
+                <h3><a href="lesson20.html">Ferramentas Úteis</a></h3>
                 <!-- 
                     - API Client para testar requisições HTTP (Postman, Insomnia)
                     - Library config para criar variáveis de ambiente em Node 

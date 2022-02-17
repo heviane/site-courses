@@ -1,6 +1,6 @@
 # site-courses 📚
 
-Site sobre Desenvolvimento de Software 
+Site sobre Desenvolvimento de Software
 
 - ✔️ [heviane.github.io/site-courses](https://heviane.github.io/site-courses)
 
