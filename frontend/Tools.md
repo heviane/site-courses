@@ -1,4 +1,4 @@
-# Frontend :world_map:
+# Frontend
 
 Frontend **Web** e **Mobile**.
 
@@ -20,9 +20,7 @@ Frontend **Web** e **Mobile**.
 - [Colorzilla]()
 - [Debug CSS](https://chrome.google.com/webstore/detail/debug-css/igiofjnckcagmjgdoaakafngegecjnkj)
 
-## Designer
-
-### Tools
+## Tools
 
 - [figma.com](https://www.figma.com)
 
@@ -30,4 +28,3 @@ Frontend **Web** e **Mobile**.
 
 - [flaticon.com](https://www.flaticon.com)
 - [github.com/vscode-icons](https://github.com/vscode-icons)
-

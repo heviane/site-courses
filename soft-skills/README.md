@@ -15,31 +15,33 @@ Envolve aptidões mentais, sociais, emocionais, relacionamento interpessoal.
 [📚 Foco na Empregabilidade](#-foco-na-empregabilidade) <br>
 
 ## 📚 Foco no aspecto individual
+
 - [Inteligência Emocional]()
 - Gestão do Tempo
-	- Pomodoro
+  - Pomodoro
 - Autoconhecimento
 - Comunicação
 
 ## 📚 Foco no aspecto coletivo
+
 - Trabalho em equipe
 - Negociação
 - Resolução de Problemas
 
 ## 📚 Foco no mundo da tecnologia
+
 - Carreiras
 - Metodologias Ágeis
-	- Gestão Ágil
-	- Engenharia Ágil
+  - Gestão Ágil
+  - Engenharia Ágil
 - Ética
 - Diversidade e Inclusão
 - LGPD - Lei Geral de Proteção de Dados
 
 ## 📚 Foco na Empregabilidade
+
 - Curriculo
 - Portifólio
 - Desáfios Técnicos
 - Entrevistas
 - Vida de Freelancer
-
-# Referências :-)

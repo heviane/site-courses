@@ -1,2 +1,0 @@
-# SQL :world_map:
-

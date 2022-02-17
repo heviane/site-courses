@@ -1,4 +1,4 @@
-# Sobre Design :world_map:
+# Designer
 
 ## Search for references and inspirations
 
@@ -9,4 +9,3 @@
 ## Tools
 
 - [figma.com](figma.com)
-
