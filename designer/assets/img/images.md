@@ -1,11 +1,8 @@
-# Sobre Design :world_map:
+# Design
 
-
-## Imagens
+## Images
 
 - **svg**:
 - **gif**:
 - **png**:
 - **jpg**:
-
-
