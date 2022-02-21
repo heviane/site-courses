@@ -2,7 +2,8 @@
 
 Site sobre Desenvolvimento de Software
 
-- ✔️ [heviane.github.io/site-courses](https://heviane.github.io/site-courses)
+- ✔️ [Github Pages](https://heviane.github.io/site-courses)
+- ✔️ [Netlify](https://heviane.netlify.app)
 
 ## References
 

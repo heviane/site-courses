@@ -1,20 +1,18 @@
-# Hospedagens
+# Hosting
 
-## Providers
-
-- AWS - Amazon Web Services
+- Amazon Web Services (AWS)
 - Microsoft Azure
 - Google Cloud Platform
-- Vercel (free)
-- Heroku (free, maior abstração)
 - Digital Ocean
 
-## Free Providers
+## Free Hosting
 
 - [GitHub Pages](https://pages.github.com) (FREE server and domain for **static** websites)
-  - [heviane.github.io/site-courses/github](https://heviane.github.io/site-courses/github)
-- GitLab Pages
-- Firebase
+- [GitLab Pages](https://gitlab.com)
+- [Netlify](https://www.netlify.com)
+- [Vercel](https://vercel.com)
+- [Heroku](https://www.heroku.com)
+- [Firebase](firebase.google.com)
 - Infinity Free
 - Award Space
 
