@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hosting on Heroku</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>hosting-on-heroku</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3 class="post_title"></h3></header>
+				<p class="post_content">
+                    Heroku é uma plataforma de nuvem como serviço que suporta várias linguagens de programação. Free.<br>
+
+                    <b>Heroku CLI (Command Line Interface)</b> permite criar e gerenciar aplicativos Heroku diretamente do terminal.
+
+                    <ul>
+                        <li><b>Inicialização do servidor</b></li>
+                        Usa o script <b>npm start</b> do arquivo <b>package.json</b> para incializar o servidor.
+
+                        <li><b>Configuração da Porta do Servidor</b></li>
+                        Provê uma porta aleatória e não tem como saber previamente, mas armazena na variável de ambiente <b>process.env.PORT</b>, sendo assim é necessário realizar o tratamento via codificação.<br>
+                        <b>Exemplo em Node.js</b>
+                        <pre><code>
+                            .listen(process.env.PORT || port);
+                        </code></pre>
+
+                        <li><b>Configuração do Banco de Dados</b></li>
+                        Usar a variável de ambiente <b>process.env.NODE_ENV</b> para configurar a URI do banco de dados.
+
+                        <li><b>Configuração do git</b></li>
+                        Usar o arquivo <b>.gitignore</b> para configurar os arquivos que não devem ser enviados para o repositório, e consequentemente para o deploy.
+
+                    </ul>
+                    
+                     Arquivo <b>Procfile</b> para realizar configurações de ambiente.
+
+                    <b><a href="https://mlab.com" target="_blank">mLab</a>: Database-as-a-Service for MongoDB
+
+                     
+
+                </p>
+            </article>
+            <article class="post">
+                <header><h3 class="post_title">References</h3></header>
+				<p class="post_content">
+                    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+                <a href="https://github.com/heviane" target="_blank">github</a>
+            </div>
+        </footer>
+    </body>
+</html>
