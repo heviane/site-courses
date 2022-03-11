@@ -16,7 +16,58 @@
             <article class="post">
                 <header><h3>Definição</h3></header>
                 <p class="post_content">
-                    São blocos de construção de código (conjunto de instruções que executam uma tarefa específica) que podem ser executados de forma repetitiva.<br>
+                    São blocos de comandos e instruções para a execução de determinada tarefa.<br>
+                    Podem ser invocadas/executadas de forma repetitiva.<br>
+                    Geralmente se utiliza a palavra reservada function para definir uma função, seguida de <b>()</b> e <b>{}</b>.<br>
+                    <b>()</b>: Indica que é um objeto do tipo <b>function</b>.<br>
+                    <b>{}</b>: Indica que é um bloco de comandos/intruções.<br>
+                    As funções podem receber em sua declaração, <b>parâmetros</b> que servem como variáveis de estado ou variáveis locais, onde sua atribuição pode ser feita durante a chamada da função.<br>
+
+                    Exemplos de funções declarativas, devem obrigatoriamente ser nomedas:
+                    <pre><code>
+                        function hello() {
+                            console.log("Hello World!");
+                        }
+                        hello();
+                        
+                        function sum(a, b) {
+                            console.log(`${a} + ${b} = ${a + b}`);
+                        }
+                        sum(1, 2);
+                        
+                        function sub(a, b) {
+                            let result = a - b;
+                            return result;
+                        }
+                        console.log('7 - 5 = ' + sub(7, 5));
+                    </code></pre>
+
+                    Exemplos de expressões de funções, nomeação é opcional (Funções atribuídas à expressões):
+                    <pre><code>
+                        var fn1 = function fnNomeada() {
+                            console.log('função nomeada');
+                        };
+                        fn1(); // OK
+                        fnNomeada(); // ReferenceError: fnNomeada is not defined
+                        
+                        var fn2 = function () {
+                            console.log('função anônima');
+                        };
+                        fn2();
+                    </code></pre>
+
+                    Exemplos de <b>Arrow Function</b> que são funções de expressão de sintaxe curta. Sempre serão anônimas, não podem ser nomeadas:
+                    <pre><code>
+                        var fn1 = () => { console.log('Hello World'); };
+                        fn1();
+
+                        var fn2 = (a, b) => { console.log( a + b ); };
+                        fn2(1,2);
+
+                        var fn3 = (a, b) =>  a - b;
+                        console.log(fn3(3,2));
+                    </code></pre>
+
                     <h4>No JS as funções são de primeira classe e ordem maior</h4>
                         <ul>
                             <li>Pode ser atribuída a uma variável ou estrutura de dados (object, array).</li>
@@ -24,8 +75,9 @@
                             <li>Pode ser passada como argumento.</li>
                             <li>Pode retornar outras funções.</li>
                         </ul>
+
                     <h4>Instrução return</h4>
-                        <b>return</b> é uma instrução de saída, termina a execução e retorna algo ao chamador da função.
+                        <b>return</b> é uma instrução de saída, termina a execução e opcionalmente retorna algo ao chamador da função.
                         <ul>
                             <li><b>Se especificado:</b> Retorna o valor especificado.</li>
                             <li><b>Se omitido:</b> Retorna undefined.</li>
@@ -42,7 +94,7 @@
                                 return a + b;
                             }
                         </code></pre>
-                        <b>return</b> é obrigatório para poder retornar valor. Se omitido, o valor undefined será retornado.<br>
+                        Usa-se a palavra reservada <b>return</b> para retornar um valor. Se omitido (void), o valor undefined será retornado.<br>
                         <b>Chaves {}</b> é obrigatório.<br>
                        
                     <h4>Funções Anônimas</h4>
@@ -85,13 +137,13 @@
 
                     <h4>Funções Construtoras (Factoring Functions)</h4>
                         São funções que geram objetos.<br>
-                        Somente <b>Regular Functions não anônimas</b> podem ser construtoras. Tem haver com o <b>this</b>, pois Arrow Functions não possuem this<br>                        
+                        Somente <b>Regular Functions não anônimas</b> podem ser construtoras. Tem haver com o <b>this</b>, pois Arrow Functions não possuem this.                
                         <pre><code>
                             function Car(){
                                 this.marca = 'Fiat';
                                 this.modelo = 'Uno';
                             }
-                            console.log(new Car());  // Car {marca: 'Fiat', modelo: 'Uno'}
+                            console.log(new Car());  // Car {marca: 'Fiat', modelo: 'Uno'}
                         </code></pre>
                         <pre><code>
                             function Dog(name, age){
@@ -108,8 +160,7 @@
 
                 <header><h3>Funções IIFE (Immediately Invoked Function Expression)</h3></header>
                 <p class="post_content">
-                    Expressão de função imediatamente invocada.<br>
-                    Executadas imediatamente após a declaração.
+                    Expressão de função imediatamente invocada, ou seja, executada imediatamente após sua declaração.
                         <pre><code>
                             (function helloWorld(){
                                 alert('Hello world!');
@@ -204,7 +255,6 @@
                             </code></pre>
                         </ul>
 
-                    
                     <b>Exemplo: Palavra reservada "this"</b>
                         <pre><code>
                             // O valor do "this" dentro de uma arrow function permanece O MESMO ao longo do ciclo de vida da função.  
@@ -237,27 +287,23 @@
                 </p>
             </article>
 
-
-            <header><h2 class="posts_title">Boas Práticas</h2></header>
             <article class="post">
+                <header><h3>Boas Práticas</h3></header>
                 <p class="post_content">
                     <ul>
-                    <li>Sempre declarar a função antes de usá-la.</li>
-                    <li>Sempre usar funções PURAS (Recebe um parâmetro (sabe-se de onde está vindo) e retorna alguma coisa).</li>
+                        <li>Sempre declarar a função antes de usá-la.</li>
+                        <li>Sempre usar funções PURAS (Recebe um parâmetro (sabe-se de onde está vindo) e retorna alguma coisa).</li>
                     </ul>
                 </p>
             </article>
 
-            <header><h2 class="posts_title">References</h2></header>
             <article class="post">
+                <header><h3>References</h3></header>
                 <p class="post_content">
                     <ul>
-                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions" 
-                        target="_blank">developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return"
-                        target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return</a></li>
-                    <li><a href="https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement"
-                        target="_blank">tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement</a></li>    
+                        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions" target="_blank">developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return</a></li>
+                        <li><a href="https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement" target="_blank">tc39.es/ecma262/multipage ecmascript-language-statements-and-declarations.html#sec-return-statement</a></li>    
                     </ul>
                 </p>
             </article>
@@ -266,7 +312,7 @@
         <footer class="footer">
             <div class="footer_list">
                 <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
             </div>
         </footer>
         <script>

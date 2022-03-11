@@ -13,26 +13,107 @@
         <section class="content">
             <header><h2 class="content_title">Estruturas de Repetição</h2></header>
             <article class="post">
-                <header><h3>For</h3></header>
-                <p class="post_content">
+                São estruturas condicionais que repetem uma instrução até atingir determinada condição.<br>
+                Também é possível realizar o aninhamento de estruturas de repetição.
 
-                </p>
+                <h4>Estrutura de repetição</h4>
+                    <ul>
+                        <li><b>while</b>: Verifica a condição antes da execução.</li>
+                            Sendo assim, executa as iterações somente e enquanto a condição for verdadeira.
+                            <pre><code>
+                                count = 1;
+                                while(count &lt;= 3){
+                                    console.log(count); // 1, 2, 3
+                                    count++;
+                                }
+                            </code></pre>
 
-                <header><h3>While</h3></header>
-                <p class="post_content">
+                        <li><b>do...while</b>: Verifica a condição depois da execução.</li>
+                            Sendo assim, sempre vai executar a primeira iteração, independente da condição.
+                            <pre><code>
+                                count = 1;
+                                do {
+                                    console.log(count); // 1
+                                } while (count == 0);
+                            </code></pre>
 
-                </p>
+                        <li><b>for</b>: Verifica a condição antes da execução.</li>
+                            Sendo assim, executa as iterações somente e enquanto a condição for verdadeira.
+                            <pre><code>
+                                for(let i = 0; i &lt;= 3; i++){
+                                    console.log(i); // 0, 1, 2, 3
+                                }
 
-                <header><h3>Do While</h3></header>
-                <p class="post_content">
+                                for(let index = 0; index &lt; array.length; index++){
+                                    console.log('index: ' + index + ', value: ' + array[index]);
+                                }
+                            </code></pre>
 
-                </p>
+                        <li><b>for...in</b></li>
+                            Iteração sobre todas as propriedades enumeráveis, por index (array) ou por properties (object).
+                            <pre><code>
+                                let array = [1,2,3,4,5];
+                                for(index in array){
+                                    console.log(index + ': ' + array[index]);
+                                } 
+
+                                let obj = {name: 'João', age: 20, gender: 'M'};
+                                for(prop in obj){
+                                    console.log("obj." + prop + " = " + obj[prop]);
+                                }
+                            </code></pre>
+
+                        <li><b>for...of</b></li>
+                            Iteração por value (array and object). 
+                            <pre><code>
+                                let array = [1,2,3,4,5];
+                                for(value of array){
+                                    console.log(value);
+                                }
+
+                                let obj = {name: 'João', age: 20, gender: 'M'};
+                                for(value of obj.name){
+                                    console.log(value);
+                                }
+                            </code></pre>
+                            <b>OBS:</b> Objetos não são iterables, portanto, for...of somente funciona passando a propriedade do objeto na condição. A iteração se dá em cima da propriedade.
+                    </ul>
+
+                    <b>OBS:</b> No for...in e for...of não é necessaŕio declarar o tipo da variável de iteração, pois trata-se de uma <b>variável de estado</b>. <u>Pesquisar mais...</u>
+
+                <h4>Operadores</h4>
+                    <ul>
+                        <li><b>continue</b>: Permite pular uma iteração</li>
+                            <pre><code>
+                                let arr = [1,2,3,4,5];
+                                for(let index = 0; index &lt; arr.length; index++){
+                                    if(arr[index] % 2 == 0){
+                                        continue; // Pular (não imprimir) pares
+                                    }
+                                    console.log('Index: ' + index + ', Value: ' + arr[index]);
+                                }  
+                            </code></pre>
+
+                        <li><b>break</b>: Permite parar uma iteração</li>
+                            <pre><code>
+                                count = 1;
+                                while(true){
+                                    count ++;
+                                    console.log(count);
+                                    if(count == 4){
+                                        console.log(count + ': Interrompendo um loop infinito');
+                                        break;
+                                    }
+                                }
+                            </code></pre>
+                    </ul>
             </article>
 
-            <header><h2 class="posts_title">References</h2></header>
             <article class="post">
+                <header><h3>References</h3></header>
                 <p class="post_content">
-
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...in" target="_blank">for...in</a></li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a></li>
                 </p>
             </article>
         </section>
@@ -40,78 +121,8 @@
         <footer class="footer">
             <div class="footer_list">
                 <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
             </div>
         </footer> 
-        <script>
-            // Estrutura de repetição 
-                // while      (inicia a execução somente se a condição for verdadeira)
-                // do...while (inicia a execução independente da condição, o 1º Loop sempre é executado)
-                // for
-                // for...in
-                // for ...of
-            // Operadores (conseguem manipular as estruturas de repetição) 
-                // continue (permite pular uma iteração)
-                // break    (permite parar uma iteração)
-
-            let tabuada = 5;
-            let count;
-            // while  (cont++ depois do print)
-            count = 1;
-            while(count <= 3){
-                console.log(count); // 1, 2, 3
-                count++;
-            }
-            // while  (cont++ antes do print)
-            count = 1;
-            while(count <= 3){
-                count++;
-                console.log(count); // 2, 3, 4
-            }       
-            // do while 
-            count = 1;
-            do {
-                console.log('Executando o 1º Loop de um "do while" com a condição falsa!');
-            } while (count == 0);
-
-            // for
-            tabuada = 3;
-            for(count = 1; count <= 10; count++){
-                console.log(tabuada + ' X ' + count + ' = ' + (count * tabuada));
-            }
-            let arrayFor = ['one','two','three'];
-            arrayFor.foo = 'hello';
-            for(let index = 0; index < arrayFor.length; index++){
-                console.log('Index: ' + index + ', Value: ' + arrayFor[index]);
-            }
-            // for...in
-            console.log('for...in');
-            for(let item in arrayFor){
-                console.log(item);//index
-            } 
-            // for...of
-            console.log('for...of');
-            for(let item of arrayFor){
-                console.log(item);//value
-            }
-            // Operador break (para parar a iteração)
-            count = 1;
-            while(true){
-                count ++;
-                if(count == 6){
-                    console.log(count + ' Interrompendo a iteração iniciada em 1 e condição == 6 em um loop infinito<br/>');
-                    break;
-                }
-            }
-            // Operador continue (pula uma iteração)
-            console.log('Pulando os values pares do array [1,2,3,4,5]')
-            let arr = [1,2,3,4,5];
-            for(let index = 0; index < arr.length; index++){
-                if(arr[index] % 2 == 0){
-                    continue; // Pular (não imprimir) os numeros pares
-                }
-                console.log('Index: ' + index + ', Valor: ' + arr[index]);
-            }            
-        </script>
     </body>
 </html>

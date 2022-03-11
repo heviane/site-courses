@@ -15,8 +15,10 @@
             <article class="post">
                 <header><h3>Introdução</h3></header>
                 <p class="post_content">
-                    De forma simples, são dados que possuem <b>propriedades</b> e <b>valores</b> que definem suas caracteristicas.<br>
+                    <b>Objetos</b> são dados que possuem <b>propriedades</b> e <b>valores</b> que definem suas caracteristicas.<br>
                     É uma lista nomeada, que contém <b>propriedades</b> e <b>métodos</b>.<br>
+                    Declaração entre <b>{}</b>, e os itens separador virgula.<br>
+                    Cada item da lista pode ser de um tipo de dado diferente.<br>
                     Podem ser atribuídos à variáveis.<br>
 
                     <h4>Propriedades</h4>
@@ -35,6 +37,17 @@
                                 sum: function sum(a, b){ return a + b}
                             }
                         </code></pre>
+
+                    <h4>Desestruturação de objetos</h4>
+                        Atribuir as propriedades dos objetos à variáveis para facilitar a leitura e manipulação dos dados.
+                        <pre><code>
+                            var name = obj.name;
+                            var lastName = obj.lastName;
+                            var age = obj.age;
+
+                            var {name, lastName, age} = obj;
+                        </code></pre>
+
                 </p>
 
                 <header><h3>Enhanced object Literals</h3></header>
@@ -87,18 +100,12 @@
                 </p>
             </article>
 
-            <header><h2 class="posts_title">References</h2></header>
-            <article class="post">
-                <p class="post_content">
-
-                </p>
-            </article>
         </section>
         <!--Página-Rodapé-->
         <footer class="footer">
             <div class="footer_list">
                 <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
             </div>
         </footer>
     </body>

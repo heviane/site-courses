@@ -13,86 +13,88 @@
         <section class="content">
             <header><h2 class="content_title">Estruturas Condicionais</h2></header>
             <article class="post">
-                <header><h3>if, else e else if</h3></header>
-                <p class="post_content">
-                    <pre><code>
-                        let d = new Date();
-                        let hora = d.getHours();
-                        if(hora &lt; 12){
-                            console.log('Bom dia!');
-                        }else if (hora &lt; 18){
-                            console.log('Boa tarde!');
-                        }else{
-                            console.log('Boa noite!');
-                        }
-                        if (hora == 12 || hora == 18){
-                            console.log('É Hora do Rush');
-                        } 
-                    </code></pre>
-                </p>
+                São instruções que realizam determinada tarefa a partir de condições e decisões.<br>
+                Também é possível realizar o aninhamento de estruturas condicionais.
 
-                <header><h3>if</h3></header>
-                <p class="post_content">
+                <h4>if</h4>
+                    Neste exemplo, temos vários IFs independentes, e assim, todos que forem verdadeiros serão executados.
                     <pre><code>
                         let array = [1,2,3,4,5];
                         array.forEach(function(item){
                             if(item % 2 == 0){
                                 console.log(item + ' é divisível por 2');
-                            } 
-                            if (item % 3 == 0){
-                                console.log(item + ' é divisível por 3');
-                            } 
-                            if (item % 4 == 0){
+                            }if (item % 4 == 0){
                                 console.log(item + ' é divisível por 4');
                             } 
                         });
                     </code></pre>
-                </p>
 
-                <header><h3>if, else if</h3></header>
-                <p class="post_content">
+                <h4>if...else</h4>
                     <pre><code>
-                        let array = [1,2,3,4,5];
-                        array.forEach(item => {
-                            if(item % 2 == 0){
-                                console.log(item + ' é divisível por 2');
-                            } else if (item % 3 == 0){
-                                console.log(item + ' é divisível por 3');
-                            } else if (item % 4 == 0){
-                                console.log(item + ' é divisível por 4');
-                            } 
-                        });
-                    </code></pre>
-                </p>
+                        let d = new Date();
+                        let hora = d.getHours();
 
-                <header><h3>Switch</h3></header>
-                <p class="post_content">
-                    <pre><code>
-                        let fruit = 'uva';
-                        switch(fruit){
-                            case 'banana':
-                                console.log(fruit + ' selecionada. Banana custa R$ 1,00');
-                                break;
-                            case 'manga': 
-                            case 'uva':   
-                            case 'maça':
-                                console.log(fruit + ' selecionada. Maçã custa R$ 2,00');
-                                break;
-                            case 'laranja':
-                                console.log(fruit + ' selecionada. Laranja custa R$ 3,00');
-                                break; 
-                            default:
-                                console.log('Fruta ('+ fruit +') não reconhecida!');
-                                break;
+                        // IF 
+                        if(hora &lt; 12){
+                            console.log('Bom dia!');
+
+                        // ELSE
+                        }else{
+                            console.log('Boa tarde!');
                         }
                     </code></pre>
-                </p>
+
+                <h4>if...else if...else</h4>
+                    <pre><code>
+                        let d = new Date();
+                        let hora = d.getHours();
+
+                        // IF 
+                        if(hora &lt; 12){
+                            console.log('Bom dia!');
+
+                        // ELSE IF
+                        }else if (hora &lt; 18){
+                            console.log('Boa tarde!');
+
+                        // ELSE
+                        }else{
+                            console.log('Boa noite!');
+                        }
+                    </code></pre>
+
+                <h4>if Ternário</h4> 
+                    Se a condição for verdadeira, executa 1a parte <b>?</b> do código, se não, executa 2a parte <b>:</b>.
+                    <pre><code>
+                        let d = new Date();
+                        let hour = d.getHours();
+                        let message = (hour &lt; 12) ? 'Good Afternoon!' : 'Good Morning!';
+                        console.log(message);
+                    </code></pre>
+
+                <h4>Switch</h4>
+                    Executa todas as condições que forem verdadeiras, se nenhuma, executa o default.<br>
+                    Ao encontrar o operador <b>break</b> a execução é interrompida.
+                    <pre><code>
+                        let num = 2;
+                        switch (num) {
+                            case  1:
+                                console.log(`case 1: ${num}`);
+                                break;
+                            case 2:
+                                console.log(`case 2: ${num}`);
+                            case 3:
+                                console.log(`case 3: ${num}`);
+                            default:
+                                console.log(`Default ${num}`);
+                        }
+                    </code></pre>                    
             </article>
 
-            <header><h2 class="posts_title">References</h2></header>
             <article class="post">
+                <header><h3>References</h3></header>
                 <p class="post_content">
-
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch" target="_blank">switch</a></li>
                 </p>
             </article>
         </section>
@@ -100,71 +102,12 @@
         <footer class="footer">
             <div class="footer_list">
                 <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
             </div>
         </footer> 
         <script>
-            // ----- Estrutura condicional: if, else e else if 
-            console.log('Exemplo if, else')
-            let d = new Date();
-            let hora = d.getHours();
-            if(hora < 12){
-                console.log('Bom dia!');
-            }else if (hora < 18){
-                console.log('Boa tarde!');
-            }else{
-                console.log('Boa noite!');
-            }
-            if (hora == 12 || hora == 18){
-                console.log('É Hora do Rush');
-            }       
-            // Exemplo com Array
-            let array = [1,2,3,4,5];
-            console.log('Exemplo somente if')
-            array.forEach(function(item){// exemplo com função regular
-                if(item % 2 == 0){
-                    console.log(item + ' é divisível por 2');
-                }if (item % 3 == 0){
-                    console.log(item + ' é divisível por 3');
-                }if (item % 4 == 0){
-                    console.log(item + ' é divisível por 4');
-                } 
-                /* ----- Return
-                    2 é divisível por 2
-                    3 é divisível por 3
-                    4 é divisível por 2
-                    4 é divisível por 4
-                */
-            });
-            console.log('Exemplo com else if')
-            array.forEach(item => {// exemplo com função arrow
-                if(item % 2 == 0){
-                    console.log(item + ' é divisível por 2');
-                }else if (item % 3 == 0){
-                    console.log(item + ' é divisível por 3');
-                }else if (item % 4 == 0){
-                    console.log(item + ' é divisível por 4');
-                } 
-                /* ----- Return
-                    2 é divisível por 2
-                    3 é divisível por 3
-                    4 é divisível por 2                   
-                */
-            });
-            // ----- Estrutura condicional: switch
-            /*  
-                switch(valor){
-                    case valor1:
-                        // Executa quando o valor for igual a valor1
-                        break;
-                    case valor2:
-                        // Executa quando o valor for igual a valor2
-                        break;
-                    default:
-                        // Executa quando não for nenhum dos casos anteriores
-                        break;
-                }
-            */
+                 
+
             let fruit = 'uva';
             switch(fruit){
                 case 'banana':
@@ -182,7 +125,7 @@
                     console.log('Fruta ('+ fruit +') não reconhecida!');
                     break;
             }
-            /* TUDO (case e default) q não tiver break é executado apartir do item q caiu na condição até encontrar próximo break.
+            /* 
                 Exemplo com "uva" e todos breaks comentados:
                 - banana e manga não executam
                 - uva, maça e laranja e default executam
