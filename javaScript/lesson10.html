@@ -14,16 +14,25 @@
             <header><h2 class="posts_title">Array</h2></header>
             <article class="post">
                 <p class="post_content">
-                    Array é uma lista numerada (indexada)<br>
                     Array também é um <b>objeto</b><br>
+                    Array é uma lista numerada (indexada), portanto, os itens da lista somente podem ser acessados através de seus indices (posições).<br>
                     Declaração entre [] ou (), itens separador virgula<br>
-                </p>
-            </article>
+                    Cada item da lista pode ser de um tipo de dado diferente.
+                    <pre><code>
+                        let arr = ['test', 123, true, {}, [], null, undefined];
+                    </code></pre>
 
-            <header><h2 class="posts_title">References</h2></header>
-            <article class="post">
-                <p class="post_content">
-
+                    <h4>Métodos para manipulação do array</h4>
+                    <ul>
+                        <li><b>forEach()</b>: itera</li>
+                        <li><b>push()</b>: add item no final</li>
+                        <li><b>pop()</b>: remove item no final</li>
+                        <li><b>shift()</b>: add item no inicio</li>
+                        <li><b>unshift()</b>: remove item no inicio</li>
+                        <li><b>indexOf()</b>: retorna o indice de um valor</li>
+                        <li><b>splice()</b>: remove ou substitui um item pelo indice</li>
+                        <li><b>slice()</b>: retorna uma parte de um array existente</li>
+                    </ul>
                 </p>
             </article>
         </section>
@@ -31,7 +40,7 @@
         <footer class="footer">
             <div class="footer_list">
                 <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
             </div>
         </footer>
         <script>
@@ -179,28 +188,34 @@
             
             // ------------------------ Iterações ------------------------
             const arr = [1,2,3,4];
-            //------- forEach = percorre o array e executa uma função para cada item = IMUTÁVEL (Não altera o array original)
-            arr.forEach( (value, index, arr) => { console.log(`${index}: ${value}`, arr); }); // Imprimir tudo
-            arr.forEach( (value, index, arr) => { console.log(arr); });                       // Imprimir array
-            arr.forEach( (value, index) => { console.log(`${index}: ${value}`); });           // Imprimir value, index
-            arr.forEach( (value, index) => { console.log('Index: '+index); });                // Imprimir index
-            arr.forEach( (value) => { console.log('Value: '+value); });                       // Imprimir value 
-                // parm1 = value = Valor do item
-                // parm2 = index = Index do item
-                // parm3 = arr   = Array original
-                // **** CUIDADO ao omitir parametros ****
-                //...outro exemplo...
-                arr.forEach(item => console.log(item)); 
-                arr.forEach((item, index) => console.log(item, index)); 
-                arr.forEach((item, index, arr) => console.log(item, index, arr));   
-                arr.forEach((item, index, arr) => console.log(arr)); 
+            //------- forEach = percorre o array e executa uma função para cada item 
+            // IMUTÁVEL (Não altera o array original)
+            arr.forEach(function(value, index){
+                console.log(`${index}: ${value}`);
+            });
+            arr.forEach( (value, index) => { 
+                console.log(`${index}: ${value}`); 
+            }); 
+            arr.forEach( (value, index, arr) => { 
+                console.log(`${index}: ${value}`, arr); 
+            }); 
+
+            arr.forEach( (value, index, arr) => { console.log(arr); });                       
+            arr.forEach( (value, index) => { console.log('Index: '+index); });
+            arr.forEach( (value) => { console.log('Value: '+value); });   
+            
+            // parm1 = value = Valor do item
+            // parm2 = index = Index do item
+            // parm3 = arr   = Array original
+            // **** CUIDADO ao omitir parametros **** 
+
             //------- for...in = Permite percorrer todos os itens do array
             for(let item in arr){
                 console.log(item); //...Retorna o index do array
             }
             //------- for...of = Permite percorrer todos os itens do array
             for(let item of arr){
-                console.log(item); //...Retorna o value do array...Não retorna as propriedades do array
+                console.log(item); //...Retorna o value do array...Não retorna as propriedades
             }                
             //------- map = RETORNA novo array com os resultados da função = IMUTÁVEL
             arr.map(value => value * 2); 

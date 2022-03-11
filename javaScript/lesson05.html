@@ -11,14 +11,48 @@
 		<header class="header"><h1>JavaScript</h1></header>
 		<!--Página-Conteúdo-->
 		<section class="content">
-            <header><h2 class="content_title">Variáveis, Escopo, Tipos de Dados</h2></header>
+            <header><h2 class="content_title">
+                Tipagem, Tipos de Dados, Tipos de Variáveis e Escopo
+            </h2></header>
 			<article class="post">
+                <header><h3>Tipagem</h3></header>
+                <p class="post_content">
+                    A <b>tipagem</b> funciona como uma regra para o uso de dados, quanto mais forte for a tipagem, mais obrigatório é a declaração do tipo de dado.<br>
+                    No javascript a tipagem é <b>fraca</b> e a declaração dos tipos de dados acontece de forma <b>dinâmica</b>. 
+                    <ul>
+                        <li><b>Tipagem fraca</b></li>
+                            Permite realizar operações com tipos diferentes sem dar erro, pois resolve por ele mesmo.
+                        <li><b>Tipagem dinâmica</b></li>
+                            Não há necessidade de explicitar o tipo no momento da declaração.<br>
+                            <b>Inferência de tipo:</b> O compilador, em tempo de execução, atribui automaticamente de acordo com o valor atribuído.
+                    </ul>                    
+                </p>
+
+                <header><h3>Tipos de Dados Primitivos e Referência</h3></header>
+                <p class="post_content">
+                    <h4>Tipo de dado primitivo</h4>
+                        <li><b>string</b>: Representa texto</li>
+                        Não confundir com o tipo <b>String</b> que é um objeto do JavaScript, ou seja, um tipo de dado de referência.
+                        <li><b>number</b>: Representa todos os números (positivos, negativos, com ou sem casas decimais)</li>
+                        <li><b>boolean</b>: Representa true ou false</li>
+                        <li><b>null</b></li>
+                        <li><b>undefinied</b>: Variável declarada, mas não atribuida (sem um valor definido)</li>
+                        <li><a href="lesson09-3.html"><b>symbol</b></a>: 
+                            As instâncias são únicas e imutáveis (ES6)</li> 
+                    <h4>Tipo de dado referência</h4>
+                        <li><b>Object</b>: Lista nomeada. É um Lietral Object</li> 
+                        <li><b>Array</b>: Lista numerada. É um Iterable Object</li>
+                        <li><b>Function</b>: Permite ser chamada (Called). Também é um objeto</li>
+                </p>
+
                 <header><h3>Tipos de Variáveis e seus escopos</h3></header>
                 <p class="post_content">
                     <ul>
                         <li><b>var</b></li> Escopo global e local (de função). Não entende escopo de bloco.<br>
+                        Quando a variável é declarada fora de qualquer bloco, sua visibilidade fica disponível em todo o código.<br>
                         Valor inicial é opcional, o default é <b>undefined</b>.
-                        Mutável.
+                        Mutável.<br>
+                        No browser o escopo global é representado por "window".
 
                         <li><b>let</b></li> Escopo de bloco (ES6).<br>
                         Valor inicial é opcional, o default é <b>undefined</b>.
@@ -34,6 +68,14 @@
                                 Objetos possuem um tipo de configuração que permite bloquear este tipo de permissão.
                             </ul>
                             <b>BOA PRÁTICA:</b> Escrever constantes em letras maiúsculas.
+                    </ul>
+
+                    <h4>Como declarar variáveis</h4>
+                    <ul>
+                        <li>Não use espaços em branco, use o padrão <b>camelCase</b></li>
+                        <li>Iniciar com letra, underscore (_) ou cifrão ($)</li>
+                        <li>Não usar palavras reservadas</li>
+                        <li>Sempre declarar no topo do código, no inicio do escopo</li>
                     </ul>
                 </p>
 
@@ -67,33 +109,6 @@
                     </ul>
                 </p>
 
-                <header><h3>Tipagem Fraca e Dinâmica</h3></header>
-                <p class="post_content">
-                    <ul>
-                        <li><b>Tipagem fraca</b></li>
-                            Permite realizar operações com tipos diferentes sem dar erro, pois resolve por ele mesmo.
-                        <li><b>Tipagem dinâmica</b></li>
-                            Não há necessidade de explicitar o tipo no momento da declaração.<br>
-                            <b>Inferência de tipo:</b> O compilador, em tempo de execução, atribui automaticamente de acordo com o valor atribuído.
-                    </ul>                    
-                </p>
-
-                <header><h3>Tipos de Dados Primitivos e Referência</h3></header>
-                <p class="post_content">
-                    <h4>Tipo de dado primitivo</h4>
-                        <li><b>string</b>: Representa texto</li>
-                        Não confundir com o tipo <b>String</b> que é um objeto do JavaScript, ou seja, um tipo de dado de referência.
-                        <li><b>number</b>: Representa todos os números (positivos, negativos, com ou sem casas decimais)</li>
-                        <li><b>boolean</b>: Representa true ou false</li>
-                        <li><b>null</b></li>
-                        <li><b>undefinied</b>: Variável declarada, mas não atribuida (sem um valor definido)</li>
-                        <li><a href="lesson09-3.html"><b>symbol</b></a>: 
-                            As instâncias são únicas e imutáveis (ES6)</li> 
-                    <h4>Tipo de dado referência</h4>
-                        <li><b>Object</b>: Lista nomeada. É um Lietral Object</li> 
-                        <li><b>Array</b>: Lista numerada. É um Iterable Object</li>
-                        <li><b>Function</b>: Permite ser chamada (Called). Também é um objeto</li>
-                </p>
 			</article>
 		</section>
         <footer class="footer">

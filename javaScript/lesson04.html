@@ -44,7 +44,8 @@
             <article class="post">
                 <header><h3>Dados no Console</h3></header>
                 <p class="post_content">
-                    Mensagens exibidas no concole do <b>Developer Tools</b>. É uma das formas de debuggar a execução do código.
+                    É possível utilizar o console no navegador nativamente (<b>Developer Tools</b>) ou no terminal instalando o Node.js.<br>
+                    É uma das formas de debuggar a execução do código.
                     <pre><code>
                         console.log('Logging...');// Retorna texto BRANCO sem ícone.
                         console.warn('warm...');  // Retorna texto AMARELO com ícone de alerta.
@@ -73,7 +74,7 @@
                         <pre><code>
                             console.time('Begin Time'); // Inicia cronômetro.
                                 let x = 0;
-                                for(let i = 0; i < 20; i++){
+                                for(let i = 0; i &lt; 20; i++){
                                     x++;   
                                 }
                                 console.log('X: ' + x);
