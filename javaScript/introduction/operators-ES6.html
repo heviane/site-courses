@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Operators ES6</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <article class="post"> 
+                <header><h3>Rest Operator</h3></header>
+                <p class="post_content">
+                    Transforma argumentos da função em array.<br>
+                    O que era um elemento independente se torna parte de um array.<br>
+                    Permite receber quantidade indefinida de argumentos, independente da definição da função.
+                   
+                    <h4>Receber argumentos em uma função</h4>
+
+                        <h5>Exemplo ES5</h5>
+                            Usa-se o objeto "arguments" para receber os argumentos.<br>
+                            Inexistente em Arrow Functions.
+                            <pre><code>
+                                function fn(a, b, c, d){
+                                    console.log(arguments);
+                                    for(var i=0; i &lt; arguments.length; i++){
+                                        console.log(arguments[i])
+                                    }
+                                }
+                            </code></pre>
+
+                        <h5>Exemplo ES6</h5>
+                            <pre><code>
+                                // Regular Function
+                                    function sum(...args){
+                                        console.log(args);
+                                        return args.reduce((total, nextValue) => total + nextValue, 0);
+                                    }
+
+                                // Arrow Function
+                                    const sum = (...args) => {
+                                        console.log(args); 
+                                        return args.reduce((total, nextValue) => total + nextValue, 0);
+                                    }
+
+                                // Pode ser usado para pegar argumentos restantes
+                                    function sum(a, b, ...args){
+                                        console.log(a, b, args);
+                                        return a + b + args.reduce((total, nextValue) => total + nextValue, 0);
+                                    } 
+                            </code></pre>
+                </p>
+            
+                <header><h3>Spread Operator</h3></header>
+                <p class="post_content">
+                    Transforma objetos e arrays em argumentos.<br>
+                    O que era parte de um array/object se torna um elemento independente.<br>
+                    Permite quebrar os itens do array e repassar para algum lugar.
+
+                    <h4>Usabilidade</h4>
+                        <ul>
+                            <li>Functions Parameters (Enviando argumentos: Objetos Iterables (Array, String))</li>
+                            <li>Construção de NOVAS estruturas (Objetos Iterables e Literais)</li>
+                        </ul>
+
+                    <h4>Functions Parameters</h4>
+                        <h5>Arrays (Object Iterable)</h5>
+                            <pre><code>
+                                var arr = [1, 2, 3];                
+                                function fn(x, y, z){ 
+                                    console.log(x, y, z) 
+                                };
+                                fn(...arr);
+                            </code></pre>
+
+                        <h5>String (Object Iterable)</h5>
+                            <pre><code>
+                                const str = 'Digital Innovation One';
+                                function logArgs(...args){
+                                    console.log(args);
+                                }
+                                logArgs(...str);
+                            </code></pre>
+
+                    <h4>Construção de NOVAS estruturas</h4>
+                        <h5>Arrays (Iterable Objects)</h5>
+                            <pre><code>
+                                var arr1 = [1, 2, 3];
+                                var arr2 = [4, 5, 6];
+
+                                // ES5
+                                    var arr3 = [4, 5, 6].concat(arr1); // [4, 5, 6, 1, 2, 3]
+                                    var arr3 = arr1.concat(arr2);      // [1, 2, 3, 4, 5, 6]
+                                // ES6
+                                    var arr3 = [4, 5, 6, ...arr1]; // [4, 5, 6,  1, 2, 3]
+                                    var arr3 = [...arr1, 4, 5, 6]; // [1, 2, 3, 4, 5, 6]                 
+                                    var arr3 = [...arr1, ...arr2]; // [1, 2, 3, 4, 5, 6]
+                                    var arr3 = ['x',...arr1,'y'];  // ['x', 1, 2, 3, 'y']
+                                    var arr3 = [...arr1,...arr2,...arr3] 
+                                    var arr3 = [...arr1]; // [1, 2, 3]  
+                            </code></pre>
+
+                        <h5>Objetos (literal Objects)</h5>
+                            <pre><code>
+                                const obj1 = { test1: 123 };
+
+                                // Construção de NOVOS objetos (NÃO altera objetos já definidos)
+                                const obj2 = { ...obj1, test2: 456 };     // { test1: 123, test2: 456 }
+                                const obj3 = { ...obj1, test2: 'teste' }; // { test1: 789, test2: 'teste' }
+
+                                // Objetos literables não podem ser usados para construir objetos iterables.
+                                var arr = [...obj1]; // Uncaught TypeError: obj1 is not iterable
+
+                                // A ORDEM importa (Propriedades com mesmo nome) = Prevalece o último
+                                const obj4 = {...obj1, test1: 456}; // { test1: 456 } 
+                                const obj5 = {test1: 456, ...obj1}; // { test1: 123 } 
+                                const obj6 = {...obj4, ...obj5};    // { test1: 123 } 
+                            </code></pre>
+                </p>
+           
+                <header><h3>Rest Operator vs Spread Operator</h3></header>
+                <p class="post_content">
+                    <b>Rest</b> transforma argumentos em array. Usa quando está declarando a função.<br>
+                    <b>Spread</b> transforma array em argumentos. Usa quando está chamando a função.<br>
+                    Ambos possuem a mesma sintaxe: <code>...ope</code>
+
+                    <h4>Boa Prática</h4>
+                    Tipos de referência NUNCA devem ser copiados diretamente, porque a referência também é copiada, assim sempre que um for alterado, será replicado para o outro também.<br>
+                    Sendo assim, é RECOMENDADO sempre criar NOVAS estruturas, e o <b>Spread</b> é uma das boas formas de fazer isso em um formato não verbosa, mais simples e legível.
+                </p>
+
+                <header><h3>Destructuring Assigment ou Destructuring Object</h3></header>
+                <p class="post_content">
+                    Atribuição via desestruturação de um objeto ou array.<br>
+                    Atribuição de uma estrutura composta (object/array) para estruturas simples (variáveis).<br>
+                    Expressão que possibilita extrair itens de arrays/objetos em variáveis distintas.<br>
+                    Usa-se chaves <b>{}</b> para filtrar apenas os itens desejados.
+
+                    <h4>Usabilidade</h4>
+                        <ul>
+                            <li>Declaration of variables</li>
+                            <li>Functions Arguments</li>
+                        </ul>
+
+                        <h5>Exemplo com objeto</h5>
+                            Lista nomeada, o que importa são os nomes, e não a ordenação.
+                            <pre><code>
+                                const obj = { name: 'Heviane', lastName: 'Bastos', age: 39 };
+
+                                const { age, name } = obj;
+
+                                function fn( {name} ){ 
+                                    console.log(name); 
+                                };
+                            </code></pre>
+
+                            Outro exemplo, com mais de um nível.
+                            <pre><code>
+                                const user = {
+                                    id: 1,
+                                    age: 39,
+                                    fullName: {
+                                        firstName: 'Heviane',
+                                        lastName: 'Bastos'
+                                    }
+                                }
+
+                                const { fullName: { firstName, lastName } } = user;
+
+                                function fn( {fullName: { firstName, lastName } } ){ 
+                                    console.log(firstName, lastName); 
+                                };
+                            </code></pre>
+
+                        <h5>Exemplo com array</h5>
+                            Lista indexada, o que importa é a ordenação, e não os nomes.
+                            <pre><code>
+                                const arr = [ 'Heviane', 'Bastos', 39];
+                                const [ name , , age ] = arr;
+                            </code></pre>
+                </p>
+            </article>
+
+            <article class="post"> 
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters" 
+                        target="_blank">Reference/Functions/rest_parameters</a></li>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax" 
+                        target="_blank">Reference/Operators/Spread_syntax</a></li>
+                    <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" 
+                        target="_blank">Reference/Operators/Destructuring_assignment</a></li>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

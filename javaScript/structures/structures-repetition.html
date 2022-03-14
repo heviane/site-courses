@@ -19,7 +19,7 @@
                 <h4>Estrutura de repetição</h4>
                     <ul>
                         <li><b>while</b>: Verifica a condição antes da execução.</li>
-                            Sendo assim, executa as iterações somente e enquanto a condição for verdadeira.
+                            Executa as instruções enquanto a condição for verdadeira, até que a condição se torne falsa.
                             <pre><code>
                                 count = 1;
                                 while(count &lt;= 3){
@@ -29,7 +29,7 @@
                             </code></pre>
 
                         <li><b>do...while</b>: Verifica a condição depois da execução.</li>
-                            Sendo assim, sempre vai executar a primeira iteração, independente da condição.
+                            Executa as instruções enquanto a condição for verdadeira, até que a condição se torne falsa, porém, sempre vai executar a primeira iteração (pelo menos uma vez), independente da condição.
                             <pre><code>
                                 count = 1;
                                 do {
@@ -38,24 +38,31 @@
                             </code></pre>
 
                         <li><b>for</b>: Verifica a condição antes da execução.</li>
+                            Loop dentro de elementos iteráveis (array, string).<br>
                             Sendo assim, executa as iterações somente e enquanto a condição for verdadeira.
                             <pre><code>
-                                for(let i = 0; i &lt;= 3; i++){
-                                    console.log(i); // 0, 1, 2, 3
-                                }
-
                                 for(let index = 0; index &lt; array.length; index++){
                                     console.log('index: ' + index + ', value: ' + array[index]);
+                                }
+
+                                for(let i = 0; i &lt;= 3; i++){
+                                    console.log(i); // 0, 1, 2, 3
                                 }
                             </code></pre>
 
                         <li><b>for...in</b></li>
+                            Loop entre propriedades enumeráveis de um objeto.<br>
                             Iteração sobre todas as propriedades enumeráveis, por index (array) ou por properties (object).
                             <pre><code>
                                 let array = [1,2,3,4,5];
                                 for(index in array){
                                     console.log(index + ': ' + array[index]);
                                 } 
+
+                                let word = 'Hello World';
+                                for(letter in word){
+                                    console.log(letter);
+                                }
 
                                 let obj = {name: 'João', age: 20, gender: 'M'};
                                 for(prop in obj){
@@ -64,6 +71,7 @@
                             </code></pre>
 
                         <li><b>for...of</b></li>
+                            Loop entre estruturas iteráveis (array, string).<br>
                             Iteração por value (array and object). 
                             <pre><code>
                                 let array = [1,2,3,4,5];
@@ -71,9 +79,9 @@
                                     console.log(value);
                                 }
 
-                                let obj = {name: 'João', age: 20, gender: 'M'};
-                                for(value of obj.name){
-                                    console.log(value);
+                                let word = 'Hello World';
+                                for(letter of word){
+                                    console.log(letter);
                                 }
                             </code></pre>
                             <b>OBS:</b> Objetos não são iterables, portanto, for...of somente funciona passando a propriedade do objeto na condição. A iteração se dá em cima da propriedade.

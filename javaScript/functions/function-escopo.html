@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../../assets/css/style.css">
+        <script src="scriptContext.js"></script>	
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Function - Escopo</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>Escopo e Contexto das Funções</h3></header>
+                <p class="post_content">
+                    <h4>Regular Functions</h4>
+                        <ul>
+                            <li>Escopo Global (Contexto de execução)</li>
+                            <li>Possui a palavra reservada <b>this</b>: SIM.</li>
+                            <li>Faz Hoisting: SIM.</li>
+                            <li>Palavra reservada "this": SIM</li>
+                            <li>Parâmetros com nome duplicado: SIM</li>
+                                SIM é permitido, mas não no modo ESTRITO.   
+                                <pre><code>
+                                    // Irá imprimir o último parametro (valor)
+                                    function fn(x, x){ console.log(x) } 
+
+                                    // Modo estrito
+                                    'use strict';
+                                    function fn(x, x){ console.log(x) }  
+                                    // Duplicate parameter name not allowed in this context
+                                </code></pre>  
+                            <b>OBS:</b> Método apply() e bind() podem ser usados para fixar o contexto de criação passando o this como parametro, independente da execução.
+                        </ul>              
+
+                    <h4>Arrow Functions</h4>
+                        <ul>
+                            <li>Escopo de Função (Contexto de criação)</li>
+                            <li>Possui a palavra reservada <b>this</b>: NÃO.</li>
+                            <li>Faz Hoisting: NÃO.</li>
+                            <li>Contexto de Bloco (léxico, entre chaves {}), de criação</li>
+                            <li>Parâmetros com nome duplicado: NÃO</li>
+                                <pre><code>
+                                    let value = (x, x) => console.log(x + x); 
+                                    // Duplicate parameter name not allowed in this context
+                                </code></pre>
+                        </ul>
+
+                    <h5>Exemplo</h5>
+                        <pre><code>
+                            let eu = {
+                                name: "Heviane",
+                                thisInArrow: () => {
+                                    console.log('Arrow: ' + this.name);
+                                },
+                                thisInRegular(){
+                                    console.log('Regular: ' + this.name);
+                                }
+                            };
+
+                            eu.thisInArrow();   // NÃO funciona
+                            eu.thisInRegular(); // SIM funciona
+                        </code></pre>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

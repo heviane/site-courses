@@ -50,14 +50,15 @@ pre{
     max-width: 100%;
     width: 100%; 
 }
-pre code {
+/* pre code {
     white-space: pre;
-}
+} */
 code {
     background-color: #f4f4f4;
     font-family: monospace;
     margin: 0;
     padding: 0;
+    width: 100%; 
 }
 .important{
     font-weight: bold;

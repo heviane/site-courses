@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Default Function Arguments</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+			<article class="post">
+                <p class="post_content">
+                    Quando um argumento não é passado ao invocar uma função, o valor é <b>undefinied</b>.
+
+                    <h4>ES5 - Tratar e validar argumentos (Valores default)</h4>
+                        O tratamento e validações eram de responsabilidade do dev, cada um implementava sua prórpia forma.
+                        <h5>Solução 1</h5>
+                            <pre><code>
+                                function mult(a, b){ 
+                                    b = b || 1; 
+                                    return a * b; 
+                                }
+                            </code></pre>
+                            Definido valor default 1 caso b não seja passado
+                        <h5>Solução 2</h5>
+                            <pre><code>
+                                function mult(a, b){ 
+                                    b = typeof b === 'undefined' ? 1 : b; 
+                                    return a * b; 
+                                }
+                            </code></pre>
+                            Definido valor default 1 caso b não seja passado - Resolve zero
+                        <h5>Solução 3</h5>
+                            <pre><code>
+                                function mult(a, b){ 
+                                    if (typeof b === 'undefined'){ 
+                                        b = 1;
+                                    }
+                                    return a * b; 
+                                }
+                            </code></pre>
+                            Definido valor default 1 caso b não seja passado - Outra versão da Solução 2<br>
+                        <b class="text-red">O problema dessas soluções é que são verbosas.</b>
+
+                    <h4>ES6 - Tratar e validar argumentos (Valores default)</h4>
+                        Forma não verbosa de atribuir valor default ao argumento durante a passagem de parâmetros.
+                        <h5>Solução 1</h5>
+                            <pre><code>
+                                function mult(a, b = 1){ 
+                                    return a * b; 
+                                }
+                            </code></pre>
+                        <h5>Solução 2</h5>
+                            <pre><code>
+                                function mult(a, b = a){ 
+                                    return a * b; 
+                                }
+                            </code></pre>
+                            A ORDEM importa, não é permitido referenciar um argumento que vem depois, que ainda não foi definido.
+                        <h5>Solução 3</h5>
+                            <pre><code>
+                                function mult(a, b = a * 2){ 
+                                    return a * b; 
+                                }
+                            </code></pre>
+                        <h5>Solução 4</h5>
+                            <pre><code>
+                                function randomNumber(){ 
+                                    return Math.random() * 10; 
+                                }
+                                function mult(a, b = randomNumber()){
+                                    return a * b; 
+                                }
+                            </code></pre>
+                            randomNumber() é invocada toda vez q mult() é executada (Lazy Valuation) 
+                </p>
+			</article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

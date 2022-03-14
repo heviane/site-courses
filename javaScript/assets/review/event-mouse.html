@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>		
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+    </head>
+    <body>
+		<header class="header">
+            <h1>Integration of a Javascript code with an HTML page.</h1>
+        </header>
+		<section class="content">
+            <article class="content_item">
+                <header>
+                    <h3>Mouse Events</h3>
+                </header>
+                <p class="post_content">
+                    <ul>
+                        <li><b>onmouseover()</b>: Mouse sobre o elemento</li>
+                        <li><b>onmouseout()</b>: Mouse fora do element</li>
+                    </ul>
+                    <p id="onMouse" 
+                        onmouseover="over()" 
+                        onmouseout="out()">
+                        Passe o mouse aqui
+                    </p> 
+                </p>              
+            </article>
+		</section>
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://github.com/heviane" target="_blank">github</a>	
+            </div>
+        </footer>
+        <script>
+            function over(){
+                document.getElementById("onMouse").innerText = "Mouse over element!";
+            }
+            function out(){
+                document.getElementById("onMouse").innerText = "Mouse out of element!";
+            } 
+        </script>
+    </body>
+</html>

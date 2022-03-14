@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>		
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+    </head>
+    <body>
+		<header class="header">
+            <h1>Integration of a Javascript code with an HTML page.</h1>
+        </header>
+		<section class="content">
+            <article class="content_item">
+                <header>
+                    <h3>Evento onchange()</h3>
+                </header>
+                <p class="post_content">
+                    <!-- O this passa o próprio elemento por parâmetro -->
+                    <select onchange="change(this)"> 
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="4">Four</option>
+                        <option value="5">Five</option>
+                    </select>
+                    <p id="result">Selection result here!</p>   
+                </p>
+            </article>
+		</section>
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://github.com/heviane" target="_blank">github</a>	
+            </div>
+        </footer>
+        <script>
+             function change(elemento) {
+                //...testar template string...???
+                let value = 'Option Valor: <ur>'+elemento.value+'</ur>';
+                document.getElementById("result").innerHTML = value;
+            }  
+        </script>
+    </body>
+</html>

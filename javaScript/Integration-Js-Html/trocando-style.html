@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>		
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+        <style>
+            #exampleId{
+                width: 200px;
+                height: 100px;
+                border: 1px solid black;
+            }
+            .Green{
+                background-color: green;
+                color: white;
+            }
+            .Yellow{
+                background-color: yellow;
+                color: black;
+            }
+            .Red{
+                background-color: red;
+                color: white;
+            }
+        </style>		
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+		<header class="header"><h1>Manipulando DOM</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+
+			<article class="content_item">
+                <header><h3>Exercise 1: Trocar a cor do texto</h3></header>
+                <p class="post_content">
+                    <div id="exampleId">
+                        DIV que deve ter a cor de fundo trocada!
+                    </div>
+                    <button onclick="green()">
+                        Green
+                    </button>
+                    <button onclick="yellow()">
+                        Yellow
+                    </button>
+                    <button onclick="red()">
+                        Red
+                    </button>
+                </p>
+            </article>
+
+            <article class="content_item">
+                <header><h3>Exercise 2: Trocar a cor do botão</h3></header>
+                <p class="post_content">
+                    <button onclick="trocar()" id="botao">
+                        Clique aqui para trocar a minha cor
+                    </button>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a>
+                <br>
+                <a href="https://github.com/heviane" target="_blank">github</a>	
+            </div>
+        </footer>
+        <script>
+            function green(){
+                document.querySelector('#exampleId').classList.remove('Yellow');
+                document.querySelector('#exampleId').classList.remove('Red');
+                document.querySelector('#exampleId').classList.add('Green');
+            }
+            function yellow(){
+                document.querySelector('#exampleId').classList.remove('Green');
+                document.querySelector('#exampleId').classList.remove('Red');    
+                document.querySelector('#exampleId').classList.add('Yellow');
+            }
+            function red(){
+                document.querySelector('#exampleId').classList.remove('Green');
+                document.querySelector('#exampleId').classList.remove('Yellow');    
+                document.querySelector('#exampleId').classList.add('Red');
+            }
+            function trocar(){
+                console.log(document.querySelector('#botao').classList.contains('Green'));
+                console.log(document.querySelector('#botao').classList.contains('Red'));
+                console.log(document.querySelector('#botao').classList.contains('Yellow'));
+
+                if(document.querySelector('#botao').classList.contains('Yellow')){
+                    document.querySelector('#botao').classList.remove('Red');
+                    document.querySelector('#botao').classList.remove('Yellow');
+                    document.querySelector('#botao').classList.add('Green');
+                }else if(document.querySelector('#botao').classList.contains('Green')){
+                    document.querySelector('#botao').classList.remove('Green');
+                    document.querySelector('#botao').classList.remove('Yellow');
+                    document.querySelector('#botao').classList.add('Red');
+                }else if(document.querySelector('#botao').classList.contains('Red')){
+                    document.querySelector('#botao').classList.remove('Green');
+                    document.querySelector('#botao').classList.remove('Red');
+                    document.querySelector('#botao').classList.add('Yellow');
+                }else{
+                    document.querySelector('#botao').classList.remove('Green');
+                    document.querySelector('#botao').classList.remove('Red');
+                    document.querySelector('#botao').classList.remove('Yellow');
+                    document.querySelector('#botao').classList.add('Green');//default
+                }
+            }
+        </script>
+    </body>
+</html>

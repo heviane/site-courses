@@ -8,22 +8,32 @@
     </head>
     <body>
         <!--Página-Cabeçalho-->
-        <header class="header"><h1>JavaScript</h1></header>
+        <header class="header"><h1>Array</h1></header>
         <!--Página-Conteúdo-->
         <section class="content">
-            <header><h2 class="posts_title">Array</h2></header>
+            <header><h2 class="posts_title"></h2></header>
             <article class="post">
                 <p class="post_content">
-                    Array também é um <b>objeto</b><br>
-                    Array é uma lista numerada (indexada), portanto, os itens da lista somente podem ser acessados através de seus indices (posições).<br>
-                    Declaração entre <b>[]</b> ou <b>()</b>, e os itens separador virgula<br>
+                    <b>Array</b> também é um <b>objeto</b>. É uma lista numerada (indexada), portanto, é um objeto <b>Iterable</b>.<br>
+                    Os itens do array somente podem ser acessados através de seus indices (index), que sempre iniciam em zero.<br>
+                    Devem ser declarados entre <b>[]</b> ou <b>()</b>, e os itens separados por virgula.<br>
                     Cada item da lista pode ser de um tipo de dado diferente.<br>
-                    Podem ser atribuídos à variáveis.<br>
+                    Podem ser atribuídos à variáveis.
                     <pre><code>
                         let arr = ['test', 123, true, {}, [], null, undefined];
+
+                        console.log(arr); // [ 'test', 123, true, {}, [], null, undefined ]
+
+                        console.log(arr[0]); // test
+                        console.log(arr[1]); // 123
+                        console.log(arr[2]); // true
+                        console.log(arr[3]); // {}
+                        console.log(arr[4]); // []
+                        console.log(arr[5]); // null
+                        console.log(arr[6]); // undefined
                     </code></pre>
 
-                    <h4>Métodos para manipulação do array</h4>
+                    <h4>Principais Métodos para Manipulação de Array</h4>
                         <ul>
                             <li><b>forEach()</b>: itera</li>
                             <li><b>push()</b>: add item no final</li>
@@ -248,7 +258,7 @@
             // Para cada item iterado executa a função map e depois executa a função flat
             arr.flatMap(value => [value * 2]);  // 1 colchete  = depth = 0 = Output: [2,4,6,8]
             arr.flatMap(value => [[value * 2]]);// 2 colchetes = depth = 1 = Output: [Array(1),Array(1),Array(1),Array(1)]
-                                                // Array dentro de Array   = Output: [[2],[4],[6],[8]]
+                    // Array dentro de Array   = Output: [[2],[4],[6],[8]]
                 
             //------- Keys = Retorna Array Iterator q contém as chaves (index) p cada item = IMUTÁVEL 
             const arrIterator = arr.keys();

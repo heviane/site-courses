@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <script src="scriptContext.js"></script>		
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Tipos de funções</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3></h3></header>
+                <p class="post_content">
+                    <h4>Funções Declarativas</h4>
+                        A nomeação é obrigatória.<br>
+                        Também conhecidas como <b>Regular Functions</b>.<br>
+                        A <b>sintaxe básica</b> é: <b>function fn(){}</b>
+                        <pre><code>
+                            function hello() {
+                                console.log("Hello World!");
+                            }
+                                
+                            function sum(a, b) {
+                                console.log(`${a} + ${b} = ${a + b}`);
+                            }
+                            
+                            function sub(a, b) {
+                                return a - b;
+                            }
+                        </code></pre>
+
+                    <h4>Expressões de Funções</h4>
+                        São funções que representam expressões.<br>
+                        A nomeação é opcional.<br>
+                        Quando não há nomeação, chamamos de <b>função anônima</b>.<br>
+                        Nunca são invocadas diretamente, sempre são atribuídas, porque uma variável pode armazenar uma função.
+                        <pre><code>
+                            var fn1 = function fnNomeada() {
+                                console.log('função nomeada');
+                            };
+                            
+                            var fn2 = function () {
+                                console.log('função anônima');
+                            };
+                        </code></pre>
+
+                    <h4><a href="./function-types-arrow.html">Arrow Functions</a> - Expressões de Funções de Sintaxe Curta</h4>
+
+                    <h4>Funções Anônimas</h4>
+                        Sempre serão expressões de funções.<br>
+                        Pode ser uma <b>Regular Function</b> ou <b>Arrow Function</b>.<br>
+                        Por serem expressões de funções, sempre serão atribuídas, nuncas invocadas diretamente.
+                        <pre><code>
+                            // Regular Function
+                            var fn = function () { console.log('Hello World'); };
+
+                            // Arrow Function
+                            var fn = () => console.log('Hello World');
+                        </code></pre>
+
+                    <h4>Funções Construtoras (Factoring Functions)</h4>
+                        São funções que geram objetos.<br>
+                        Sempre serão <b>Funções declarativas</b> ou <b>Funções Regulares Nomeadas</b>, porque precisa existir o <b>this</b>.<br>
+                        Por convenção, a primeira letra do nome deve ser maiúscula.
+                        <pre><code>
+                            function Car(){
+                                this.marca = 'Fiat';
+                                this.modelo = 'Uno';
+                            }
+                            console.log(new Car());  // Car {marca: 'Fiat', modelo: 'Uno'}
+                        
+                            function Dog(name, age){
+                                return {
+                                    name,
+                                    age
+                                }
+                            }
+                            const pintcher = new Dog('Hulk', 4);
+                            console.log(pintcher);  // {name: 'Hulk', age: 4}
+                        </code></pre>
+
+                    <h4>Funções IIFE (Immediately Invoked Function Expression)</h4>
+                        São expressões de funções executadas imediatamente após sua declaração.<br>
+                        Podem ser anônimas ou nomeadas.<br>
+                        A declaração da função é envolvida entre parênteses.<br>
+                        A execução da função é realizada com parênteses, logo após a declaração.<br>
+                        Ou seja:<br>
+                        Primeiro parênteses é a declaração da função.<br>
+                        Segundo parênteses é a execução da função. Representa a sua chamada e é por aqui que podemos enviar argumentos.<br>
+
+                            Exemplo com duas formas de escrever, mas mesmo efeito:
+                            <pre><code>
+                                // Segundo parênteses fora do primeiro parênteses
+                                    (function fn(){
+                                        alert('Hello world!');
+                                    })(); 
+                            
+                                // Segundo parênteses dentro do primeiro parênteses
+                                    (function fn(){
+                                        alert('Hello world!');
+                                    }());
+                            </code></pre>
+
+                            Exemplo com parâmetros:
+                            <pre><code>
+                                (function (arg){
+                                    alert(arg);
+                                }
+                                )('Hello world!');
+                            </code></pre>
+        
+                            Exemplo, <b>simulação de acesso privado</b>: O escopo é usado para criar um fechamento (closure) e impedir que dados sejam acessados dentro desse escopo fechado.
+                            <pre><code>
+                                const fn = (
+                                    function () {
+                                        const password = 1337;
+                                        return function () {
+                                            console.log(password);
+                                        }
+                                    }
+                                )();
+                            </code></pre>
+                            Mantém a referência para o escopo pai, como é o caso de toda função aninhada.<br>
+                            Agora, temos em fn() um <b>estado mutável privado</b> que não pode ser acessado de fora da função. No entanto, quando realizamos o console.log por dentro da função retornada, conseguimos acessar o valor de password.<br><br>
+                            <b class="text-red">OBS:</b> Deixar essas variáveis em escopos fechados não tem vantagens apenas na segurança dos dados. Se menos variáveis são criadas no escopo global, reduzimos o ruído e a chance de conflito entre seus nomes. 
+
+                    <h4>Callback</h4>
+                        É uma função passada como argumento para outra função.<br>
+                        Fornece maior controle sobre a ordem das chamadas.
+                        <pre><code>
+                            const calc = function(operation, num1, num2){
+                                return operation(num1, num2);
+                            }
+                            const sum = function(num1, num2){
+                                return num1 + num2;
+                            }
+                            const sub = function(num1, num2){
+                                return num1 - num2;
+                            }
+                            const resultSum = calc(sum, 10, 5);
+                            const resultSub = calc(sub, 10, 5);
+                            console.log(resultSum);
+                            console.log(resultSub);
+                        </code></pre>          
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+                </ul>
+            </div>
+        </footer>            
+    </body>
+</html>

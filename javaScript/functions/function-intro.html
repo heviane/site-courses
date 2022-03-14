@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <script src="scriptContext.js"></script>		
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Function - Introduction</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>O que são funções</h3></header>
+                <p class="post_content">
+                    São blocos de comandos e instruções para a execução de determinada tarefa.<br>
+                    Podem receber e retornar valores (tipos de dados primitivos e de referência).<br>
+                    Podem ser executadas de forma repetitiva e encadeada.<br>
+
+                    Variáveis criadas dentro da função, podem ser usadas somente dentro da função, são variáveis de estado ou variáveis locais.<br>
+
+                    <b>()</b>: Indica que é um objeto do tipo <b>function</b>.<br>
+                    Dentro do colchetes são passados os parâmetros de entrada, que são opcionais.<br>
+
+                    <b>{}</b>: Indica que é um bloco de comandos/intruções. É o escopo da função.<br>
+                    Dentro das chaves são retornados os parâmetros de saída, que são opcionais.<br>
+                    Os parâmetros recebidos são variáveis de estado ou locais ao escopo da função.<br>
+
+                    <h4>No javascript as funções são de primeira classe e ordem maior</h4>
+                        <ul>
+                            <li>Pode ser atribuída a variável ou estrutura de dados (object, array).</li>
+                            <li>Pode ser passada como argumento de entrada em outra função.</li>
+                            <li>Pode ser retornada como argumento de saída de outra função.</li>
+                        </ul>
+
+                    <h4>Instrução return</h4>
+                        <b>return</b> é uma instrução de saída.<br>
+                        Termina a execução da função e opcionalmente retorna algo ao chamador da função.<br>
+                        
+
+                        Se o return for omitido, retorna <b>undefined</b>.
+
+                    <h4>Funções também são objetos</h4>
+                        Permitem a criação de propriedades.
+                        <pre><code>
+                            // Exemplo com Regular Function
+                                function fn(){ console.log('executando...') }
+                                fn.prop = 'New Prop'; 
+                        
+                            // Exemplo com Arrow Function
+                                var fn = () => 'executando...';
+                                fn.prop = 'New Prop';
+
+                            // Exemplo de execução
+                                fn();
+                                fn.prop;
+                        </code></pre>
+
+                    <h4>Boas Práticas</h4>
+                        <ul>
+                            <li>Sempre declarar a função antes de usá-la.</li>
+                            <li>Sempre usar funções PURAS (Recebe um parâmetro (sabe-se de onde está vindo) e retorna alguma coisa).</li>
+                        </ul>
+                </p>
+
+                <header><h3>Currying</h3></header>
+                <p class="post_content">
+                    <li><a href="aula17.html">Conceito de curryng</a></li>
+                </p>
+
+                <header><h3>Default Function Arguments</h3></header>
+                <p class="post_content">
+                    ...
+                </p>
+                <header><h3>Enhanced object Literals</h3></header>
+                <p class="post_content">
+                    ...  
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions" target="_blank">developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return</a></li>
+                        <li><a href="https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement" target="_blank">tc39.es/ecma262/multipage ecmascript-language-statements-and-declarations.html#sec-return-statement</a></li>    
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+            </div>
+        </footer>
+        <script>
+            // ========== Implementação X Execução
+            function fn(){console.log('running regular function...')};
+            fn;   // Output: f fn(){console.log('executando função...')};
+            fn(); // Output: executando função...
+
+            const fn2 = () => console.log('running arrow function...');
+            fn2;   // Output: f fn2(){console.log('executando função...')};
+            fn2(); // Output: executando função...
+
+            // ========== Funções podem receber e retornar valores (variáveis e outras funções)
+            // Uso = Libraries, frameworks, renderizar (executar alguma regra), mas antes fazer alguma coisa.
+
+            // Exemplo: Passando variáveis como argumento nos parâmetros da função
+            var logFn1 = parm => console.log(parm);       // Recebendo uma variável
+            var logFn2 = fnParm => console.log(fnParm()); // Recebendo uma função
+            logFn1('testing...'); // Output: testing...
+            logFn2(fn);           // Output: executando função...
+            // *** OBS: Em arrow function quando for apenas um argumento pode-se omitir os colchetes ().
+
+            // Exemplo: Passando funções como argumento nos parâmetros da função
+            // O objetivo da "controlFnExec" é controlar a execução
+            // Recebe uma f e retorna outra f que recebe parm boolean e retorna a f recebida se for true
+            function controlFnExec(fn){
+                return function(allowed){
+                    if(allowed){
+                        return fn();
+                    }
+                }
+            }
+            var handleFnExecution = controlFnExec(fn); // Função Handler (Manipuladora)
+            handleFnExecution(true);  // true = executa a função - Output: running regular function...
+            handleFnExecution(false); // false = Não executa a função
+            handleFnExecution();      // false = Não executa a função
+
+            // Exemplo: Mesmo exemplo do anterior, mas agora com arrow function
+            var controlFnExec2 = fn => allowed => { 
+                if(allowed){ 
+                    return fn(); 
+                } 
+            }
+            var handleFnExecution = controlFnExec2(fn); // Função Handler (Manipuladora) 
+            handleFnExecution(true);  // true = executa a função - Output: running regular function...
+            handleFnExecution(false); // false = Não executa a função
+            handleFnExecution();      // false = Não executa a função
+            // *** OBS: Podia receber 2 parm, mas seguindo ideia CURRYING recebe 1, memoriza (fnParm), aí recebe outro na execução (allowed)
+            
+            // ============================== Instrução return ==============================
+            /* ---- Documentação
+                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return
+                    ---- Especificação
+                https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-return-statement
+            */
+            // --- Exemplo Return com estrutura de condição
+            function mult(a, b) {
+                if (a > 0 && b > 0) {
+                    return a * b; // Retorna o valor da área e termina a execução da função
+                }
+                return;   // Retorna undefined e termina a execução da função
+                return 0; // Não executa, pois esta foi interrompida na linha anterior
+                /* A instrução de retorno é afetada pela *** automatic semicolon insertion (ASI) ***.
+                    Nenhum terminador de linha é permitido entre a palavra-chave de retorno e a expressão.
+                    CHROME Version 95.0.4638.69 => Não deu erro. */
+                return
+                a + b;
+                /* é transformado pelo ASI em: 
+                    CHROME Version 95.0.4638.69 => Não deu erro. */
+                return;
+                a + b;
+                /* O console avisará "código inacessível após declaração de retorno".
+                    NOTE: A partir Firefox 40, aviso é mostrado no console se um código inacessível for encontrado após uma instrução de retorno.
+                    SOLUÇÃO: Para prevenir ASI, usar parênteses. */ 
+                return (
+                    a + b
+                );
+            }
+            console.log(mult(3, 4));   // expected output: 12
+            console.log(mult(-3, 4));  // expected output: undefinied 
+            // --- Exemplo return com estrutura de repetição
+            function counter() {
+                for (var count = 1; ; count++) {  // infinite loop
+                    console.log(count + 'A'); // until 5
+                    if (count === 5) {
+                        return;
+                    }
+                    console.log(count + 'B');  // until (até) 4
+                }
+                console.log(count + 'C');  // never appears (nunca aparece)
+             }
+            counter();
+            // Output:
+            // 1A
+            // 1B
+            // 2A
+            // 2B
+            // 3A
+            // 3B
+            // 4A
+            // 4B
+            // 5A
+
+            // --- Função que retorna uma função
+            // See also the article about Closures (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+            function magic() {
+                return function calc(x) { return x * 42; };
+            }
+            var answer = magic();      // var recebe uma função
+            console.log(answer(1337)); // var se comporta como função - Output: 56154
+
+        </script>
+    </body>
+</html>

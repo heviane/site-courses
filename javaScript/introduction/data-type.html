@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	
+        <link rel="stylesheet" href="../assets/css/style.css"> 			
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+		<header class="header"><h1>Tipos de Dados</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title" id="test"></h2></header>
+			<article class="post">
+                <header><h3>Tipagem de Dados</h3></header>
+                <p class="post_content">
+                    A <b>tipagem</b> funciona como uma regra para o uso de dados, quanto mais forte for a tipagem, mais obrigatório é a declaração do tipo de dado. No javascript a tipagem é <b>fraca</b> e a declaração dos tipos de dados acontece de forma <b>dinâmica</b>. 
+
+                    <h4>Tipagem fraca</h4>
+                        Permite realizar operações com tipos diferentes sem dar erro, pois resolve por ele mesmo.
+
+                    <h4>Tipagem dinâmica</h4>
+                        Não há necessidade de explicitar o tipo no momento da declaração ou atribuição.<br>
+                        A tipagem dinâmica trabalha com <b>Inferência de Tipo</b>, ou seja, o compilador, em tempo de execução, atribui automaticamente o tipo de dado de acordo com o tipo de valor atribuído ou reatribuído. Isso significa que uma variável pode ter vários tipos ao longo da sua utilização.
+                        <pre><code>
+                            var x;
+                            x = 'teste';
+                            console.log(x);
+                            x = 1;
+                            console.log(x);
+                            x = true;
+                            console.log(x);
+                            x = null;
+                            console.log(x);
+                            x = undefined;
+                            console.log(x);
+                            x = { name: 'Maria', lastName: 'Souza' };
+                            console.log(x);
+                            x = [1, 2, 3, 4, 5];
+                            console.log(x);
+                            x = () => console.log('I am function...');
+                            console.log(x);
+                            console.log(x());
+
+                            console.log(typeof x);
+                        </code></pre>
+                </p>
+
+                <header><h3>Estrutura de Tipos de Dados</h3></header>
+                <p class="post_content">
+                    <h4>Tipo de Dado Primitivo</h4>
+                        Armazena na memória o <b>valor</b> em si.
+                        <ul>
+                            <li><b>string</b>: Representa quaisquer caracteres entre aspas ou crase, geralmente usada para textos.</li>
+                            Não confundir com o tipo <b>String</b> que é um objeto do JavaScript, ou seja, um tipo de dado de referência.<br>
+                            <pre><code>
+                                var string = "Hello World";
+                                console.log(string);        // Hello World
+                                console.log(typeof string); // string
+
+                                var string = new String("Hello World");
+                                console.log(string);        // [String: 'Hello World']
+                                console.log(typeof string); // object
+                            </code></pre>
+                            É um tipo de dado iterable.
+                            <pre><code>
+                                var texto = 'teste';
+                                console.log(texto[0]); // t
+                                console.log(texto[1]); // e
+                                console.log(texto[2]); // s
+                                console.log(texto[3]); // t
+                                console.log(texto[4]); // e
+                            </code></pre>
+                            O uso mais antigo são as <b style="color:red">aspas</b>. Mas, atualmente usa-se também a <b style="color:red">crase</b>, porque foi criado uma nova possibilidade, que é a <b>interpolação</b>, conhecida como <b>Template string</b>, que basicamente é a mistura de string com variáveis. As variáveis devem ser escritas entre <b>${}</b>.
+                            <pre><code>
+                                var name = 'Maria';
+                                console.log(`My name is ${name}`);
+                            </code></pre>
+
+                            <li><b>number</b>: Representa todos os números</li>
+                                Positivos, negativos, inteiros ou decimais.
+
+                            <li><b>boolean</b>: Representa true ou false</li>
+
+                            <li><b>Empty</b>: Variável declarada, mas atribuíção sem valor</li>
+                                Tipo de dado definido, mas sem valor, retorna zero se number, vazio se string.<br>
+                                Em uma condição boolen retorna false.
+                                <pre><code>
+                                    var teste = ''
+                                    console.log(teste); // ''
+                                    if(teste){
+                                        console.log("true");
+                                    }else{
+                                        console.log("false");
+                                    }
+                                    console.log(typeof teste); // string
+                                </code></pre>
+
+                            <li><b>null</b>: Variável declarada e atribuída com null</li>
+                                Tipo de dado definido como <b>null</b>.<br>
+                                Em uma condição boolen retorna false.
+                                <pre><code>
+                                    var teste = null;
+                                    console.log(teste); // null
+                                    if(teste){
+                                        console.log("true");
+                                    }else{
+                                        console.log("false");
+                                    }
+                                    console.log(typeof teste); // object
+                                </code></pre>
+
+                            <li><b>undefinied</b>: Variável declarada, mas não atribuída</li>
+                                Tipo de dado não definido.<br>
+                                Em uma condição boolen retorna false.
+                                <pre><code>
+                                    var teste;
+                                    console.log(teste); // undefined
+                                    if(teste){
+                                        console.log("true");
+                                    }else{
+                                        console.log("false");
+                                    }
+                                    console.log(typeof teste); // undefined
+                                </code></pre>
+
+                            <li><a href="lesson09-3.html"><b>symbol</b></a>: 
+                                As instâncias são únicas e imutáveis (ES6)</li> 
+                        </ul>
+
+                        <h5>Observações:</h5>
+                        O JS permite usar funções nativas dos objetos nativos nos tipos primitivos. Para isso, basta escrever o tipo primitivo seguido de ponto final. Internamente o JS converte o tipo primitivo para o tipo nativo objeto, para que assim seja possível acessar os métodos disponíveis.
+                        <pre><code>
+                            var texto = 'teste';
+                            console.log(texto.toUpperCase()); // TESTE
+                            console.log(texto.toLowerCase()); // teste
+                            console.log(typeof texto);        // string
+
+                            var numero = 10.35566;
+                            console.log(numero.toFixed(2)); // 10.36 
+                            console.log(typeof numero);     // number
+                        </code></pre>
+
+                    <h4>Tipo de Dado por Referência</h4>
+                        Armazena na memória o <b>endereço (referência)</b> do valor. Faz um apontamento para o valor que está em outro espaço de memória. Resumindo, referência (endereço) e valor estão em espaços de memória diferentes.
+                        <ul>
+                            <li><b>Object</b>: Lista nomeada. É um Literable Object</li> 
+                            <li><b>Array</b>: Lista numerada. É um Iterable Object</li>
+                            <li><b>Function</b>: Também é um objeto. Permite ser chamada (Called).</li>
+                        </ul>
+
+                    <h5>Observações</h5>
+                        O tipo <b>primitivo</b> é mais simples, e portanto, mais rápido de ler.
+                </p>
+			</article>
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape" target="_blank">escape()</a></li>
+                        A escape()função calcula uma nova string na qual certos caracteres foram substituídos por uma sequência de escape hexadecimal.
+                        <li><a href="https://www.oocities.org/tutorialdhtml/a11.htm" target="_blank">Sequências de Escape & Símbolos</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" target="_blank">A propriedade global NaN é um valor que representa Not-A-Number</a></li>
+                    </ul>
+                </p>
+            </article>
+		</section>
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>		
+            </div>
+        </footer>               
+        <script>
+            // String e funções nativas
+            let myString = 'Texto';
+            console.log(myString,length); // Tamanho da string = Qtde de caracteres 
+            console.log(myString.replace("Texto","Novo Texto"));
+            console.log(myString.toUpperCase());
+            console.log(myString.toLowerCase());
+            console.log(myString.trim());
+            console.log(myString.split('-')); // ???????
+                // Retorna um pedaço da string 
+                // start...length   (inicia no start, incluindo o start)
+                // Parametro 2 não informado = Tamanho da string
+            console.log(myString.substr(0, 3)); // Tex 
+            console.log(myString.substr(2));    // xto
+          
+            console.log(myString.slice());  // Texto
+            console.log(myString.slice(0)); // Texto
+            console.log(myString.slice(1)); // exto
+            console.log(myString.slice(2)); // xto
+            console.log(myString.slice(0, myString.length)); // Texto   
+            console.log(myString.slice(1, myString.length)); // exto
+            console.log(myString.slice(0, 1)); // T
+            console.log(myString.slice(1, 2)); // e
+            console.log(myString.slice(1, 3)); // ex
+            console.log(myString.slice(1, 4)); // ext
+            console.log(myString.slice(-1)); // 0   // Retorna o último caractere da string  
+            console.log(myString.slice(-2)); // to
+            console.log(myString.slice(-3)); // xto
+            console.log(myString.slice(-4)); // exto   
+            console.log(myString.slice(0,-1)); // Text
+            console.log(myString.slice(0,-2)); // Tex
+            console.log(myString.slice(0,-3)); // Te   
+            console.log(myString.slice(0,-4)); // T 
+            console.log(myString.slice(0,-5)); // Retorna vazio 
+            console.log(typeof myString);      // Retorna o tipo de dado
+
+            //...não confundir com String com letra maiscula, aí é um objeto do JS
+            var string = new String('JavaScript');
+            console.log(string);
+            
+            // Number e funções nativas
+            let myNumber = 24.56;
+            myString = '3.45';
+            console.log(myNumber.toFixed(2));  // Retorna o valor com 2 casas decimais
+            console.log(myNumber.toString());  // Retorna o valor como string
+            console.log(parseInt(myString));   // Converte string para Number sem casas decimais
+            console.log(parseFloat(myString)); // Converte string para Number com casas decimais
+            console.log(typeof myNumber);      // Retorna o tipo de dado
+                // No JS só existe o tipo de dado Number, independente de tem ou não casas decimais
+
+            let myNull = null;
+            console.log(myNull);
+            console.log(typeof myNull); // Return object
+
+            let myBoolean = true;
+            console.log(myBoolean);
+            console.log(typeof myBoolean);
+
+            let myUndefined = undefined;
+            console.log(myUndefined);
+            console.log(typeof myUndefined); 
+            
+            // São ÚNICOS
+            // Em objects e classes, criam propriedades (keys) que não são enumerables
+                // Simulam att privado, pois JS não tem modificador de acesso
+            let mySymbol1 = Symbol('name');
+            let mySymbol2 = Symbol('name');
+            console.log(mySymbol1); //Symbol(name)
+            console.log(mySymbol2); //Symbol(name)
+            // Mesmo tendo o mesmo value, não são iguais, são ÚNICOS
+            console.log('Comparando dois symbols com o mesmo value: ', mySymbol1 === mySymbol2); // false
+
+            // Outra proposta é simular a criação de enums
+            const directions = {
+                UP: Symbol('Cima'),
+                DOWN: Symbol('Baixo'),
+                LEFT: Symbol('Esquerda'),
+                RIGHT: Symbol('Direita')
+            };
+
+            // ================= Date
+            var d = new Date();
+            console.log('Data completa: ' + d);                                                 
+            console.log('Data: '+d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getYear()) // Mês - sempre ( +1 )
+            console.log('Time: ' + d.getHours() + ":" + d.getMinutes());            
+        </script>
+    </body>
+</html>

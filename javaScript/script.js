@@ -1,18 +1,60 @@
-let arr = [1, 2, 3, 4, 5];
-
-// shift()  remove no inicio
-arr.shift();
-console.log(arr);
-arr.pop();
-console.log(arr);
-
-// unshift()  add item no inicio
-arr.unshift(7);
-console.log(arr);
-arr.push(8);
-console.log(arr);
+// let cont = 0;
+// console.log(cont++); // 0
+// console.log(cont++); // 1
 
 
+  
+
+// ==================== var (Escopo global) X let (Escopo de bloco) 
+// var test = 'escopo global';
+// function fn(){
+//     var test = 2;
+//     console.log('escopo de bloco'); 
+// }
+// fn();
+// console.log(test); 
+// var test = 'Redeclarando var escopo global';
+// console.log(test); 
+
+// let x = 1;
+// console.log(x);
+// // let x = 2; // ERRO *** NÃO pode ser redeclarada ***
+// x = 2; // *** Pode ser retribuída ***
+// console.log(x);
+
+// let y = 1;
+// console.log(y);
+// var y = 2;  // ERRO *** let NÃO pode ser redeclarada ***
+
+// ==================== ver ====================
+// function compare(a,b){
+//     if(!a || !b){
+//         console.log(`a: ${a} e b: ${b}`) 
+//         console.log("Error: one of the arguments is null");
+//         return; 
+//     }
+//     isIguais = a === b;  // Não usei let, var e const
+//     (isIguais) ? console.log(`${a} e ${b} são iguais`) : console.log(`${a} e ${b} são diferentes`);
+//     // if(a !== b){
+//     //     console.log(`${a} e ${b} são diferentes`);
+//     // }else{
+//     //     console.log(`${a} e ${b} são iguais`);
+//     // }
+//     sum = a + b;
+//     sumMaior = sum > 10;
+//     sumMenor = sum < 10;
+//     if(sumMaior){
+//         console.log(`${a} e ${b} somados (${sum}) são maiores que 10`);
+//     }
+//     if(sumMenor){
+//         console.log(`${a} e ${b} somados (${sum}) são menores que 10`);
+//     }
+// }
+// compare(0, 1);  // 0 retorna erro
+// compare(0, ''); // b retorna vazio
+// compare(1);     // b: undefined
+
+// ==================== switch ====================
 // var scoreboard;
 // var player1 = 5;
 // var player2 = 3;

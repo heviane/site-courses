@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../../assets/css/style.css">
+        <script src="scriptContext.js"></script>	
+        <style>
+            th{ text-align: center; background-color: lightsteelblue;}
+            td{ padding: 4px; border: 1px solid silver; }
+        </style>	
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Palavra reservada "this"</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>"this" é uma referência de contexto</h3></header>
+                <p class="post_content">
+                    A palavra reservada <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a> é uma referência de contexto.<br>
+                    
+                    Na maioria dos casos, o valor de this é determinado por como uma função é chamada (runtime binding).<br>
+                    Não pode ser definido por atribuição durante a execução e pode ser diferente cada vez que a função é chamada.<br>
+
+                    <b>Valor</b>: Uma propriedade de um contexto de execução (global, função ou eval) que, no modo não estrito, é sempre uma referência a um objeto e no modo estrito pode ser qualquer valor.
+                    
+                    <ul><b class="important">NOTES:</b>
+                        <li>Existem algumas diferenças entre o modo <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode"><b>strict</b></a> e o modo <b>non-strict</b>.</li>
+                        <li>O <b>ES5</b> introduziu o método <b>bind()</b> para definir o valor de uma função com this independentemente de como é chamado.</li>
+                        <li>O <b>ES2015</b> introduziu <b>arrow functions</b> que não fornecem sua própria this binding (retém o this valor do enclosing lexical context).</li>
+                    </ul>
+                    
+                    <h4>Tabela de Contexto X Referências</h4>
+                        <table style="border: 2px solid black">
+                            <tr>
+                                <th>Contexto</th>
+                                <th>Referência</th>
+                            </tr>
+                            <tr>
+                                <td>Método de um objeto</td>
+                                <td>Próprio objeto dono do método</td>
+                            </tr>
+                            <tr>
+                                <td>Sozinha</td>
+                                <td>Contexto global (em navegadores, window)</td>
+                            </tr>
+                            <tr>
+                                <td>Função</td>
+                                <td>Contexto global</td>
+                            </tr>
+                            <tr>
+                                <td>Evento</td>
+                                <td>Elemento que recebeu o evento</td>
+                            </tr>
+                        </table>
+
+                    <h5>Método de um Objeto</h5>
+                        <pre><code>
+                            const person = {
+                                id: 1,
+                                firstName: 'John',
+                                lastName: 'Doe',
+                                age: 30,
+                                fullName: function() {
+                                    return this.firstName + ' ' + this.lastName;
+                                },
+                                getId: function() {
+                                    return this.id;
+                                }
+                            }
+                        </code></pre>
+
+                    <h5>Navegador</h5>
+                        No contexto de execução global (fora de qualquer função), this refere-se ao objeto global, seja em modo estrito ou não.<br>
+                        In web browsers, the window object is also the global object:
+                        <pre><code>
+                            console.log(this);  // Window {window: Window, ...}
+
+                            console.log(this === window); // true
+
+                            a = 37;
+                            console.log(window.a); // 37
+
+                            this.b = "MDN";
+                            console.log(window.b)  // "MDN"
+                            console.log(b)         // "MDN"
+
+                            var name = 'teste';
+                            console.log(this.name); // teste
+                        </code></pre>
+
+                    <h5>Contexto de Função</h5> 
+                        Dentro de uma função, o valor de this depende de como a função é chamada.<br><br>
+
+                        Exemplo, this refere-se ao objeto global, porque o valor de this está definido pela chamada:
+                        <pre><code>
+                            // Modo non-strict 
+                                function f1() {
+                                    return this;
+                                }
+                                
+                                // In a browser:
+                                f1() === window; // true
+                                
+                                // In Node:
+                                f1() === globalThis; // true 
+
+                                // Node: Object [global]
+                                // Browser: Window
+                                (function(){ console.log(this)})(); 
+
+                            // Modo strict
+                                function f2() {
+                                    'use strict';
+                                    return this;
+                                }
+                                f2(); // undefined
+                        </code></pre>
+                        No modo strict, o valor de this é undefined, pois a função f2() foi chamada diretamente e não como método ou propriedade de um objeto (ex: window.f2()).<br>
+                        Para definir o valor de this para um valor específico ao chamar uma função, use <b>call()</b> ou <b>apply()</b>.<br><br>
+                      
+                        Exemplo, this refere-se ao objeto chamador, contexto de execução da função:
+                        <pre><code>
+                            let user = {
+                                name: "Heviane",
+                                getName: function() { console.log( this.name ); }
+                            };
+                            user.getName(); // Heviane
+                        </code></pre>
+
+                    <h5>Contexto de Arrow Functions</h5>
+                        this retém o valor do contexto léxico envolvente this.<br>
+                        No código global, será definido para o objeto global:
+                        <pre><code>
+                            var globalObject = this;
+                            var foo = (() => this);
+                            console.log(foo() === globalObject); // true
+                        </code></pre>
+
+                    <h5>DOM Event Handler</h5>
+
+                    <h5>Inline Event Handler</h5>
+                        When the code is called from an inline <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"></a>on-event handler</a>, its this is set to the DOM element on which the listener is placed:
+
+                        Quando o código é chamado de um <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers">manipulador de evento</a> embutido, this é definido para o elemento DOM no qual o ouvinte é colocado.<br>
+
+                        <button onclick="alert(this.tagName.toLowerCase());">
+                            Show this
+                        </button><br>
+                        O alerta acima mostra button.<br>
+                    
+                        <button onclick="alert((function() { return this; })());">
+                            Show inner this
+                        </button><br>
+                        Na função interna, this não está definida, então retorna o objeto global, que no navegador é window (ou seja, o objeto padrão no modo no-strict onde this não está definido pelo chamador).<br>
+                                             
+                        // Evento de um elemento...Falta testar...
+                        <pre><code>
+                            const button = document.querySelector('button');
+
+                            button.addEventListener('click', function() {
+                                console.log(this); // button
+                            });
+                        </code></pre>
+
+                    <h5>Classes</h5>
+                        Assim como em regular functions, o valor do this é definido pela chamada (contexto de execução da classe).<br>
+                        Às vezes é útil substituir esse comportamento para que this dentro da classe sempre se refira à instância da classe. Para fazer isso use o método bind() no construtor da classe.
+                        <pre><code>
+                            class Car {
+                                constructor() {
+                                    // Bind sayBye but not sayHi to show the difference
+                                    this.sayBye = this.sayBye.bind(this);
+                                }
+                                sayHi() {
+                                    console.log(`Hello from ${this.name}`);
+                                }
+                                sayBye() {
+                                    console.log(`Bye from ${this.name}`);
+                                }
+                                get name() {
+                                    return 'Ferrari';
+                                }
+                            }
+                                
+                            class Bird {
+                                get name() {
+                                    return 'Tweety';
+                                }
+                            }
+                                
+                            const car = new Car();
+                            const bird = new Bird();
+                            
+                            // The value of 'this' in methods depends on their caller
+                            car.sayHi(); // Hello from Ferrari
+                            bird.sayHi = car.sayHi;
+                            bird.sayHi(); // Hello from Tweety
+                            
+                            // For bound methods, 'this' doesn't depend on the caller
+                            bird.sayBye = car.sayBye;
+                            bird.sayBye();  // Bye from Ferrari                              
+                        </code></pre>
+                        Classes sempre são em modo strict. Chamar métodos com um this indefinido irá gerar um erro.
+
+                    <b class="important">Nota:</b> Você sempre pode obter facilmente o objeto global usando a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis">globalThis</a> propriedade global, independentemente do contexto atual em que seu código está sendo executado.
+                    <pre><code>
+                        // Browser
+                        console.log(globalThis); // Window {window: Window, ...}
+
+                        // Terminal
+                        console.log(globalThis); // Object [global]
+                    </code></pre>               
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>Métodos nativos para manipular o valor de "this"</h3></header>
+                <p class="post_content">
+                    <ul>
+                        <li><b>call()</b></li>
+                            Transformam o valor de this no do objeto enviado como primeiro argumento.<br>
+                            Aceita outros argumentos separados por vírgula.<br>
+                            É reutilizável em outros objetos.
+                        <li><b>apply()</b></li>
+                            Transformam o valor de this no do objeto enviado como primeiro argumento.<br>
+                            Aceita outros argumentos em um array.<br>
+                            É reutilizável em outros objetos.
+                        <li><b>bind()</b></li>
+                            Cria um clone da função na qual for invocado, designando a this o valor do objeto passado como argumento.<br>
+                            Só funciona uma vez, não é possível clonar uma função que já é resultado de um clone.
+                    </ul>
+
+                    <h4>Método Call() das Funções - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call">Function.prototype.call()</a></h4>
+
+                        Chama uma função com um <b>this</b> valor e uma lista de argumentos individuais nomeados.<br>
+                        Sintaxe: <b>fun.call(thisArg, arg1, ... , argN)</b>
+                        <pre><code>
+                            const person = { name: 'Miguel' };
+                            const animal = { name: 'Floquinho' };
+
+                            function getSomething(){
+                                console.log(this.name);
+                            }
+
+                            getSomething.call(person); // Miguel
+                            getSomething.call(animal); // Floquinho
+                        </code></pre>
+
+                        <h5>Exemplo com parâmetros</h5>
+                            <pre><code>
+                                const obj = {
+                                    num1: 1,
+                                    num2: 2
+                                }
+                                
+                                function sum(a, b){
+                                    return this.num1 + this.num2 + a + b;
+                                }
+                                
+                                sum.call(obj, 3, 4); // 10
+                            </code></pre>
+                            Se o primeiro argumento <b>this</b> não for passado, o valor de <b>this</b> será vinculado ao objeto global, exceto se estiver no modo strict, aí irá retornar undefined.
+                            
+                    <h4>Método Apply() das Funções - <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">Function.prototype.apply()</a></h4>
+
+                        Chama uma função com um <b>this</b> valor e um array de argumentos.<br>
+                        Sintaxe: <b>fun.apply(thisArg, [argsArray])</b>
+                        <pre><code>
+                            const person = { name: 'Miguel' };
+                            const animal = { name: 'Floquinho' };
+
+                            function getSomething(){
+                                console.log(this.name);
+                            }
+
+                            getSomething.apply(person); // Miguel
+                            getSomething.apply(animal); // Floquinho
+                        </code></pre>
+
+                        <h5>Exemplo passando parâmetros</h5>
+                            <pre><code>
+                                const obj = {
+                                    num1: 1,
+                                    num2: 2
+                                }
+                                function sum(a, b){
+                                    return this.num1 + this.num2 + a + b;
+                                }
+                                sum.apply(obj, [3, 4]); // 10
+                            </code></pre>
+
+                    <h4>Método Bind() das Funções - <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Function.prototype.bind()</a></h4>
+
+                        Clona a estrutura da função onde é chamada e aplica o valor do objeto passado como parâmetro.<br>
+                        Cria uma nova função com o mesmo corpo e escopo da função clonada, mas onde this ocorre na função original, na nova função ela é permanentemente vinculada ao primeiro argumento de bind(), independentemente de como a função está sendo usada.
+                        <pre><code>
+                            cconst returnNames = function (){
+                                return this.name;
+                            }
+                            let maria = returnNames.bind({name: 'Maria'});
+                            let ana = maria.bind({name: 'Ana'}); // *** bind só funciona uma vez! ***
+                            
+                            console.log( maria() ); // Maria
+                            console.log( ana() );   // Maria
+                        </code></pre>
+                        A variável "maria" agora é uma função que retorna o valor "Maria".
+
+                        <pre><code>
+                            function f() {
+                                return this.a;
+                            }
+                            
+                            var g = f.bind({a: 'azerty'});
+                            console.log(g()); // azerty
+                            
+                            var h = g.bind({a: 'yoo'}); // *** bind só funciona uma vez! ***
+                            console.log(h()); // azerty
+                            
+                            var o = {a: 37, f: f, g: g, h: h};
+                            console.log(o.a, o.f(), o.g(), o.h()); // 37, 37, azerty azerty                              
+                        </code></pre>
+
+                        <pre><code>
+                            this.x = 9; //this aqui se refere ao objeto global "window" do navegador
+                            var module = {
+                                x: 81,
+                                getX: function() { return this.x; }
+                            };
+
+                            console.log( module.getX() ); // 81
+
+                            var retrieveX = module.getX;
+                            console.log( retrieveX() ); // retorna 9 - a função foi invocada no escopo global
+
+                            // Criando uma nova função com 'this' vinculada ao módulo
+                            // Novatos podem confundir a variável x global com prop x do módulo
+                            var boundGetX = retrieveX.bind(module);
+                            console.log( boundGetX() ); // 81
+                        </code></pre>
+
+                    <b class="important">Nota:</b> A sintaxe de <b>apply()</b> e <b>call()</b> são quase idênticas, a diferença é que call() aceita uma lista de argumentos, enquanto apply() aceita um array de argumentos.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>Diferenças de "this" entre Classes e Funções</h3></header>
+                <p class="post_content">
+
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

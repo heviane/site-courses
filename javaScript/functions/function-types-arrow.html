@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../../assets/css/style.css">
+        <script src="scriptContext.js"></script>		
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Arrow Functions</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>Expressões de Funções</h3></header>
+                <p class="post_content">
+                    <h4></h4>
+                        São funções que representam expressões.<br>
+                        Nomeação é opcional. Quando não há nomeação, chamamos de <b>função anônima</b>.<br>
+                        Nunca são invocadas diretamente, sempre são atribuídas, pois variáveis podem armazenar funções.
+                        <pre><code>
+                            var fn1 = function fnNomeada() {
+                                console.log('função nomeada');
+                            };
+                            
+                            var fn2 = function () {
+                                console.log('função anônima');
+                            };
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>Arrow Functions - Expressões de Funções de Sintaxe Curta</h3></header>
+                <p class="post_content">
+                    <h4>Arrow Functions</h4>
+                        Introduzidas no ES6 com um formato mais enxuto.<br>
+                        Nomeação não existe, portanto sempre serão <b>funções anônimas</b>.<br>
+                        <b>Arrow</b> significa seta <b>"=>"</b>.<br>
+                        <b>Sintaxe Básica</b>: <b>var fn () => {}</b>                        
+                        <pre><code>
+                            // Apenas um argumento de entrada, pode-se omitir os parênteses
+                            var fn = message => { console.log(message); };
+                                // Exceto...
+                                var fn = ({a}) => a;    // Objeto literal
+                                var fn = (...a) => a;   // Spread Operator
+                                var fn = (a = 5) => a;  // Default Arguments
+
+                            // Apenas uma instrução, pode-se omitir as chaves
+                            var fn = () => console.log('Hello World');
+                            
+                            // Apenas uma instrução, pode-se omitir o return
+                            var fn = (a, b) => a - b;    
+                            
+                            // Retorno de objeto literal, deve ser entre parenteses ()
+                            var fn = () => ( {name:'Heviane', age:39} );
+                        </code></pre>
+
+                        <ul>
+                            <li>Não faz <a href="../concepts/hoisting.html" target="_blank">Hoisting</a>, portanto, não é possível invocar a função antes de declará-la.</li>
+                        
+                            <li><a href="../this/this.html" target="_blank">this</a> sempre será o objeto global. Métodos para modificar seu valor (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank">call()</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank">apply()</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind" target="_blank">bind()</a>) não funcionam.</li>
+
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank">arguments</a> não existe.</li>
+
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor" target="_blank">Método Constructor</a> não existe.</li>
+                            <b class="important">Boa Prática:</b> Não use arrow functions para métodos de objetos.
+                        </ul>
+
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                    <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
+                </ul>
+            </div>
+        </footer>            
+    </body>
+</html>

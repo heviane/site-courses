@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Object "arguments"</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+			<article class="post">
+                <p class="post_content">
+                    Array contendo todos os argumentos passados para a função quando esta foi invocada.<br>
+                    É útil quando trabalhamos com uma quantidade indefinida de argumentos.<br>
+
+                    <pre><code>
+                        function showArgs(){
+                            return arguments;
+                        }
+                        console.log(showArgs(1, 2, 3, 4, 5));
+                        console.log(showArgs('a', 'b', 'c', 'd', 'e'));
+
+                        function findMax(){
+                            let max = -Infinity;
+                            for (let i = 0; i &lt; arguments.length; i++){
+                                if (arguments[i] &gt; max){
+                                    max = arguments[i];
+                                }
+                            }
+                            return max;
+                        }
+                        console.log(findMax(1,2,3,4,5,6,7,8,9,10));
+                    </code></pre>
+                    
+                </p>
+			</article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

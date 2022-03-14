@@ -8,46 +8,53 @@
     </head>
     <body>
         <!--Página-Cabeçalho-->
-        <header class="header"><h1>JavaScript</h1></header>
+        <header class="header"><h1>Object</h1></header>
         <!--Página-Conteúdo-->
         <section class="content">
-            <header><h2 class="posts_title">Object</h2></header>
+            <header><h2 class="posts_title"></h2></header>
             <article class="post">
                 <header><h3>Introdução</h3></header>
                 <p class="post_content">
-                    <b>Objetos</b> são dados que possuem <b>propriedades</b> e <b>valores</b> que definem suas caracteristicas.<br>
-                    É uma lista nomeada, que contém <b>propriedades</b> e <b>métodos</b>.<br>
-                    Declaração entre <b>{}</b>, e os itens separador virgula.<br>
+                    <b>Objetos</b> são dados que possuem uma estrutura de <b>chave</b> e <b>valor</b> que definem suas caracteristicas e funcionalidades.<br>
+                    É uma lista nomeada.<br>
+                    Contém <b>propriedades (características)</b> e <b>métodos (funcionalidades)</b>.<br>
+                    Devem ser declarados entre <b>{}</b>, os itens separados por vírgula, e cada item deve conter uma chave e um valor separados por dois pontos<br>
                     Cada item da lista pode ser de um tipo de dado diferente.<br>
-                    Podem ser atribuídos à variáveis.<br>
+                    Podem ser atribuídos à variáveis.<br><br>
 
-                    <h4>Propriedades</h4>
-                        Uma propriedade é formada por um par de key e value.<br>
-                        A declaração de propriedades de um objeto é realizada entre chaves {}.<br>
-                        As propriedades são separadas por vírgula.<br>
-                        As propriedades podem guardar dados (valores) do tipo primitivo ou do tipo de referência.
+                    Conhecidos também como: <b>Dicionário de dados</b>, etc.
 
-                    <h4>Métodos</h4>
-                        Pode conter uma Regular Function ou Arrow Function.
-                        <pre><code>
-                            let obj = {
-                                name: 'Heviane',
-                                lastName: 'Bastos',
-                                age: 39,
-                                sum: function sum(a, b){ return a + b}
-                            }
-                        </code></pre>
+                    <pre><code>
+                        // Declaração de um objeto
+                        let obj = {
+                            name: 'Heviane',                    // Característica
+                            lastName: 'Bastos',                 // Característica
+                            age: 39,                            // Característica
+                            sum: function sum(a,b){return a+b}, // Funcionalidade 
+                            log: () => console.log('Hello')     // Funcionalidade
+                        }
+
+                        // Add a new property 
+                        obj.gender = 'F';
+
+                        // Return properties and values
+                        console.log(Object.keys(obj));
+                        console.log(Object.values(obj));
+                    </code></pre>
 
                     <h4>Desestruturação de objetos</h4>
                         Atribuir as propriedades dos objetos à variáveis para facilitar a leitura e manipulação dos dados.
                         <pre><code>
+                            // Sem desestruturação (ES5)
                             var name = obj.name;
                             var lastName = obj.lastName;
                             var age = obj.age;
+                            var sum = obj.sum;
+                            var log = obj.log;
 
-                            var {name, lastName, age} = obj;
+                            // Com desestruturação (ES6)
+                            var {name, lastName, age, sum, log} = obj;
                         </code></pre>
-
                 </p>
 
                 <header><h3>Enhanced object Literals</h3></header>

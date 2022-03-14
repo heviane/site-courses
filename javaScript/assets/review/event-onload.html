@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>		
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+    </head>
+    <body onload="update()">
+		<header class="header">
+            <h1>Integration of a Javascript code with an HTML page.</h1>
+        </header>
+		<section class="content">
+			<article class="content_item">
+                <header>
+                    <h3>Event onload()</h3>
+                </header>
+                <p class="post_content">
+                    <label>Label (innerHTML) and Input (value) updated</label><br>
+                    <label id="labelId">Example</label><br>
+                    <input id="inputId" type="text" size="50px">
+                </p>
+            </article>
+		</section>
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://github.com/heviane" target="_blank">github</a>	
+            </div>
+        </footer>
+        <script>
+            // Função chamada no evento onload() do body
+            function update(){
+                document.getElementById('labelId').innerHTML = 'Label updated';
+                document.getElementById('inputId').value     = 'Input updated';
+            }
+        </script>
+    </body>
+</html>

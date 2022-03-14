@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>		
+        <link rel="stylesheet" href="../../../assets/css/style.css">
+        <style>
+            input {
+                padding: 0.3%;
+                margin-top: 0.5%;
+                margin-bottom: 0.5%;
+            }
+        </style>
+    </head>
+    <body>
+		<header class="header">
+            <h1>Integration of a Javascript code with an HTML page.</h1>
+        </header>
+		<section class="content">
+            <article class="content_item">
+                <header>
+                    <h3>Calculator</h3>
+                </header>
+                <p class="post_content">
+                    <label id="labelId">calculate two numbers:</label><br/>
+
+                    <input type="text" id="num1" placeholder="Enter the first number" required><br/>
+                    <input type="text" id="num2" placeholder="Enter the second number" required><br/>
+
+                    <button onclick="calculate('+',document.getElementById('num1').value, document.getElementById('num2').value)">Sum</button>
+
+                    <button onclick="calculate('-',document.getElementById('num1').value, document.getElementById('num2').value)">Subtraction</button>
+
+                    <button onclick="calculate('*',document.getElementById('num1').value, document.getElementById('num2').value)">Multiplication</button>
+                    <button onclick="calculate('/',document.getElementById('num1').value, document.getElementById('num2').value)">Division</button> 
+
+                    <p id="result">...</p>  
+                </p>              
+            </article>
+		</section>
+		<footer class="footer">
+            <div class="footer_list">
+                <a href="https://github.com/heviane" target="_blank">github</a>	
+            </div>
+        </footer>
+        <script>
+            function calculate(operation, num1, num2){
+                if(isNaN(num1) || num1.length == 0 || !num1.trim()){
+                    alert("Enter the first number");
+                    return;
+                }
+                if(isNaN(num2) || num2.length == 0 || !num2.trim()){
+                    alert("Enter the second number");
+                    return;
+                }
+                let total = 0;
+                if(operation == '+'){
+                    total = parseInt(num1) + parseInt(num2);
+                }else if(operation == '-'){
+                    total = num1 - num2;
+                }else if(operation == '*'){
+                    total = num1 * num2;
+                }else if(operation == '/'){
+                    total = num1 / num2;
+                }
+                document.getElementById('result').innerHTML = total;
+            }
+        </script>
+    </body>
+</html>
