@@ -13,45 +13,69 @@
 		<section class="content">
             <header><h2 class="posts_title"></h2></header>
             <article class="post">
-                <header><h3 class="post_title">Docker</h3></header>
+                <header><h3 class="post_title">O que é Docker</h3></header>
 				<p class="post_content">
-                    <h4>Terminologias</h4>
-                        <ul>
-                            <li><b>Container Image</b>: Pacote de dependências para criação de novos containers</li>
-                            Uma imagem do Docker é um sistema de arquivos privado apenas para seu contêiner.<br>
-                            Ele fornece todos os arquivos e códigos que seu contêiner precisa.
-                            <li><b>Dockerfile</b>: Arquivo de texto contendo todas as instruções para fazer build da imagem</li>
-                            <li><b>Build</b>: Ação que cria uma imagem a partir de um Dockerfile</li>
-                            <li><b>Container</b>: Instância de Container Image, representa a execução de uma app, processo ou serviço</li>
-                            <li><b>Volumes</b>: Dados em disco armazenados pelo container, se este morrer, dados permanecem</li>
-                            <li><b>Tag</b>: Ajuda no versionamento das imagens</li>
-                            <li><b>Multi-stage build</b>: Multiplos estágios de build</li>
-                            <li><b>Repository</b>: É uma coleção de imagens</li>
-                            <li><b>Registry</b>: Serviço que provê acesso do docker ao repositório</li>
-                            <li><b>Docker Hub</b>: Repositório de imagens públicas e privadas</li>
-                            <li><b>Compose</b>: Ferramenta que usa metadados para criar múltiplos containeres com um simples comando</li>
-                        </ul>
-
-                    <h4>O que é</h4>
-                        Plataforma de código aberto de alto desempenho, que permite criar e administrar ambientes de forma isolada.<br>
-                        O objetivo é isolar o software de forma que seja possível instalar em diferentes ambientes, permitindo assim, criar, testar, implementar em um ambiente separado do ambiente de produção. Também permiti disponibilizar de forma rápida para o usuário final.<br>
-                        Esse processo é chamado de <b>conteinerização</b>.<br><br>
-                        Ferramenta para construir, compartilhar e executar aplicativos com segurança e rapidez.<br><br>
-                        O Docker é um conjunto de produtos de plataforma como serviço que usam virtualização no nível do sistema operacional para entregar software em pacotes chamados contêineres. Os contêineres são isolados uns dos outros e agrupam seus próprios softwares, bibliotecas e arquivos de configuração; eles podem se comunicar uns com os outros por meio de canais bem definidos.
-
+                    Plataforma que usa virtualização no nível do sistema operacional para criar e administrar ambientes de forma isolada, e assim entregar software em pacotes chamados contêineres.<br>
+                    Esse processo é chamado de <b>conteinerização</b>.<br>
+                    Os contêineres são isolados uns dos outros e agrupam seus próprios softwares, bibliotecas e arquivos de configuração, eles podem se comunicar uns com os outros por meio de canais bem definidos.<br>
+                    O principal objetivo dos containers é criar essa independência: a habilidade de executar diversos processos e aplicativos separadamente para utilizar melhor a infraestrutura e, ao mesmo tempo, manter a segurança que você teria em sistemas separados.<br>
+                    As ferramentas de container, incluindo o <b>Docker</b>, fornecem um modelo de implantação com base em imagem. Isso facilita o compartilhamento de um aplicativo ou conjunto de serviços, incluindo todas as suas dependências, em vários ambientes.<br>
+                    Docker também automatiza a implantação do aplicativo (ou de conjuntos de processos que constituem um aplicativo) dentro desse ambiente de container.
+                    <ul>
+                        <ol>1. Defina o ambiente do app com um <a href="https://docs.docker.com/engine/reference/builder">Dockerfile</a> para que ele possa ser reproduzido em qualquer lugar.</ol>
+                        <ol>2. Defina os serviços que compõem o app <a href="https://docs.docker.com/compose">docker-compose.yml</a> para que possam ser executados juntos em um ambiente isolado.</ol>
+                        <ol>3. Execute o comando <pre>docker compose up</pre> para inicializar a app. Na primeira vez use o argumento <pre>--build</pre> para a construção do ambiente. Também pode executar este comando usando o binário docker-compose.</ol>
+                    </ul>   
+                    
                     <h4>Como funciona</h4>
                         <img src="images/Docker-Como_funciona.png" alt="Imagem de como funciona o Docker" width="75%" ><br>
                         <b>Exemplo:</b> O Docker Client a partir de um arquivo Dockerfile pode executar um build para criar uma imagem e a partir desta executar um docker run para criar um container.<br>
                         Também podemos executar um docker pull para puxar a imagem do repositório remoto para dentro do repositório local e executar um docker run para criar um container a partir dessa imagem.
 
+                    <b>Um único código para rodar em todos os lugares!</b>
+                    Com a utilização do docker podemos rodar a app em qualquer ambiente que tenha o docker instalado, como por exemplo: windows, mac, qualquer distro linux, etc.<br>
+                    Rápido e fácil, apenas com a configuração de arquivos e a execução de alguns comandos.<br>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Terminologias</h3></header>
+				<p class="post_content">
+                    <ul>
+                        <li><b>Imagem</b>: Pacote de dependências para criação de novos containers</li>
+                        Uma imagem do Docker é um sistema de arquivos privado apenas para seu contêiner.<br>
+                        Ele fornece todos os arquivos e códigos que seu contêiner precisa.
+                        <li><b>Dockerfile</b>: É a receita, um arquivo de texto contendo todas as instruções para fazer o build da imagem.</li>
+                        <li><b>Build</b>: Ação que cria uma imagem a partir de um Dockerfile</li>
+                        <li><b>Container</b>: Instância de Container Image, representa a execução de uma app, processo ou serviço</li>
+                        <li><b>Volumes</b>: Dados em disco armazenados pelo container, se este morrer, dados permanecem</li>
+                        <li><b>Tag</b>: Ajuda no versionamento das imagens</li>
+                        <li><b>Multi-stage build</b>: Multiplos estágios de build</li>
+                        <li><b>Repository</b>: É uma coleção de imagens</li>
+                        <li><b>Registry</b>: Serviço que provê acesso do docker ao repositório</li>
+                        <li><b>Docker Hub</b>: Repositório de imagens públicas e privadas</li>
+                        <li><b>docker-compose.yml</b>: Arquivo que especifica as propriedades de cada container. Permite criar múltiplos containeres com um simples comando. Permiti definir links entre diferentes containers, para que exista todo um ecossistema do software configurado, e assim subir o software com todas as suas dependências. usa o <b>Dockerfile</b> que é a receita que contém o passo a passo.</li>
+                    </ul>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3 class="post_title">Ferramentas</h3></header>
+				<p class="post_content">
                     <h4>Docker Hub</h4>
-                        <a href="https://hub.docker.com" target="_blank">hub.docker.com</a><br>
-                        Possui uma nuvem de containers e imagens pré-configurados.<br>
+                        <a href="https://hub.docker.com" target="_blank">hub.docker.com</a> possui uma nuvem de containers e imagens pré-configurados.<br>
                         Existem as oficiais e as que os desenvolvedores criam e compartilham.
 
-                    <h4>Docker Compose</h4>
-                        É um arquivo que especifica as propriedades de cada container. Permiti fazer links entre diferentes containers, para que exista todo um ecossistema do software configurado, e assim subir o software com todas as suas dependências.<br>
-                        É uma receita passo a passo, com todo o ambiente simplificado, para isso vai usar o <b>dockerfile</b>.
+                    <h4>Docker Desktop</h4>
+                        Após a instalação, abrir o power shell e executar o comando para verificar:
+                        <pre><code>
+                            docker --version
+                            docker ps
+                            docker run hello-world
+                        </code></pre>
+                        O Docker Desktop cria uma máquina virtual (VM) dentro do virtualizador <b>Hyper-V</b> do Windows.<br>
+                        <b>OBS:</b> Use Docker Desktop somente para ambiente de desenvolvimento.<br>
+                        Para ambiente de produção use a nuvem com linux.
 
                     <h4>Play With Docker</h4>
                         É um <b>playground</b> do Docker que permite aos usuários executar comandos do Docker em questão de segundos.<br>
@@ -69,26 +93,14 @@
                             // Lista as imagens
                             docker images
                         </code></pre>
-
-                    <h4>Docker Desktop</h4>
-                        Após a instalação, abrir o power shell e executar o comando para verificar:
-                        <pre><code>
-                            docker --version
-                            docker ps
-                            docker run hello-world
-                        </code></pre>
-                        O Docker Desktop cria uma máquina virtual (VM) dentro do virtualizador <b>Hyper-V</b> do Windows.<br>
-                        <b>OBS:</b> Use Docker Desktop somente para ambiente de desenvolvimento.<br>
-                        Para ambiente de produção use a nuvem com linux.
 				</p>
             </article>
-
 		</section>
 		<!--Página-Rodapé-->
 		<footer class="footer">
             <div class="footer_list">
                 <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>	
             </div>
         </footer>
     </body>
