@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker</title>
+</head>
+<body>
+    <h1>Rodando web page via container com docker!</h1>
+    <h2>
+        <a href="https://hub.docker.com/repository/docker/heviane/nginx-heviane" target="_blank">
+            Repositório da imagem usada para este container: nginx-heviane
+        </a>
+    </h2>
+
+    <p>
+        <uL>
+            <li><b>Container</b>: é um processo que executa de forma isolada da máquina e SO hospedeiros.</li>
+            Não é uma VM, é apenas um processo rodando na máquina. Um processo fechado.<br>
+            Os dados do container se perdem quando o container é destruído.<br>
+
+            <li><b>volume</b>: é o diretório local compartilhado e mapeado com o container</li>
+            Neste exemplo, é o diretório "./html".<br>
+            Assim os dados do projeto ficam seguros e não são perdidos quando o container é destruído.<br>
+
+            <li><b>Imagem</b>: é a base para a criação do container.</li>
+            É imutável, isso significa que alterações realizadas no container não são replicadas na imagem.<br>
+            
+            <li><b>Dockerfile</b>: é a receita para criar uma imagem.</li>
+            Docker vai executar tudo que estiver neste arquivo, passo a passo, para criar a imagem.<br>
+
+            <li><b>docker-compose.yml</b>: Basicamente, é um manifesto.</li>
+            Ferramenta para auxiliar na execução de comandos (Todos os comandos necessários para subir um container).<br>
+        </uL>
+    </p>
+</body>
+</html>

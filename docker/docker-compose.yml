@@ -1,0 +1,72 @@
+# Basicamente, é um manifesto.
+# Ferramenta para auxiliar na execução de comandos.
+
+version: '3'
+
+services:
+
+  ## Web Page = Nome do serviço <=> Nome do container
+  web-page:
+    ## Imagem do serviço (usada para a criação do container).
+    image: heviane/nginx-heviane
+    ## Mapear porta local com porta do container (container é isolado, e por isso tem rede própria)
+    ports:
+      - "8080:80"
+
+  ## App em GO
+  app:
+    ## Ao invés de chamar uma imagem, criamos uma imagem a partir do dir app/
+    build: app/
+    volumes:
+      - "./app:/go/src"
+    
+  ## MySQL
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "test"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    restart: always
+
+  ## Redis
+  redis:
+    image: redis:5.0.5
+    environment:
+      REDIS_PASSWORD: "root"
+    volumes:
+      - ./data/redis:/data
+    restart: always
+
+  ## RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "5673:5673"
+    restart: always
+
+  # mongo:
+  #   image: mongo:3.4
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: "root"
+  #     MONGO_INITDB_ROOT_PASSWORD: "root"
+  #   volumes:
+  #     - ./data/mongo:/data/db
+  #   restart: always
+
+  # cassandra:
+  #   image: cassandra:3.11
+  #   environment:
+  #     CASSANDRA_PASSWORD: "root"
+  #   volumes:
+  #     - ./data/cassandra:/var/lib/cassandra
+  #   restart: always
+
+  
