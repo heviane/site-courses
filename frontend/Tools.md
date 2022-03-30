@@ -17,10 +17,10 @@ Frontend **Web** e **Mobile**.
 
 - [firebug-lite](https://chrome.google.com/webstore/detail/firebug-lite-for-google-c/ehemiojjcpldeipjhjkepfdaohajpbdo?hl=en-US)
 - [whatfont](https://chrome.google.com/webstore/detail/whatfont/jabopobgcpjmedljpbcaablpmlmfcogm/related?hl=en-US)
-- [Colorzilla]()
+- [Colorzilla](https://www.colorzilla.com/)
 - [Debug CSS](https://chrome.google.com/webstore/detail/debug-css/igiofjnckcagmjgdoaakafngegecjnkj)
 
-## Tools
+## Tools Designer
 
 - [figma.com](https://www.figma.com)
 
