@@ -50,7 +50,10 @@
                 <header><h3>Estrutura de Tipos de Dados</h3></header>
                 <p class="post_content">
                     <h4>Tipo de Dado Primitivo</h4>
-                        Armazena na memória o <b>valor</b> em si.
+                        Armazena na memória o <b>valor</b> em si.<br>
+                        Um primitivo é um dado que não é representado através de um Objeto e, por consequência, 
+                        não possui métodos
+
                         <ul>
                             <li><b>string</b>: Representa quaisquer caracteres entre aspas ou crase, geralmente usada para textos.</li>
                             Não confundir com o tipo <b>String</b> que é um objeto do JavaScript, ou seja, um tipo de dado de referência.<br>
@@ -83,19 +86,28 @@
 
                             <li><b>boolean</b>: Representa true ou false</li>
 
-                            <li><b>Empty</b>: Variável declarada, mas atribuíção sem valor</li>
-                                Tipo de dado definido, mas sem valor, retorna zero se number, vazio se string.<br>
-                                Em uma condição boolen retorna false.
+                            <li><b>symbol</b>: Representa um valor único</li>
+                                Não pode ser instanciado. Não suporta o operador "new".<br>
+                                Tem propriedades estáticas que expõem vários membros dos objetos nativos, 
+                                possuem métodos estáticos que expõem o registro de símbolos globais 
+                                e se parecem com uma classe de objeto nativo, mas estão incompletos como construtor.
                                 <pre><code>
-                                    var teste = ''
-                                    console.log(teste); // ''
-                                    if(teste){
-                                        console.log("true");
-                                    }else{
-                                        console.log("false");
-                                    }
-                                    console.log(typeof teste); // string
+                                    Symbol()
+                                    Symbol(string)
                                 </code></pre>
+                                Symbol() aceita um parâmetro OPCIONAL que é um identificador único.<br>
+                                É uma descrição que pode ser usada para debugar, mas não para acessar o próprio symbol.
+                                <pre><code>
+                                    // Declaração de symbols
+                                        const id  = Symbol();     // Symbol()
+                                        const id1 = Symbol('id'); // Symbol('id')
+                                        const id2 = Symbol('id'); // Symbol('id')
+
+                                    // Comparação de symbols  
+                                        id1 === id2;  // FALSE (Symbols são únicos)
+                                </code></pre>
+
+                                <a href="../symbol-and-iterators.html">Symbol e Iterators</a>"
 
                             <li><b>null</b>: Variável declarada e atribuída com null</li>
                                 Tipo de dado definido como <b>null</b>.<br>
@@ -125,12 +137,31 @@
                                     console.log(typeof teste); // undefined
                                 </code></pre>
 
+                            <li><b>Empty</b>: Variável declarada, mas atribuíção sem valor</li>
+
+                                *** empty é um tipo de dado ***
+
+                                Tipo de dado definido, mas sem valor, retorna zero se number, vazio se string.<br>
+                                Em uma condição boolen retorna false.
+                                <pre><code>
+                                    var teste = ''
+                                    console.log(teste); // ''
+                                    if(teste){
+                                        console.log("true");
+                                    }else{
+                                        console.log("false");
+                                    }
+                                    console.log(typeof teste); // string
+                                </code></pre>
+
                             <li><a href="lesson09-3.html"><b>symbol</b></a>: 
                                 As instâncias são únicas e imutáveis (ES6)</li> 
                         </ul>
 
                         <h5>Observações:</h5>
-                        O JS permite usar funções nativas dos objetos nativos nos tipos primitivos. Para isso, basta escrever o tipo primitivo seguido de ponto final. Internamente o JS converte o tipo primitivo para o tipo nativo objeto, para que assim seja possível acessar os métodos disponíveis.
+                        O JS permite usar funções nativas dos objetos nativos nos tipos primitivos. 
+                        Para isso, basta escrever o tipo primitivo seguido de ponto final. 
+                        Internamente o JS converte o tipo primitivo para o tipo nativo objeto, para que assim seja possível acessar os métodos disponíveis.
                         <pre><code>
                             var texto = 'teste';
                             console.log(texto.toUpperCase()); // TESTE
@@ -142,6 +173,15 @@
                             console.log(typeof numero);     // number
                         </code></pre>
 
+                        À exceção do <b>null</b> e <b>undefined</b>, todos os primitivos tem um <b>objeto wrapper</b> equivalente:<br>
+                        <ul>
+                            <li>String para string</li>
+                            <li>Number para number</li>
+                            <li>Boolean para boolean</li>
+                            <li>Symbol para symbol</li>
+                        </ul>
+                        O método <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf" target="">valueOf()</a> do objeto wrapper retorna o valor primitivo.
+
                     <h4>Tipo de Dado por Referência</h4>
                         Armazena na memória o <b>endereço (referência)</b> do valor. Faz um apontamento para o valor que está em outro espaço de memória. Resumindo, referência (endereço) e valor estão em espaços de memória diferentes.
                         <ul>
@@ -151,18 +191,23 @@
                         </ul>
 
                     <h5>Observações</h5>
-                        O tipo <b>primitivo</b> é mais simples, e portanto, mais rápido de ler.
+                        O tipo <b>primitivo</b> é mais simples, e portanto, mais rápido de ler.<br>
+                
+                        É possível verificar o tipo da variável através do operador
+                        <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/typeof" 
+                        target="_blank">typeof</a>
                 </p>
 			</article>
             <article class="post">
                 <header><h3>References</h3></header>
                 <p class="post_content">
-                    <ul>
-                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape" target="_blank">escape()</a></li>
+                    <a href="https://developer.mozilla.org/pt-BR/docs/Glossary/Primitive">MDN - Primitive</a>
+                    
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape" target="_blank">escape()</a>
                         A escape()função calcula uma nova string na qual certos caracteres foram substituídos por uma sequência de escape hexadecimal.
-                        <li><a href="https://www.oocities.org/tutorialdhtml/a11.htm" target="_blank">Sequências de Escape & Símbolos</a></li>
-                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" target="_blank">A propriedade global NaN é um valor que representa Not-A-Number</a></li>
-                    </ul>
+                    <a href="https://www.oocities.org/tutorialdhtml/a11.htm" target="_blank">Sequências de Escape & Símbolos</a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" target="_blank">A propriedade global NaN é um valor que representa Not-A-Number</a>
+                    
                 </p>
             </article>
 		</section>

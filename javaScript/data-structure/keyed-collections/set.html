@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../assets/css/style.css">			
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Keyed collections: Set Object</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>Keyed collections: Set Object</h3></header>
+                <p class="post_content">           
+                    São coleções que armazenam valores únicos.<br>
+                    Cada valor só pode ocorrer uma vez em um Set.<br>
+                    Pode conter qualquer valor de qualquer tipo de dados.<br>
+                </p>
+                <header><h3>Métodos</h3></header>
+                <p class="post_content">
+                    <pre><code>
+                        const myArray = [1,2,3,4,5];
+
+                        // Declaração
+                        const mySet = new Set(myArray);
+
+                        // Método add() para Adicionar
+                        mySet.add(6); //
+
+                        // Método has() para verificar se valor existe
+                        mySet.has(1); // true
+
+                        // Método delete() para Remover
+                        mySet.delete(4);
+                    </code></pre>
+                </p>
+
+                <header><h3>Diferença entre Set e Array</h3></header>
+                <p class="post_content">
+                    <h4>Set</h4>
+                        <ul>
+                            <li>Possui valore únicos</li>
+                            <li>Propriedade size (Equivalente a length)</li>
+                            <li>Não possui os métodos map(), filter(), reduce(), etc.</li>
+                            Tem menos operações que os arrays.
+                        </ul>
+                </p>
+
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Keyed_collections" 
+                    target="_blank">Keyed collections</a><br>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" 
+                    target="_blank">Set Object</a><br>
+                    <a href="https://www.w3schools.com/js/js_object_sets.asp" 
+                    target="_blank">Set Object</a><br>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+            </div>
+        </footer>
+    </body>
+</html>

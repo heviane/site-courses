@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>	  
+        <link rel="stylesheet" href="../assets/css/style.css">			
+    </head>
+    <body>
+        <!--Página-Cabeçalho-->
+        <header class="header"><h1>Keyed collections: Map Object</h1></header>
+        <!--Página-Conteúdo-->
+        <section class="content">
+            <header><h2 class="posts_title"></h2></header>
+            <article class="post">
+                <header><h3>Keyed collections: Map Object</h3></header>
+                <p class="post_content">
+                    São coleções chaveadas.<br>
+                    É uma coleção de pares no formato key-value, em que a chave pode ser de qualquer tipo.<br>
+                    Map lembra a ordem de inserção original de seus elementos, o que significa que os dados podem ser recuperados na mesma ordem em que foram inseridos.<br>
+                    Por ser chaveado, pode ser iterado por um loop <b>for...of</b>
+                </p>
+
+                <header><h3>Métodos</h3></header>
+                <p class="post_content">
+                    <pre><code>
+                        // Declaração
+                        const myMap = new Map();
+
+                        // Método set() para Adicionar
+                        myMap.set('apple','fruit'); // Map(1) {'apple' => 'fruit'}
+
+                        // Método get() para Ler
+                        myMap.get(apple); // 'fruit'
+
+                        // Método delete() para Remover
+                        myMap.delete('apple'); // true
+
+                        myMap.get(apple); // 'undefined' porque a chave 'apple' não existe mais na coleção
+                    </code></pre>
+                </p>
+
+                <header><h3>Diferença entre Map e Object</h3></header>
+                <p class="post_content">
+                    <h4>Map</h4>
+                        <ul>
+                            <li><b>Chave</b> pode ser de qualquer tipo</li>
+                            <li>Propriedade length: SIM</li>
+                            <li>São mais fáceis de iterar</li>
+                            <li>Usado qdo o valor das chaves é desconhecido</li>
+                            <li>Os valores tem o mesmo tipo</li>
+                        </ul>
+
+                    <h4>Object</h4>
+                        <ul>
+                            <li><b>Chave</b> sempre é do tipo string</li>
+                            <li>Propriedade length: NÃO</li>
+                            Tem que iterar para verificar quantas propriedades tem.
+                            <li>São mais dificeis de iterar</li>
+                            <li>Usado qdo o valor das chaves é conhecido</li>
+                            <li>Os valores não precisam ter o mesmo tipo</li>
+                        </ul>
+                </p>
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Keyed_collections" 
+                    target="_blank">Keyed collections</a><br>
+                    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Map" 
+                    target="_blank">Map Object</a><br>
+                    <a href="https://www.w3schools.com/js/js_object_maps.asp" 
+                    target="_blank">Map Object</a><br>
+                </p>
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+            </div>
+        </footer>
+    </body>
+</html>

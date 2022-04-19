@@ -8,13 +8,15 @@
     </head>
     <body>
         <!--Página-Cabeçalho-->
-        <header class="header"><h1>Array</h1></header>
+        <header class="header"><h1>Array Object</h1></header>
         <!--Página-Conteúdo-->
         <section class="content">
             <header><h2 class="posts_title"></h2></header>
             <article class="post">
                 <p class="post_content">
-                    <b>Array</b> também é um <b>objeto</b>. É uma lista numerada (indexada), portanto, é um objeto <b>Iterable</b>.<br>
+                    É uma estrutura de dados que armazena uma coleção de elementos, 
+                    de forma que cada elemento pode ser identificado pela sua posição no Array.<br>
+                    É uma lista numerada (indexada), portanto, é um objeto <b>Iterable</b>.<br>
                     Os itens do array somente podem ser acessados através de seus indices (index), que sempre iniciam em zero.<br>
                     Devem ser declarados entre <b>[]</b> ou <b>()</b>, e os itens separados por virgula.<br>
                     Cada item da lista pode ser de um tipo de dado diferente.<br>
@@ -79,7 +81,7 @@
             const list4 = Array.from(divs, (div) => div);
             
             // Converte NodeList em array = IMPRIMI o conteúdo do elemento div
-            const list4 = Array.from(divs, (div) => div.textContent);
+            const list5 = Array.from(divs, (div) => div.textContent);
             
             /*   ------------------------ RESUME
                 Array.of()   - Cria instâncias de Array para cada parametro - Cada parametro vai virar um array
@@ -261,7 +263,7 @@
                     // Array dentro de Array   = Output: [[2],[4],[6],[8]]
                 
             //------- Keys = Retorna Array Iterator q contém as chaves (index) p cada item = IMUTÁVEL 
-            const arrIterator = arr.keys();
+            const arrIterator1 = arr.keys();
             arrIterator.next(); // Output: {value: 0, done: false} ...value: 0 = chave (index)
             arrIterator.next(); // Output: {value: 1, done: false}
             arrIterator.next(); // Output: {value: 2, done: false}
@@ -269,17 +271,17 @@
             arrIterator.next(); // Output: {value: undefined, done: true} ...done: true  = array sim acabou
             
             //------- Values = Retorna Array Iterator q contém as chaves (value) p cada item = IMUTÁVEL 
-            const arrIterator = arr.values();
+            const arrIterator2 = arr.values();
             arrIterator.next(); // Output: {value: 1, done: false} ...value: 1 = chave (value)
 
             //------- entries = Retorna Array Iterator q contém os pares index/valor p cada item = IMUTÁVEL 
-            const arrIterator = arr.entries();
+            const arrIterator3 = arr.entries();
             arrIterator.next(); // Output: {value: [0,1], done: false} ...value: [0,1] = chave (index) e valor (value)
             arrIterator.next(); // Output: {value: [1,2], done: false}
 
             // ------- find = Retorna 1º value q satisfaz a condição = IMUTÁVEL
-            const arrFind = arr.find(value => value % 2 === 0); // Output: 2
-            const arrFind = arr.find((value, index, arr) => value % 2 === 0);//...faz a mesma coisa que o de cima...so incuído todos os parms
+            const arrFind1 = arr.find(value => value % 2 === 0); // Output: 2
+            const arrFind2 = arr.find((value, index, arr) => value % 2 === 0);//...faz a mesma coisa que o de cima...so incuído todos os parms
 
             //------- findIndex = Retorna index do 1º value q satisfaz condição = IMUTÁVEL
             const arrFindIndex = arr.findIndex(value => value > 1); // Output: 1
@@ -288,43 +290,43 @@
             const arrFilter = arr.filter(value => value % 2 === 0); // Output: [2,4]
             const mens = persons.filter(person => person.gender === gender.MAN); // Retorna os homens
 
-            //------- indexOf = Retorna 1º index em q um item pode ser encontrado = IMUTÁVEL
-            const arr = [1,2,3,3,4,5,3,4,5];
-            const arrIndexOf = arr.indexOf(3);   // In: 3 (value), Output: 2 (index) 
-            // *** Primeira ocorrência de 3 ***
-            const arrIndexOf = arr.indexOf(3,2);// In: 3 (value), In: 2 (startIndex), Output: 2 (index)
-            // *** Primeira ocorrência de 3 a partir do index 2 ***
-            const arrIndexOf = arr.indexOf(3,3);// In: 3 (value), In: 3 (startIndex), Output: 3 (index)
-            // *** Primeira ocorrência de 3 a partir do index 3 ***
-            const arrIndexOf = arr.indexOf(3,4);// In: 3 (value), In: 4 (startIndex), Output: 6 (index)
-            // *** Primeira ocorrência de 3 a partir do index 4 ***
-            const arrIndexOf = arr.indexOf(3,6);// In: 3 (value), In: 6 (startIndex), Output: 6 (index)
-            // *** Primeira ocorrência de 3 a partir do index 6 (incluindo o index 6) ***
+            // //------- indexOf = Retorna 1º index em q um item pode ser encontrado = IMUTÁVEL
+            // const arr = [1,2,3,3,4,5,3,4,5];
+            // const arrIndexOf = arr.indexOf(3);   // In: 3 (value), Output: 2 (index) 
+            // // *** Primeira ocorrência de 3 ***
+            // const arrIndexOf = arr.indexOf(3,2);// In: 3 (value), In: 2 (startIndex), Output: 2 (index)
+            // // *** Primeira ocorrência de 3 a partir do index 2 ***
+            // const arrIndexOf = arr.indexOf(3,3);// In: 3 (value), In: 3 (startIndex), Output: 3 (index)
+            // // *** Primeira ocorrência de 3 a partir do index 3 ***
+            // const arrIndexOf = arr.indexOf(3,4);// In: 3 (value), In: 4 (startIndex), Output: 6 (index)
+            // // *** Primeira ocorrência de 3 a partir do index 4 ***
+            // const arrIndexOf = arr.indexOf(3,6);// In: 3 (value), In: 6 (startIndex), Output: 6 (index)
+            // // *** Primeira ocorrência de 3 a partir do index 6 (incluindo o index 6) ***
 
             //------- lastIndexOf = Retorna último index em q um item pode ser encontrado = IMUTÁVEL
-            //...idem ao anterior...só que inverso
-            const arrIndexOf = arr.lastIndexOf(3);  // In: 3 (value), Output: 6 (index)
-            const arrIndexOf = arr.lastIndexOf(3,2);// In: 3 (value), In: 2 (startIndex), Output: 2 (index)); 
+            // //...idem ao anterior...só que inverso
+            // const arrIndexOf = arr.lastIndexOf(3);  // In: 3 (value), Output: 6 (index)
+            // const arrIndexOf = arr.lastIndexOf(3,2);// In: 3 (value), In: 2 (startIndex), Output: 2 (index)); 
 
-            //------- includes = Retorna booleano verificando se determinado elemento existe = IMUTÁVEL
-            const arrIncludes = arr.includes(3); // In: 3 (value), Output: true   ( Numero 3 existe? )
-            const arrIncludes = arr.includes(7); // In: 7 (value), Output: false  ( Numero 7 existe? )
+            // //------- includes = Retorna booleano verificando se determinado elemento existe = IMUTÁVEL
+            // const arrIncludes = arr.includes(3); // In: 3 (value), Output: true   ( Numero 3 existe? )
+            // const arrIncludes = arr.includes(7); // In: 7 (value), Output: false  ( Numero 7 existe? )
 
-            //------- some = Retorna booleano verificando se algun elemento satisfaz a condição = IMUTÁVEL
-            const arrSome = arr.some(value => value === 5); // Output: true  ( Tem algum numero 5? )
-            const arrSome = arr.some(value => value === 7); // Output: false ( Tem algum numero 7? )
-            const students = [
-                {name: 'Rafael', grade: 5},
-                {name: 'Maria', grade: 7},
-                {name: 'Pedro', grade: 6.5},
-                {name: 'Ana', grade: 8},
-            ];
-            const arrSome = students.some(value => value.grade >= 7); // Output: true (Algum aluno nota >= 7? )
-            const arrSome = students.some(value => value.grade >= 9); // Output: false (Algum aluno nota >= 9? )
+            // //------- some = Retorna booleano verificando se algun elemento satisfaz a condição = IMUTÁVEL
+            // const arrSome = arr.some(value => value === 5); // Output: true  ( Tem algum numero 5? )
+            // const arrSome = arr.some(value => value === 7); // Output: false ( Tem algum numero 7? )
+            // const students = [
+            //     {name: 'Rafael', grade: 5},
+            //     {name: 'Maria', grade: 7},
+            //     {name: 'Pedro', grade: 6.5},
+            //     {name: 'Ana', grade: 8},
+            // ];
+            // const arrSome = students.some(value => value.grade >= 7); // Output: true (Algum aluno nota >= 7? )
+            // const arrSome = students.some(value => value.grade >= 9); // Output: false (Algum aluno nota >= 9? )
 
-            //------- every = Retorna booleano verificando se todos os elementos satisfazem condição = IMUTÁVEL 
-            const arrEvery = arr.every(value => value > 0); // Output: true (Todos os num são maiores que 0? )
-            const arrEvery = arr.every(value => value < 0); // Output: false (Todos os num são menores que 0? )
+            // //------- every = Retorna booleano verificando se todos os elementos satisfazem condição = IMUTÁVEL 
+            // const arrEvery = arr.every(value => value > 0); // Output: true (Todos os num são maiores que 0? )
+            // const arrEvery = arr.every(value => value < 0); // Output: false (Todos os num são menores que 0? )
 
             //------- sort = Ordena o array de acordo com a condição = MUTÁVEL
             students.sort((current, next) => current.grade - next.grade); //...menor para maior...

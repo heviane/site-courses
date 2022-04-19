@@ -20,23 +20,7 @@
                         symbol pode ser usado como identificador para propriedades de objetos, para criar meta-propriedades.
 
                     <h4>Tipo de dado symbol</h4>
-                        É um tipo de dado PRIMITIVO. Não pode ser instanciado. Não suporta o operador "new".<br>
-                        Tem propriedades estáticas que expõem vários membros dos objetos nativos, possuem métodos estáticos que expõem o registro de símbolos globais e se parecem com uma classe de objeto nativo, mas estão incompletos como construtor.
-                        <pre><code>
-                            Symbol()
-                            Symbol(string)
-                        </code></pre>
-                        Symbol() aceita um parâmetro OPCIONAL que é um identificador único.<br>
-                        É uma descrição que pode ser usada para debugar, mas não para acessar o próprio symbol.
-                        <pre><code>
-                            // Declaração de symbols
-                                const id  = Symbol();     // Symbol()
-                                const id1 = Symbol('id'); // Symbol('id')
-                                const id2 = Symbol('id'); // Symbol('id')
-
-                            // Comparação de symbols  
-                                id1 === id2;  // FALSE (Symbols são únicos)
-                        </code></pre>
+                        É um tipo de dado primitivo, <a href="./introduction/data-type.html">symbol data type</a>. 
 
                     <h4>Para encontrar propriedades symbols em Objetos</h4>
                         <pre><code>
