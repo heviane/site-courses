@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Tratamento de erros e exceções</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2></h2></header>
+			<article class="post">
+                <header><h3>Try/Catch/Finally</h3></header>
+                <p class="post_content">
+                    As declarações <b>try...catch</b> marcam um bloco de declarações para testar (try),  
+                    e especificam uma resposta, caso uma exceção seja lançada.<br>
+                    
+                    <ul>
+                        <li><b>try_statements</b></li>
+                        Declarações a serem executadas.
+
+                        <li><b>catch_statements</b></li>
+                        Declarações a serem executadas se uma exceção for lançada no bloco try.<br>
+                        O bloco catch especifica um identificador que contém o valor especificado pela throw instrução.<br> 
+                        Esse identificador pode ser usado para obter informações sobre a exceção lançada.
+                        JavaScript cria este identificador quando o bloco catch é inserido. 
+                        O identificador dura apenas a duração do bloco catch.
+                        Uma vez que o bloco catch termina de ser executado, o identificador não existe mais.<br>
+                        <b style="color:red">NOTA:</b> É recomendado usar console.error() em vez de console.log() para depuração.
+                        Ele formata a mensagem como um erro e adiciona à lista de mensagens de erro geradas pela página.
+
+                        <li><b>finally_statements</b></li>
+                        Declarações a serem executadas depois que a declaração try é completada.<br> 
+                        Essas declarações são executadas independente se uma exceção foi ou não lançada ou capturada.<br>
+                        Se o bloco finally retornar um valor, esse valor se tornará o valor de retorno de toda a try…catch…finally, 
+                        independente de qualquer return declarado nos blocos try...catch.
+                    </ul>
+
+                    <pre><code>
+                            try {
+                                // código que pode gerar erro
+                            } catch (error) {
+                                // tratamento do erro
+                            } finally {
+                                // código que sempre será executado (Se houver erro ou não)
+                            }
+                    </code></pre>
+                </p>
+			</article>
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/try...catch" 
+                        target="_blank">Statements/try...catch</a>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

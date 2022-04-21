@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Global Properties: NaN</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <article class="post">
+            <header>
+                <h3>NaN</h3>
+            </header>
+            <p class="post_content">
+                A propriedade NaM é uma variável no escopo global que representa um Not-A-Number.<br>
+                O valor inicial de NaN é Not-A-Number.<br><br>
+
+                Existem cinco tipos diferentes de operações que retornam NaN:<br>
+                <ul>
+                    <li>O número não pode ser analisado (por exemplo , parseInt("blabla")ou Number(undefined))</li>
+                    <li>Operação matemática em que o resultado não é um número real (por exemplo Math.sqrt(-1))</li>
+                    <li>Operando de um argumento é NaN(por exemplo 7 ** NaN)</li>
+                    <li>Forma indeterminada (por exemplo 0 * Infinity, ou undefined + undefined)</li>
+                    <li>Qualquer operação que envolva uma string e não seja uma operação de adição (por exemplo "foo" / 3)</li>
+                </ul>
+
+                <h4>Origem dos valores NaN</h4>
+                São valores gerados quando as operações aritméticas resultam em valores indefinidos ou irrepresentáveis.<br> 
+                Tais valores não representam necessariamente condições de estouro.<br>
+                Também resulta da tentativa de coerção de valores numéricos de valores não numéricos para os quais nenhum valor numérico primitivo está disponível.<br>
+                Por exemplo, dividir zero por zero resulta em a NaN— mas dividir outros números por zero não.
+
+            </p>
+        </article>
+        <article class="post">
+            <header>
+                <h3>Number.NaN</h3>
+            </header>
+            <p class="post_content">
+                Equivalente de <b>NaN</b>.<br>
+                Não é necessário criar um objeto Number para acessar essa propriedade estática (use Number.NaN).<br>
+                
+            </p>
+        </article>
+        <article class="post">
+            <header>
+                <h3>Função isNaN()</h3>
+            </header>
+            <p class="post_content">
+                A função isNaN() determina se um valor é NaN ou não.<br>
+                O valor é primeiro forçado a um Number, então o valor resultante é testado para determinar se é NaN.<br>
+                Retorna <b>true</b> se for NaN; caso contrário, <b>false</b>.<br><br>
+
+                Ao contrário de todos os outros valores possíveis em JavaScript, 
+                não é possível usar os operadores de igualdade (== e ===) para comparar um valor e determinar 
+                se o valor é NaN ou não, porque ambos NaN == NaN são NaN === NaN são avaliados como false.<br>
+                A função isNaN() fornece uma verificação de igualdade conveniente em relação a NaN.<br><br>
+
+                
+                <h4>Comportamento confuso para argumentos não numéricos</h4>
+                Quando o argumento para a função não é do tipo Number, o valor é primeiro forçado a um Number. 
+                O valor resultante é então testado para determinar se é NaN.<br>
+                
+                Assim, para não-números que, quando coagidos ao tipo numérico, resultam em um valor numérico não-NaN válido 
+                (principalmente a string vazia e as primitivas booleanas, que, quando coagidas, fornecem valores numéricos zero ou um), 
+                o valor retornado "falso" pode ser inesperado.<br>
+                
+                A string vazia, por exemplo, certamente "não é um número". 
+                A confusão decorre do fato de que o termo "não é um número" tem um significado específico para números representados como valores de ponto flutuante IEEE-754.
+                A função deve ser interpretada como respondendo à pergunta:
+                    - "este valor, quando forçado a um valor numérico, é um valor IEEE-754 'Não é um número'?"
+
+            </p>
+        </article>
+        <article class="post">
+            <header>
+                <h3>Number.isNaN()</h3>
+            </header>
+            <p class="post_content">
+               
+            </p>
+        </article>
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" target="_blank">NaN</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/NaN" target="_blank">Number.NaN</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN" target="_blank">NaN()</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN" target="_blank">Number.NaN()</a>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+</body>
+
+</html>

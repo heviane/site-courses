@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Errors</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <article class="post">
+            <header>
+                <h3>Throw</h3>
+            </header>
+            <p class="post_content">
+                A instrução <b>throw</b> lança uma exceção definida pelo usuário.<br>
+
+                <b>Sintaxe:</b>
+                <pre><code>
+                    throw expression; // lança uma exceção
+                </code></pre>
+
+                O lançamento da exceção interrompe a execução do código,
+                as instruções posteriores ao throw não serão executadas
+                e o controle será passado para o primeiro bloco catch encontrado na pilha de chamadas,
+                se nenhum bloco catch existir a execução é encerrada.
+
+                <pre><code>
+                    console.log('before the error');
+                    throw 'throwing error...';  // execução encerrada aqui...
+                    console.log('after the error');
+
+                    console.log('before the error');
+                    throw new Error('throwing error...'); // execução encerrada aqui...
+                    console.log('after the error');
+                </code></pre>
+
+            </p>
+        </article>
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="../debug/debug-console.html" 
+                target="_blank">Debug no Console</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw" 
+                target="_blank">throw</a><br>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+</body>
+
+</html>

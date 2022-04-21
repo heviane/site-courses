@@ -1,90 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JavaScript</title>	
-        <link rel="stylesheet" href="../assets/css/style.css">
-    </head>
-    <body>
-        <!--Página-Cabeçalho-->
-        <header class="header"><h1>Operadores</h1></header>
-        <!--Página-Conteúdo-->
-        <section class="content">
-            <header><h2 class="content_title"></h2></header>
-            <article class="post"> 
-                <b>Operadores</b> são sinais utilizados para manipular dados ou validar condições.
-                <header><h3>Tipos de Operadores</h3></header>
-                <p class="post_content">
-                    <ul>
-                        <li>Unário (Recebe 1 operando e pode vir antes ou depois do operador)</li>
-                            <pre><code>
-                                ++, --, !, !!, -, +, ~, typeof, void, delete
-                            </code></pre>
-                        <li>Binário (Recebe 2 operandos e o operador vai no meio)</li>
-                            <pre><code>
-                                +, -, *, /, %, **, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;, &, |, ^, in, instanceof
-                            </code></pre>
-                        <li>Ternário (Recebe 3 operandos)</li>
-                            <pre><code>
-                                ?:
-                            </code></pre>
-                    </ul>
-                </p>
-                <header><h3>Operadores</h3></header>
-                <p class="post_content">
-                    <ul>
-                        <li><b>Atribuição</b></li>
-                            <pre><code>
-                                =, +=, -=, *=, /=, %=
-                            </code></pre>
 
-                        <li><b>Aritmético</b>: São operadores matemáticos.</li>
-                            <pre><code>
-                                +, -, *, /, **, %, ++, --
-                            </code></pre>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
 
-                        <li><b>Comparação</b>: Retorna boolean (true ou false).</li>
-                            <pre><code>
-                                ==, ===, !=, !==, &lt;, &gt;, &lt;==, &gt;==
-                            </code></pre>
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Operadores</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title"></h2>
+        </header>
+        <article class="post">
+            <b>Operadores</b> são sinais utilizados para manipular dados ou validar condições.
+            <header>
+                <h3>Tipos de Operadores</h3>
+            </header>
+            <p class="post_content">
+            <ul>
+                <li>Unário (Recebe 1 operando e pode vir antes ou depois do operador)</li>
+                <pre><code>
+                    ++, --, !, !!, -, +, ~, typeof, void, delete
+                </code></pre>
+                <li>Binário (Recebe 2 operandos e o operador vai no meio)</li>
+                <pre><code>
+                    +, -, *, /, %, **, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;, &, |, ^, in, instanceof
+                </code></pre>
+                <li>Ternário (Recebe 3 operandos)</li>
+                <pre><code>
+                    ?:
+                </code></pre>
+            </ul>
+            </p>
+            <header>
+                <h3>Operadores</h3>
+            </header>
+            <p class="post_content">
+            <ul>
+                <li><b>Atribuição</b></li>
+                <pre><code>
+                    =, +=, -=, *=, /=, %=
+                </code></pre>
 
-                        <li><b>Lógico</b>: Retorna boolean (true ou false).</li>
-                            <pre><code>
-                                &&, ||, !
-                            </code></pre>
+                <li><b>Aritmético</b>: São operadores matemáticos.</li>
+                <pre><code>
+                    +, -, *, /, **, %, ++, --
+                </code></pre>
 
-                        <li><b>Condicional</b>: if ternário.</li>
-                            value1 se condição verdadeira, value2 se condição falsa.
-                            <pre><code>
-                                // Ternário
-                                    (condition) ? value1 : value2;
+                <li><b>Comparação</b>: Retorna boolean (true ou false).</li>
+                <pre><code>
+                    ==, ===, !=, !==, &lt;, &gt;, &lt;==, &gt;==
+                </code></pre>
 
-                                // Equivalente a:
-                                    if (condition) {
-                                        value1
-                                    } else {
-                                        value2
-                                    }
-                            </code></pre>                        
-                    </ul>
+                <li><b>Lógico</b>: Retorna boolean (true ou false).</li>
+                <pre><code>
+                    &&, ||, !
+                </code></pre>
 
-                    <h4><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/typeof">typeof</a></h4>
-                        O operador typeof retorna uma string indicando o tipo de um operando.
+                <li><b>Condicional</b>: if ternário.</li>
+                value1 se condição verdadeira, value2 se condição falsa.
+                <pre><code>
+                    // Ternário
+                        (condition) ? value1 : value2;
 
-                    <h4><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a></h4>
-                        O operador instanceof testa para ver se a propriedade <b>prototype</b> de um construtor aparece em qualquer lugar na cadeia de protótipos de um objeto. 
-                        O valor de retorno é um valor booleano.
-                        
-                </p>
-            </article>
-        </section>
-        <!--Página-Rodapé-->
-        <footer class="footer">
-            <div class="footer_list">
-                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>
-            </div>
-        </footer>    
-    </body>
+                    // Equivalente a:
+                        if (condition) {
+                            value1
+                        } else {
+                            value2
+                        }
+                </code></pre>
+            </ul>
+
+            <h4><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/typeof">typeof</a></h4>
+            O operador typeof retorna uma string indicando o tipo de um operando.
+
+            <h4><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a></h4>
+            O operador instanceof testa se um objeto tem, em seu prototype, a função construtora.<br>
+            O valor de retorno é um valor booleano.
+            <b>Sintaxe:</b>
+                <pre><code>
+                    object instanceof construtor
+                </code></pre>
+                <ul>
+                    <li><b>object</b>: Objeto a ser testado</li>
+                    <li><b>constructor</b>: Função construtora a ser verificada</li>
+                </ul>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+</body>
+
 </html>

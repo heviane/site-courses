@@ -16,7 +16,6 @@
                 <p class="post_content">
                     Erro no JavaScript é uma classe.<br>
                     Através da classe Error podemos gerar nossos próprios erros de forma dinâmica e customizá-los.<br><br>
-
                     Há duas formas de trabalhar com a classe Error:
                     <ul>
                         <li>Podemos instânciar a classe Error.</li>
@@ -27,20 +26,40 @@
                         Permite customizar a mensagem de erro, criar novas propriedades, criar consições, etc.
                     </ul>
 
-                    <h4>Debug</h4>
-                        <ul>
-                            <li><a href="../debug/debug-console.html" target="_blank">Debug - Console</a></li>
-                        </ul>
+                    <pre><code>
+                        // Criando o erro (instânciando a classe do erro)
+                        const myError = new Error('throwing error...'); 
+                        myError.name  = 'Name of Error';
+
+                        // Lançando o erro
+                        throw myError; 
+                    </code></pre>
+
+                    <h4>Tipos de erros além do construtor genérico</h4>
+                    Existem outros seis construtores principais de erro:
+                    <ul>
+                        <li><b>EvalError</b></li>
+                        Cria uma instância representando um erro que ocorre na função global. eval().
+                        <li><b>InternalError (Non-Standard)</b></li>
+                        Cria uma instância representando um erro que ocorre quando um erro interno na engine do JavaScript é lançado. Ex: "too much recursion".
+                        <li><b>RangeError</b></li>
+                        Cria uma instância representando um erro que ocorre quando um valor ou parâmetro numérico está fora de seus limites válidos.
+                        <li><b>ReferenceError</b></li>
+                        Cria uma instância representando um erro que ocorre ao de-referenciar uma referência inválida.
+                        <li><b>SyntaxError</b></li>
+                        Cria uma instância representando um erro que ocorre ao fazer o parse do código em eval().
+                        <li><b>TypeError</b></li>
+                        Cria uma instância representando um erro que ocorre quando uma variável ou parâmetro não é de um tipo válido.
+                        <li><b>URIError</b></li>
+                        Cria uma instância representando um erro que ocorre quando são passados parâmetros inválidos para encodeURI() ou decodeURI().
+                    </ul>
                 </p>
 			</article>
-
             <article class="post">
                 <header><h3>References</h3></header>
                 <p class="post_content">
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw" 
-                        target="_blank">Statements/throw</a></li>
-                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" 
-                        target="_blank">Global_Objects/Error</a></li>
+                    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Error" 
+                        target="_blank">Global_Objects/Error</a>
                 </p>
             </article>
 		</section>

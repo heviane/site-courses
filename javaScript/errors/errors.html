@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Errors</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <article class="post">
+            <header>
+                <h3>Tipos de Erros e Exceções</h3>
+            </header>
+            <p class="post_content">
+                Erro em javascript é um objeto.<br>
+                Quando um erro é estourado, toda a execução do código seguinte é interrompida.<br>
+
+                Praticamente qualquer objeto pode ser lançado em JavaScript. 
+                No entanto, nem todos os objetos lançados são criados iguais. 
+                Embora seja comum lançar números ou strings como erros, 
+                geralmente é mais eficaz usar um dos <b>tipos de exceção</b> criados especificamente para essa finalidade:
+                
+                <ul>
+                    <li><b>ECMAScript Error</b></li>
+                    Erros em tempo de execução.<br> 
+                    Composto por: mensagem, nome, linha, call stack (pilha de chamada).<br>
+                    Instâncias de objetos Error são lançadas quando ocorrem erros em tempo de execução.<br>
+                    O objeto Error também pode ser usado como objeto base para exceções definidas pelo usuário.
+
+                    <li><b>DOMException</b></li>
+                    Exceções relacionados a api do browser <a href="../web/browser/browser-api-dom.html" target="_blank">DOM</a>.<br>
+                    Composto por: code, name, message.<br>
+                    A interface DOMException representa um evento anormal (chamado de exceção ) que ocorre como resultado 
+                    de chamar um método ou acessar uma propriedade de uma API web.
+                    É assim que as condições de erro são descritas nas APIs da web.
+                    Cada exceção tem um name, que é uma string curta no estilo "PascalCase" que identifica o erro ou a condição anormal.
+                </ul>  
+            </p>
+        </article>
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="../debug/debug-console.html" target="_blank">Debug no Console</a><br>
+                <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Error" target="_blank">Error</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMException" target="_blank">DOMException</a><br>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+</body>
+
+</html>

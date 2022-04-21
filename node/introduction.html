@@ -1,75 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Node</title>
-        <link rel="stylesheet" href="../assets/css/style.css">
-    </head>
-    <body>
-		<!--Página-Cabeçalho-->
-		<header class="header"><h1>Node</h1></header>
-		<!--Página-Conteúdo-->
-		<section class="content">
-            <header><h2 class="posts_title"></h2></header>
-            <article class="post">
-                <header><h3 class="post_title">Introdução</h3></header>
-				<p class="post_content">
-                    <h4>O que é</h4>
-                        <b>Node.js</b> é um ambiente de execução JavaScript server-side.<br>
-                        Roda JavaScript localmente, no servidor, fora do browser.<br><br>
 
-                        <b>Node.js</b> é um interpretador de JavaScript assíncrono com código aberto orientado a eventos, focado em migrar a programação do Javascript do cliente (frontend) para os servidores (backend), criando aplicações de alta escalabilidade (como um servidor web), manipulando milhares de conexões/eventos simultâneas em tempo real numa única máquina física.<br><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
 
-                        É possível executar código JS no terminal do servidor assim como executamos DevTools do browser.<br>
-                        <span class="image">
-                            <span class="image_item">
-                                <img src="./assets/img/node-terminal.png" alt="node-terminal" /><br>
-                                Exemplo de execução do Node via terminal (rodando localmente).
-                            </span>
-                        </span><br>
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Node</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="posts_title"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3 class="post_title">Introdução</h3>
+            </header>
+            <p class="post_content">
+            <h4>O que é</h4>
+            A plataforma <b>Node</b> é um ambiente de execução JavaScript multiplataforma <b>server-side</b>.<br>
+            Construído usando o <a href="https://v8.dev" target="_blank">Chrome JavaScript Engine V8</a>.<br>
+            Permite usar JavaScript para automatizar coisas em um computador
+            e construir servidores <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTP">HTTP</a>
+            e <a href="https://developer.mozilla.org/en-US/docs/Glossary/WebSockets">WebSockets</a> totalmente
+            funcionais.<br>
+            Ou seja, com node o javascript pode ser executado fora do browser.<br><br>
 
-                        Alguns frameworks baseados em JavaScript rodam baseados no Node.js, por exemplo:
-                        <ul>
-                            <li>React</li>
-                            <li>Vue</li>
-                            <li>Angular</li>
-                        </ul>
-                        
-                    <h4>Como funciona</h4>
-                        <b>Node.js</b> trabalha com <b>single-thread</b>.<br><br>
+            <b>Node</b> é um interpretador de JavaScript assíncrono com código aberto e orientado a eventos,
+            focado em migrar a programação do Javascript do frontend (client-side) para o backend (server-side),
+            criando aplicações de alta escalabilidade (como um servidor web),
+            manipulando milhares de conexões/eventos simultâneas em tempo real em uma única máquina física.<br><br>
 
-                        <b>Blocking</b>: Síncrono, pois a entrega depende que todas as requisições estejam prontas para serem executadas.<br><br> 
+            É possível executar código JS no terminal do servidor assim como executamos no DevTools do browser.<br>
+            <span class="image">
+                <span class="image_item">
+                    <img src="./assets/img/node-terminal.png" alt="node-terminal" /><br>
+                    Exemplo de execução do Node via terminal (rodando localmente).
+                </span>
+            </span><br>
 
-                        <b>Non-blocking</b>: Assíncrono, pois a entrega é feita mesmo sem todas as requisições estarem prontas para serem executadas.<br>
-                        Trabalha com o <b>Event-Loop</b> que é a execução das requisições de forma assíncrona. <br><br>
+            Alguns frameworks baseados em JavaScript rodam baseados no Node.js, por exemplo:
+            <ul>
+                <li>React</li>
+                <li>Vue</li>
+                <li>Angular</li>
+            </ul>
 
-                        <b>Thread</b> é um pequeno programa que trabalha como um subsistema, sendo uma forma de um processo se autodividir em duas ou mais tarefas. Os diversos threads que existem em um programa podem trocar dados e informações entre si e compartilhar os mesmos recursos do sistema, incluindo o mesmo espaço de memória.<br><br>
+            <h4>Como funciona</h4>
+            <b>Node.js</b> trabalha com <b>single-thread</b>.<br><br>
 
-                        <b>Multi-thread</b> é o processo que executa as threads de forma síncronas.<br>
-                        Se alguma thread não executar quando invocada, o processo trava e espera até que a thread esteja pronta para ser executada, para assim poder seguir com o processamento.<br><br>
+            <b>Blocking</b>: Síncrono, pois a entrega depende que todas as requisições estejam prontas para serem
+            executadas.<br><br>
 
-                        <b>Single-thread</b> é o processo que executa as threads de forma assíncronas usando o <b>Event-Loop</b><br>
-                        Se alguma thread não executar quando invocada, o processo continua com o restante das threads, e ao final volta (event-loop) para invocar novamente a thread que não estava pronta da primeira vez.
+            <b>Non-blocking</b>: Assíncrono, pois a entrega é feita mesmo sem todas as requisições estarem prontas para
+            serem executadas.<br>
+            Trabalha com o <b>Event-Loop</b> que é a execução das requisições de forma assíncrona. <br><br>
 
-                    <h4>Vantagens</h4>
-                        <ul>
-                            <li>Flexibilidade</li>
-                            <li>Leveza</li>
-                            <li>Escalabilidade</li>
-                            <li>Redução de custos, processamento</li>
-                            <li>Repositório grande - NPM (Node Package Manager)</li>
-                            <li>Mesma linguagem no frontend e backend</li>
-                        </ul>
-				</p>
-            </article>            
-		</section>
-		<!--Página-Rodapé-->
-		<footer class="footer">
-            <div class="footer_list">
-                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
-                <a href="https://github.com/heviane" target="_blank">github</a>
-            </div>
-        </footer>
-    </body>
+            <b>Thread</b> é um pequeno programa que trabalha como um subsistema, sendo uma forma de um processo se
+            autodividir em duas ou mais tarefas. Os diversos threads que existem em um programa podem trocar dados e
+            informações entre si e compartilhar os mesmos recursos do sistema, incluindo o mesmo espaço de
+            memória.<br><br>
+
+            <b>Multi-thread</b> é o processo que executa as threads de forma síncronas.<br>
+            Se alguma thread não executar quando invocada, o processo trava e espera até que a thread esteja pronta para
+            ser executada, para assim poder seguir com o processamento.<br><br>
+
+            <b>Single-thread</b> é o processo que executa as threads de forma assíncronas usando o <b>Event-Loop</b><br>
+            Se alguma thread não executar quando invocada, o processo continua com o restante das threads, e ao final
+            volta (event-loop) para invocar novamente a thread que não estava pronta da primeira vez.
+
+            <h4>Vantagens</h4>
+            <ul>
+                <li>Flexibilidade</li>
+                <li>Leveza</li>
+                <li>Escalabilidade</li>
+                <li>Redução de custos, processamento</li>
+                <li>Repositório grande - NPM (Node Package Manager)</li>
+                <li>Mesma linguagem no frontend e backend</li>
+            </ul>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+</body>
+
 </html>
