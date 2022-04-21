@@ -1,317 +1,427 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JavaScript</title>
-        <link rel="stylesheet" href="../assets/css/style.css">
-    </head>
-    <body>
-		<!--Página-Cabeçalho-->
-		<header class="header"><h1>JavaScript</h1></header>
-		<!--Página-Conteúdo-->
-        <section class="content">
-            <header><h2 class="posts_title">Orientação à Objeto Baseada em Protótipo</h2></header>
-            <article class="post">
-                <header><h3>Herança</h3></header>
-                <p class="post_content">
-                    Baseada em protótipos<br>
-                    <b>prototype</b>: É uma variável que armazena as definições do objeto.<br/>
-                    <b>__proto__</b>: Referência a variável prototype.<br/>
-                    <b>constructor</b>: É o nome da função que cria o objeto. Aponta para o prototype.<br/>
-                    Tudo isso o JS faz por debaixo dos panos.
-                </p>
 
-                <header><h3>Classes</h3></header>
-                <p class="post_content">
-                    Sintaxe de Classe foi criada no ES6.<br/>
-                    É uma simplificação da herança de protótipos.<br>
-                    É uma forma simplificada para funções "fábricas" (Factory Functions).<br>
-                    É uma função que retorna objeto, instância da classe especificada.<br/>
-                    <b>class</b>: Palavra chave para declarar uma classe. É super sintaxe das funções.<br/>
-                    <b>OBS</b>: Por baixo dos panos é criado um prototype para cada classe<br/>
-                    Verificar/testar em: <a href="https://babeljs.io/" target="_blank">https://babeljs.io/</a>
-                </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
 
-                <header><h3>Modificadores de Acesso</h3></header>
-                <p class="post_content">
-                    JS não tem modificadores de acesso.<br/>
-                    Já existe uma implementação em ES6 que permite a definição de modificadores de acesso (versão 12 Node.js).
-                    Mas, ainda não tem suporte nos browsers.<br/>
-                    <b>Privado</b> ou <b>Público</b><br/>
-                    <b>#</b>: É o caractere que determina o modificador de acesso PRIVADO.
-                </p>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+    crossorigin="anonymous">
+</head>
 
-                <header><h3>Encapsulamento</h3></header>
-                <p class="post_content">
-                    Ocultar detalhes do funcionamento interno de um objeto.
-                </p>
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>JavaScript</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="posts_title">Orientação à Objeto Baseada em Protótipo</h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3>Introdução</h3>
+            </header>
+            <p class="post_content">
+            <h4>Object-Oriented Programming</h4>
+            É um paradigma de programação na qual os dados são encapsulados em objetos e o próprio objeto é operado, 
+            em vez de suas partes componentes.
 
-                <header><h3>Static</h3></header>
-                <p class="post_content">
-                    Acessar métodos/atributos sem instânciar o objeto.
-                </p>
-            </article>
+            <h4>Prototype-based Programming</h4>
+            É um paradigma de programação baseada em protótipos, que é um <b>estilo de programação orientada a objetos</b> 
+            em que a reutilização de comportamento é realizada por meio de
+            um processo de reutilização de objetos existentes que servem como protótipos.
+            Esse modelo também pode ser conhecido como programação prototípica, orientada a protótipos,
+            sem classes ou baseada em instâncias.<br>
 
-            <header><h2 class="posts_title">References</h2></header>
-            <article class="post">
-                <p class="post_content">
+            <h4>Class-based vs. prototype-based languages</h4>
+            <ul>
+                <li>Linguagem <b>orientada a objetos baseadas em classes</b></li>
+                    Baseiam-se no conceito de duas entidades distintas: classes e instâncias.<br>
 
-                </p>
-            </article>
-		</section>
-		<!--Página-Rodapé-->
-		<footer class="footer">
-            <div class="footer_list">
-                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+                    Uma <b>classe</b> é abstrata, pois define todas as propriedades que caracterizam um determinado conjunto de objetos.
+                    Por exemplo, a classe Employee pode representar o conjunto de todos os funcionários.<br>
+                    
+                    Uma <b>instância</b> (objeto), por outro lado, é a instanciação de uma classe.
+                    Por exemplo, Victoria poderia ser uma instância da classe Employee, representando um determinado indivíduo como funcionário. 
+                    Uma instância tem exatamente as mesmas propriedades de sua classe pai (nem mais, nem menos).<br><br>
+
+                <li>Linguagem <b>baseada em protótipo</b></li>
+                    Baseia-se no conceito de objeto, não faz distinção entre classe e instância.<br>
+
+                    Tem a noção de um objeto prototípico, um objeto usado como modelo para obter as propriedades 
+                    iniciais de um novo objeto. Qualquer objeto pode especificar suas próprias propriedades, 
+                    quando você o cria ou em tempo de execução.<br>
+                    Além disso, qualquer objeto pode ser associado como protótipo de outro objeto, 
+                    permitindo que o segundo objeto compartilhe as propriedades do primeiro objeto.
+            </ul>
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr><b>Comparação de sistemas de objetos baseados em classes (Java) e baseados em protótipos (JavaScript)</b></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Categoria</b></td>
+                            <td><b>Baseado em classe (Java)</b></td>
+                            <td><b>Baseado em protótipo (JavaScript)</b></td>
+                        </tr>
+                        <tr>
+                            <td>Classe x instância</td>
+                            <td>Classe e instância são entidades distintas.</td>
+                            <td>Todos os objetos podem herdar de outro objeto.</td>
+                        </tr>
+                        <tr>
+                            <td>Definição</td>
+                            <td>Defina uma classe com uma definição de classe; instanciar uma classe com métodos construtores.</td>
+                            <td>Defina e crie um conjunto de objetos com funções construtoras.</td>
+                        </tr>
+                        <tr>
+                            <td>Criação de um novo objeto</td>
+                            <td>Crie um único objeto com o newoperador.</td>
+                            <td>Mesmo</td>
+                        </tr>
+                        <tr>
+                            <td>Construção da hierarquia de objetos</td>
+                            <td>Construa uma hierarquia de objetos usando definições de classe para definir subclasses de classes existentes.</td>
+                            <td>Construa uma hierarquia de objetos atribuindo um objeto como o protótipo associado a uma função construtora.</td>
+                        </tr>
+                        <tr>
+                            <td>Modelo de herança</td>
+                            <td>Herde propriedades seguindo a cadeia de classes.</td>
+                            <td>Herde propriedades seguindo a cadeia de protótipos.</td>
+                        </tr>
+                        <tr>
+                            <td>Extensão de propriedades</td>
+                            <td>A definição de classe especifica todas as propriedades de todas as instâncias de uma classe. 
+                                Não é possível adicionar propriedades dinamicamente em tempo de execução.</td>
+                            <td>A função construtora ou protótipo especifica um conjunto inicial de propriedades. 
+                                Pode adicionar ou remover propriedades dinamicamente para objetos individuais ou para todo o conjunto de objetos.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </footer>
-        <script>
-            'use strict'; //Força o JS a ser mais rigoroso
+            Classes são mais rigidas e protótipos são mais flexíveis.
+            </p>
+        </article>
 
-            //============================================== HERANÇA 
-            // __proto__: É uma referência a variável prototype.
-            // prototype: É uma variável que armazena as definições do objeto.
-            // constructor: É o nome da função que cria o objeto. Aponta para o prototype.
+        <article class="post">
+            <header>
+                <h3>Herança</h3>
+            </header>
+            <p class="post_content">
+                <b>prototype</b>: É uma variável que armazena as definições do objeto.<br />
+                <b>__proto__</b>: Referência a variável prototype.<br />
+                <b>constructor</b>: É o nome da função que cria o objeto. Aponta para o prototype.<br />
+                Tudo isso o JS faz por debaixo dos panos.
+            </p>
 
-            // __proto__ => Aponta para um prototype => que é criado a partir de uma função constructor
-            
-            // --- Example 1 
-            const myText = 'Hello prototype';
-            // myText.constructor -> String (O construtor do myText é uma String)
-            // myText.__proto__ APONTA para String.prototype
-            myText.split(' '); // ??? De onde vem esse Split ???
+            <header>
+                <h3>Classes</h3>
+            </header>
+            <p class="post_content">
+                Sintaxe de Classe foi criada no ES6.<br />
+                É uma simplificação da herança de protótipos.<br>
+                É uma forma simplificada para funções "fábricas" (Factory Functions).<br>
+                É uma função que retorna objeto, instância da classe especificada.<br />
+                <b>class</b>: Palavra chave para declarar uma classe. É super sintaxe das funções.<br />
+                <b>OBS</b>: Por baixo dos panos é criado um prototype para cada classe<br />
+                Verificar/testar em: <a href="https://babeljs.io/" target="_blank">https://babeljs.io/</a>
+            </p>
 
-            // --- Example 2 - Toda variável criada com uma função construtora tem a referência do prototype dela.
-            const myText2 = String('Hello prototype'); // Função construtura String
-            console.log(myText2.__proto__.split); 
-            console.log(String.prototype.split); // ƒ split() { [native code] }
-            console.log(myText2.__proto__.split === String.prototype.split); // true __proto__ aponta para String.prototype
-            console.log(myText2.constructor === String); // true - O constructor da variavel myText2 é um objeto String.
-            
-            // --- Example 3
-            function Animal(){ this.qtdePatas = 4; }
-            console.log(Animal.constructor);
-            // O prototype.constructor da função (Animal) aponta para Function.
-            // O prototype.constructor do Function aponta para Object. O prototype do Function é Object.prototype.
-                console.log(Function.prototype);             // ƒ () { [native code] }
-                console.log(Function.prototype.constructor); // ƒ Function() { [native code] }
-                console.log(Function.__proto__);             // ƒ () { [native code] }
-            // O prototype do Object é null. É o objeto raiz.
-                console.log(Object.prototype);             // null (Não tem nada porque é a estrutura padrão raiz)
-                console.log(Object.prototype.constructor); // ƒ Object() { [native code] }
-                console.log(Object.__proto__);             // ƒ () { [native code] }
-            // Criando um objeto do tipo Animal
-            const cao = new Animal();
-            console.log(cao.qtdePatas); // 4
-            console.log(cao.__proto__ === Animal.prototype);      // true (__proto__ aponta p prototype de Animal (Função construtora)).
-            console.log(Animal.__proto__ === Function.prototype); // true (__proto__ aponta p prototype de Function (Função construtora)).
+            <header>
+                <h3>Modificadores de Acesso</h3>
+            </header>
+            <p class="post_content">
+                JS não tem modificadores de acesso.<br />
+                Já existe uma implementação em ES6 que permite a definição de modificadores de acesso (versão 12
+                Node.js).
+                Mas, ainda não tem suporte nos browsers.<br />
+                <b>Privado</b> ou <b>Público</b><br />
+                <b>#</b>: É o caractere que determina o modificador de acesso PRIVADO.
+            </p>
 
-            //============================ NEW
-            /* --------- new Foo(...)
-                Cria um novo objeto do tipo Foo, herdando Foo.prototype. 
-                    A função construtora Foo é chamada com os argumentos especificados.
-                    Caso a função construtora tenha um retorno explicito, será respeitado seu valor.
-                    Caso contrário, será retornado o objeto criado.
-                        O this aponta para o novo objeto criado.
-                O this.constructor e Foo.prototype.constructor aponta para Foo.
-                O this.__proto__ aponta para Foo.prototype.
-                O Foo.prototype aponta para Object.prototype.
-                    O Object.prototype.constructor aponta para Object.
-                    O Object.prototype aponta para null.*/
-                // --------- Exemplo de retorno implicito = Retorna o objeto criado.
-                const p = new Pessoa('João');
-                console.log(p); // Pessoa { name: 'João' }   // Constructor: Pessoa, Prototype: Object
-                // --------- Exemplo de retorno explicito = Respeita o return.
-                function Pessoa(name){
-                    this.name = name;
-                    return { name: 'Teste retorno explicito'};
-                }
-                const p2 = new Pessoa('João');
-                console.log(p2); // {name: 'Teste retorno explicito'}
-            //============================ Descobrir a instância de um objeto.
-            console.log(cao instanceof Animal);   // true  (cão é um objeto do tipo Animal, é uma instância de Animal)
-            console.log(cao instanceof Function); // false   
+            <header>
+                <h3>Encapsulamento</h3>
+            </header>
+            <p class="post_content">
+                Ocultar detalhes do funcionamento interno de um objeto.
+            </p>
 
-            //============================ Exemplo de Derivação
-            // --- Criando propriedades na própria função construtora
-            function Animal(qtdePatas){
-                this.qtdePatas = qtdePatas;
-                this.movimentar = function(){}
-            }
-            console.log(Animal.constructor); // Function() { [native code] } *** Constructor de Animal é function ***
+            <header>
+                <h3>Static</h3>
+            </header>
+            <p class="post_content">
+                Acessar métodos/atributos sem instânciar o objeto.
+            </p>
+        </article>
 
-            function Cao(morde){ // Função construtora derivada da função Animal
-                Animal.call(this, 4); // this = Passando contexto de cao para Animal.call(). this de Animal vai ser o objeto criado aqui.
-                this.morde = morde;
-                this.latir = function(){console.log('Au au');}
-            }
-            console.log(Cao.constructor); // Function() { [native code] } *** Constructor de Cao é function ***
+        <header>
+            <h2 class="posts_title">References</h2>
+        </header>
+        <article class="post">
+            <p class="post_content">
 
-            const pug = new Cao(false);
-            console.log(pug);
-            const pitbull = new Cao(true);
-            console.log(pitbull);
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+    <script>
+        // 'use strict'; //Força o JS a ser mais rigoroso
 
-            // --- Criando propriedades no prototype da função construtora.
-            function Animal(){}
-            Animal.prototype.qtdePatas = 0;
-            Animal.prototype.movimentar = function(){};
-            function Cao(morde){
-                this.qtdePatas = 4;
-                this.morde = morde;
-            }
-            Cao.prototype = Object.create(Animal);
-            Cao.prototype.latir = function(){console.log('Au au');}
-            const pug = new Cao(false);
-            console.log(pug);
-            console.log(pug.latir()); // Au au
-            const pitbull = new Cao(true);
-            console.log(pitbull);         
-            /* ********** DIFERENÇA das versões *******
-                Versão 1: Deriva a partir das funções.
-                    - As função são criadas toda vez que um objeto é instanciado.
-                Versão 2: Deriva a partir dos prototypes (definições).
-                    - As função NÃO são criadas toda vez que um objeto é instanciado, pois já estão definidas no prototype.
-                    - Vantagens:
-                        - Padronizar, valores que devem existir em todos os objetos.
-                        - Adição de novas propriedades no prototype já são refletidas automaticamente em objetos já criados.      
-            */
-            console.log(pug.__proto__); 
-            Cao.prototype.teste = function(){console.log('Teste');}; // Novas adds, já são refletidas em objetos já criados.
-            console.log(pug.__proto__); // Todas as instânicas vão receber essa atualização.
+        // //============================================== HERANÇA 
+        // // __proto__: É uma referência a variável prototype.
+        // // prototype: É uma variável que armazena as definições do objeto.
+        // // constructor: É o nome da função que cria o objeto. Aponta para o prototype.
 
-            // --------------------- Prototype é um recurso bem interessante, mas também é perigoso
-            // Permiti trocar a implementação de um tipo nativo. **** NÃO RECOMENDADO fazer isso ****
-            // Ao trocar o prototype de uma função, todos os objetos criados a partir dela, recebem o novo prototype.
-                // Exemplo com o Objeto nativo String
-                    '123456'.split(''); // [ '1', '2', '3', '4', '5', '6' ]
-                    String.prototype.split = function(){console.log('ixi...');}
-                    '123456'.split(''); // ixi...
-            //============================================== CLASSES - ES6 
-            // É uma simplificação da herança de protótipos.
-            // É uma função que cria objetos a partir de seu modelo.
+        // // __proto__ => Aponta para um prototype => que é criado a partir de uma função constructor
 
-            // --- Declaração como função
-            class Animal{
-                constructor(qtdePatas){
-                    this.qtdePatas = qtdePatas;
-                }
-                movimentar(){
-                    console.log('Movimentando...');
-                }
-            }
-            // --- Declaração como classe
-            class Cao extends Animal{
-                constructor(morde){
-                    super(4);
-                    this.morde = morde;
-                }
-                latir(){
-                    console.log('Au au');
-                }
-            }
-            const pug = new Cao(false);
-            console.log(pug);
-            //============================================== Modificadores de Acesso 
-            // --- Declaração como função
-            function Person(nameIn){
-                let name = nameIn;
-                this.getName = function(){
-                    return name;
-                }
-                this.setName = function(nameOut){
-                    name = nameOut;
-                }
-            }
-            const p = new Person('João');
-            p.getName(); // João
-            p.setName('Maria');
-            p.getName(); // Maria
-            p.name = 'João'; // Não é possível. 
-            // --- Declaração como classe (Faz a mesma coisa...mas com o modificador de acesso # da versão 12 do Node.js)
-            class Person{
-                #name = '';
-                constructor(nameIn){
-                    this.#name = nameIn;
-                }
-                setName(name){
-                    this.#name = name;
-                }
-                getName(){
-                    return this.#name;
-                }
-            }
-            const p2 = new Person('João');
-            p2.getName(); // João
-            p2.setName('Maria');
-            p2.getName(); // Maria
-            p.name = 'Paulo'; // Não é possível.
-            //============================================== Encapsulamento 
-            // Ocultar detalhes do funcionamento interno de um objeto.
-            // --- Declaração como função
-            function Person(nameIn){
-                var name = nameIn;
-                Object.defineProperty(this/*contexto q vai ser criada essa var*/, 'name', {
-                    get: function(){
-                        return name;
-                    },
-                    set: function(value){
-                        name = value;
-                    }
-                });
-            }
-            // --- Declaração como classe
-            class Person{
-                #name = '';
-                constructor(name){
-                    this.#name = name;
-                }
-                get name(){ // palavra chave get para determinado att
-                    return this.#name;
-                }
-                set name(name){ // palavra chave set para determinado att
-                    this.#name = name;
-                }
-            }
-            //============================================== Static ========================================
-            // Acessar métodos/atributos sem precisar instânciar um objeto.
-            // --- Declaração como função
-            function Person(){
-                Person.walk = function(){
-                    console.log('walking...');
-                }
-            }
-            console.log(Person.walk()); // walking...
-            // --- Declaração como classe
-            class person{
-                static walk(){
-                    console.log('walking...');
-                }
-            }
-            console.log(Person.walk()); // walking...
+        // // --- Example 1 
+        // const myText = 'Hello prototype';
+        // // myText.constructor -> String (O construtor do myText é uma String)
+        // // myText.__proto__ APONTA para String.prototype
+        // myText.split(' '); // ??? De onde vem esse Split ???
 
-            /* ------------------------------------ RESUMINDO...
-                Herança é baseada em protótipos.
-                É possível instânciar (criar) um objeto a partir de uma função ou de uma classe.
-                Uma classe é uma simplificação da herança de protótipos. 
-                    É uma função que cria objetos a partir de seu modelo. 
-                Funções construtoras, por convenção, a primeira letra é maiúscula.
-            */
-            class DogClass {
-                constructor(name){
-                    this.name = name;
-                }
-            }
-            function DogFunction(name){
-                return {
-                    name,
-                }
-            }
-            const pintcher = new DogClass('Hulk');
-            const labrador = new DogFunction('Bruno');
-            typeof pintcher === typeof labrador; // true
-        </script>
-    </body>
+        // // --- Example 2 - Toda variável criada com uma função construtora tem a referência do prototype dela.
+        // const myText2 = String('Hello prototype'); // Função construtura String
+        // console.log(myText2.__proto__.split);
+        // console.log(String.prototype.split); // ƒ split() { [native code] }
+        // console.log(myText2.__proto__.split === String.prototype.split); // true __proto__ aponta para String.prototype
+        // console.log(myText2.constructor === String); // true - O constructor da variavel myText2 é um objeto String.
+
+        // // --- Example 3
+        // function Animal() { this.qtdePatas = 4; }
+        // console.log(Animal.constructor);
+        // // O prototype.constructor da função (Animal) aponta para Function.
+        // // O prototype.constructor do Function aponta para Object. O prototype do Function é Object.prototype.
+        // console.log(Function.prototype);             // ƒ () { [native code] }
+        // console.log(Function.prototype.constructor); // ƒ Function() { [native code] }
+        // console.log(Function.__proto__);             // ƒ () { [native code] }
+        // // O prototype do Object é null. É o objeto raiz.
+        // console.log(Object.prototype);             // null (Não tem nada porque é a estrutura padrão raiz)
+        // console.log(Object.prototype.constructor); // ƒ Object() { [native code] }
+        // console.log(Object.__proto__);             // ƒ () { [native code] }
+        // // Criando um objeto do tipo Animal
+        // const cao = new Animal();
+        // console.log(cao.qtdePatas); // 4
+        // console.log(cao.__proto__ === Animal.prototype);      // true (__proto__ aponta p prototype de Animal (Função construtora)).
+        // console.log(Animal.__proto__ === Function.prototype); // true (__proto__ aponta p prototype de Function (Função construtora)).
+
+        // //============================ NEW
+        // /* --------- new Foo(...)
+        //     Cria um novo objeto do tipo Foo, herdando Foo.prototype. 
+        //         A função construtora Foo é chamada com os argumentos especificados.
+        //         Caso a função construtora tenha um retorno explicito, será respeitado seu valor.
+        //         Caso contrário, será retornado o objeto criado.
+        //             O this aponta para o novo objeto criado.
+        //     O this.constructor e Foo.prototype.constructor aponta para Foo.
+        //     O this.__proto__ aponta para Foo.prototype.
+        //     O Foo.prototype aponta para Object.prototype.
+        //         O Object.prototype.constructor aponta para Object.
+        //         O Object.prototype aponta para null.*/
+        // // --------- Exemplo de retorno implicito = Retorna o objeto criado.
+        // const p = new Pessoa('João');
+        // console.log(p); // Pessoa { name: 'João' }   // Constructor: Pessoa, Prototype: Object
+        // // --------- Exemplo de retorno explicito = Respeita o return.
+        // function Pessoa(name) {
+        //     this.name = name;
+        //     return { name: 'Teste retorno explicito' };
+        // }
+        // const p2 = new Pessoa('João');
+        // console.log(p2); // {name: 'Teste retorno explicito'}
+        // //============================ Descobrir a instância de um objeto.
+        // console.log(cao instanceof Animal);   // true  (cão é um objeto do tipo Animal, é uma instância de Animal)
+        // console.log(cao instanceof Function); // false   
+
+        // //============================ Exemplo de Derivação
+        // // --- Criando propriedades na própria função construtora
+        // function Animal(qtdePatas) {
+        //     this.qtdePatas = qtdePatas;
+        //     this.movimentar = function () { }
+        // }
+        // console.log(Animal.constructor); // Function() { [native code] } *** Constructor de Animal é function ***
+
+        // function Cao(morde) { // Função construtora derivada da função Animal
+        //     Animal.call(this, 4); // this = Passando contexto de cao para Animal.call(). this de Animal vai ser o objeto criado aqui.
+        //     this.morde = morde;
+        //     this.latir = function () { console.log('Au au'); }
+        // }
+        // console.log(Cao.constructor); // Function() { [native code] } *** Constructor de Cao é function ***
+
+        // const pug = new Cao(false);
+        // console.log(pug);
+        // const pitbull = new Cao(true);
+        // console.log(pitbull);
+
+        // // --- Criando propriedades no prototype da função construtora.
+        // function Animal() { }
+        // Animal.prototype.qtdePatas = 0;
+        // Animal.prototype.movimentar = function () { };
+        // function Cao(morde) {
+        //     this.qtdePatas = 4;
+        //     this.morde = morde;
+        // }
+        // Cao.prototype = Object.create(Animal);
+        // Cao.prototype.latir = function () { console.log('Au au'); }
+        // const pug = new Cao(false);
+        // console.log(pug);
+        // console.log(pug.latir()); // Au au
+        // const pitbull = new Cao(true);
+        // console.log(pitbull);
+        // /* ********** DIFERENÇA das versões *******
+        //     Versão 1: Deriva a partir das funções.
+        //         - As função são criadas toda vez que um objeto é instanciado.
+        //     Versão 2: Deriva a partir dos prototypes (definições).
+        //         - As função NÃO são criadas toda vez que um objeto é instanciado, pois já estão definidas no prototype.
+        //         - Vantagens:
+        //             - Padronizar, valores que devem existir em todos os objetos.
+        //             - Adição de novas propriedades no prototype já são refletidas automaticamente em objetos já criados.      
+        // */
+        // console.log(pug.__proto__);
+        // Cao.prototype.teste = function () { console.log('Teste'); }; // Novas adds, já são refletidas em objetos já criados.
+        // console.log(pug.__proto__); // Todas as instânicas vão receber essa atualização.
+
+        // // --------------------- Prototype é um recurso bem interessante, mas também é perigoso
+        // // Permiti trocar a implementação de um tipo nativo. **** NÃO RECOMENDADO fazer isso ****
+        // // Ao trocar o prototype de uma função, todos os objetos criados a partir dela, recebem o novo prototype.
+        // // Exemplo com o Objeto nativo String
+        // '123456'.split(''); // [ '1', '2', '3', '4', '5', '6' ]
+        // String.prototype.split = function () { console.log('ixi...'); }
+        // '123456'.split(''); // ixi...
+        // //============================================== CLASSES - ES6 
+        // // É uma simplificação da herança de protótipos.
+        // // É uma função que cria objetos a partir de seu modelo.
+
+        // // --- Declaração como função
+        // class Animal {
+        //     constructor(qtdePatas) {
+        //         this.qtdePatas = qtdePatas;
+        //     }
+        //     movimentar() {
+        //         console.log('Movimentando...');
+        //     }
+        // }
+        // // --- Declaração como classe
+        // class Cao extends Animal {
+        //     constructor(morde) {
+        //         super(4);
+        //         this.morde = morde;
+        //     }
+        //     latir() {
+        //         console.log('Au au');
+        //     }
+        // }
+        // const pug = new Cao(false);
+        // console.log(pug);
+        // //============================================== Modificadores de Acesso 
+        // // --- Declaração como função
+        // function Person(nameIn) {
+        //     let name = nameIn;
+        //     this.getName = function () {
+        //         return name;
+        //     }
+        //     this.setName = function (nameOut) {
+        //         name = nameOut;
+        //     }
+        // }
+        // const p = new Person('João');
+        // p.getName(); // João
+        // p.setName('Maria');
+        // p.getName(); // Maria
+        // p.name = 'João'; // Não é possível. 
+        // // --- Declaração como classe (Faz a mesma coisa...mas com o modificador de acesso # da versão 12 do Node.js)
+        // class Person {
+        //     #name = '';
+        //     constructor(nameIn) {
+        //         this.#name = nameIn;
+        //     }
+        //     setName(name) {
+        //         this.#name = name;
+        //     }
+        //     getName() {
+        //         return this.#name;
+        //     }
+        // }
+        // const p2 = new Person('João');
+        // p2.getName(); // João
+        // p2.setName('Maria');
+        // p2.getName(); // Maria
+        // p.name = 'Paulo'; // Não é possível.
+        // //============================================== Encapsulamento 
+        // // Ocultar detalhes do funcionamento interno de um objeto.
+        // // --- Declaração como função
+        // function Person(nameIn) {
+        //     var name = nameIn;
+        //     Object.defineProperty(this/*contexto q vai ser criada essa var*/, 'name', {
+        //         get: function () {
+        //             return name;
+        //         },
+        //         set: function (value) {
+        //             name = value;
+        //         }
+        //     });
+        // }
+        // // --- Declaração como classe
+        // class Person {
+        //     #name = '';
+        //     constructor(name) {
+        //         this.#name = name;
+        //     }
+        //     get name() { // palavra chave get para determinado att
+        //         return this.#name;
+        //     }
+        //     set name(name) { // palavra chave set para determinado att
+        //         this.#name = name;
+        //     }
+        // }
+        // //============================================== Static ========================================
+        // // Acessar métodos/atributos sem precisar instânciar um objeto.
+        // // --- Declaração como função
+        // function Person() {
+        //     Person.walk = function () {
+        //         console.log('walking...');
+        //     }
+        // }
+        // console.log(Person.walk()); // walking...
+        // // --- Declaração como classe
+        // class person {
+        //     static walk() {
+        //         console.log('walking...');
+        //     }
+        // }
+        // console.log(Person.walk()); // walking...
+
+        // /* ------------------------------------ RESUMINDO...
+        //     Herança é baseada em protótipos.
+        //     É possível instânciar (criar) um objeto a partir de uma função ou de uma classe.
+        //     Uma classe é uma simplificação da herança de protótipos. 
+        //         É uma função que cria objetos a partir de seu modelo. 
+        //     Funções construtoras, por convenção, a primeira letra é maiúscula.
+        // */
+        // class DogClass {
+        //     constructor(name) {
+        //         this.name = name;
+        //     }
+        // }
+        // function DogFunction(name) {
+        //     return {
+        //         name,
+        //     }
+        // }
+        // const pintcher = new DogClass('Hulk');
+        // const labrador = new DogFunction('Bruno');
+        // typeof pintcher === typeof labrador; // true
+    </script>
+</body>
+
 </html>

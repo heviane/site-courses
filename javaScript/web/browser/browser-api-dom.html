@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>JavaScript</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="posts_title">DOM (Document Object Model)</h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3>Introdução</h3>
+            </header>
+            <p class="post_content">
+                É uma API que representa e interage com qualquer documento HTML, XML e SVG.<br>
+                É um modelo de documento carregado no navegador e representando o documento como uma árvore de
+                nós, onde cada nó representa parte do documento.<br>
+                É uma representação orientada a objetos (Todas as propriedades, métodos e eventos são organizados em objetos).<br>
+                É uma estrutura (em árvore) de todos os elementos e objetos contidos na janela do navegador.<br>
+                Cada NÓ representa uma parte do documento (ex. elemento, texto ou comentário).<br><br>
+                
+                <b>Window</b> é o no raiz do DOM para a janela do navegador.<br>
+                <b>Document</b> é o nó raiz do DOM para o documento HTML (Filho de Window).<br><br>
+
+                Através desta API uma código executado no navegador pode manipular o documento HTML.<br>
+                Por exemplo, o objeto DOM <b>HTMLTableElement</b> é um representação de table que implementa a interface para acessar tabelas HTML.<br>
+
+                Este modelo de padrão e interface define PROPRIEDADES, MÉTODOS e EVENTOS dos elementos.
+                <ul>
+                    <li><b>PROPRIEDADES:</b> Podem ser manipuladas.</li>
+                    <li><b>MÉTODOS:</b> Permitem acesso à árvore, para manipulação das propriedades do documento.</li>
+                   <li><b>EVENTOS:</b> Nós também podem ter manipuladores de eventos que lhe são inerentes.</li>
+                    Listeners de evento podem também ser adicionados aos nós para serem disparados quando um dado evento ocorrer.
+                </ul>
+
+                <br><br><b>RESUMINDO:</b>
+                Essencialmente, ele conecta páginas web a scripts ou linguagens de programação.<br>
+                Embora o DOM seja frequentemente acessado usando JavaScript, não é uma parte da linguagem JavaScript.<br> 
+                Ele também pode ser acessado por outras linguagens.
+            </p>
+        </article>
+
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="https://dom.spec.whatwg.org" target="_blank">DOM Living Standard</a><br>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+</body>
+
+</html>
