@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Promise</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3></h3></header>
+                <p class="post_content">
+                    Objeto que representa uma tarefa assíncrona.<br>
+                    Não há necessidade de Try() e Catch(), se der algum erro, ele é tratado automaticamente no <b>reject</b>.
+                    <ul><h4>Estados das promises:</h4>                      
+                        <li><b>Pending:</b> A tarefa ainda não foi executada.</li>
+                        <li><b>Fulfilled:</b> A tarefa foi executada com sucesso.</li>  
+                        <li><b>Rejected:</b> A tarefa foi executada com erro.</li>
+                    </ul>
+                    <ul><h4>Formas de execução das promises:</h4>
+                        <li>Sequencial</li>
+                        <li>Paralelo</li>
+                    </ul>
+                    <pre><code>
+                        // EXEMPLO: Retorna uma promise 
+                            fetch('https://api.github.com/users')
+                                .then(response => { console.log(response); }); 
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => { console.log(response); }); 
+
+                        // EXEMPLO: Processando promise (response) para extrair os dados
+                            fetch('https://api.github.com/users/ivey').then(response => {
+                                    response.json().then(data => {
+                                        console.log(data);
+                                });
+                            }) 
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => response.json())  
+                                .then(data => console.log(data))    
+                                .catch(e => console.log(e));   
+                                            
+                        // EXEMPLO: Encadeado de Promises
+                        // Retornar promise no .then, encadear, aplica Tipo um flash map 
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => { 
+                                    return response.json() 
+                                    .then(data => console.log(data));   
+                                });
+
+                        // EXEMPLO: Erro de REDE (forçando error...chamando numa porta que não existe)
+                            fetch('http://localhost:8099')
+                                .then(response => response.json())    
+                                .then(data => console.log(data))       
+                                .catch(e => console.log('Error: ', e));  
+                                // GET http://localhost:8099/ net::ERR_CONNECTION_REFUSED
+                                // Error:  TypeError: Failed to fetch     *** ERRO capturado pelo catch ***
+
+                        // EXEMPLO: Erro de RESPONSE (forçando error...chamando arquivo que não existe)
+                        // A request passou, então não é um erro de rede.
+                        // O erro foi um status de resposta não desejado.
+                            fetch('https://api.github.com/users/')
+                                .then(response => {
+                                    if (response.status === 200) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('Erro na requisição'); // Lançando erro...
+                                    }
+                                }) 
+                                .then(data => console.log(data))   
+                                .catch(e => console.log('Error: ', e));    
+                                // GET https://api.github.com/users/ 404 Not Found
+                                // Error:  Error: Erro na requisição
+
+                        // EXEMPLO: Fetch com método especificado (Padrão é GET) 
+                            fetch('https://api.github.com/users/ivey', {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    name: 'Michael D. Ivey',
+                                    login: 'ivey',
+                                    email: 'ivey@gmail.com'
+                                })
+                            });
+                    </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>References</h3></header> 
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+                        target="_blank">Promise</a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then"
+                        target="_blank">Promise then</a>
+                    <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch"
+                        target="_blank">Promise catch</a>
+                </p>          
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

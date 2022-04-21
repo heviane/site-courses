@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Qualidade e Testes</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2></h2></header>
+			<article class="post">
+                <header><h3>TDD - Test Driven Devlopment</h3></header>
+                <p class="post_content">
+                    <b>Desenvolvimento Orientado a Teste</b>.<br>
+                    É um dos pilares do <b>Extreme Programing</b>.<br>
+                    Geralmente o <u>teste é escrito antes da funcionalidade</u>.<br>
+                    O objetivo é antecipar erros a nível de desenvolvimento.<br>
+                    Consiste em testar e refatorar em pequenos ciclos, onde se escreve o teste antes do código, faz o mesmo passar e refatora o código.<br>
+
+                    <p>É importante escrever o teste primeiro, porque a função tem que ser exportada, e para conseguir testar um código, ele precisa ser testável. Nem todo código é testável, e para que seja testável, é necessário fazer coisas dentro do código para que possibilite os testes.</p>
+                    <p>O teste automatizado é uma garantia a nivel de deploy, e evita passar erros para o QA. Não descarta a presença de um tester (QA). O próprio QA de automatização pode auxiliar o desenv. escrevendo esses testes.</p>
+
+                    <ul><h4>Ciclo de Vida</h4>
+                        <ol>1. Write a test that fails (Red)</ol>
+                        Escreva um teste que falhe. Escreva o teste antes de escrever a lógica.<br>
+						Pensar em como deve ser o comportamento, regras.
+                        <ol>2. Make the code work (Green)</ol>
+						Escreva o código que funcione, que passe no teste.
+                        <ol>3. Eliminate redundancy (Refactor)</ol>
+                        Refatore o código para que o teste seja mais eficiente.
+                    </ul>
+                    <ul><h4>Foco</h4>
+                        <li>Testes Unitários</li>
+                        <li>Testes de Integração</li>
+                   </ul>
+                    <ul><h4>Vantagens</h4>
+                        <li>Feedback rápido</li>
+                        <li>Maior segurança em alterações e novas funcionalidades</li>
+                        <li>Código mais limpo (Entrega com mais qualidade)</li>
+                        <li>Produtividade (Menos tempo corrigindo bug)</li>
+                    </ul>
+                    <ul><h4>Bibliotecas</h4>
+                        <li>Jest</li>
+                        <li>React-testing-Library</li>
+                        <li>Shallow</li>
+                        <li>Enzyne</li>
+                        <li>Chai</li>
+                        <li>Mocha</li>
+                        <li>Selenium</li>
+                        <li>Puppeteer</li>
+                    </ul>
+
+                    <b class="text-red">DICA:</b> Sempre faça testes o mais simples possível, e a medida que consiga passar esses testes, faça testes mais complexos.
+
+                    <pre><code>
+                        // Código fonte à ser testado
+                            src/math.js
+
+                        // Padrão TDD 
+                            // Diretório chamado "test"
+                            // Arquivo chamado "math.test.js" 
+                                // Nome do arquivo a ser testado + ".test.js"
+
+                            test/math.spec.js
+                    </code></pre>
+                </p>
+			</article>
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

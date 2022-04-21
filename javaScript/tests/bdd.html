@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Qualidade e Testes</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2></h2></header>
+			<article class="post">
+                <header><h3>BDD - Behavior Driven Development</h3></header>
+                <p class="post_content">
+                    <b>Desenvolvimento Orientado a Comportamento</b>.<br>
+                    Técnica de <b>desenvolvimento ágil</b> que visa integrar <u>regras de negócio</u> com <u>linguagem de programação</u>.<br>
+                    Escrever o teste e descrever o que aquele teste é, descrever a funcionalidade de negócio que está sendo testada.<br>
+                    Assim, o código fica documentado e explicado, sabe-se que comportamento é esperado de determinado componente, classe, etc.<br>
+                    Documentar as regras de negócio, descrever os comportamentos dos seus componentes refletindo o negócio em si.<br>
+                    Software que esteja se descrevendo, descrevendo seu próprio comportamento, seu impacto e que parte ele faz do negócio em si.<br>
+                    Visa pensar no comportamento antes de sair escrevendo código, e o TDD auxilia nisso, porque escrevemos o teste antes do código, e o teste nada mais é do que uma descrição do comportamento esperado.<br>
+
+                    BDD prevê a união da especificação com o teste, <b>Teste de especificação</b>.<br>
+                    Une especificação, teste automatizdo e premissa de teste (documento de teste) para que consiga satisfazer todas as pontas do desenvolvimento.
+
+                    <h4>Sintaxe Gherkin</h4>
+                        Sintaxe de steps para definir cenários.<br>
+                        Descreve cada funcionalidade por feature (caso de uso).<br>
+                        O objetivo é criar uma representação da especificação em uma linguagem que a máquina entenda.<br>
+                        <a href="./images/Tests-SintaxeGherkin-UseCase-Login.png"
+                            target="_blank">Exemplo de um caso de uso de Login</a>
+                    
+                    <ul><h4>Pilares</h4>
+                        <li>Testes</li>
+                        <li>Documentação</li> 
+                        Documentação, readme, documentação complementar principalmente de processos ou como utilizar as ferramentas.<br>
+                        Tem testes que geram documentação dinâmica.
+                        <li>Exemplos</li>
+                        O teste por si só já é um exemplo, mas pode ser colocado na documentação.
+                    </ul>
+
+                    <ul><h4>Vantagens</h4>
+                        <li>Compartilhamento de conhecimento.</li>
+                        <li>Documentação dinâmica.</li>
+                        <li>Visão do todo (Uma vez que desenvolvedor e negócio falam o mesmo idioma).</li>
+                    </ul>
+
+                    <ul><h4>Bibliotecas</h4>
+                        <li><b>Jest-cucumber</b></li> 
+                            É uma extensão para o Jest e para o VSCode.
+                            <pre><code>
+                                npm install --save-dev jest-cucumber
+                            </code></pre>
+                        <li><b>Chai</b></li>
+                    </ul>
+                </p>
+			</article>
+            <article class="post">
+                <header><h3>Testes</h3></header>
+                <p class="post_content">
+                    
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

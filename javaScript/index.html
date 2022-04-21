@@ -15,60 +15,52 @@
             <article class="post">
 				<p class="post_content">
 					<h3><a href="./introduction.html">Introdução</a></h3>
-					<h3><a href="./ecmascript.html">ECMAScript® Language Specification</a></h3>
-					<h3><a href="./execution-codigo-js.html">Como executar JavaScript</a></h3>
-					<!--Execução console no client-side (DevTools) e server-side (Node)-->
-					<h3><a href="./execution-show-data.html">Mostrar Dados (Browser e Console)</a></h3>
-					<h3><a href="./modules.html">Módulos</a></h3>
-					<!--Organizar codificação em arquivos, exportar e importar-->
-					<h3><a href="./good-practices.html">Boas Práticas</a></h3>
-					<!--Estrutura de projeto-->
+					<h3><a href="./introduction/ecmascript.html">ECMAScript® Language Specification</a></h3>
 					
-					<h3><a href="./introduction/data-type.html">Tipos de Dados</a></h3>
-					<!-- Tipagem de Dados: Fraca e Dinâmica. Tipos de Dados: Primitivos e de Referência. -->
+					<!-- Integração Javascript e HTML -->
+					<h3><a href="./introduction/run-js-code.html">Executar código JavaScript</a></h3>
+					<h3><a href="./html/data.html">Trabalhar com Dados no HTML via JavaScript</a></h3>
+					<h3><a href="./html/element-script.html">Incluir código JavaScript no HTML</a></h3>
+					<h3><a href="./debug/debug-console.html">Debug - Console</a></h3>
 					
+					<h3><a href="./introduction/data-type.html">Tipos de Dados</a></h3>		
 					<h3><a href="./introduction/variables.html">Variáveis</a></h3>
-					<!--Tipos: var (escopo global), let e const (escopo de bloco).
-						Closure (Escopo Léxico), Capacidade lembrar ambiente de criação.-->
-					<h3><a href="./operators/operators-ES5.html">Operadores</a></h3>
-					<!-- Tipos: Unário, Binário e Ternário.
-						Atribuição, Aritmético, Comparação, Condicional, Relacional, Lógico. -->
-					<h3><a href="./operators/operators-ES6.html">Operadores ES6</a></h3>
-					<!-- Rest Operator = Transforma parm em array 
-						- Functions Parameters (Recebendo argumentos) -->
-					<!-- Spread Operator = Transforma array em parm 
-						- Functions Parameters (Enviando argumentos) 
-						- Criar NOVAS estruturas (Iterables Objects e Literals Objects-->
-					<!-- Destructuring Assigment = Atribuição via desestruturação
-                    	Permite extrair dados arrays/objetos em variáveis distintas.
-                        - Declaration of variables
-                        - Functions Arguments -->
-					<h3><a href="./structures-conditional.html">Estruturas Condicionais</a></h3>
-					<h3><a href="./structures-repetition.html">Estruturas de Repetição</a></h3>
-					<h3><a href="./functions/function-intro.html">Funções - Introdução</a></h3>
-					<h3><a href="./functions/function-types.html">Funções - Tipos</a></h3>
+					<h3><a href="./introduction/operators-ES5.html">Operadores</a></h3>
+					<h3><a href="./introduction/operators-ES6.html">Operadores ES6</a></h3>
 
-					<h3><a href="./this/this.html">Palavra reservada "this"</a></h3>
+					<h3><a href="./instruction-structure/structures-conditional.html">Estruturas Condicionais de codificação</a></h3>
+					<h3><a href="./instruction-structure/structures-repetition.html">Estruturas de Repetição de codificação</a></h3>
+					
+					<h3><a href="./functions/function-intro.html">Introdução à Funções</a></h3>
+					<h3><a href="./functions/function-types.html">Tipos de Funções</a></h3>
+					<h3><a href="./functions/function-arrow.html">Funções Arrow</a></h3>
+					<h3><a href="./functions/function-escopo.html">Escopo e Contexto das Funções</a></h3>
+					<h3><a href="./functions/function-callback.html">Funções de Callback</a></h3>
+					<h3><a href="./functions/function-default-arguments.html">Default Arguments em Funções</a></h3>
+					<h3><a href="./functions/function-object-arguments.html">Object arguments em Funções</a></h3>
+					<h3><a href="./functions/function-currying.html">Currying - Conceito de linguagem funcional</a></h3>
+					<h3><a href="./functions/function-generators.html">Funções Generators</a></h3>
+					<!-- Generator Function gera Generator Object q possui propriedade Symbol.iterator.
+							Propriedade Symbol.iterator permite a criação de uma interface de iteração.
+						Funções que pausam (yield), despausam (next()) e retornam valores via interface de iteração.-->
+					
+					<h3><a href="./data-structure/array/array.html">Array</a></h3>
+					<h3><a href="./data-structure/object/object.html">Object</a></h3>
+					<h3><a href="./data-structure/object/object-orientation.html">Orientação à Objeto baseada em Protótipo</a></h3>
+					<h3><a href="./reserved-words/this.html">Palavra reservada "this"</a></h3>
 
-					<h3><a href="./functions/function-escopo.html">Funções - Escopo e Contexto</a></h3>
-					<h3><a href="./functions/function-default-arguments.html">Funções - Default Arguments</a></h3>
-					<!-- Forma menos verbosa p atribuir valor default ao argumento na passagem de parâmetros -->
-					<h3><a href="./functions/function-object-arguments.html">Funções - Object arguments</a></h3>
-					<!-- Array de todos os argumentos recebidos pela função na execução (args indefinidos) -->
-					<h3><a href="./functions/function-currying.html">Funções - Currying</a></h3>
-					<!-- Técnica transformar função N parametros em uma função que recebe apenas um parametro.
-						Para cada parametro vai retornando uma nova função.
-						Conceito de linguagem funcional, JS não é uma liguagem funcional por padrão, mas permiti escrever código funcional. -->
-					<h3><a href="./hoisting.html">Hoisting de Variáveis e Funções</a></h3>
-					<!--Hoisting (Elevação) somente em escopo global, var e funções são elevadas ao topo.-->
-					<h3><a href="./collections/array.html">Array</a></h3>
-					<h3><a href="./object.html">Object</a></h3>
-					<h3><a href="./collections/map.html">Map</a></h3>
+					<h3><a href="./data-structure/keyed-collections/keyed-collections.html">Coleções Chaveadas</a></h3>
+					<h3><a href="./data-structure/keyed-collections/map.html">Coleção chaveada - Map</a></h3>
+					<h3><a href="./data-structure/keyed-collections/set.html">Coleção chaveada - Set</a></h3>
 
-					<!-- Enhanced object Literals: Forma menos verbosa de escrever -->
-					<h3><a href="./immutability.html">Imutabilidade</a></h3>
-					<!-- Objetos e Arrays são sempre passados por referência (apontamento de memória) para uma função. Por isso, nunca alterar direto a referência dele, mas sim criar um novo. -->
-					<h3><a href="./object-orientation.html">Orientação à Objeto baseada em Protótipo</a></h3>
+					<h3><a href="./concepts/hoisting.html">Hoisting de Variáveis e Funções</a></h3>
+					<h3><a href="./concepts/immutability.html">Imutabilidade</a></h3>
+					<!-- Objetos e Arrays são sempre passados por referência (apontamento de memória) para uma função. 
+						Por isso, nunca alterar direto a referência dele, mas sim criar um novo. -->
+
+					<h3><a href="./browser/browser-api-fetch.html">Fetch</a></h3>
+
+					
 					<h3><a href="./symbol-and-iterators.html">Symbol e Iterators</a></h3>
 					<!-- Função Symbol() gera o tipo primitivo symbol que é ÚNICO. Propósito: Criar meta-propriedades para objetos -->
 					<!-- Método Object.getOwnPropertySymbols() para pesquisar symbols em objetos -->
@@ -76,11 +68,8 @@
 						- Iterables Objects já possuem nativamente esta propriedade, por isso, são iteráveis.
 						- Literals Objects não possuem nativamente esta propriedade, por isso, não são iteráveis.
 							É possível adicionar esta propriedade e implementar uma interface de iteração, tornando o objeto iterável.-->
-					<h3><a href="./functions/generators.html">Generators</a></h3>
-					<!-- Generator Function gera Generator Object q possui propriedade Symbol.iterator.
-							Propriedade Symbol.iterator permite a criação de uma interface de iteração.
-						Funções que pausam (yield), despausam (next()) e retornam valores via interface de iteração.-->
-					<h3><a href="lesson16.html">Promises e Fetch</a></h3>
+					
+					<h3><a href="promise.html">Promises</a></h3>
 					<!--
 						- Funções de Callback: Nativamente usada p executar algo após determinada tarefa assíncrona.
 						- Promise: Objeto que representa tarefa assíncrona.
@@ -90,24 +79,39 @@
 							- Await aguarda a resolução de outras promises e retorna os dados.
 						- EventEmitters: Forma diferente de lidar com programação assíncrona dentro do Node.
 							Classe que permite a criação de eventos, exclusivo node.js
-    						Disponibilizada através do módulo 'events'-->																
-					<!-- Boas Práticas -->
-					<h3><a href="aula15.html">Design Patterns</a></h3>
-					<h3><a href="lesson20.html">Qualidade e Automação de Testes</a></h3>
-					<!--
-						Testes Automatizados: Testes Unitários, de Integração, Funcionais.
-						Testes Manuais e Automatizados:
-							- Testes usabilidade, de aceitação do usuário, Protótipos (Muito comuns na parte de design para validar o produto).
-							- Testes funcionais, de Exemplos, de Publicações de Alpha e beta
-						TDD: Test Driven Devlopment (Desenvolvimento Orientado a Testes)
-						BDD: Behavior Driven Development (Desenvolvimento Orientado a Comportamento)
-						Tools: Framework Mocha, Library Chai, Library Sinon
-					-->				
-					<h3><a href="lesson21.html">Tratamento de erros e exceções</a></h3>	
-					<!-- Try/Catch, Classe Error: Instânciar ou Extender -->
-					<h3><a href="lesson22.html">Otimização de Código</a></h3>
-					<!-- Minificação de Código -->
+    						Disponibilizada através do módulo 'events'-->	
+							
+					<!-- Errors -->
+					<h3><a href="./errors/try-catch.html">Tratamento de erros e exceções - Try/Catch</a></h3>	
+					<h3><a href="./errors/class-error.html">Tratamento de erros e exceções - Classe Error</a></h3>
 
+					<!-- Qualidade e Testes -->
+					<h3><a href="./tests/tests.html">Tests</a></h3>
+					<h3><a href="./tests/tdd.html">TDD</a></h3>
+					<h3><a href="./tests/bdd.html">BDD</a></h3>
+					<h3><a href="./tests/jest.html">Jest</a></h3>
+					<h3><a href="./tests/tools.html">Tools</a></h3>
+					<h3><a href="./tests/mocha.html">Mocha</a></h3>
+					<h3><a href="./tests/chai.html">Chai</a></h3>
+					<h3><a href="./tests/sinon.html">Sinon</a></h3>
+
+					<!-- Design Patterns -->
+					<h3><a href="./design-patterns/design-patterns.html">Design Patterns</a></h3>
+					<h3><a href="./design-patterns/design-patterns-module.html">Design Patterns - Module</a></h3>
+					<h3><a href="./design-patterns/design-patterns-factory.html">Design Patterns - Factory</a></h3>
+					<h3><a href="./design-patterns/design-patterns-decorator.html">Design Patterns - Decorator</a></h3>
+					<h3><a href="./design-patterns/design-patterns-observer.html">Design Patterns - Observer</a></h3>
+					<h3><a href="./design-patterns/design-patterns-singleton.html">Design Patterns - Singleton</a></h3>
+
+					<!-- Boas Práticas -->
+					<h3><a href="./good-practices/project-structure.html">Organização - Estrutura de Projeto</a></h3>
+					<h3><a href="./performance/minificacao-codigo.html">Performance - Otimização de Código</a></h3>
+					
+					<!-- Integração Javascript e HTML -->
+					<h3><a href="./browser/browser-api-dom.html">DOM - Document Object Model</a></h3>
+					<!-- DOM - Tem conteúdo em "frontend" -->
+
+					<h3><a href="lesson32.html">DOM - Selecionar elementos</a></h3>
 					<!--
 						<h3><a href="aula07.html">Manipular Classes via DOM</a></h3>
 						<h3><a href="aula08.html">Manipular Elementos via DOM</a></h3>
@@ -115,17 +119,9 @@
 						<h3><a href="aula10.html">Manipular Dimensões via DOM</a></h3>
 						<h3><a href="aula11.html">Manipular Eventos via DOM</a></h3>
 						<h3><a href="aula12.html">Manipular Estilos via DOM</a></h3>	 
-					-->
-					<h3><a href="lesson30.html">JavaScript e HTML</a></h3>
-					<!-- Incluir scripts em HTML com o elemento <script> e seus atributos. -->
-					<h3><a href="lesson31.html">DOM - Document Object Model</a></h3>
-					<!-- -->
-					<h3><a href="lesson32.html">DOM - Selecionar elementos</a></h3>
-
-
+					-->		
 				</p>
 			</article>
-
 			<article class="post">
 				<p class="post_content">
 					<header><h3>References</h3></header>

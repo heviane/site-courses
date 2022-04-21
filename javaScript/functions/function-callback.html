@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Callback</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3></h3></header>
+                <p class="post_content">
+                    <h4>Callback</h4>
+                        Nativamente era comum usar funções de callback para lidar com requisições assíncronas, para executar algo após determinada tarefa assíncrona ter sido executada.<br>
+                        Forma muito verbosa!
+                        <pre><code>
+                            // Funções de Callback
+                            function doSomething(callback) {
+                                setTimeout(function() {
+                                    callback('Executou! First data');
+                                }, 1000);
+                            }
+                            function doOtherThing(callback) {
+                                setTimeout(function() {
+                                    callback('Executou! Second data');
+                                }, 1000);
+                            }
+
+                            // Função Chamadora
+                            function doAll(){
+                                try{
+                                    doSomething(function(data) {
+                                        var processedData = 'Processed data: ' + data; 
+                                        try{
+                                            doOtherThing(function(data2) {
+                                                var processedData2 = 'Processed data2: ' + data2;
+                                                try{
+                                                    setTimeout(function() {
+                                                        console.log(processedData, processedData2)
+                                                    }, 1000);
+                                                }catch(e){
+                                                    console.log(e);
+                                                }
+                                            });
+                                        }catch(e){
+                                            console.log(e);
+                                        }
+                                    });
+                                }catch(e){
+                                    console.log(e);
+                                }
+                            }
+
+                            // Execução
+                            doAll();
+                        </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>References</h3></header> 
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function"
+                        target="_blank">Callback function</a><br>
+                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Synchronous"
+                        target="_blank">Synchronous</a><br>
+                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous"
+                        target="_blank">Asynchronous</a>
+                </p>          
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

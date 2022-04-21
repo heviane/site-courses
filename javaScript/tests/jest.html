@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Qualidade e Testes</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2></h2></header>
+			<article class="post">
+                <header><h3>Jest</h3></header>
+                <p class="post_content">
+                    É um framework para testes em javascript.<br>
+                    Usa uma linguagem JavaScript chamada <b>jasmine</b>.<br>
+                    O jest fornece code coverage que permiti puxar um relatório dentro do coverage e verificar a cobertura de testes da App.
+                    <pre><code>
+                        npm install --save-dev jest
+                    </code></pre>
+                    <ul><h4>Sintaxe</h4>
+                        <li><b>describe</b>: descreve o que a bateria de teste faz.</li>
+                        <li><b>it</b>: Cada describe tem um teste unitário chamado de <b>it</b>, que também tem uma descrição.</li>
+                        <li><b>expect().toBe()</b>: determina o que é esperado do teste.</li>
+                    </ul>
+                    <h4>Exemplo:</h4>
+                        <pre><code>
+                            // função a ser testada (teste unitário)
+                            function soma(a, b) {
+                                return a + b;
+                            }
+                            // teste unitário
+                            import { soma } from './soma';
+
+                            describe('testando a função soma', () => {
+                                it('A soma deve dar 3', () => {
+                                    const res = soma(1, 2);
+                                    expect(res).toBe(3);
+                                });
+                            });
+                        </code></pre>
+                </p>
+
+                <header><h3 class="post_title">Execução</h3></header>
+				<p class="post_content">
+					<pre><code>
+						npm run test
+						npm run test App.test.js
+					</code></pre>
+				</p>
+				<header><h3 class="post_title">Coverage</h3></header>
+				<p class="post_content">
+					Coverage mostra o percentual de cobertura de testes.
+					<pre><code>
+						npm test -- --coverage --watchAll=false
+					</code></pre>
+					<b>--coverage</b><br>
+						Mostra a cobertura de testes. Usado como um indicador de qualidade de código.<br>
+						É possível configurar um mínimo de nível de cobertura (70%, 80%).<br>
+						É possível criar uma validação para que devs só possam realizar commit se a cobertura for maior que 70%.
+					<b>--watchAll=false</b><br>
+						Não executa todos os testes, apenas os que estão no arquivo de teste.
+				</p>
+            </article>
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <li><a href="https://jestjs.io" target="_blank">jestjs.io</a></li>
+                    <li><a href="https://jasmine.github.io"  target="_blank">jasmine.github.io</a></li>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Fetch</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3></h3></header>
+                <p class="post_content">
+                    <h4>XMLHttpRequest</h4>
+                        API do browser que trabalha com <b>Callback</b> para requisições HTTP, usada antes do ES6.
+
+                    <h4>Fetch ES6</h4> 
+                        API para requisições HTTP. Retorna uma <b>Promise</b>.<br>
+                        Usar <b>then</b> para tratar o retorno.
+
+                    <h4>Fetch ES7 - Async/Await</h4> 
+                        <b>Async</b> é um modificador que permite executar a função de forma assíncrona.<br>
+                        Transforma uma função em uma promise já resolvida.<br>
+                        <b>Await</b> sempre vai estar dentro do async, espera que as promises sejam executadas/resolvidas.
+                        <ul>Duas formas de processamento:
+                            <li>Processamento assincrono sequencial</li>
+                            <li>Processamento assincrono paralelo</li>
+                        </ul>
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>References</h3></header> 
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"
+                        target="_blank">API XMLHttpRequest</a><br>
+                        <!-- Não tratado aqui...ainda
+                            https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
+                            https://developer.mozilla.org/en-US/docs/Web/API/EventSource
+                            https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API 
+                        -->
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch"
+                        target="_blank">API fetch</a><br>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request"
+                        target="_blank">API request</a><br>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"
+                        target="_blank">API response</a>
+                </p>          
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

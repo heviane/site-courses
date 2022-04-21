@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Qualidade e Testes</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2></h2></header>
+			<article class="post">
+                <header><h3>Mocha</h3></header>
+                <p class="post_content">
+                    Framework para execução de <b>testes unitários</b>.<br>
+                    Estrutura de teste JavaScript rica em recursos em execução no Node.js (servidor) e no navegador (cliente), tornando o teste assíncrono simples.<br> 
+                    Os testes Mocha são executados em série, permitindo relatórios flexíveis e precisos, enquanto mapeia exceções não detectadas para os casos de teste corretos.<br>
+                    Segue padrões e princípios do BDD de ser descritivo, escrever testes de modo expressivo, qual funcionalidade de negócio está representando. Qual comportamento é esperado.<br>
+                    Por padrão, o Mocha procura na raiz do projeto pelo diretório chamado <a>"test"</a>.<br>
+                    Exemplo de arquivo de teste, seguindo o <u>padrão BDD</u>: <b>test/math.spec.js</b>
+                    <pre><code>
+                        npm i --save-dev mocha
+
+                        // Incluir no package.json
+                        "scripts": {
+                            "test": "mocha"
+                        },
+                    </code></pre>
+                    O Mocha não provê uma ferramenta de assert. Então, importamos do Node.js
+                    <pre><code>
+                        const assert = require('assert');
+                    </code></pre>
+                    Porém, o assert por si só é limitado, porque não é tão descritivo quanto poderia ser, há uma perda de legibilidade.<br>
+                    Para resolver isso usamos a <b>Library Chai</b>.                    
+                </p>
+			</article>
+            <article class="post">
+                <header><h3>References</h3></header>
+                <p class="post_content">
+                    <a href="https://mochajs.org" target="_blank">mochajs.org</a><br>
+                    <a href="https://chaijs.com" target="_blank">chaijs.com</a><br>
+                    <a href="https://sinonjs.org" target="_blank">sinonjs.org</a><br>
+                </p>
+            </article>
+		</section>
+		<!--Página-Rodapé-->
+		<footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

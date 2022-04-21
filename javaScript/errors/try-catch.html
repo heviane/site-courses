@@ -8,43 +8,33 @@
     </head>
     <body>
 		<!--Página-Cabeçalho-->
-		<header class="header"><h1>JavaScript</h1></header>
+		<header class="header"><h1>Tratamento de erros e exceções</h1></header>
 		<!--Página-Conteúdo-->
 		<section class="content">
             <header><h2></h2></header>
 			<article class="post">
-                <header><h3>Tratamento de erros e exceções</h3></header>
+                <header><h3>Try/Catch</h3></header>
                 <p class="post_content">
                     Quando um erro é estourado, toda a execução do código seguinte é interrompida.
 
-                    <h4>Tratar erros com try/catch</h4>
-                        Desta forma, as execuções seguintes não são interrompidas.<br>
-                        <pre><code>
-                                try {
-                                    // código que pode gerar erro
-                                } catch (error) {
-                                    // tratamento do erro
-                                } finally {
-                                    // código que sempre será executado (Se houver erro ou não)
-                                }
-                        </code></pre>
-
-                    <h4>Gerar erros dinamicamente com a classe Error</h4>
-                        Erro no JS é uma classe, então podemos gerar nossos próprios erros dinâmicamente.
-                        <ul>
-                            <li>Podemos instânciar a classe Error.</li>
-                            Permite customizar a mensagem de erro e lançá-lo com a palavra reservada throw.
-                            <li>Podemos estender a classe Error.</li>
-                            Isso permite ter um controle maior, criar erros mais dinâmicos, mais ricos de informação.
-                            Permite customizar a mensagem de erro, criar novas propriedades, criar consições, etc.
-                        </ul>
+                    Serve para realizar o tratamento de erros.<br>
+                    Desta forma, as execuções seguintes não são interrompidas.
+                    <pre><code>
+                            try {
+                                // código que pode gerar erro
+                            } catch (error) {
+                                // tratamento do erro
+                            } finally {
+                                // código que sempre será executado (Se houver erro ou não)
+                            }
+                    </code></pre>
 
                     <h4>Debug</h4>
-                        <li><a href="lesson04.html" target="_blank">Debug With Console</a></li>
-
+                        <ul>
+                            <li><a href="lesson04.html" target="_blank">Debug With Console</a></li>
+                        </ul>
                 </p>
 			</article>
-
             <article class="post">
                 <header><h3>References</h3></header>
                 <p class="post_content">
@@ -54,9 +44,6 @@
                         target="_blank">Statements/throw</a></li>
                     <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" 
                         target="_blank">Global_Objects/Error</a></li>
-                        
-                    <li><a href="" target="_blank"></a></li>
-
                 </p>
             </article>
 		</section>

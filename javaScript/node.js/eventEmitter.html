@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>EventEmitter</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3></h3></header>
+                <p class="post_content">
+                    É uma forma diferente de lidar com programação assíncrona dentro do Node. Exclusivo do <b>node.js</b>.<br>
+                    Classe que permite a criação de eventos. <br>
+                    Disponibilizada através do módulo 'events'.
+                    <pre><code>
+                        const EventEmitter = require('events');
+                    </code></pre>
+
+                    <ul><h4>Formas de uso:</h4>
+                        <li>Instanciar a classe</li>
+                            <pre><code>
+                                const emitter = new EventEmitter(); 
+                                emitter.on('User Logged', data => { console.log(data); });
+                                emitter.emit('User Logged', { id: 1, name: 'Ana Rodrigues' });
+                            </code></pre>
+                        <li>Extender a classe</li>
+                            A vantagem é poder personalizar o comportamento da classe.
+                            <pre><code>
+                                class Users extends EventEmitter {
+                                    userLogged(data){
+                                        setTimeout(() => {
+                                            this.emit('User Logged', data);
+                                        }, 1000);
+                                    }
+                                }
+                                const user = new Users();
+                                user.on('User Logged', data => { console.log(data); });
+                                user.userLogged({ id: 1, name: 'Pedro Oliveira' });
+                                user.userLogged({ id: 2, name: 'Maria Silva' });
+                            </code></pre>
+                        <li>Método once()</li>
+                            Permite que o evento seja executado apenas uma vez.
+                            <pre><code>
+                                user.once('User Logged', data => { console.log(data); });
+                                user.userLogged({ id: 1, name: 'Heviane Bastos' }); 
+                                user.userLogged({ id: 2, name: 'Diego Fernandes' });
+                            </code></pre>
+                    </ul>                    
+                    
+                    <b class="text-red">OBS:</b> EventListener é uma API similar, exclusiva do browser, porém mais limitada.<br>
+                    EventTarget é a classe que permite a criação de eventos.<br>
+                    Podemos fazer <b>add eventListener()</b> e depois fazer <b>dispatchEvent()</b>.
+                </p>
+            </article>
+
+            <article class="post">
+                <header><h3>References</h3></header> 
+                <p class="post_content">
+                   
+                </p>          
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

@@ -8,12 +8,12 @@
     </head>
     <body>
 		<!--Página-Cabeçalho-->
-		<header class="header"><h1>Mostrar dados</h1></header>
+		<header class="header"><h1>Trabalhar com Dados no HTML via JavaScript</h1></header>
 		<!--Página-Conteúdo-->
         <section class="content">
             <header><h2 class="posts_title"></h2></header>
             <article class="post">
-                <header><h3>Mostrar Dados no Browser</h3></header>
+                <header><h3></h3></header>
                 <p class="post_content">
                     <h4>Receber</h4>
                         Abre prompt para digitação.
@@ -40,70 +40,6 @@
                         </code></pre>
                 </p>
             </article>
-
-            <article class="post">
-                <header><h3>Mostrar Dados no Console</h3></header>
-                <p class="post_content">
-                    É possível utilizar o console no navegador nativamente (<b>Developer Tools</b>) ou no terminal instalando o Node.js.<br>
-                    É uma das formas de debuggar a execução do código.
-                    <pre><code>
-                        console.log('Logging...');// Retorna texto BRANCO sem ícone.
-                        console.warn('warm...');  // Retorna texto AMARELO com ícone de alerta.
-                        console.error('Error...');// Retorna texto VERMELHO com ícone de erro.
-                        console.debug('Debug...');// Retorna texto AZUL.
-                        console.info('Info...');  // Retorna texto BRANCO sem ícone.
-                        console.trace('Trace...');// Retorna CAMINHO da execução do código.                        
-                    </code></pre>
-
-                    <h4>Agrupar Mensagens</h4>
-                        <pre><code>
-                            console.group('Start of grouping...extendido'); 
-                                console.log('Group Message 1');
-                                console.warn('Group Message 2');
-                                console.error('Group Message 3');
-                            console.groupEnd(); // Não imprimi
-                            console.groupCollapsed('Start of grouping...não extendido'); 
-                                console.log('Group Message 1');
-                                console.warn('Group Message 2');
-                                console.error('Group Message 3');
-                            console.groupEnd(); // Não imprimi
-                        </code></pre>
-
-                    <h4>Medir tempo de execução</h4>
-                        Console com cronômetro para medir o tempo de execução de determinado código.
-                        <pre><code>
-                            console.time('Begin Time'); // Inicia cronômetro.
-                                let x = 0;
-                                for(let i = 0; i &lt; 20; i++){
-                                    x++;   
-                                }
-                                console.log('X: ' + x);
-                            console.timeEnd('End Time'); // Fecha cronômetro.
-                        </code></pre>
-
-                    <h4>Condicional</h4>
-                        Imprimi mensagem de condição for FALSE
-                        <pre><code>
-                            let isBoolean;
-                
-                            isBoolean = true
-                            console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
-                            isBoolean = false
-                            console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
-                        </code></pre>
-
-                    <h4>Estilização de Mensagens</h4>
-                        Bastante limitado
-                        <pre><code>
-                            console.log('%c My styled log', 'color: blue; font-size: 20px');
-                        </code></pre>
-
-                    <h4>Limpar Console</h4>
-                        <pre><code>
-                            console.clear();
-                        </code></pre>
-                </p>
-			</article>
 		</section>
 		<!--Página-Rodapé-->
 		<footer class="footer">
