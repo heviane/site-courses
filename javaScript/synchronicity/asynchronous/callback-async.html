@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Callbacks Async</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3></h3>
+            </header>
+            <p class="post_content">
+                Recapitulando o que é <a href="../../functions/function-callback.html">callback</a>.<br><br>
+                Nativamente era comum usar funções de callback para lidar com requisições assíncronas, 
+                para executar algo após determinada tarefa assíncrona ter sido executada (Forma muito verbosa!).<br><br>
+
+                <h4>Exemplo de Callback async</h4>
+                    O callback async é o segundo parâmetro do método addEventListener().
+                    <pre><code>
+                        btn.addEventListener('click', () => {
+                            alert('Você clicou em mim!');
+                        
+                            let pElem = document.createElement('p');
+                            pElem.textContent = 'Este é um novo parágrafo.';
+                            document.body.appendChild(pElem);
+                        });
+                    </code></pre>
+                    O primeiro parâmetro é o tipo de evento a ser executado 
+                    e o segundo parâmetro é uma função callback que é chamada quando o evento é disparado.<br>
+
+                    Quando passamos uma função callback como um parâmetro em outra função, 
+                    nós apenas estamos passando a rêferencia da função como argumento, ou seja, 
+                    a função callback não é executada imediatamente.<br>
+                    
+                    Ela é chamada de volta assíncronamente dentro do corpo da função que a contém, 
+                    que é responsável por executar a função callback quando for necessário.<br>
+                
+            </p>
+        </article>        
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing#callbacks" target="_blank">
+                    Callbacks assíncronos</a><br>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
+    <body>
+		<!--Página-Cabeçalho-->
+		<header class="header"><h1>Assíncrono - Promise</h1></header>
+		<!--Página-Conteúdo-->
+		<section class="content">
+            <header><h2 class="content_title"></h2></header>
+            <article class="post">
+                <header><h3></h3></header>
+                <p class="post_content">
+                    A promise é um objeto que representa uma tarefa assíncrona (processamento assíncrono).<br>     
+                    A promise é um objeto que representa a conclusão ou falha da operação assíncrona.<br><br>
+
+                    Ela represente um estado intermediário, por assim dizer. 
+                    É praticamente o jetio do navegador de dizer:
+                    "Eu prometo voltar para você com a resposta o mais rápido possível", daí o nome "promessa".
+
+                    Esse conceito se parece um pouco com o Gato de Schrödinger em ação. 
+                    Nenhum dos possíveis resultados aconteceu ainda, 
+                    então a operação fetch está esperando pelo resultado do navegador 
+                    que vai completar a operação em algum ponto no futuro.
+                    <br><br>
+                    
+                    <h4>Retornos</h4>
+                        Inicialmente, seu valor é desconhecido.<br>
+                        A promise possui dois <b>argumentos</b>:
+                        <ul>
+                            <li><b>resolve</b>: Se sucesso, o valor é resolvido e passado para o then().</li>
+                            <li><b>reject</b>: Se falha, o valor é rejeitado e passado para o catch().</li>
+                        </ul>
+                        A promise sempre é recebido pendente, e algum tempo depois ela é resolvida ou rejeitada.<br>
+                        O retorna de uma promise sempre vai ser outra promise.
+
+                    <h4>Estados das promises:</h4>
+                        <ul>                      
+                            <li><b>Pending:</b> A tarefa ainda não foi realizada.</li>
+                            <li><b>Fulfilled:</b> A tarefa foi realizada com sucesso.</li>  
+                            <li><b>Rejected:</b> A tarefa foi realizada com erro.</li>
+                        </ul>
+
+                    <h4>Estrutura da Promise</h4>
+                        <pre><code>
+                            const myPromise = new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                    resolve( console.log('Promise resolved') );
+                                }, 2000);
+                            });
+                        </code></pre>
+
+                    <h4>Manipulação da Promise</h4>
+                        <pre><code>
+                            await myPromise
+                                .then( (result) => result + ' passando pelo then')
+                                .then( (result) => result + ' e agora acabou!')
+                                .catch( (error) => console.log(error.message));
+
+                            // Após 2 segundos retornará:
+                            // "Promise resolved passando pelo then e agora acabou!""
+                        </code></pre>
+                        O operador <a href="./async-await.html">await</a> é usado para aguardar uma Promise.
+                        <ul>
+                            <li><b>.then()</b>: Executa uma ação quando a promise for resolvida com sucesso.</li>
+                            <u>Cada .then() contém uma função callback</u> que será executada se a operação anterior for resolvida,
+                            então você pode fazer algo com o resultado.<br>
+                            <u>Cada .then() retorna outra promise</u>, o que significa que você pode encadear múltiplos blocos 
+                            .then() um ao outro, para que múltiplas operações assíncronas possam ser executadas uma atrás da outra.
+
+                            <li><b>.catch()</b>: Executa uma ação quando a promise for rejeitada. Captura o erro.</li>
+                            Será executado em casos em que erros ocorrerem em um dos blocos .then() 
+                            (de um modo similar aos blocos try...catch síncronos), 
+                            um objeto de erro fica disponível dentro do catch(), 
+                            e pode ser usado para reportar erros que ocorreram.<br><br>
+
+                            <b style="color: red">OBS:</b> Note que o bloco try...catch não funcionará com promises, 
+                            embora funcione com async/await, como você aprenderá mais adiante.
+                        </ul>
+                    
+                    <h4>Formas de execução das promises:</h4>
+                        <ul>
+                            <li>Sequencial</li>
+                            <li>Paralelo</li>
+                        </ul>
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+                    <pre><code>
+                        // EXEMPLO: Retorna uma promise 
+                            fetch('https://api.github.com/users')
+                                .then(response => { console.log(response); }); 
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => { console.log(response); }); 
+
+                        // EXEMPLO: Processando promise (response) para extrair os dados
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => {
+                                    response.json().then(data => {
+                                        console.log(data);
+                                });
+                            }) 
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => response.json())  
+                                .then(data => console.log(data))    
+                                .catch(e => console.log(e));   
+                                            
+                        // EXEMPLO: Encadeado de Promises
+                        // Retornar promise no .then, encadear, aplica Tipo um flash map 
+                            fetch('https://api.github.com/users/ivey')
+                                .then(response => { 
+                                    return response.json() 
+                                    .then(data => console.log(data));   
+                                });
+                    </code></pre>
+                </p>
+            </article>
+            <article class="post">
+                <header><h3>References</h3></header> 
+                <p class="post_content">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+                        target="_blank">Promise</a><br>
+                </p>          
+            </article>
+        </section>
+        <!--Página-Rodapé-->
+        <footer class="footer">
+            <div class="footer_list">
+                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+                <li><a href="https://github.com/heviane" target="_blank">github</a></li>				
+            </div>
+        </footer>
+    </body>
+</html>

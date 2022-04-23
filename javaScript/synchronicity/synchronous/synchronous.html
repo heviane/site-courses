@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Synchronous (Síncrono)</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3>Synchronous - Principais dificuldades</h3>
+            </header>
+            <p class="post_content">
+                <ul>
+                    <li><b>Requisições</b></li>
+                        Quando realizamos requisições na web, não temos controle sobre o tempo de resposta.
+                        <h5>Exemplo Simples</h5>
+                            Neste exemplo, executamos uma requisição para buscar uma imagem em um servidor, 
+                            e logo em seguida executamos o código para ler o resultado da resposta.
+                            <pre><code>
+                                let resposta = fetch('myImage.png');
+                                let blob = resposta.blob();
+                                // Mostra sua imagem na UI
+                            </code></pre>
+                            Não sabemos quanto tempo a imagem levará para ser baixada, 
+                            então quando a segunda linha for executada, ela vai resultar em erro (provalvelmente sempre).<br>
+                            Não deveríamos retornar o resultado imediatamente, mas sim aguardar a resposta.
+
+                    <li><b>Blocking (Bloqueio de código)</b></li>
+                        Ocorre quando um código é executado de forma direta, com uma coisa acontecendo por vez. 
+                        Se uma função depende do resultado de outra função, ela tem que esperar o retorno do resultado, 
+                        e até que isso aconteça, o programa inteiro praticamente para de funcionar da perspectiva do usuário.<br><br>
+
+                        Por exemplo, quando um app web é executado em um navegador e executa um pedaço de código síncrono, 
+                        sem retornar o controle para o navegador, ele pode parecer que travou.
+                        O navegador está bloqueado de continuar a manusear a entrada do usuário e de realizar outras tarefas 
+                        até que o app web retorne o controle do processador.<br>
+
+                        <h5>Exemplo Simples</h5>
+                            <pre><code>
+                                const btn = document.querySelector('button');
+                                btn.addEventListener('click', () => {
+                                    alert('Você clicou em mim!');
+                                    let pElem = document.createElement('p');
+                                    pElem.textContent = 'Este é um novo parágrafo adicionado';
+                                    document.body.appendChild(pElem);
+                                });
+                            </code></pre>
+                            Neste bloco, as linhas são executadas uma após a outra:
+                            Nós damos referência à um elemento &gt;button&lt; que já está disponível na DOM.
+                            Nós adicionamos um evento de click, e quando ele for clicado ele fará o seguinte:
+                                <ul>
+                                    <ol>Mostrar uma mensagem no alert().</ol>
+                                    <ol>Uma vez que o alert for dispensado, nós criamos um elemento &gt;p&lt;.</ol>
+                                    <ol>Depois nós o preenchemos com um texto.</ol>
+                                    <ol>E finalmente, o adicionamos no body.</ol>
+                                </ul>
+                            Enquanto cada operação é processada, nada mais pode acontecer — a renderização é pausada.
+                            Apenas uma coisa pode acontecer por vez, em uma única thread principal, 
+                            e tudo é bloqueado até que a operação seja concluída.<br>
+                            Então, no exemplo acima, depois que você tenha clicado no botão, 
+                            o parágrafo não vai aparecer até que o botão OK do alert seja pressionado.
+                </ul>       
+            </p>
+        </article>
+        
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">                
+                
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Async/Await</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3>await</h3>
+            </header>
+            <p class="post_content">
+                O operador <b>await</b> é usado para aguardar uma operação assíncrona.<br>
+
+                Ele só pode ser usado dentro de uma <b>async function</b> dentro de um código JavaScript regular.<br>
+                No entanto, ele pode ser usado sozinho com 
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">JavaScript modules</a>.<br>
+
+                O operador <b>await</b> faz com que a execução da <b>async function</b> seja pausada até que a 
+                promise seja resolvida (cumprida ou rejeitada) para poder retomar a continuação da execução.<br>
+                                
+                Quando retomado, o valor da await é o valor retornado pela Promise.<br>
+                Se a promise for rejeitado, await lançará o valor rejeitado.<br>
+                Se o valor retornado não for um Promise, então ele será convertido em um Promise resolvido.
+
+                <h4>Exemplo com async function</h4>
+                    <pre><code>
+                        function exePromise(x){
+                            return new Promise(resolve => {
+                                setTimeout(() => {
+                                    resolve(x);
+                                }, 2000);
+                            })
+                        }
+
+                        async function fn(){
+                            let x = await exePromise('Running promise...')
+                            console.log(x)
+                        }
+
+                        fn()
+                    </code></pre>
+
+                <h4>Exemplo com Javascript modules</h4>
+                    <pre><code>
+                        const colors = fetch('../data/colors.json')
+                        .then(response => response.json());
+                      
+                        export default await colors;
+                    </code></pre>
+            </p>
+        </article>
+
+        <article class="post">
+            <header>
+                <h3>async</h3>
+            </header>
+            <p class="post_content">
+                <h4>async</h4>
+                O operador <b>async</b> é usado para declarar uma função assíncrona.<br>
+                O operador <b>await</b> é esperado dentro da função, que pode conter zero ou mais operadores.<br>
+
+                A função assíncrona foi criada para trabalhar com assíncronicidade, como as promises.<br>
+
+                Essas duas palavras permitem que o comportamento assíncrono e baseado em promises 
+                seja escrito em um estilo mais limpo, evitando a necessidade de configurar explicitamente 
+                as cadeias de promises.<br><br>
+                
+                <b>async functions</b> podem ser escritas de forma <b>regular</b> ou em <b>expressões</b>.
+
+                <h4>Retorno</h4>
+                    As funções assíncronas sempre retornam uma promise. 
+                    Se o valor de retorno de uma função assíncrona não for explicitamente uma promise, 
+                    ele será encapsulado implicitamente em uma promise.
+                    <pre><code>
+                        async function foo1(x) {
+                            return x
+                        }
+
+                        // é similar a:
+
+                        function foo2(x) {
+                            return Promise.resolve(x)
+                        }
+
+                        const x = 'testing...';
+
+                        console.log(typeof foo1(x)); // object
+                        console.log(foo1(x));        // Promise { 'testing...' }
+                        
+                        console.log(typeof foo2(x)); // object
+                        console.log(foo2(x));        // Promise { 'testing...' }
+                    </code></pre>
+
+                    <b>OBS:</b> Mesmo que o valor de retorno de uma função assíncrona se comporte como se estivesse 
+                    envolvido em um Promise.resolve, eles não são equivalentes.
+                    Uma função assíncrona retornará uma referência diferente, 
+                    enquanto Promise.resolve retornará a mesma referência se o valor fornecido for uma promise.
+                    Pode ser um problema quando você deseja verificar a igualdade de uma promise 
+                    e um valor de retorno de uma função assíncrona.
+                    <pre><code>
+                        const p = new Promise((res, rej) => {
+                            res(1);
+                        })
+
+                        async function asyncReturn() {
+                            return p;
+                        }
+                        function basicReturn() {
+                            return Promise.resolve(p);
+                        }
+
+                        console.log(p === basicReturn()); // true
+                        console.log(p === asyncReturn()); // false
+                    </code></pre>
+
+                <h4>Execução da async function</h4>
+                    O corpo da função assíncrona pode ser pensado como sendo dividido por zero ou mais expressões de espera (await).
+                    
+                    O código de nível superior, incluindo a primeira expressão await (se houver), é executado de forma síncrona. 
+                    Dessa forma, uma função assíncrona sem uma expressão de espera será executada de forma síncrona. 
+                    
+                    Se houver uma expressão await dentro do corpo da função, no entanto, 
+                    a função assíncrona sempre será concluída de forma assíncrona.
+
+                    <h5>Exemplo</h5>
+                        <pre><code>
+                            async function foo() {
+                                await 1
+                            }
+
+                            //...é equivalente a:
+
+                            function foo() {
+                                return Promise.resolve(1).then(() => undefined)
+                            }
+                        </code></pre>
+                        O código após cada await pode ser considerado como existente em um retorno de chamada .then(). 
+                        Desta forma, uma cadeia de promises é progressivamente construída a cada passo reentrante 
+                        através da função. O valor de retorno forma o elo final da cadeia.
+
+                    <h5>Exemplo</h5>
+                        No exemplo a seguir, aguardamos sucessivamente duas promises. 
+                        O progresso se move através da função foo() em três estágios:
+                        <ul>
+                            <ol>1. A primeira linha do corpo da função foo é executada de forma síncrona, 
+                                com await configurado com a promise pendente. 
+                                O progresso através de foo é então suspenso e o controle é devolvido à função que chamou foo.</ol>
+                            <ol>2. Algum tempo depois, quando a primeira promise foi cumprida ou rejeitada, o controle volta para foo. 
+                                O resultado do primeiro cumprimento de promise (se não foi rejeitado) é retornado do await. 
+                                Aqui 1 é atribuído a result 1. O progresso continua e a segunda expressão de espera é avaliada. 
+                                Mais uma vez, o progresso de foo é suspenso e o controle é rendido.</ol>
+                            <ol>3. Algum tempo depois, quando a segunda promise foi cumprida ou rejeitada, o controle entra novamente foo. 
+                                O resultado da segunda resolução de promise é retornado do segundo await. 
+                                Aqui 2 é atribuído a result 2. O controle se move para a expressão de retorno (se houver). 
+                                O valor de retorno padrão de undefined é retornado como o valor de resolução da promise atual.
+                            </ol>
+                        </ul>
+                        <pre><code>
+                            async function foo() {
+                                const result1 = await new Promise((resolve) => setTimeout(() => resolve('1')))
+                                const result2 = await new Promise((resolve) => setTimeout(() => resolve('2')))
+                            }
+                            foo()                             
+                        </code></pre>
+                        Observe como a cadeia de promises não é construída de uma só vez. 
+                        Em vez disso, a cadeia de promises é construída em etapas à medida que 
+                        o controle é sucessivamente gerado e retornado à função assíncrona. 
+                        Como resultado, devemos estar atentos ao comportamento de manipulação de erros 
+                        ao lidar com operações assíncronas simultâneas.
+
+                    <h5>Exemplo</h5>
+                        No exemplo a seguir, um erro de rejeição de promise não tratada será lançado, 
+                        mesmo que um .catch tenha sido configurado mais adiante na cadeia de promises. 
+                        Isso ocorre porque p2 não será "conectado" à cadeia de promises até que o controle retorne de p1.
+                        <pre><code>
+                            async function foo() {
+                                const p1 = new Promise((resolve) => setTimeout(() => resolve('1'), 1000))
+                                const p2 = new Promise((_,reject) => setTimeout(() => reject('2'), 500))
+                                const results = [await p1, await p2] // Do not do this! Use Promise.all or Promise.allSettled instead.
+                             }
+                             foo().catch(() => {}) // Attempt to swallow all errors...                             
+                        </code></pre>
+
+
+                ...pendente...
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#async_functions_and_execution_order">
+                    Funcções assíncronas e ordem de execução</a><br>
+                    espera e paralelismo
+                    Reescrevendo uma cadeia de promessas com uma função assíncrona
+
+            </p>
+        </article>        
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await" 
+                    target="_blank">Operador await</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" 
+                    target="_blank">async function</a><br>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -16,8 +16,28 @@
                 <header><h3></h3></header>
                 <p class="post_content">
                     <h4>Callback</h4>
-                        Nativamente era comum usar funções de callback para lidar com requisições assíncronas, para executar algo após determinada tarefa assíncrona ter sido executada.<br>
-                        Forma muito verbosa!
+                        É uma função passada a outra função como argumento, 
+                        que é então invocado dentro da função externa para completar algum tipo de rotina ou ação.
+
+
+                        São funções que são passadas como parâmetros na chamada de outra função 
+                        que vai executar código por trás do panos.<br>
+                        Quando esse código por trás dos panos terminar de ser executado, 
+                        a função callback será chamada para te informar que a tarefa foi finalizada 
+                        ou que algo do seu interesse aconteceu.<br><br>
+                        
+                        <b>OBS:</b> O uso das callbacks é um pouco antiquado agora, 
+                        mas você ainda pode vê-las em um número de APIs comumente usadas.<br><br>
+
+                        Callbacks são versáteis — elas não apenas lhe permitem controlar a ordem em que 
+                        as funções são executadas e quais dados são passados entre elas, 
+                        elas também podem passar dados para diferentes funçoes dependendo das circunstâncias.<br><br>
+
+                        Callbacks podem ser 
+                        <a href="../synchronicity/synchronous/callback-sync.html">síncronas</a> 
+                        ou 
+                        <a href="../synchronicity/asynchronous/callback-async.html">assíncronas</a>.
+                        
                         <pre><code>
                             // Funções de Callback
                             function doSomething(callback) {
@@ -67,10 +87,6 @@
                 <p class="post_content">
                     <a href="https://developer.mozilla.org/en-US/docs/Glossary/Callback_function"
                         target="_blank">Callback function</a><br>
-                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Synchronous"
-                        target="_blank">Synchronous</a><br>
-                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Asynchronous"
-                        target="_blank">Asynchronous</a>
                 </p>          
             </article>
         </section>

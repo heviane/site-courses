@@ -1,14 +1,14 @@
-function checkArrays(arr, num) {
+function validateArray(arr, size) {
     try {
-        if (!arr && !num) throw new ReferenceError('Envie os argumentos!');
+        if (!arr && !size) throw new ReferenceError('Envie os argumentos!');
 
         if (typeof arr !== 'object')
             throw new TypeError('Envie um argumento do tipo Array!');
 
-        if (typeof num !== 'number')
+        if (typeof size !== 'number')
             throw new TypeError('Envie um argumento do tipo Number!');
 
-        if (arr.length !== num) throw new RangeError('Tamanho do array inválido!');
+        if (arr.length !== size) throw new RangeError('Tamanho do array inválido!');
 
         return arr;
 
@@ -26,4 +26,4 @@ function checkArrays(arr, num) {
     }
 }
 
-console.log( checkArrays([1, 2, 3], 3) );
+console.log( validateArray([1, 2, 3], 3) );

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Sincronicidade no Javascript</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3>JavaScript é uma linguagem síncrona</h3>
+            </header>
+            <p class="post_content">
+                Em sua forma mais básica, o JavaScript é uma linguagem síncrona, 
+                de bloqueio e de <a href="./synchronous/thread.html">thread</a> único, na qual apenas uma operação pode estar em andamento por vez.<br><br>
+                
+                Mas os navegadores web definem funções e APIs que nos permitem registrar funções 
+                que não devem ser executadas de forma síncrona, e sim invocadas de forma assíncrona 
+                quando ocorre algum tipo de evento (a passagem do tempo, a interação do usuário com o mouse 
+                ou a chegada de dados pela rede, por exemplo).<br><br>
+                
+                Isso significa que você pode deixar seu código fazer várias coisas ao mesmo tempo sem parar 
+                ou bloquear seu thread principal.<br><br>
+
+                Se queremos executar o código de forma síncrona ou assíncrona, dependerá do que estamos tentando fazer.<br><br>
+
+                Há momentos em que queremos que as coisas carreguem e aconteçam imediatamente. 
+                Por exemplo, ao aplicar alguns estilos definidos pelo usuário a uma página da Web, 
+                você desejará que os estilos sejam aplicados o mais rápido possível.<br><br>
+
+                No entanto, se estivermos executando uma operação que leva tempo, 
+                como consultar um banco de dados e usar os resultados para preencher modelos, 
+                é melhor enviar isso para fora do encadeamento principal e concluir a tarefa de forma assíncrona. 
+                Com o tempo, você aprenderá quando faz mais sentido escolher uma técnica assíncrona em vez de uma síncrona.
+
+            </p>
+        </article>
+        
+        <article class="post">
+            <header>
+                <h3>JavaScript é single threaded</h3>
+            </header>
+            <p class="post_content">
+                JavaScript é <b>single-threaded</b>, ver conceito de <a href="./thread.html">Thread</a>.<br> 
+                Mesmo com múltiplos núcleos de processamento, você só pode fazê-lo executar tarefas em uma única thread, 
+                chamada de <b>main thread</b> (thread principal).<br><br>
+
+                <h4>Web workers</h4>
+                    Depois de um tempo, o JavaScript ganhou algumas ferramentas para ajudar em tais problemas. 
+                    As <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web workers</a> 
+                    te permitem mandar parte do processamento do JavaScript para uma thread separada. 
+                    Você geralmente usaria uma worker para executar um processo pesado para que a UI não seja bloqueada.
+                    <pre><code>
+                        Main thread:   Tarefa A --> Tarefa C
+                        Worker thread: Tarefa pesada B
+                    </code></pre>
+                    Podem ser bem úteis, mas elas tem as suas limitações.<br><br>
+                    
+                    A <b>primeira limitação</b> é que elas não são capazes de acessar a DOM — você não pode fazer com que uma worker 
+                    faça algo diretamente para atualizar a UI, basicamente ela pode apenas fazer cálculos de números.<br><br>
+
+                    A <b>segunda limitação</b> é que, mesmo que o código executado em uma worker não cause um bloqueio, 
+                    ele ainda é um código síncrono. Isso se torna um problema quando uma função depende 
+                    dos resultados de processos anteriores para funcionar.<br><br>
+                    
+                    <h5>PROBLEMAS, Considere os diagramas a seguir:</h5>
+                        <pre><code>
+                            Main thread: Tarefa A --> Tarefa B
+                        </code></pre>
+                        Nesse caso, digamos que a tarefa A está fazendo algo como pegar uma imagem do servidor 
+                        e que a tarefa B faz algo com essa imagem, como colocar um filtro nela.<br>
+                        Se iniciar a tarefa A e depois tentar executar a tarefa B imediatamente, 
+                        ocorrerá um erro, porque a imagem não estará disponível ainda.
+                        <br><br>
+
+                        <pre><code>
+                            Main thread:   Tarefa A --> Tarefa B --> |Tarefa D|
+                            Worker thread: Tarefa C ---------------> |        |
+                        </code></pre>
+                        Neste caso, digamos que a tarefa D faz uso dos resultados das tarefas B e C.<br> 
+                        Se nós pudermos garantir que esses resultados estejam disponíveis ao mesmo tempo, 
+                        então tudo talvez esteja bem, mas isso não é garantido.<br> 
+                        Se a tarefa D tentar ser executada quando um dos resultados não estiver disponível, 
+                        retornará um erro.
+
+                    <h5>SOLUÇÃO</h5>
+                        Para consertarmos tais problemas, os browsers nos permitem executar certas operações de modo assíncrono. 
+                        Recursos como <a href="../assincrono/promise.html">Promises</a> te permitem executar uma operação 
+                        e depois esperar pelo resultado antes de executar outra operação: 
+                        <pre><code>
+                            Main thread: Tarefa A                      Tarefa B
+                            Promise:             |___operação async___|
+                        </code></pre>
+                        Já que a operação está acontecendo em outro lugar, 
+                        a main thread não está bloqueada enquanto a operação assíncrona está sendo processada.<br><br>
+
+                        <b style="color: red">Como podemos escrever código assíncrono em JavaScript?</b>
+            </p>
+        </article>
+        
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+</body>
+
+</html>

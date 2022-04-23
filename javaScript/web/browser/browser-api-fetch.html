@@ -15,40 +15,170 @@
             <article class="post">
                 <header><h3></h3></header>
                 <p class="post_content">
-                    <h4>XMLHttpRequest</h4>
-                        API do browser que trabalha com <b>Callback</b> para requisições HTTP, usada antes do ES6.
+                    Basicamente é uma versão mais moderna e eficiente da API 
+                    <a href="./browser-api-XMLHttpRequest.html">XMLHttpRequest</a>.<br>
+                    A API Fetch (ES6) fornece uma alternativa melhor que pode ser facilmente usada por outras tecnologias, 
+                    como <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Workers</a>.<br><br> 
 
-                    <h4>Fetch ES6</h4> 
-                        API para requisições HTTP. Retorna uma <b>Promise</b>.<br>
-                        Usar <b>then</b> para tratar o retorno.
+                    É uma web API para requisições HTTP.<br>
 
-                    <h4>Fetch ES7 - Async/Await</h4> 
-                        <b>Async</b> é um modificador que permite executar a função de forma assíncrona.<br>
-                        Transforma uma função em uma promise já resolvida.<br>
-                        <b>Await</b> sempre vai estar dentro do async, espera que as promises sejam executadas/resolvidas.
-                        <ul>Duas formas de processamento:
-                            <li>Processamento assincrono sequencial</li>
-                            <li>Processamento assincrono paralelo</li>
+                    A API Fetch fornece uma interface JavaScript para acessar e manipular partes do pipeline HTTP, 
+                    como <b>request</b> e <b>response</b>. Ela também fornece um método global <b>fetch()</b> 
+                    que fornece uma maneira fácil e lógica de buscar recursos de forma assíncrona na rede.<br>
+                    
+                    <ul>
+                        <li>A API Fetch <b>envia</b> dois argumentos:</li>
+                            <ul>
+                                <li>Uma URL</li>
+                                <li>Um objeto de configuração (Opcional)</li>
+                            </ul>
+                        <li>A API Fetch <b>retorna</b> uma <a href="../../synchronicity/asynchronous/promise.html">promise</a>.</li>
+                            A promise resolve o objeto <b>response</b>, por isso, a resposta não vem diretamente no corpo da requisição.
+                            É usado o método <b>then()</b> para tratar o retorno. 
+                    </ul>
+
+                    <h4>Request</h4>
+                        <h5>Requisição simples</h5>
+                            Neste caso, vamos enviar apenas o primeiro argumento, a url, que é obrigatório.<br>
+                            Vamos buscar um arquivo JSON na rede e imprimir no console.
+                            <pre><code>
+                                fetch('http://example.com/movies.json')
+                                    .then(response => response.json()) // Primeira promise
+                                    .then(data => console.log(data));  // Segunda promise                                                        
+                            </code></pre>
+                            A API fetch não retorna o JSON diretamente no corpo da resposta.<br>
+                            A API fetch retorna uma <b>promise</b> que resolve com um objeto <b>Response</b>.<br>
+                            O objeto <b>Response</b> não contém diretamente o corpo da resposta JSON real, 
+                            mas é uma representação de toda a resposta HTTP. Portanto, para extrair o conteúdo do 
+                            objeto Response usamos o método <b>json()</b>, que retorna uma segunda promise 
+                            que resolve o resultado recebido da primeira promise.<br>
+ 
+                        <h5>Requisição com configuração</h5>
+                            Neste caso, vamos enviar o segundo argumento, um objeto de configuração, que é opcional.
+                            <pre><code>
+                                fetch('https://api.github.com/users/ivey', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        name: 'Michael D. Ivey',
+                                        login: 'ivey',
+                                        email: 'ivey@gmail.com'
+                                    })
+                                });  
+                            </code></pre>
+
+                    <h4>Response</h4>
+                        Uma promise será rejeitada com um <b>TypeError</b> quando um erro de rede for encontrado 
+                        ou o CORS estiver configurado incorretamente no lado do servidor (Um Http status code 404 não constitui um erro de rede).<br>
+   
+                        Uma verificação de sucesso inclui verificar se a promise foi resolvida 
+                        e, em seguida, verificar se a propriedade Response.ok tem um valor true. 
+                        <pre><code>
+                            fetch('flowers.jpg')
+                                .then(response => {
+                                    if (!response.ok) {throw new Error('Network response was not OK')}
+                                    return response.blob();
+                                })
+                                .then(myBlob => {myImage.src = URL.createObjectURL(myBlob)})
+                                .catch(error => {console.error('There has been a problem with your fetch operation:', error)});
+                        </code></pre>
+
+
+
+
+                    <h4>Diferenças da fetch() com <a href="https://api.jquery.com/jquery.ajax">jQuery.ajax()</a>:</h4>
+                        <ul>
+                            <li>A promise não será rejeitada no status de erro do HTTP</li>
+                            Mesmo se for um erro 404 ou 500.<br>
+                            Em vez disso, assim que o servidor responder com cabeçalhos, 
+                            a promessa será resolvida normalmente (com a propriedade ok da resposta definida como false se a resposta 
+                            não está no intervalo de 200 a 299) e só será rejeitada em caso de falha de rede ou se algo impedir a 
+                            conclusão da solicitação.<br><br>
+
+                            <h5>Erro de REDE</h5>
+                                Forçando erro, chamando numa porta que não existe:
+                                <pre><code>
+                                    fetch('http://localhost:8099')
+                                        .then(response => response.json())    
+                                        .then(data => console.log(data))       
+                                        .catch(e => console.log('Error: ', e));  
+                                </code></pre>
+                                GET http://localhost:8099/ net::ERR_CONNECTION_REFUSED<br>
+                                Error:  TypeError: Failed to fetch
+
+                            <h5>Erro de RESPONSE</h5>
+                                Forçando error...chamando arquivo que não existe:
+                                <pre><code>
+                                    fetch('https://api.github.com/users/')
+                                        .then(response => {
+                                            if (response.status === 200) {
+                                                return response.json();
+                                            } else {
+                                                throw new Error('Erro na requisição'); // Lançando erro...
+                                            }
+                                        }) 
+                                        .then(data => console.log(data))   
+                                        .catch(e => console.log('Error: ', e));    
+                                </code></pre>
+                                A request passou, então não é um erro de rede.<br>
+                                O erro foi um status de resposta não desejado.<br>
+                                GET https://api.github.com/users/ 404 Not Found<br>
+                                Error:  Error: Erro na requisição 
+
+                            <li>A menos que seja chamado com a opção <b>credentials</b> definida como include, fetch():</li>
+                                <ul>
+                                    <li>não enviará cookies em solicitações de origem cruzada</li>
+                                    <li>não definirá nenhum cookie enviado de volta em respostas de origem cruzada</li>
+                                </ul>     
                         </ul>
+
                 </p>
             </article>
-
             <article class="post">
                 <header><h3>References</h3></header> 
                 <p class="post_content">
-                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"
-                        target="_blank">API XMLHttpRequest</a><br>
-                        <!-- Não tratado aqui...ainda
-                            https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
-                            https://developer.mozilla.org/en-US/docs/Web/API/EventSource
-                            https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API 
-                        -->
+                    <a href="https://fetch.spec.whatwg.org"
+                        target="_blank">API fetch</a><br>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch"
                         target="_blank">API fetch</a><br>
+
                     <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request"
                         target="_blank">API request</a><br>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"
-                        target="_blank">API response</a>
+                        target="_blank">API response</a><br>
+
+                        <h4>Async/Await</h4>
+                        <b>Async</b> é um modificador que permite executar a função de forma assíncrona.<br>
+                        Transforma uma função em uma promise já resolvida.<br>
+                        <b>Await</b> sempre vai estar dentro do async, espera que as promises sejam executadas/resolvidas.
+                       
+                       
+                        <ul>Duas formas de processamento:
+                            <li>Processamento assincrono sequencial</li>
+                            <li>Processamento assincrono paralelo</li>
+                        </ul>                    
+                        <pre><code>
+                            async function postData(url = '', data = {}) {
+                                // Default options are marked with *
+                                const response = await fetch(url, {
+                                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                                    mode: 'cors', // no-cors, *cors, same-origin
+                                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                                    credentials: 'same-origin', // include, *same-origin, omit
+                                    headers: {'Content-Type': 'application/json'},
+                                    redirect: 'follow', // manual, *follow, error
+                                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                                });
+                                return response.json(); // parses JSON response into native JavaScript objects
+                            }
+                            
+                            postData('https://example.com/answer', { answer: 42 })
+                                .then(data => {console.log(data); });  // JSON data parsed by `data.json()` call
+                        </code></pre>
                 </p>          
             </article>
         </section>

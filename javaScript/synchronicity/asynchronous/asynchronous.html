@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Asynchronous (Assíncrono)</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3></h3>
+            </header>
+            <p class="post_content">
+                <h4>Formas de Sincronicidade</h4>
+                    <ul>
+                        <li><b>Síncrono</b>: Ocorre ou se efetiva uma após a outra.</li>
+                        <li><b>Assíncrono</b>: Ocorre ou se efetiva ao mesmo tempo.</li>
+                    </ul>
+
+                <h4>Programação Assíncrona</h4>
+                    Tem por objetivo permitir que programas façam mais de uma coisa por vez.<br>
+                    É muito útil para evitar o problema de <b>blocking</b> e facilitar <b>requisições</b> na web.
+
+                <h4>Formas de codificação assíncrona no Javascript</h4>
+                    <ul>
+                        <li><b>callbacks</b>: Estilo old-school.</li>
+                        <li><b>promises</b>: Estilo mais recente.</li>
+                    </ul>
+
+                <h4>Promise vs Callback</h4>
+                    Leia mais aqui <a href="./promises-vs-callbacks.html">Promise vs Callback</a>
+
+                <h4>Fila de Eventos</h4>
+                    Operações assíncronas (como as promises) são colocadas em uma fila de eventos, 
+                    que é executada depois que a main thread terminar de ser processada. 
+                    As operações serão completadas assim que for possível 
+                    e depois retornam seus resultados para o ambiente JavaScript.
+
+                <h4>A ordem de execução de códigos assíncronos</h4>
+                    Veja aqui <a href="https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Asynchronous/Introducing#a_natureza_do_c%C3%B3digo_ass%C3%ADncrono">A natureza do código assíncrono</a>
+
+            </p>
+        </article>        
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+                <a href="https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Asynchronous" target="_blank">
+                    Asynchronous</a>
+                <a href="https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Asynchronous/Introducing" target="_blank">
+                    Asynchronous</a> 
+                <a href="https://developer.mozilla.org/pt-BR/docs/conflicting/Learn/JavaScript/Asynchronous/Introducing" target="_blank">
+                    Asynchronous</a><br>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+</body>
+
+</html>

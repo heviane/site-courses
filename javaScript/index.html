@@ -58,18 +58,10 @@
 					<!-- Objetos e Arrays são sempre passados por referência (apontamento de memória) para uma função. 
 						Por isso, nunca alterar direto a referência dele, mas sim criar um novo. -->
 
-					<h3><a href="./web/browser/browser-api-fetch.html">Fetch</a></h3>
 
-					
-					<h3><a href="./symbol-and-iterators.html">Symbol e Iterators</a></h3>
-					<!-- Função Symbol() gera o tipo primitivo symbol que é ÚNICO. Propósito: Criar meta-propriedades para objetos -->
-					<!-- Método Object.getOwnPropertySymbols() para pesquisar symbols em objetos -->
-					<!-- Propriedade well-known Symbol.Iterator cria uma interface de iteração.
-						- Iterables Objects já possuem nativamente esta propriedade, por isso, são iteráveis.
-						- Literals Objects não possuem nativamente esta propriedade, por isso, não são iteráveis.
-							É possível adicionar esta propriedade e implementar uma interface de iteração, tornando o objeto iterável.-->
-					
-					<h3><a href="promise.html">Promises</a></h3>
+					<h3><a href="./concepts/sincrono-and-assincrono.html">Síncrono e Assíncrono</a></h3>
+					<h3><a href="./web/browser/browser-api-fetch.html">Fetch</a></h3>
+					<h3><a href="./assincrono/promise.html">Assíncrono - Promises</a></h3>
 					<!--
 						- Funções de Callback: Nativamente usada p executar algo após determinada tarefa assíncrona.
 						- Promise: Objeto que representa tarefa assíncrona.
@@ -77,9 +69,11 @@
 						- Fetch ES7: Async / Await = Maneira de lidar com promises de forma mais simples. c promises dentro de outra promises.
 							- Async transforma uma função em uma promise já resolvida.
 							- Await aguarda a resolução de outras promises e retorna os dados.
-						- EventEmitters: Forma diferente de lidar com programação assíncrona dentro do Node.
-							Classe que permite a criação de eventos, exclusivo node.js
-    						Disponibilizada através do módulo 'events'-->	
+							
+						- Exclusivo do Node = EventEmitters
+							Lidar com programação assíncrona.
+							Classe que permite a criação de eventos, Disponibilizada através do módulo 'events'
+					-->	
 							
 					<!-- Errors -->
 					<h3><a href="./errors/errors.html">Errors</a>
@@ -107,6 +101,21 @@
 					<!-- Boas Práticas -->
 					<h3><a href="./good-practices/project-structure.html">Organização - Estrutura de Projeto</a></h3>
 					<h3><a href="./performance/minificacao-codigo.html">Performance - Otimização de Código</a></h3>
+					
+					
+
+
+					
+					<h3><a href="./symbol-and-iterators.html">Symbol e Iterators</a></h3>
+					<!-- Função Symbol() gera o tipo primitivo symbol que é ÚNICO. Propósito: Criar meta-propriedades para objetos -->
+					<!-- Método Object.getOwnPropertySymbols() para pesquisar symbols em objetos -->
+					<!-- Propriedade well-known Symbol.Iterator cria uma interface de iteração.
+						- Iterables Objects já possuem nativamente esta propriedade, por isso, são iteráveis.
+						- Literals Objects não possuem nativamente esta propriedade, por isso, não são iteráveis.
+							É possível adicionar esta propriedade e implementar uma interface de iteração, tornando o objeto iterável.-->
+					
+					
+					
 					
 					<!-- Integração Javascript e HTML -->
 					<h3><a href="./web/browser/browser-api-dom.html">DOM - Document Object Model</a></h3>
