@@ -15,46 +15,52 @@
             <article class="post">
                 <header><h3></h3></header>
                 <p class="post_content">
+                    É uma web API para requisições HTTP.<br>
+
                     Basicamente é uma versão mais moderna e eficiente da API 
                     <a href="./browser-api-XMLHttpRequest.html">XMLHttpRequest</a>.<br>
-                    A API Fetch (ES6) fornece uma alternativa melhor que pode ser facilmente usada por outras tecnologias, 
-                    como <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Service Workers</a>.<br><br> 
-
-                    É uma web API para requisições HTTP.<br>
 
                     A API Fetch fornece uma interface JavaScript para acessar e manipular partes do pipeline HTTP, 
                     como <b>request</b> e <b>response</b>. Ela também fornece um método global <b>fetch()</b> 
                     que fornece uma maneira fácil e lógica de buscar recursos de forma assíncrona na rede.<br>
                     
-                    <ul>
-                        <li>A API Fetch <b>envia</b> dois argumentos:</li>
-                            <ul>
-                                <li>Uma URL</li>
-                                <li>Um objeto de configuração (Opcional)</li>
-                            </ul>
-                        <li>A API Fetch <b>retorna</b> uma <a href="../../synchronicity/asynchronous/promise.html">promise</a>.</li>
-                            A promise resolve o objeto <b>response</b>, por isso, a resposta não vem diretamente no corpo da requisição.
-                            É usado o método <b>then()</b> para tratar o retorno. 
-                    </ul>
+                    <h4>Argumentos do método fetch()</h4>
+                        <ul>
+                            <li><b>Envio:</b></li>
+                                <ul>
+                                    <li>URL (Obrigatório)</li>
+                                    <li>Objeto de configuração (Opcional)</li>
+                                </ul>
+                            <li><b>Retorno:</b></li>
+                                <ul>
+                                    <li>Objeto <a href="../../synchronicity/asynchronous/promise.html">Promise</a></li>
+                                    Isso significa que deve ser usado <b>await</b> para esperar a resposta.
+                                </ul>
+                        </ul>
 
-                    <h4>Request</h4>
-                        <h5>Requisição simples</h5>
-                            Neste caso, vamos enviar apenas o primeiro argumento, a url, que é obrigatório.<br>
+                    <h4>Estrutura</h4>
+                        <pre><code>
+                            fetch(url, options)
+                                .then(response => response.json())
+                                .then(json => console.log(json))
+
+                                // retorna uma Promise
+                        </code></pre>
+                        A fetch() retorna um objeto Promise, que por sua vez, resolve o objeto <b>Response</b> 
+                        (representação de toda a resposta HTTP), por isso, a resposta não vem diretamente no corpo da requisição.<br>
+                        O método then() é usado para tratar o retorno, ele pode ser encadeado n vezes.<br>
+                        O método json() é usado para extrair o conteúdo do objeto <b>Response</b>.
+                        
+                    <h4>Objeto Request</h4>
+                        <h5>Requisição simples, apenas com a URL</h5>
                             Vamos buscar um arquivo JSON na rede e imprimir no console.
                             <pre><code>
                                 fetch('http://example.com/movies.json')
-                                    .then(response => response.json()) // Primeira promise
-                                    .then(data => console.log(data));  // Segunda promise                                                        
+                                    .then(response => response.json()) 
+                                    .then(data => console.log(data));                                                  
                             </code></pre>
-                            A API fetch não retorna o JSON diretamente no corpo da resposta.<br>
-                            A API fetch retorna uma <b>promise</b> que resolve com um objeto <b>Response</b>.<br>
-                            O objeto <b>Response</b> não contém diretamente o corpo da resposta JSON real, 
-                            mas é uma representação de toda a resposta HTTP. Portanto, para extrair o conteúdo do 
-                            objeto Response usamos o método <b>json()</b>, que retorna uma segunda promise 
-                            que resolve o resultado recebido da primeira promise.<br>
- 
-                        <h5>Requisição com configuração</h5>
-                            Neste caso, vamos enviar o segundo argumento, um objeto de configuração, que é opcional.
+   
+                        <h5>Requisição com configuração (Opcional)</h5>
                             <pre><code>
                                 fetch('https://api.github.com/users/ivey', {
                                     method: 'POST',
@@ -70,21 +76,21 @@
                                 });  
                             </code></pre>
 
-                    <h4>Response</h4>
+                    <h4>Objeto Response</h4>
                         Uma promise será rejeitada com um <b>TypeError</b> quando um erro de rede for encontrado 
-                        ou o CORS estiver configurado incorretamente no lado do servidor (Um Http status code 404 não constitui um erro de rede).<br>
-   
-                        Uma verificação de sucesso inclui verificar se a promise foi resolvida 
-                        e, em seguida, verificar se a propriedade Response.ok tem um valor true. 
-                        <pre><code>
-                            fetch('flowers.jpg')
-                                .then(response => {
-                                    if (!response.ok) {throw new Error('Network response was not OK')}
-                                    return response.blob();
-                                })
-                                .then(myBlob => {myImage.src = URL.createObjectURL(myBlob)})
-                                .catch(error => {console.error('There has been a problem with your fetch operation:', error)});
-                        </code></pre>
+                        ou o CORS estiver configurado incorretamente no lado do servidor (Um Http status code 404 não constitui um erro de rede).
+                        <h5>Verificação de Sucesso</h5>
+                            Verificar se a promise foi resolvida e, em seguida, 
+                            verificar se a propriedade Response.ok tem um valor true. 
+                            <pre><code>
+                                fetch('flowers.jpg')
+                                    .then(response => {
+                                        if (!response.ok) {throw new Error('Network response was not OK')}
+                                        return response.blob();
+                                    })
+                                    .then(myBlob => {myImage.src = URL.createObjectURL(myBlob)})
+                                    .catch(error => {console.error('There has been a problem with your fetch operation:', error)});
+                            </code></pre>
 
 
 
@@ -144,41 +150,10 @@
                         target="_blank">API fetch</a><br>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/API/fetch"
                         target="_blank">API fetch</a><br>
-
                     <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request"
                         target="_blank">API request</a><br>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"
                         target="_blank">API response</a><br>
-
-                        <h4>Async/Await</h4>
-                        <b>Async</b> é um modificador que permite executar a função de forma assíncrona.<br>
-                        Transforma uma função em uma promise já resolvida.<br>
-                        <b>Await</b> sempre vai estar dentro do async, espera que as promises sejam executadas/resolvidas.
-                       
-                       
-                        <ul>Duas formas de processamento:
-                            <li>Processamento assincrono sequencial</li>
-                            <li>Processamento assincrono paralelo</li>
-                        </ul>                    
-                        <pre><code>
-                            async function postData(url = '', data = {}) {
-                                // Default options are marked with *
-                                const response = await fetch(url, {
-                                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                                    mode: 'cors', // no-cors, *cors, same-origin
-                                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                                    credentials: 'same-origin', // include, *same-origin, omit
-                                    headers: {'Content-Type': 'application/json'},
-                                    redirect: 'follow', // manual, *follow, error
-                                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                                    body: JSON.stringify(data) // body data type must match "Content-Type" header
-                                });
-                                return response.json(); // parses JSON response into native JavaScript objects
-                            }
-                            
-                            postData('https://example.com/answer', { answer: 42 })
-                                .then(data => {console.log(data); });  // JSON data parsed by `data.json()` call
-                        </code></pre>
                 </p>          
             </article>
         </section>

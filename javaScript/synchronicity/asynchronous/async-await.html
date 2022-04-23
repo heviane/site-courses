@@ -70,10 +70,13 @@
             </header>
             <p class="post_content">
                 <h4>async</h4>
-                O operador <b>async</b> é usado para declarar uma função assíncrona.<br>
-                O operador <b>await</b> é esperado dentro da função, que pode conter zero ou mais operadores.<br>
+                <b>async</b> é um modificador que permite executar uma função de forma assíncrona.<br>
+                Transforma a função em uma promise já resolvida.<br>
 
-                A função assíncrona foi criada para trabalhar com assíncronicidade, como as promises.<br>
+                Dentro deste tipo de função é esperado zero ou mais operadores <a>await</a>.<br>
+                O <b>await</b> sempre deve ser usado para esperar que as promises sejam executadas/resolvidas.<br>
+
+                O resultado da função é uma Promise resolvida com o valor retornado pelo último await.<br>
 
                 Essas duas palavras permitem que o comportamento assíncrono e baseado em promises 
                 seja escrito em um estilo mais limpo, evitando a necessidade de configurar explicitamente 
