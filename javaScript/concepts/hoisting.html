@@ -1,62 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JavaScript</title>
-        <link rel="stylesheet" href="../assets/css/style.css">
-    </head>
-    <body>
-		<!--Página-Cabeçalho-->
-		<header class="header"><h1>Hoisting</h1></header>
-		<!--Página-Conteúdo-->
-		<section class="content">
-			<article class="post">
-                <p class="post_content">
-                    É o processo de levantar ou suspender algo.<br>
-                    Este comportamento ocorre na declaração de <b>variáveis</b> e <b>funções</b>, onde são elevadas ao escopo em que estão.
 
-                    <h4>Escopo de Bloco</h4>
-                        Faz Hoisting: <b>NÃO</b><br>
-                        Não é permitido que uma variável ou função seja executada antes de ser declarada.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
 
-                    <h4>Escopo Global</h4>
-                        Faz Hoisting: <b>SIM</b><br>
-                        É permitido que que uma variável ou função seja executada antes de ser declarada, porque nestes casos, a variável ou função é promovida ao topo do escopo.
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Hoisting</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <article class="post">
+            <p class="post_content">
+                É o processo de levantar ou suspender algo.<br>
+                Este comportamento ocorre na declaração de <b>variáveis</b> e <b>funções</b>,
+                onde são elevadas ao topo do escopo em que estão.
 
-                    <h4>Hoisting de variáveis</h4>
-                        Eleva apenas a criação da variável e não a sua atribuição.<br>
-                        Em outras linguagens gera "ReferenceError", mas no JS gera "undefinied" porque o tipo é conhecido na atribuição e não na criação.
-                        <pre><code>
-                            num1 = 1;
-                            console.log(++num1); 
-                            var num1; // Hoisting
-                        </code></pre>
+            <h4>Escopo de Bloco</h4>
+            Faz Hoisting: <b>NÃO</b><br>
+            Não é permitido que uma variável ou função seja executada antes de ser declarada.
+            Fica acessível somente dentro do bloco onde foi declarada.
+            Variável Não pode ser redefinida/redeclarada. 
+            <pre><code>
+                let name = 'Maria';
+                let name = 'João';
+            </code></pre>
+            <b>Uncaught SyntaxError:<b> Identifier 'name' has already been declared.
 
-                    <h4>Hoisting de funções</h4>
-                        Elevada ao topo como um todo, até a assinatura da função.<br>
-                        O <b>this</b> neste caso, faz referência a quem está executando.<br>
-                        Geralmente funções de timer, callback, request, eventlistener são executadas em um contexto global.<br>
-                        As funções regulares possuem os métodos <b>bind()</b> e <b>apply()</b> que podem ser usados para fixar o contexto de criação passando o <b>this</b> como parâmetro, independente da execução (Existem pequenas diferenças entre eles **Pesquisar**).<br>
-                        Outra forma de ter acesso ao contexto de criação é ficar criando uma variavel para armazenar o contexto.
-                    
-                    <h5>OBS:</h5> 
-                        Diferença entre variável e função, é que a função é içada como um todo.
-                    
-                    <h5>Boa Prática:</h5> 
-                        Sempre declarar antes da execução.
-                   
-                    <h5>Dica:</h5> 
-                        Para descobrir o contexto de uma função, basta olhar para o lado esquerdo, quem está executando, esse é o contexto de execução.
-                </p>
-			</article>
-		</section>
-		<!--Página-Rodapé-->
-		<footer class="footer">
-            <div class="footer_list">
-                <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
-                <a href="https://github.com/heviane" target="_blank">github</a>
-            </div>
-        </footer>
-    </body>
+            <h4>Escopo Global</h4>
+            Faz Hoisting: <b>SIM</b><br>
+            É permitido que que uma variável ou função seja executada antes de ser declarada,
+            porque nestes casos, a variável ou função é promovida ao topo do escopo.
+            Variável pode ser redefinida/redeclarada. 
+            Fica acessível globalmente através do objeto <b>window</b>.
+            <pre><code>
+                var test = 'test';
+                window.test = 'Alterando variavel global via objeto window';
+                console.log(test);
+            </code></pre>
+
+            <h4>Hoisting de variáveis</h4>
+            Eleva apenas a criação da variável e não a sua atribuição.<br>
+            Em outras linguagens gera "ReferenceError", mas no JS gera "undefinied"
+            porque o tipo é conhecido na atribuição e não na criação.
+            <pre><code>
+                num1 = 1;
+                console.log(++num1); 
+                var num1; // Hoisting
+            </code></pre>
+
+            <h4>Hoisting de funções</h4>
+            Elevada ao topo como um todo, até a assinatura da função.<br>
+            O <b>this</b> neste caso, faz referência a quem está executando.<br>
+            Geralmente funções de timer, callback, request, eventlistener são executadas em um contexto global.<br>
+            As funções regulares possuem os métodos <b>bind()</b> e <b>apply()</b> que podem ser usados
+            para fixar o contexto de criação passando o <b>this</b> como parâmetro, independente da execução (Existem
+            pequenas diferenças entre eles **Pesquisar**).<br>
+            Outra forma de ter acesso ao contexto de criação é ficar criando uma variavel para armazenar o contexto.
+
+            <h5>OBS:</h5>
+            Diferença entre variável e função, é que a função é içada como um todo.
+
+            <h5>Boa Prática:</h5>
+            Sempre declarar antes da execução.
+
+            <h5>Dica:</h5>
+            Para descobrir o contexto de uma função, basta olhar para o lado esquerdo,
+            quem está executando, esse é o contexto de execução.
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a><br>
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+
+    <script>
+        // Escopo global
+        var test = 'test';
+        window.test = 'Alterando variavel global via objeto window';
+        console.log(test);
+
+        if (true) {
+            var test2 = 'Alterando variavel global dentro de um if';
+        }
+        console.log(test2);
+
+        num1 = 1;
+        console.log('Usando variável global antes de declarar', ++num1);
+        var num1; // Hoisting (var usada antes de ser declarada)
+
+        // Escopo de bloco
+
+    </script>
+</body>
+
 </html>

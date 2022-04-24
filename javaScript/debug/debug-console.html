@@ -1,138 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JavaScript</title>
-        <link rel="stylesheet" href="../assets/css/style.css">
-    </head>
-    <body>
-		<!--Página-Cabeçalho-->
-		<header class="header"><h1>Debug - Console</h1></header>
-		<!--Página-Conteúdo-->
-        <section class="content">
-            <article class="post">
-                <header><h3></h3></header>
-                <p class="post_content">
-                    É possível utilizar o console no navegador nativamente (<b>Developer Tools</b>) ou no terminal instalando o Node.js.<br>
-                    É uma das formas de debuggar a execução do código.
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="./debug.js"></script>
+</head>
+
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Debug no Console do DevTools</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <article class="post">
+            <header>
+                <h3></h3>
+            </header>
+            <p class="post_content">
+                Exibe uma mensagem na console do navegador ou no terminal do Node.<br>
+                O objeto console fornece acesso ao console de depuração do navegador e do Node.<br>
+
+                É uma forma de debuggar a execução do código.<br>
+
+
+                É possível utilizar o console no navegador nativamente (<b>Developer Tools</b>) ou no terminal
+                instalando o Node.js.<br>
+
+                <b style="color:red">NOTE</b>: Este recurso não é padrão, não use em produção.
+                
+                <pre><code>
+                    console.log('Logging...');// Retorna texto BRANCO sem ícone.
+                    console.warn('warm...');  // Retorna texto AMARELO com ícone de alerta.
+                    console.error('Error...');// Retorna texto VERMELHO com ícone de erro.
+                    console.debug('Debug...');// Retorna texto AZUL.
+                    console.info('Info...');  // Retorna texto BRANCO sem ícone.
+                    console.trace('Trace...');// Retorna CAMINHO da execução do código.                        
+                </code></pre>
+
+                <h4>Agrupar Mensagens</h4>
+                <pre><code>
+                    console.group('Start of grouping...extendido'); 
+                        console.log('Group Message 1');
+                        console.warn('Group Message 2');
+                        console.error('Group Message 3');
+                    console.groupEnd(); // Não imprimi
+                    console.groupCollapsed('Start of grouping...não extendido'); 
+                        console.log('Group Message 1');
+                        console.warn('Group Message 2');
+                        console.error('Group Message 3');
+                    console.groupEnd(); // Não imprimi
+                </code></pre>
+
+                <h4>Medir tempo de execução</h4>
+                Console com cronômetro para medir o tempo de execução de determinado código.
+                <pre><code>
+                    console.time('Begin Time'); // Inicia cronômetro.
+                        let x = 0;
+                        for(let i = 0; i &lt; 20; i++){
+                            x++;   
+                        }
+                        console.log('X: ' + x);
+                    console.timeEnd('End Time'); // Fecha cronômetro.
+                </code></pre>
+
+                <h4>Condicional</h4>
+                Imprimi mensagem de condição for FALSE
+                <pre><code>
+                    let isBoolean;
+        
+                    isBoolean = true
+                    console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
+                    isBoolean = false
+                    console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
+                </code></pre>
+
+                <h4>Estilização de Mensagens</h4>
+                    Bastante limitado
                     <pre><code>
-                        console.log('Logging...');// Retorna texto BRANCO sem ícone.
-                        console.warn('warm...');  // Retorna texto AMARELO com ícone de alerta.
-                        console.error('Error...');// Retorna texto VERMELHO com ícone de erro.
-                        console.debug('Debug...');// Retorna texto AZUL.
-                        console.info('Info...');  // Retorna texto BRANCO sem ícone.
-                        console.trace('Trace...');// Retorna CAMINHO da execução do código.                        
+                        console.log('%c My styled log', 'color: blue; font-size: 20px');
                     </code></pre>
 
-                    <h4>Agrupar Mensagens</h4>
-                        <pre><code>
-                            console.group('Start of grouping...extendido'); 
-                                console.log('Group Message 1');
-                                console.warn('Group Message 2');
-                                console.error('Group Message 3');
-                            console.groupEnd(); // Não imprimi
-                            console.groupCollapsed('Start of grouping...não extendido'); 
-                                console.log('Group Message 1');
-                                console.warn('Group Message 2');
-                                console.error('Group Message 3');
-                            console.groupEnd(); // Não imprimi
-                        </code></pre>
+                <h4>Outros</h4>
+                    <pre><code>
+                        // Limpa o console
+                        console.clear();
 
-                    <h4>Medir tempo de execução</h4>
-                        Console com cronômetro para medir o tempo de execução de determinado código.
-                        <pre><code>
-                            console.time('Begin Time'); // Inicia cronômetro.
-                                let x = 0;
-                                for(let i = 0; i &lt; 20; i++){
-                                    x++;   
-                                }
-                                console.log('X: ' + x);
-                            console.timeEnd('End Time'); // Fecha cronômetro.
-                        </code></pre>
+                        //Registre o número de vezes que esta linha foi chamada com o rótulo fornecido.
+                        console.count();
 
-                    <h4>Condicional</h4>
-                        Imprimi mensagem de condição for FALSE
-                        <pre><code>
-                            let isBoolean;
-                
-                            isBoolean = true
-                            console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
-                            isBoolean = false
-                            console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
-                        </code></pre>
+                        //Limpa o contador de contagem de chamadas.
+                        console.countReset();
+                    </code></pre>
+            </p>
+        </article>
+    </section>
+    <!--Página-Rodapé-->
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+</body>
 
-                    <h4>Estilização de Mensagens</h4>
-                        Bastante limitado
-                        <pre><code>
-                            console.log('%c My styled log', 'color: blue; font-size: 20px');
-                        </code></pre>
-
-                    <h4>Limpar Console</h4>
-                        <pre><code>
-                            console.clear();
-                        </code></pre>
-                </p>
-			</article>
-		</section>
-		<!--Página-Rodapé-->
-		<footer class="footer">
-            <div class="footer_list">
-                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>		
-            </div>
-        </footer>
-        <script>
-            // window.alert('Incluindo texto na JANELA com JavaScript'); 
-            // alert('Incluindo texto na JANELA com JavaScript');
-            // document.write('Incluindo texto na PÁGINA com JavaScript<br/>');
-
-            // =========================== Console (Developer Tools) - Debuggar 
-            // ----- Imprimir Mensagens
-            console.log('Logging...');// Retorna texto BRANCO sem ícone.
-            console.warn('warm...');  // Retorna texto AMARELO com ícone de alerta.
-            console.error('Error...');// Retorna texto VERMELHO com ícone de erro.
-            console.debug('Debug...');// Retorna texto AZUL.
-            console.info('Info...');  // Retorna texto BRANCO sem ícone.
-            console.trace('Trace...');// Retorna CAMINHO da execução do código.
-            
-            // ----- Agrupar Mensagens
-            console.group('Start of grouping...extendido'); 
-                console.log('Group Message 1');
-                console.warn('Group Message 2');
-                console.error('Group Message 3');
-            console.groupEnd(); // Não imprimi
-            console.groupCollapsed('Start of grouping...não extendido'); 
-                console.log('Group Message 1');
-                console.warn('Group Message 2');
-                console.error('Group Message 3');
-            console.groupEnd(); // Não imprimi
-
-            // ----- Medir Tempo de Execução
-            // Console com cronômetro para medir o tempo de execução de determinado código.
-            console.time('Begin Time'); // Inicia cronômetro.
-                let x = 0;
-                for(let i = 0; i < 20; i++){
-                    x++;   
-                }
-                console.log('X: ' + x);
-            console.timeEnd('End Time'); // Fecha cronômetro.
-
-            // ----- Arrays e Objetos
-            console.table(['a', 'b', 'c']);             // Retorna tabela com Index e Value do array.
-            console.table({p1: 'a', p2: 'b', p3: 'c'}); // Retorna tabela com Property e Value do objeto.
-
-            // ----- Condicional: Imprimi mensagem de condição for FALSE
-            let isBoolean;
-            
-            isBoolean = true
-            console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
-            isBoolean = false
-            console.assert(isBoolean, 'Valor de isBoolean: ' + isBoolean); 
-
-            // ----- Estilização de Mensagens (Limitado)
-            console.log('%c My styled log', 'color: blue; font-size: 20px');  
-
-        </script>
-    </body>
 </html>

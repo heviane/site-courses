@@ -2,8 +2,8 @@
 // console.log(cont++); // 0
 // console.log(cont++); // 1
 
-
-  
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape
+// https://www.oocities.org/tutorialdhtml/a11.htm
 
 // ==================== var (Escopo global) X let (Escopo de bloco) 
 // var test = 'escopo global';

@@ -1,120 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JavaScript</title>	
-        <link rel="stylesheet" href="../assets/css/style.css"> 			
-    </head>
-    <body>
-        <!--Página-Cabeçalho-->
-		<header class="header"><h1>Variáveis</h1></header>
-		<!--Página-Conteúdo-->
-		<section class="content">
-            <header><h2 class="content_title" id="test"></h2></header>
-			<article class="post">
-                <header><h3>Tipos de Variáveis e seus escopos</h3></header>
-                <p class="post_content">
-                    <h4>var</h4>
-                        <ul>
-                            <li>Escopo global. Não entende escopo de bloco.</li>
-                            <li>No browser o escopo global é representado por "window".</li>
-                            <li>Mutável.</li>
-                            <li>Valor inicial é opcional, o default é <b>undefined</b>.</li>
-                            <li>Pode ser redeclarada.</li>
-                            <li>Faz Hoisting.</li>
-                            <li>Declarada com o padrão <b>camelCase</b>.</li>
-                        </ul>
 
-                     <h4>let</h4> 
-                        <ul>
-                            <li>Escopo de bloco (ES6).</li>
-                            <li>Mutável.</li>
-                            <li>Valor inicial é opcional, o default é <b>undefined</b>.</li>
-                            <li>Não pode ser redeclarada, somente reatribuída.</li>
-                            <li>Não faz Hoisting.</li>
-                            <li>Declarada com o padrão <b>camelCase</b>.</li>
-                        </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="./variables.js"></script>
+</head>
 
-                    <h4>const</h4> 
-                        <ul>
-                            <li>Escopo de bloco (ES6).</li>
-                            <li>Imutável.</li>
-                            <li>Valor inicial é obrigatório.</li>
-                            <li>Não pode ser redeclarada, nem reatribuída.</li>
-                            <li>Não faz Hoisting.</li>
-                            <li>Declarada com o padrão <b>SNAKE_UPPER_CASE</b>.</li>
-                            <h5>Observações:</h5>
-                            O <b>tipo por referência</b> é imutável e não permite alterar referência, mas permiti alterar as propriedades em Objects e Arrays. Objetos possuem um tipo de configuração que permite bloquear este tipo de permissão.
-                        </ul>
+<body>
+    <!--Página-Cabeçalho-->
+    <header class="header">
+        <h1>Variáveis</h1>
+    </header>
+    <!--Página-Conteúdo-->
+    <section class="content">
+        <header>
+            <h2 class="content_title" id="test"></h2>
+        </header>
+        <article class="post">
+            <header>
+                <h3>Tipos de Variáveis e seus escopos</h3>
+            </header>
+            <p class="post_content">
+            <h4>var</h4>
+            <ul>
+                <li>Escopo global. Não entende escopo de bloco.</li>
+                <li>No browser o escopo global é representado por "window".</li>
+                <li>Mutável.</li>
+                <li>Valor inicial é opcional, o default é <b>undefined</b>.</li>
+                <li>Pode ser redeclarada.</li>
+                <li>Faz Hoisting.</li>
+                <li>Declarada com o padrão <b>camelCase</b>.</li>
+            </ul>
+            <h4>let</h4>
+            <ul>
+                <li>Escopo de bloco (ES6).</li>
+                <li>Mutável.</li>
+                <li>Valor inicial é opcional, o default é <b>undefined</b>.</li>
+                <li>Não pode ser redeclarada, somente reatribuída.</li>
+                <li>Não faz Hoisting.</li>
+                <li>Declarada com o padrão <b>camelCase</b>.</li>
+            </ul>
+            <h4>const</h4>
+            <ul>
+                <li>Escopo de bloco (ES6).</li>
+                <li>Imutável.</li>
+                <li>Valor inicial é obrigatório.</li>
+                <li>Não pode ser redeclarada, nem reatribuída.</li>
+                <li>Não faz Hoisting.</li>
+                <li>Declarada com o padrão <b>SNAKE_UPPER_CASE</b>.</li>
+                <h5>Observações:</h5>
+                O <b>tipo por referência</b> é imutável e não permite alterar referência, mas permiti remover ou alterar o valor
+                das propriedades em Objects e Arrays. Objetos possuem um tipo de configuração que permite bloquear este tipo
+                de permissão.
+            </ul>
 
-                    <h4>BOAS PRÁTICAS para declaração de variáveis</h4>
-                        <ul>
-                            <li>Não use espaços em branco, hifen, caracteres especiais</li>
-                            <li>Sempre inicie com letra</li>
-                            <li>Use o padrão <b>camelCase</b> para variáveis</li>
-                            <li>Use o padrão <b>Upper Case Snake Case</b> para constantes</li>
-                            <li>Proíbido usar palavras reservadas (dá erro)</li>
-                            <li>Sempre declarar no topo do código, no inicio do escopo</li>
-                        </ul>
-                </p>
+            <h4>BOAS PRÁTICAS para declaração de variáveis</h4>
+            <ul>
+                <li>Não use espaços em branco, hifen, caracteres especiais</li>
+                <li>Sempre inicie com letra</li>
+                <li>Use o padrão <b>camelCase</b> para variáveis</li>
+                <li>Use o padrão <b>Upper Case Snake Case</b> para constantes</li>
+                <li>Proíbido usar palavras reservadas (dá erro)</li>
+                <li>Sempre declarar no topo do código, no inicio do escopo</li>
+            </ul>
+            </p>
 
-                <header><h3>Hoisting</h3></header>
-                <p class="post_content">
-                    <a href="./hoisting.html">Hoisting de variáveis e funções</a>
-                </p>
+            <header>
+                <h3>Hoisting</h3>
+            </header>
+            <p class="post_content">
+                <a href="./../concepts/hoisting.html">Hoisting de variáveis e funções</a>
+            </p>
 
-                <header><h3>Closure - Escopo Léxico</h3></header>
-                <p class="post_content">
-                    Capacidade de uma variável de lembrar do ambiente onde foi criada.
-                    <ul>
-                        <li><b>Escopo global</b></li>
-                            No browser o escopo global é representado por <b>"window"</b>.<br>
-                            Em um arquivo JS, o escopo global é todo o arquivo.
+            <header>
+                <h3>Closure - Escopo Léxico</h3>
+            </header>
+            <p class="post_content">
+                Capacidade de uma variável de lembrar do ambiente onde foi criada.
+            <ul>
+                <li><b>Escopo global</b></li>
+                    Na web o escopo global é representado por <b>"window"</b>.<br>
+                
+                <li><b>Escopo de função</b></li>
+                    <pre><code>
+                        function fn(){
+                            // Escopo de função
+                        }
+                    </code></pre>
 
-                        <li><b>Escopo de função</b></li>
-                            <pre><code>
-                                function fn(){
-                                    // Escopo de função
-                                }
-                            </code></pre>
+                <li><b>Escopo de bloco</b></li>
+                    É definido por um par de chaves <b>{}</b>.<br>
+                    ES6 com a inclusão <b>let</b> e <b>const</b>
+                    <pre><code>
+                        if(true){
+                            // Escopo de bloco
+                        }
+                    </code></pre>
+            </ul>
 
-                        <li><b>Escopo de bloco</b></li>
-                            É definido por um par de chaves <b>{}</b>.<br>
-                            ES6 com a inclusão <b>let</b> e <b>const</b>
-                            <pre><code>
-                                if(true){
-                                    // Escopo de bloco
-                                }
-                            </code></pre>
-                    </ul>
-                   
-                    <h4>Boas Práticas</h4>
-                        <ul>
-                            <li>Evitar o uso de variáveis globais.</li>
-                            <li>Sempre trabalhar com funções puras.</li>
-                            <b>Função pura: </b>Recebe um parâmetro (assim, sabemos de onde está vindo) e retorna alguma coisa.
-                        </ul>
-                </p>
-			</article>
+            <h4>Boas Práticas</h4>
+            <ul>
+                <li>Evitar o uso de variáveis globais.</li>
+                <li>Sempre trabalhar com funções puras.</li>
+                <b>Função pura: </b>Recebe um parâmetro (assim, sabemos de onde está vindo) e retorna alguma coisa.
+            </ul>
+            </p>
+        </article>
 
-            <article class="post">
-                <header><h3>References</h3></header>
-                <p class="post_content">
-                    <ul>
-                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape" target="_blank">escape()</a></li>
-                        A escape()função calcula uma nova string na qual certos caracteres foram substituídos por uma sequência de escape hexadecimal.
-                        <li><a href="https://www.oocities.org/tutorialdhtml/a11.htm" target="_blank">Sequências de Escape & Símbolos</a></li>
-                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" target="_blank">A propriedade global NaN é um valor que representa Not-A-Number</a></li>
-                    </ul>
-                </p>
-            </article>
-		</section>
-        <footer class="footer">
-            <div class="footer_list">
-                <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
-                <li><a href="https://github.com/heviane" target="_blank">github</a></li>		
-            </div>
-        </footer>
-    </body>
+        <article class="post">
+            <header>
+                <h3>References</h3>
+            </header>
+            <p class="post_content">
+  
+            </p>
+        </article>
+    </section>
+    <footer class="footer">
+        <div class="footer_list">
+            <li><a href="https://www.linkedin.com/in/heviane-bastos" target="_blank">linkedin</a></li>
+            <li><a href="https://github.com/heviane" target="_blank">github</a></li>
+        </div>
+    </footer>
+
+    <script>
+        // Global variable created in js file
+        console.log(window.testing);
+    </script>
+</body>
+
 </html>
