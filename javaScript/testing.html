@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing</title>
     <script src="./testing.js"></script> 
+    <script>
+        // run this function when the document is loaded
+        window.onload = function () {
+            // create a couple of elements in an otherwise empty HTML page
+            var heading      = document.createElement("h4");
+            var heading_text = document.createTextNode("elemento e conteúdo incluído no body");
+            heading.appendChild(heading_text);
+            document.body.appendChild(heading);//elemento foi incluído no final do body
+        }
+    </script>
 </head>
 <body>
     <h1>Hello World!</h1>

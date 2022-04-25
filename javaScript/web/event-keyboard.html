@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Integration of a Javascript code with an HTML page.</h1>
+    </header>
+    <section class="content">
+        <article class="content_item">
+            <header>
+                <h3>Eventos de teclado</h3>
+            </header>
+            <p class="post_content">
+                <h4>Visualizar através do console</h4>
+
+                <labeL>onkeyup (Captura quando solta a tecla)</labeL><br>
+                <input onkeyup="digitou(event)" type="text"><br/>
+
+                <labeL>onkeydown (Captura enquanto a tecla estiver pressionada)</labeL><br>
+                <input onkeydown="digitou(event)" type="text"><br>
+
+                <labeL>onkeypress (Captura enquanto a tecla estiver pressionada)</labeL><br>
+                <input onkeypress="digitou(event)" type="text"><br>
+
+                <!-- Onkey
+                    - Down   (Aperta a tecla ** Se tecla ficar pressionada, fica executando...)
+                    - Press  ()
+                    - Up     (Solta a tecla)
+                -->
+            </p>
+        </article>
+    </section>
+    <footer class="footer">
+        <div class="footer_list">
+            <a href="https://github.com/heviane" target="_blank">github</a>
+        </div>
+    </footer>
+    <script>
+        function digitou(e){ 
+            console.log(e);
+            console.log(e.keyCode + ' = ' + e.key);
+            if (e.keyCode == 13){
+                console.log('ENTER: ' + document.getElementsByTagName('input')[0].value );
+                console.log('ENTER: ' + document.getElementsByTagName('input')[1].value );
+            }
+        }
+    </script>
+</body>
+
+</html>

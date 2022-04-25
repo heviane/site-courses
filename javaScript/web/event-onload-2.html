@@ -6,8 +6,7 @@
         <title>JavaScript</title>		
         <link rel="stylesheet" href="../../../assets/css/style.css">
     </head>
-    <body onload="update()">
-    
+    <body>
 		<header class="header">
             <h1>Integration of a Javascript code with an HTML page.</h1>
         </header>
@@ -17,8 +16,9 @@
                     <h3>Event onload()</h3>
                 </header>
                 <p class="post_content">
-                    <label id="labelId">Example</label><br>
-                    <input id="inputId" type="text" size="50px">
+                    
+                    Criando elemento html no evento window.onload incluído no head da página!
+
                 </p>
             </article>
 		</section>
@@ -27,11 +27,15 @@
                 <a href="https://github.com/heviane" target="_blank">github</a>	
             </div>
         </footer>
+
         <script>
-            // Função chamada no evento onload() do body
-            function update(){
-                document.getElementById('labelId').innerHTML = 'Label updated by onload()';
-                document.getElementById('inputId').value     = 'Input updated by onload()';
+            // run this function when the document is loaded
+            window.onload = function () {
+                // create a couple of elements in an otherwise empty HTML page
+                var heading      = document.createElement("h4");
+                var heading_text = document.createTextNode("elemento e conteúdo incluído no body");
+                heading.appendChild(heading_text);
+                document.body.appendChild(heading);//elemento foi incluído no final do body
             }
         </script>
     </body>

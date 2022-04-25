@@ -32,7 +32,7 @@
 		<section class="content">
             <header><h2 class="posts_title"></h2></header>
             <article class="post">
-                <header><h3>Exercise 1: Trocar a cor do texto</h3></header>
+                <header><h3>Trocar a cor do texto</h3></header>
                 <p class="post_content">
                     <div id="exampleId">
                         DIV que deve ter a cor de fundo trocada!
@@ -49,7 +49,7 @@
                 </p>
             </article>
             <article class="post">
-                <header><h3>Exercise 2: Trocar a cor do botão</h3></header>
+                <header><h3>Trocar a cor do botão</h3></header>
                 <p class="post_content">
                     <button onclick="trocar()" id="botao">
                         Clique aqui para trocar a minha cor
@@ -66,6 +66,7 @@
             </div>
         </footer>
         <script>
+            // Função que troca a cor do texto
             function green(){
                 document.querySelector('#exampleId').classList.remove('Yellow');
                 document.querySelector('#exampleId').classList.remove('Red');
@@ -81,6 +82,7 @@
                 document.querySelector('#exampleId').classList.remove('Yellow');    
                 document.querySelector('#exampleId').classList.add('Red');
             }
+            // Função que troca a cor do botão
             function trocar(){
                 console.log(document.querySelector('#botao').classList.contains('Green'));
                 console.log(document.querySelector('#botao').classList.contains('Red'));
