@@ -4,11 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JavaScript</title>	  
-        <link rel="stylesheet" href="../assets/css/style.css">			
+        <link rel="stylesheet" href="https://heviane.github.io/shared-styles/simple-site-v1/assets/css/style.css">			
     </head>
     <body>
         <!--Página-Cabeçalho-->
-        <header class="header"><h1>Object</h1></header>
+        <header class="header">
+            <h1>Object</h1>
+        </header>
         <!--Página-Conteúdo-->
         <section class="content">
             <header><h2 class="posts_title"></h2></header>
@@ -39,22 +41,28 @@
                         console.log(Object.keys(obj));
                         console.log(Object.values(obj));
                     </code></pre>
-
-                    <h4>Desestruturação de objetos</h4>
-                        Atribuir as propriedades dos objetos à variáveis para facilitar a leitura e manipulação dos dados.
-                        <pre><code>
-                            // Sem desestruturação (ES5)
-                            var name = obj.name;
-                            var lastName = obj.lastName;
-                            var age = obj.age;
-                            var sum = obj.sum;
-                            var log = obj.log;
-
-                            // Com desestruturação (ES6)
-                            var {name, lastName, age, sum, log} = obj;
-                        </code></pre>
                 </p>
+            </article>
 
+            <article class="post">
+                <header><h3>Desestruturação de objetos</h3></header>
+                <p class="post_content">
+                    Atribuir as propriedades dos objetos à variáveis para facilitar a leitura e manipulação dos dados.
+                    <pre><code>
+                        // Sem desestruturação (ES5)
+                        var name = obj.name;
+                        var lastName = obj.lastName;
+                        var age = obj.age;
+                        var sum = obj.sum;
+                        var log = obj.log;
+
+                        // Com desestruturação (ES6)
+                        var {name, lastName, age, sum, log} = obj;
+                    </code></pre>
+                </p>
+            </article>
+
+            <article class="post">
                 <header><h3>Enhanced object Literals</h3></header>
                 <p class="post_content">
                     Forma menos verbosa de escrever propriedades e métodos de objetos literais.<br>

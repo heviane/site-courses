@@ -5,11 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript</title>
-    <link rel="stylesheet" href="../../../assets/css/style.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
-    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://heviane.github.io/shared-styles/simple-site-v1/assets/css/style.css">
 </head>
 
 <body>
@@ -27,89 +23,100 @@
                 <h3>Introdução</h3>
             </header>
             <p class="post_content">
-            É um paradigma de programação baseada em protótipos, que é um <b>estilo de programação orientada a objetos</b> 
-            em que a reutilização de comportamento é realizada por meio de um processo de reutilização de 
-            objetos existentes que servem como protótipos.<br><br>
+                <p>É um paradigma de programação baseada em <b>protótipo</b>, que é um <b>estilo de programação orientada a objetos</b>.</p>
+                <p>A reutilização de comportamento é realizada por meio de um processo de reutilização de objetos existentes que servem como protótipos.</p>
+                <p>Todos os objetos herdam propriedades e métodos de um prototype. O objeto <b>Object.prototype</b> está no topo desta cadeia.</p>
+                <p>Esse modelo também pode ser conhecido como programação prototípica, orientada a protótipos, sem classes ou baseada em instâncias.</p>
+                <p>Aplicável em todos os tipos de dados não primitivos.</p>
+            </p>
+        </article>
 
-            Todos os objetos herdam propriedades e métodos de um prototype.<br>
-            O objeto Object.prototype está no topo desta cadeia.<br>
-            
-            Esse modelo também pode ser conhecido como programação prototípica, orientada a protótipos,
-            sem classes ou baseada em instâncias.<br>
+        <article class="post">
+            <header>
+                <h3>Herança</h3>
+            </header>
+            <p class="post_content">
+                <p>A herança é feita por meio de protótipos, cadeia de protótipos, onde vai herdando propriedades e métodos até o topo da cadeia.
+                O topo da cadeia é a classe <b>Object</b>.</p>
+                <ul>
+                    <li><b>prototype</b>: É uma variável que armazena as definições do objeto.</li>
+                    Possui todas as propriedades e métodos herdados.
+                    <li><b>__proto__</b>: Referência a variável prototype.</li>
+                    Aponta para um prototype, que é criado a partir de uma função constructor.
+                    <li><b>constructor</b>: É o nome da função que cria o objeto. Aponta para o prototype.</li>
+                </ul>
+                <p class="important">Tudo isso o JS faz por debaixo dos panos.</p>
+            </p>
+        </article>
 
-            <article class="post">
-                <header>
-                    <h3>Herança</h3>
-                </header>
-                <p class="post_content">
-                    Qualquer tipo de herança é feita por meio de protótipos.<br>
-                    Trabalha com cadeia de protótipos, vai herdando propriedades e métodos até o topo da cadeia.<br>
-                    O topo da cadeia é a classe <b>Object</b>.<br>
+        <article class="post">
+            <header>
+                <h3>Classes</h3>
+            </header>
+            <p class="post_content">
+                <p>Classes não existem nativamente no JS, elas são uma <b>Syntatic Sugar</b>, ou seja, uma sintaxe feita para facilitar a escrita. Criada no ES6.</p>
+                <p>Todas as classes são objetos e a herança se dá por <b>protótipos</b>.</p>
+                <p>É uma forma simplificada para funções "fábricas" (Factory Functions), que é uma função que retorna um objeto, instância da classe especificada.</p>
+                <p><b>class</b> é uma palavra chave para declarar uma classe. É super sintaxe das funções.</p>                
+                <p><b class="important">OBS</b>: Por baixo dos panos é criado um prototype para cada classe.<br>
+                Link para testar e verificar em: <a href="https://babeljs.io/" target="_blank">https://babeljs.io/</a></p>
+            </p>
+        </article>
 
-                    <b>prototype</b>: É uma variável que armazena as definições do objeto.<br>
-                    Possui todas as propriedades e métodos herdados.<br>
+        <article class="post">
+            <header>
+                <h3>Modificadores de Acesso</h3>
+            </header>
+            <p class="post_content">
+                <p>JS não tem modificadores de acesso, porém existe uma implementação no ES6 que permite a definição de modificadores de acesso na versão 12
+                Node.js, mas, ainda não tem suporte nos browsers.</p>
+                <ul>
+                    <li><b>Public</b></li>
+                    <li><b>Private</b></li>
+                        <b>#</b>: É o caractere que determina o modificador de acesso PRIVADO.
+                </ul>
+            </p>
+        </article>
 
-                    <b>__proto__</b>: Referência a variável prototype.<br>
-                    Aponta para um prototype, que é criado a partir de uma função constructor.<br>
-
-                    <b>constructor</b>: É o nome da função que cria o objeto. Aponta para o prototype.<br>
-                    Tudo isso o JS faz por debaixo dos panos.
-                </p>
-    
-                <header>
-                    <h3>Classes</h3>
-                </header>
-                <p class="post_content">
-                    Classes no JS não existem nativamente, elas são uma <b>Syntatic Sugar</b>, ou seja, uma sintaxe feita
-                    para facilitar a escrita. Criada no ES6.<br>
-                    Todas as classes são objetos e a herança se dá por <b>protótipos</b>.<br>
-
-
-                    É uma forma simplificada para funções "fábricas" (Factory Functions).<br>
-                    É uma função que retorna objeto, instância da classe especificada.<br>
-                    <b>class</b>: Palavra chave para declarar uma classe. É super sintaxe das funções.<br>
-                    <b>OBS</b>: Por baixo dos panos é criado um prototype para cada classe<br>
-                    Verificar/testar em: <a href="https://babeljs.io/" target="_blank">https://babeljs.io/</a>
-                </p>
-    
-                <header>
-                    <h3>Modificadores de Acesso</h3>
-                </header>
-                <p class="post_content">
-                    JS não tem modificadores de acesso.<br>
-                    Já existe uma implementação em ES6 que permite a definição de modificadores de acesso (versão 12
-                    Node.js).
-                    Mas, ainda não tem suporte nos browsers.<br>
-                    <b>Privado</b> ou <b>Público</b><br>
-                    <b>#</b>: É o caractere que determina o modificador de acesso PRIVADO.
-                </p>
-            </article>
-
-            <h4>Class-based vs. prototype-based languages</h4>
-            <ul>
-                <li>Linguagem <b>orientada a objetos baseadas em classes</b></li>
+        <article class="post">
+            <header>
+                <h3>Class-based vs. prototype-based languages</h3>
+            </header>
+            <p class="post_content">
+                <ul>
+                    <li>Linguagem <b>orientada à objetos baseada em classes</b></li>
                     Baseiam-se no conceito de duas entidades distintas: classes e instâncias.<br>
 
-                    Uma <b>classe</b> é abstrata, pois define todas as propriedades que caracterizam um determinado conjunto de objetos.
+                    Uma <b>classe</b> é abstrata, pois define todas as propriedades que caracterizam um determinado conjunto
+                    de objetos.
                     Por exemplo, a classe Employee pode representar o conjunto de todos os funcionários.<br>
-                    
+
                     Uma <b>instância</b> (objeto), por outro lado, é a instanciação de uma classe.
-                    Por exemplo, Victoria poderia ser uma instância da classe Employee, representando um determinado indivíduo como funcionário. 
+                    Por exemplo, Victoria poderia ser uma instância da classe Employee, representando um determinado
+                    indivíduo como funcionário.
                     Uma instância tem exatamente as mesmas propriedades de sua classe pai (nem mais, nem menos).<br><br>
 
-                <li>Linguagem <b>baseada em protótipo</b></li>
+                    <li>Linguagem <b>orientada à objetos baseada em protótipos</b></li>
                     Baseia-se no conceito de objeto, não faz distinção entre classe e instância.<br>
 
-                    Tem a noção de um objeto prototípico, um objeto usado como modelo para obter as propriedades 
-                    iniciais de um novo objeto. Qualquer objeto pode especificar suas próprias propriedades, 
+                    Tem a noção de um objeto prototípico, um objeto usado como modelo para obter as propriedades
+                    iniciais de um novo objeto. Qualquer objeto pode especificar suas próprias propriedades,
                     quando você o cria ou em tempo de execução.<br>
-                    Além disso, qualquer objeto pode ser associado como protótipo de outro objeto, 
+                    Além disso, qualquer objeto pode ser associado como protótipo de outro objeto,
                     permitindo que o segundo objeto compartilhe as propriedades do primeiro objeto.
-            </ul>
+                </ul>
+            </p>
+        </article>
+
+        <article class="post">
+            <header>
+                <h3>Class-based vs. prototype-based languages</h3>
+            </header>
+            <p class="post_content">
             <div class="table-responsive">
                 <table class="table align-middle">
                     <thead>
-                        <tr><b>Comparação baseados em classes (Java) e baseados em protótipos (JavaScript)</b></tr>
+                        <tr></tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -124,7 +131,8 @@
                         </tr>
                         <tr>
                             <td>Definição</td>
-                            <td>Defina uma classe com uma definição de classe; instanciar uma classe com métodos construtores.</td>
+                            <td>Defina uma classe com uma definição de classe; instanciar uma classe com métodos
+                                construtores.</td>
                             <td>Defina e crie um conjunto de objetos com funções construtoras.</td>
                         </tr>
                         <tr>
@@ -134,8 +142,10 @@
                         </tr>
                         <tr>
                             <td>Construção da hierarquia de objetos</td>
-                            <td>Construa uma hierarquia de objetos usando definições de classe para definir subclasses de classes existentes.</td>
-                            <td>Construa uma hierarquia de objetos atribuindo um objeto como o protótipo associado a uma função construtora.</td>
+                            <td>Construa uma hierarquia de objetos usando definições de classe para definir subclasses
+                                de classes existentes.</td>
+                            <td>Construa uma hierarquia de objetos atribuindo um objeto como o protótipo associado a uma
+                                função construtora.</td>
                         </tr>
                         <tr>
                             <td>Modelo de herança</td>
@@ -144,15 +154,27 @@
                         </tr>
                         <tr>
                             <td>Extensão de propriedades</td>
-                            <td>A definição de classe especifica todas as propriedades de todas as instâncias de uma classe. 
+                            <td>A definição de classe especifica todas as propriedades de todas as instâncias de uma
+                                classe.
                                 Não é possível adicionar propriedades dinamicamente em tempo de execução.</td>
-                            <td>A função construtora ou protótipo especifica um conjunto inicial de propriedades. 
-                                Pode adicionar ou remover propriedades dinamicamente para objetos individuais ou para todo o conjunto de objetos.</td>
+                            <td>A função construtora ou protótipo especifica um conjunto inicial de propriedades.
+                                Pode adicionar ou remover propriedades dinamicamente para objetos individuais ou para
+                                todo o conjunto de objetos.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            Classes são mais rigidas e protótipos são mais flexíveis.
+            <p class="important">Classes são mais rigidas e protótipos são mais flexíveis.</p>
+            </p>
+        </article>
+
+        <article class="post">
+            <header>
+                <h3>Exemplos ES5 e ES6</h3>
+            </header>
+            <p class="post_content">
+                <p>Como era no ES5 vs. como é no ES6 com a criação da <b>Syntatic Sugar</b>.</p>
+                <p><img src="../../assets/img/concepts/orientacao-a-objeto-baseada-em-prototipo.png"></p>
             </p>
         </article>
 
@@ -176,7 +198,7 @@
         // 'use strict'; //Força o JS a ser mais rigoroso
 
         // //============================================== HERANÇA 
-       
+
         // --- Example 1 
         const myText = 'Hello prototype';
         // myText.constructor -> String (O construtor do myText é uma String)
