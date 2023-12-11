@@ -22,7 +22,10 @@
 
                     <h4>Tipagem dinâmica</h4>
                         Não há necessidade de explicitar o tipo no momento da declaração ou atribuição.<br>
-                        A tipagem dinâmica trabalha com <b>Inferência de Tipo</b>, ou seja, o compilador, em tempo de execução, atribui automaticamente o tipo de dado de acordo com o tipo de valor atribuído ou reatribuído. Isso significa que uma variável pode ter vários tipos ao longo da sua utilização.
+                        A tipagem dinâmica trabalha com <b>Inferência de Tipo</b>, ou seja, o compilador, 
+                        em tempo de execução, atribui automaticamente o tipo de dado de acordo com o tipo de valor 
+                        atribuído ou reatribuído. Isso significa que uma variável pode ter vários tipos ao longo 
+                        da sua utilização.
                         <pre><code>
                             var x;
                             x = 'teste';
@@ -82,9 +85,10 @@
                             </code></pre>
 
                             <li><b>number</b>: Representa todos os números</li>
-                                Positivos, negativos, inteiros ou decimais.
+                                Positivos, negativos, inteiros ou decimais.<br>
+                                Usa o padrão internacional para separar as casas decimais, usa ponto (.) ao invés de virgula (,).
 
-                            <li><b>boolean</b>: Representa true ou false</li>
+                            <li><b>boolean</b>: Representa true (ligado) ou false(desligado)</li>
 
                             <li><b>symbol</b>: Representa um valor único</li>
                                 Não pode ser instanciado. Não suporta o operador "new".<br>
@@ -107,7 +111,7 @@
                                         id1 === id2;  // FALSE (Symbols são únicos)
                                 </code></pre>
 
-                                <a href="../symbol-and-iterators.html">Symbol e Iterators</a>"
+                                <a href="../symbol-and-iterators.html">Symbol e Iterators</a>
 
                             <li><b>null</b>: Variável declarada e atribuída com null</li>
                                 Tipo de dado definido como <b>null</b>.<br>
@@ -183,12 +187,15 @@
                         O método <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf" target="">valueOf()</a> do objeto wrapper retorna o valor primitivo.
 
                     <h4>Tipo de Dado por Referência</h4>
-                        Armazena na memória o <b>endereço (referência)</b> do valor. Faz um apontamento para o valor que está em outro espaço de memória. Resumindo, referência (endereço) e valor estão em espaços de memória diferentes.
+                        Armazena na memória o <b>endereço (referência)</b> do valor. 
+                        Faz um apontamento para o valor que está em outro espaço de memória. 
+                        Resumindo, referência (endereço) e valor estão em espaços de memória diferentes.
                         <ul>
                             <li><b>Object</b>: Lista nomeada. É um Literable Object</li> 
                             <li><b>Array</b>: Lista numerada. É um Iterable Object</li>
                             <li><b>Function</b>: Também é um objeto. Permite ser chamada (Called).</li>
                         </ul>
+                        OBS: Arrays e Functions também são objetos no javascript.
 
                     <h5>Observações</h5>
                         O tipo <b>primitivo</b> é mais simples, e portanto, mais rápido de ler.<br>

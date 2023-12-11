@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JavaScript</title>	
-        <link rel="stylesheet" href="../assets/css/style.css">		
+        <link rel="stylesheet" href="../../assets/css/style.css">	
     </head>
     <body>
         <!--Página-Cabeçalho-->
@@ -63,7 +63,7 @@
                         }
                     </code></pre>
 
-                <h4>if Ternário</h4> 
+                <h4>if Ternário ou if Inline</h4> 
                     Se a condição for verdadeira, executa 1a parte <b>?</b> do código, se não, executa 2a parte <b>:</b>.
                     <pre><code>
                         let d = new Date();
@@ -74,9 +74,10 @@
 
                 <h4>Switch</h4>
                     Equivale a uma comparação de tipo e valor (===).<br>
-                    Executa todas as condições que forem verdadeiras, se nenhuma, executa o default.<br>
+                    Executa a condição que for verdadeira, e todas as condições após a verdadeira, mesmo que estas não sejam verdadeiras.<br>
+                    Caso nenhuma condição seja verdadeira, executa o default, se houver.<br>
                     Ao encontrar o operador <b>break</b> a execução é interrompida.<br>
-                    O <b>default</b> é obrigatório.
+                    O <b>default</b> é opcional.
                     <pre><code>
                         let num = 2;
                         switch (num) {
